@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Ecards</string>
+    <string name="tipo">Tipo</string>
+    <string name="tiempo_de_entrega">Tiempo de entrega</string>
+    <string name="tiempo_restante">Tiempo restante</string>
+    <string name="titulo">Titulo</string>
+    <string name="vr">Vr.</string>
+    <string name="tarjeta">tarjeta</string>
 </resources>
