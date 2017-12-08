@@ -163,6 +163,18 @@ public class MainActivity extends AppCompatActivity {
                     requestQueue.add(arrReq);
 
                 }
+
+                //Para ingresar a la vista de registro
+
+                btn_singup=(Button)findViewById(R.id.btn_singup);
+                btn_singup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent btn_sinup =new Intent(MainActivity.this, regis.class);
+                        startActivity(btn_sinup);
+                    }
+                });
             }
         });
     }
