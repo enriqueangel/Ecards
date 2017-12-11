@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 // Nuevos
 import android.text.method.ScrollingMovementMethod;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.Response;
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         campoContrasena.setTypeface(Roboto);
         btn_singin.setTypeface(Roboto);
         btn_singup.setTypeface(Roboto);
+
+        campoCorreo.setError(null);
+        campoContrasena.setError(null);
 
         // Cuando se le da clik al boton genera evento
         btn_singin.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +134,16 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                    );
+                    ){
+                        // Para mandar el token por el encabezado
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError{
+                            HashMap<String, String> headers = new HashMap<String, String>();
+                            headers.put("Content-Type", "application/json");
+                            headers.put("key", "tarjetas");
+                            return headers;
+                        }
+                    };
 
                     // ---------- Metodo Get ----------
                     // url = baseUrl + "login?correo=" + correo_inp + "&password=" + password_inp;
@@ -165,13 +179,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 //Para ingresar a la vista de registro
-
-                btn_singup=(Button)findViewById(R.id.btn_singup);
                 btn_singup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-                        Intent btn_sinup =new Intent(MainActivity.this, regis.class);
+                        Intent btn_sinup =new Intent(MainActivity.this, Registro.class);
                         startActivity(btn_sinup);
                     }
                 });
