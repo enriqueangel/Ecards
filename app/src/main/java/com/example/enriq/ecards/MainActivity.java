@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         btn_singin.setTypeface(Roboto);
         btn_singup.setTypeface(Roboto);
 
+
         // Cuando se le da clik al boton genera evento
         btn_singin.setOnClickListener(new View.OnClickListener() {
             @Override
