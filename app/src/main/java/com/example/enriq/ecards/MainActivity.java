@@ -1,5 +1,6 @@
 package com.example.enriq.ecards;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -108,8 +109,10 @@ public class MainActivity extends AppCompatActivity {
                                 public void onResponse(JSONObject response) {
                                     try {
                                         String respuesta = response.get("respuesta").toString();
-                                        if(respuesta.equals("si"))
-                                            Toast.makeText(getApplicationContext(), "Usuario existe", Toast.LENGTH_SHORT).show();
+                                        if(respuesta.equals("si")){
+                                            Intent i = new Intent(getApplicationContext(), Card.class);
+                                            startActivity(i);}
+                                            //Toast.makeText(getApplicationContext(), "Usuario existe", Toast.LENGTH_SHORT).show();
                                         else
                                             Toast.makeText(getApplicationContext(), "Usuario no existe", Toast.LENGTH_SHORT).show();
                                     } catch (JSONException e) {
