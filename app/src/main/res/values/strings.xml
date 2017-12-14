@@ -6,4 +6,6 @@
     <string name="titulo">Titulo</string>
     <string name="vr">Vr.</string>
     <string name="tarjeta">tarjeta</string>
+    <string name="title_activity_splash_screen">Splash_screen</string>
+    <string name="title_activity_crear__pin">Crear_Pin</string>
 </resources>

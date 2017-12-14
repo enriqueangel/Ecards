@@ -94,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(email && password){
+
+                    Intent intent = new Intent(MainActivity.this, Crear_Pin.class);
+                    intent.putExtra( "Correo", correo.getText().toString()  );
+                    startActivity(intent);
+
+                    /*
                     final String correo_inp = correo.getText().toString();
                     final String password_inp = contrasena.getText().toString();
 
@@ -129,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                    );
+                    ); */
 
                     // ---------- Metodo Get ----------
                     // url = baseUrl + "login?correo=" + correo_inp + "&password=" + password_inp;
@@ -158,10 +164,10 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
 
-                    );*/
+                    );
 
                     requestQueue.add(arrReq);
-
+                    */
                 }
             }
         });

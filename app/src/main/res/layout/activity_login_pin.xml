@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_pin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.enriq.ecards.login_pin">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:id="@+id/buttonIngresarpin"
+
+        android:layout_below="@+id/TextViewOlviPIN"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberPassword"
+        android:ems="10"
+        android:id="@+id/editTextIngresePIN"
+        android:hint="Ingrese el pin"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:maxLength="4"
+        android:theme = "@style/CampoTextoRojo"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pin :"
+
+        android:textSize="25sp"
+        android:textColor="?attr/actionMenuTextColor"
+
+        android:id="@+id/textView"
+        android:layout_marginTop="168dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido "
+
+        android:textSize="25sp"
+        android:textColor="?attr/actionMenuTextColor"
+        android:padding="10dp"
+        android:id="@+id/textViewbienv"
+        android:layout_marginTop="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Olvidé el PIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextViewOlviPIN"
+        android:padding="10dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:contextClickable="false"
+        android:focusable="false"
+        android:layout_below="@+id/editTextIngresePIN"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

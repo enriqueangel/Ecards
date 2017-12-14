@@ -28,4 +28,17 @@
         <item name="android:textColor">#FE2E2E</item>
     </style>
 
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CampoTextoRojo" parent="Theme.AppCompat.Light">
+
+        <item name="colorControlNormal">#706E6e</item>
+        <item name="colorControlActivated">#ff00</item>
+        <item name="android:textColorHighlight">#ff00</item>
+
+
+    </style>
+
 </resources>
