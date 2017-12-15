@@ -23,8 +23,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Card" />
-        <activity android:name=".Crear_Pin"></activity>
-        <activity android:name=".login_pin"></activity>
+        <activity android:name=".Crear_Pin" />
+        <activity android:name=".login_pin" />
+        <activity android:name=".Recuperar_PIN"></activity>
     </application>
 
 </manifest>
