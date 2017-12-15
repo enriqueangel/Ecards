@@ -26,7 +26,7 @@ public class Card extends AppCompatActivity {
         setContentView(R.layout.cards);
 
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","Blanco"));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
         contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño

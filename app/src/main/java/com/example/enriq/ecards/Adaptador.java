@@ -31,6 +31,7 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         holder.tipo.setText(ListaObjeto.get(position).getTipo());
         holder.fecha_e.setText(ListaObjeto.get(position).getTiempo_e());
         holder.tiempo_r.setText(ListaObjeto.get(position).getTiempo_r());
+        holder.version.setText(ListaObjeto.get(position).getVersion());
     }
 
     @Override
