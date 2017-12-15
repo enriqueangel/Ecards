@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp">
+
+    <FrameLayout
+        android:layout_width="105dp"
+        android:layout_height="match_parent"
+        android:background="@color/gris">
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:clipChildren="false">
+
+        <ImageView
+            android:id="@+id/imagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/titulo"
+            android:contentDescription="@string/tarjeta"
+            app:srcCompat="@drawable/card_indigo" />
+
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fecha"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/fecha"
+            android:layout_marginTop="11dp"
+            android:text="@string/titulo"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/fecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp"
+            android:layout_toEndOf="@+id/imagen"
+            android:layout_toRightOf="@+id/imagen"
+            android:text="Fecha" />
+
+        <TextView
+            android:id="@+id/lugar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fecha"
+            android:layout_alignStart="@+id/fecha"
+            android:layout_below="@+id/fecha"
+            android:text="Lugar" />
+
+        <TextView
+            android:id="@+id/hora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imagen"
+            android:layout_alignLeft="@+id/lugar"
+            android:layout_alignStart="@+id/lugar"
+            android:text="Hora" />
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

@@ -27,12 +27,15 @@ public class Card extends AppCompatActivity {
 
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
+        ArrayList<Fuente_reunion> lista2 = new ArrayList<Fuente_reunion>();
+        lista2.add(new Fuente_reunion("Reunion Mobil","Oficina","5 pm","Azul","14-12-2017"));
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
         contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
         RelativeLayout layout = new RelativeLayout(getApplicationContext());
         layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
         contenedor.setAdapter(new Adaptador(lista));
+        contenedor.setAdapter(new Adaptador_reunion(lista2));
         contenedor.setLayoutManager(new LinearLayoutManager(this));
 
     }
