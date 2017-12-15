@@ -44,7 +44,7 @@ public class SignInFragment extends Fragment {
     private TextInputLayout campoContrasena;
 
     EditText correo, contrasena;
-    Button btnSignIn, btnSignUp;
+    Button btnSignIn;
     RequestQueue requestQueue;
     Activity Actividad;
     String baseUrl = "https://webserver-enriqeangel.c9users.io/";
@@ -60,7 +60,6 @@ public class SignInFragment extends Fragment {
         correo = (EditText) view.findViewById(R.id.correo);
         contrasena = (EditText) view.findViewById(R.id.contrasena);
         btnSignIn = (Button) view.findViewById(R.id.btnSignIn);
-        btnSignUp = (Button) view.findViewById(R.id.btnSignUp);
         campoCorreo = (TextInputLayout) view.findViewById(R.id.campo_correo);
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);
 

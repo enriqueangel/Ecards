@@ -38,8 +38,8 @@ public class login_pin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
+                Intent intent = new Intent(login_pin.this, Recuperar_PIN.class);
+                startActivity(intent);
 
             }
         } );
@@ -57,6 +57,7 @@ public class login_pin extends AppCompatActivity {
 
                     Intent intent = new Intent(login_pin.this, Card.class);
                     startActivity(intent);
+                    PIN.setText("");
 
                 }else{
 
