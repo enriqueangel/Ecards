@@ -8,4 +8,14 @@
     <string name="tarjeta">tarjeta</string>
     <string name="title_activity_splash_screen">Splash_screen</string>
     <string name="title_activity_crear__pin">Crear_Pin</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="registrar">Registrar</string>
+    <string name="correo">Correo electronico</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="confirmacion">Confirmar contraseña</string>
+    <string name="nombre">Nombre(s)</string>
+    <string name="apellido">Apellido(s)</string>
+    <string name="telefono">Teléfono</string>
+    <string name="area">Área</string>
+    <string name="recordar">Recordar contraseña</string>
 </resources>
