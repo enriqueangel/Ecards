@@ -4,9 +4,11 @@ package com.example.enriq.ecards;
  * Created by enriq on 14/12/2017.
  */
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -44,7 +46,7 @@ public class SignInFragment extends Fragment {
     EditText correo, contrasena;
     Button btnSignIn, btnSignUp;
     RequestQueue requestQueue;
-
+    Activity Actividad;
     String baseUrl = "https://webserver-enriqeangel.c9users.io/";
     String url;
 
@@ -63,18 +65,18 @@ public class SignInFragment extends Fragment {
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);
 
         requestQueue = Volley.newRequestQueue(getActivity());
-        /*AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
-        View mView = getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
-*/
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 boolean confirmCorreo = validarCorreo(correo.getText().toString());
                 boolean confirmContrasena = validarContraseña(contrasena);
                 if (confirmCorreo && confirmContrasena){
-                    //dialog.show();
+                    dialog.show();
                     final String correo_inp = correo.getText().toString();
                     final String password_inp = contrasena.getText().toString();
 
@@ -91,12 +93,28 @@ public class SignInFragment extends Fragment {
                                     try {
                                         String respuesta = response.get("respuesta").toString();
                                         if(respuesta.equals("si")){
-                                            //dialog.dismiss();
-                                            Snackbar.make(view, "Usuario existe.", Snackbar.LENGTH_SHORT).show();
+                                            dialog.dismiss();
+                                            String token = response.get("token").toString();
+                                            Actividad = getActivity();
+                                            Toast MensajeBienvenido = Toast.makeText(Actividad, "Bienvenido ", Toast.LENGTH_SHORT);
+                                            MensajeBienvenido.show();
+
+                                            SharedPreferences SP = Actividad.getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = SP.edit();
+                                            editor.putString("token",token);
+                                            editor.apply();
+
+                                            Intent intent = new Intent(getActivity(), Crear_Pin.class);
+                                            intent.putExtra( "Correo", correo.getText().toString()  );
+                                            startActivity(intent);
+
+                                            Actividad.finish();
+
+                                            //Snackbar.make(view, "Usuario existe.", Snackbar.LENGTH_SHORT).show();
                                             // Intent i = new Intent(getActivity(), Card.class);
                                             // startActivity(i);
                                         } else {
-                                            //dialog.dismiss();
+                                            dialog.dismiss();
                                             Snackbar.make(view, "Usuario no existe.", Snackbar.LENGTH_SHORT).show();
                                         }
                                     } catch (JSONException e) {
@@ -108,7 +126,7 @@ public class SignInFragment extends Fragment {
                             new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    //dialog.dismiss();
+                                    dialog.dismiss();
                                     Log.e("Volley", error.toString());
                                     Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
                                 }
