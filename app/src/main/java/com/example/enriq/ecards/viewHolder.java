@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class viewHolder extends RecyclerView.ViewHolder {
 
-    TextView titulo,tipo,fecha_e,tiempo_r;
+    TextView titulo,tipo,fecha_e,tiempo_r,version;
 
 
     public viewHolder(View itemView) {
@@ -22,6 +22,7 @@ public class viewHolder extends RecyclerView.ViewHolder {
         tipo = (TextView) itemView.findViewById(R.id.tipo);
         fecha_e = (TextView) itemView.findViewById(R.id.fecha_e);
         tiempo_r = (TextView) itemView.findViewById(R.id.tiempo_r);
+        version = (TextView) itemView.findViewById(R.id.vr);
 
     }
 }

@@ -45,6 +45,17 @@
             android:textColor="@color/blanco"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/vr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/version"
+            android:layout_toRightOf="@+id/version"
+            android:text=""
+            android:textColor="@color/blanco"
+            android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/titulo"

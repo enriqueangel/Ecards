@@ -10,13 +10,14 @@ package com.example.enriq.ecards;
 
 public class Fuente {
 
-    String titulo,tipo,tiempo_e,tiempo_r,color;
+    String titulo,tipo,tiempo_e,tiempo_r,version,color;
 
-    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String color) {
+    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String version, String color) {
         this.titulo = titulo;
         this.tipo = tipo;
         this.tiempo_e = tiempo_e;
         this.tiempo_r = tiempo_r;
+        this.version = version;
         this.color = color;
     }
 
@@ -50,6 +51,14 @@ public class Fuente {
 
     public void setTiempo_r(String tiempo_r) {
         this.tiempo_r = tiempo_r;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public String getColor() {
