@@ -47,7 +47,6 @@ public class SignInFragment extends Fragment {
     Button btnSignIn;
     RequestQueue requestQueue;
     Activity Actividad;
-    String baseUrl = "https://webserver-enriqeangel.c9users.io/";
     String url;
 
     @Override
@@ -79,7 +78,10 @@ public class SignInFragment extends Fragment {
                     final String correo_inp = correo.getText().toString();
                     final String password_inp = contrasena.getText().toString();
 
-                    url = baseUrl + "login";
+                    url = getString(R.string.URLWS);
+                    url = url+"login";
+
+
 
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
