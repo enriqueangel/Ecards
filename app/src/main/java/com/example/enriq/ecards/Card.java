@@ -25,17 +25,32 @@ public class Card extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
 
+        //creacion de lista para la tarjeta BLANCA
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
+        //creacion de lista para la tarjeta AZUL   (REUNION)
         ArrayList<Fuente_reunion> lista2 = new ArrayList<Fuente_reunion>();
         lista2.add(new Fuente_reunion("Reunion Mobil","Oficina","5 pm","Azul","14-12-2017"));
+        //creacion de lista para la tarjeta AMARILLA
+        ArrayList<Fuente> lista3 = new ArrayList<Fuente>();
+        lista3.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
+        //creacion de lista para la tarjeta ROJA
+        ArrayList<Fuente> lista4 = new ArrayList<Fuente>();
+        lista4.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
+
+
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
         contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
         RelativeLayout layout = new RelativeLayout(getApplicationContext());
         layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
-        contenedor.setAdapter(new Adaptador(lista));
-        contenedor.setAdapter(new Adaptador_reunion(lista2));
+
+        //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
+        //contenedor.setAdapter(new Adaptador(lista));
+        //contenedor.setAdapter(new Adaptador_reunion(lista2));
+        contenedor.setAdapter(new Adaptador_yellow(lista3));
+        //contenedor.setAdapter(new Adaptador_red(lista4));
+
         contenedor.setLayoutManager(new LinearLayoutManager(this));
 
     }
