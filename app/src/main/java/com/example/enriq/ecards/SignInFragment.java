@@ -63,6 +63,7 @@ public class SignInFragment extends Fragment {
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);
 
         requestQueue = Volley.newRequestQueue(getActivity());
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
@@ -81,8 +82,6 @@ public class SignInFragment extends Fragment {
                     url = getString(R.string.URLWS);
                     url = url+"login";
 
-
-
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
                     params.put("password", password_inp);
@@ -97,8 +96,6 @@ public class SignInFragment extends Fragment {
                                             dialog.dismiss();
                                             String token = response.get("token").toString();
                                             Actividad = getActivity();
-                                            Toast MensajeBienvenido = Toast.makeText(Actividad, "Bienvenido ", Toast.LENGTH_SHORT);
-                                            MensajeBienvenido.show();
 
                                             SharedPreferences SP = Actividad.getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
                                             SharedPreferences.Editor editor = SP.edit();
@@ -106,14 +103,10 @@ public class SignInFragment extends Fragment {
                                             editor.apply();
 
                                             Intent intent = new Intent(getActivity(), Crear_Pin.class);
-                                            intent.putExtra( "Correo", correo.getText().toString()  );
+                                            intent.putExtra( "Correo", correo.getText().toString());
                                             startActivity(intent);
 
                                             Actividad.finish();
-
-                                            //Snackbar.make(view, "Usuario existe.", Snackbar.LENGTH_SHORT).show();
-                                            // Intent i = new Intent(getActivity(), Card.class);
-                                            // startActivity(i);
                                         } else {
                                             dialog.dismiss();
                                             Snackbar.make(view, "Usuario no existe.", Snackbar.LENGTH_SHORT).show();
@@ -144,7 +137,7 @@ public class SignInFragment extends Fragment {
     }
 
     public boolean validarCorreo(String correo){
-        if (Patterns.EMAIL_ADDRESS.matcher(correo).matches() == false){
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
             campoCorreo.setError("Correo erroneo");
             return false;
         } else {

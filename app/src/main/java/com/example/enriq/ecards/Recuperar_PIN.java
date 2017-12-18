@@ -1,7 +1,6 @@
 package com.example.enriq.ecards;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
@@ -30,8 +29,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
-
 public class Recuperar_PIN extends AppCompatActivity {
 
     private TextInputLayout campoContrasena;
@@ -47,10 +44,9 @@ public class Recuperar_PIN extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recuperar__pin);
+        setContentView(R.layout.activity_recuperar_pin);
 
-
-        BTRecuperarPIN = (Button)findViewById( R.id.BotonRecuperar);
+        BTRecuperarPIN = (Button) findViewById( R.id.BotonRecuperar);
         Contra = (EditText) findViewById( R.id.EDTContra);
         campoContrasena = (TextInputLayout) findViewById( R.id.TextImputContra);
 
@@ -61,29 +57,24 @@ public class Recuperar_PIN extends AppCompatActivity {
         Correo.setText(CorreO);
 
         requestQueue = Volley.newRequestQueue(this);
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
 
-
-
         BTRecuperarPIN.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(final View view) {
                 boolean confirmContrasena = validarContraseña(Contra);
 
                 if (confirmContrasena){
-
                     dialog.show();
                     final String correo_inp = CorreO;
                     final String password_inp = Contra.getText().toString();
 
                     String url = getString(R.string.URLWS);
-                    url = url+MetodoWS;
-
-
+                    url = url + MetodoWS;
 
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
@@ -104,15 +95,11 @@ public class Recuperar_PIN extends AppCompatActivity {
                                             finish();
                                         } else {
                                             dialog.dismiss();
-                                            Toast MensajeBienvenido = Toast.makeText(Recuperar_PIN.this, "Contraseña incorrecta.", Toast.LENGTH_SHORT);
-                                            MensajeBienvenido.show();
-                                            //Snackbar.make(view, "Usuario no existe.", Snackbar.LENGTH_SHORT).show();
+                                            Snackbar.make(view, "Contraseña incorrecta.", Snackbar.LENGTH_SHORT).show();
                                         }
                                     } catch (JSONException e) {
                                         Log.e("Volley", "Invalid JSON Object.");
-                                        Toast MensajeBienvenido = Toast.makeText(Recuperar_PIN.this, "Error desconocido.", Toast.LENGTH_SHORT);
-                                        MensajeBienvenido.show();
-                                        //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
+                                        Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
                                     }
                                 }
                             },
@@ -121,14 +108,10 @@ public class Recuperar_PIN extends AppCompatActivity {
                                 public void onErrorResponse(VolleyError error) {
                                     dialog.dismiss();
                                     Log.e("Volley", error.toString());
-                                    Toast MensajeBienvenido = Toast.makeText(Recuperar_PIN.this, "Error en la conexion", Toast.LENGTH_SHORT);
-                                    MensajeBienvenido.show();
-                                    //Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
                                 }
                             }
                     ){
-
-
                         /*
                         /**
                          * Passing some request headers
@@ -142,19 +125,13 @@ public class Recuperar_PIN extends AppCompatActivity {
                             headers.put("token", tokenTemp);
                             return headers;
                         }
-
-
                     };
 
                     requestQueue.add(arrReq);
 
-
                 };
-
-
             }
         });
-
     }
 
     public boolean validarContraseña(EditText contasena){
@@ -166,7 +143,4 @@ public class Recuperar_PIN extends AppCompatActivity {
             return true;
         }
     }
-
-
-
 }

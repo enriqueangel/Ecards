@@ -18,8 +18,11 @@
     <string name="telefono">Teléfono</string>
     <string name="area">Área</string>
     <string name="recordar">Recordar contraseña</string>
+    <string name="ingrese_pin">Ingrese PIN</string>
+    <string name="confirmar_pin">Confirmar PIN</string>
+    <string name="confirmar">Confirmar</string>
     <string name="URLWS">https://webserver-enriqeangel.c9users.io/</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="olvide">Olvidé el PIN</string>
+    <string name="recuperar">Recuperar</string>
 </resources>
