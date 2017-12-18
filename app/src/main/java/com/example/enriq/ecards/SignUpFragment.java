@@ -167,7 +167,7 @@ public class SignUpFragment extends Fragment {
     }
 
     public boolean validarTelefono(String telefono){
-        if (Patterns.PHONE.matcher(telefono).matches() == false){
+        if (!Patterns.PHONE.matcher(telefono).matches()){
             campoTelefono.setError("Telefono erroneo");
             return false;
         } else {
@@ -177,7 +177,7 @@ public class SignUpFragment extends Fragment {
     }
 
     public boolean validarCorreo(String correo){
-        if (Patterns.EMAIL_ADDRESS.matcher(correo).matches() == false){
+        if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()){
             campoCorreo.setError("Correo erroneo");
             return false;
         } else {
@@ -203,7 +203,7 @@ public class SignUpFragment extends Fragment {
         } else {
             campoConfirmar.setError(null);
             if (valor){
-                if (confirmar.getText().equals(contrasena.getText())){
+                if (!confirmar.getText().equals(contrasena.getText())){
                     campoContrasena.setError("Las contraseñas deben ser iguales");
                     campoConfirmar.setError("Las contraseñas deben ser iguales");
                     return false;
