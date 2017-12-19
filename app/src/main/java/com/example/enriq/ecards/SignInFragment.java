@@ -7,9 +7,9 @@ package com.example.enriq.ecards;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -22,7 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,7 +36,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
+import java.util.Random;
 
 public class SignInFragment extends Fragment {
 
@@ -47,6 +47,7 @@ public class SignInFragment extends Fragment {
     Button btnSignIn;
     RequestQueue requestQueue;
     Activity Actividad;
+    TextView recuperarContrasena;
     String url;
 
     @Override
@@ -61,6 +62,7 @@ public class SignInFragment extends Fragment {
         btnSignIn = (Button) view.findViewById(R.id.btnSignIn);
         campoCorreo = (TextInputLayout) view.findViewById(R.id.campo_correo);
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);
+        recuperarContrasena = (TextView) view.findViewById(R.id.recuperar_contrasena);
 
         requestQueue = Volley.newRequestQueue(getActivity());
 
@@ -68,6 +70,52 @@ public class SignInFragment extends Fragment {
         View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         final AlertDialog dialog = mBuilder.create();
+
+        recuperarContrasena.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder mensaje = new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme);
+                View mView = getActivity().getLayoutInflater().inflate(R.layout.dialog_recuperar_contrasena, null);
+                mensaje.setView(mView);
+                mensaje.setTitle("Recuperar contraseña");
+
+                final EditText correoDialog = (EditText) mView.findViewById(R.id.correo);
+                final TextInputLayout campoCorreoDialog = (TextInputLayout) mView.findViewById(R.id.campo_correo);
+
+                mensaje.setPositiveButton("Recuperar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        boolean dialogCorreo = false;
+                        if (!Patterns.EMAIL_ADDRESS.matcher(correoDialog.getText().toString()).matches()){
+                            campoCorreoDialog.setError("Correo erroneo");
+                            dialogCorreo = false;
+                        } else {
+                            campoCorreoDialog.setError(null);
+                            dialogCorreo =  true;
+                        }
+
+                        if (dialogCorreo) {
+                            String codigo = random();
+                            String subject = "Recuperar contraseña";
+                            String message = "Su codigo es: " + codigo;
+                            SendMail sm = new SendMail(getActivity(), correoDialog.getText().toString(), subject, message);
+                            sm.execute();
+                            Intent intent = new Intent(getActivity(), RecuperarContrasena.class);
+                            intent.putExtra( "Codigo", codigo);
+                            startActivity(intent);
+                        }
+                    }
+                });
+                mensaje.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                final AlertDialog dialogRecuperar = mensaje.create();
+                dialogRecuperar.show();
+            }
+        });
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,5 +202,17 @@ public class SignInFragment extends Fragment {
             campoContrasena.setError(null);
             return true;
         }
+    }
+
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = 6;
+        char tempChar;
+        for (int i = 0; i < randomLength; i++){
+            tempChar = (char) (generator.nextInt(26) + 97);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
     }
 }

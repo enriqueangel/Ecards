@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/actionMenuTextColor"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:text="Ingrese su correo electronico para recuperar la contraseña."/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/campo_correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/correo"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/FloatingLabel">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:theme="@style/EditText" />
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

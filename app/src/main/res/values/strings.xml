@@ -25,4 +25,6 @@
     <string name="ingresar">Ingresar</string>
     <string name="olvide">Olvidé el PIN</string>
     <string name="recuperar">Recuperar</string>
+    <string name="codigo">Código</string>
+    <string name="cambiar">Cambiar</string>
 </resources>

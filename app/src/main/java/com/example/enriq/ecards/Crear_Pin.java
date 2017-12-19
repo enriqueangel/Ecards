@@ -1,6 +1,5 @@
 package com.example.enriq.ecards;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
@@ -23,7 +22,7 @@ public class Crear_Pin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear__pin);
+        setContentView(R.layout.activity_crear_pin);
 
         campoPin = (TextInputLayout) findViewById(R.id.campo_pin);
         campoConfirmar = (TextInputLayout) findViewById(R.id.campo_confirmar);

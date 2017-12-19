@@ -57,4 +57,9 @@
         <item name="android:textColorHighlight">#ff00</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

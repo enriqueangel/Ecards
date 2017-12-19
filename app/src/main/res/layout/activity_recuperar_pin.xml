@@ -33,7 +33,8 @@
             android:text="@string/correo"
             android:textSize="20sp"
             android:textColor="?attr/actionMenuTextColor"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
 
         <TextView
             android:id="@+id/TvCorreo"
