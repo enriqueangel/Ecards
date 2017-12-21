@@ -27,4 +27,20 @@
     <string name="recuperar">Recuperar</string>
     <string name="codigo">Código</string>
     <string name="cambiar">Cambiar</string>
+    <string name="m">Name</string>
+    <string name="ma">m</string>
+    <string name="imageperfil">TODO</string>
+    <string name="nom">TextView</string>
+    <string name="ape">TextView</string>
+    <string name="tel">TextView</string>
+    <string name="correeo">TextView</string>
+    <string name="ram">TextView</string>
+    <string name="edinom" />
+    <string name="apelli">Name</string>
+    <string name="atel">Name</string>
+    <string name="arama">Name</string>
+    <string name="seleccionarim">seleccionar</string>
+    <string name="n">TextView</string>
+    <string name="ima">ima</string>
+    <string name="Imagen">Buttonima</string>
 </resources>

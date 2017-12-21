@@ -16,6 +16,7 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
+            android:onClick="clickperf"
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/ic_persona"
             android:id="@+id/perfil"
@@ -23,6 +24,7 @@
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="clicksalir"
             app:fab_icon="@drawable/ic_flama"
             android:id="@+id/exit"/>
 

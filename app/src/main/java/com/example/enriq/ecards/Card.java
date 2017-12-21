@@ -1,13 +1,17 @@
 package com.example.enriq.ecards;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,10 +24,14 @@ import java.util.ArrayList;
 public class Card extends AppCompatActivity {
     RecyclerView contenedor;
 
+    FloatingActionButton clickperf;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
+
+        clickperf = (FloatingActionButton) findViewById(R.id.perfil);
+
 
         //creacion de lista para la tarjeta BLANCA
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
@@ -53,7 +61,19 @@ public class Card extends AppCompatActivity {
 
         contenedor.setLayoutManager(new LinearLayoutManager(this));
 
+
+
     }
+
+   /*clickperf.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            startActivity(new Intent(Card.this,perfil.class));
+
+        }
+    });*/
+
 
 }
 
