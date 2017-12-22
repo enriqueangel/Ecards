@@ -43,4 +43,5 @@
     <string name="n">TextView</string>
     <string name="ima">ima</string>
     <string name="Imagen">Buttonima</string>
+    <string name="im">Imagen</string>
 </resources>
