@@ -38,7 +38,7 @@ public class Card extends AppCompatActivity {
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
         //creacion de lista para la tarjeta AZUL   (REUNION)
         ArrayList<Fuente_reunion> lista2 = new ArrayList<Fuente_reunion>();
-        lista2.add(new Fuente_reunion("Reunion Mobil","Oficina","5 pm","Azul","14-12-2017"));
+        lista2.add(1,new Fuente_reunion("Reunion Mobil","Oficina","5 pm","Azul","14-12-2017"));
         //creacion de lista para la tarjeta AMARILLA
         ArrayList<Fuente> lista3 = new ArrayList<Fuente>();
         lista3.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
@@ -55,7 +55,7 @@ public class Card extends AppCompatActivity {
 
         //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
         //contenedor.setAdapter(new Adaptador(lista));
-        //contenedor.setAdapter(new Adaptador_reunion(lista2));
+        contenedor.setAdapter(new Adaptador_reunion(lista2));
         contenedor.setAdapter(new Adaptador_yellow(lista3));
         //contenedor.setAdapter(new Adaptador_red(lista4));
 

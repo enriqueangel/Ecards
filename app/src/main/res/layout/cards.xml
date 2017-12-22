@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo">
+    >
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:layout_width="wrap_content"
@@ -12,6 +12,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:id="@+id/floatingActionsMenu"
+        app:fab_addButtonColorNormal="@color/indigo"
         >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -20,13 +21,15 @@
             android:layout_height="wrap_content"
             app:fab_icon="@drawable/ic_persona"
             android:id="@+id/perfil"
+            app:fab_colorNormal="@color/indigo"
             />
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clicksalir"
             app:fab_icon="@drawable/ic_flama"
-            android:id="@+id/exit"/>
+            android:id="@+id/exit"
+            app:fab_colorNormal="@color/indigo"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

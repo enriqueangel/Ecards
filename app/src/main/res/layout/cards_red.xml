@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="105dp"
         android:layout_height="match_parent"
-        android:background="#f05545">
+        android:background="#757575">
 
     </FrameLayout>
 
