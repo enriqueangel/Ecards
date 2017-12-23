@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new SignInFragment(), "Inicio Sesión");
-        adapter.addFragment(new SignUpFragment(), "Registro");
+        adapter.addFragment(new Root_Registro(), "Registro");
         viewPager.setAdapter(adapter);
     }
 

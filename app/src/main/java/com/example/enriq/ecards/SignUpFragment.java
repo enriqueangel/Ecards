@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -55,6 +56,8 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
+        String CODIGORAMA = getArguments().getString("CODRAMA");
 
         campoCorreo = (TextInputLayout) view.findViewById(R.id.campo_correo);
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);

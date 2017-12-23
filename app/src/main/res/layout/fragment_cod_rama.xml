@@ -1,13 +1,45 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.enriq.ecards.Cod_Rama">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/registrar" />
 
-</FrameLayout>
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingrese el codigo de la rama." />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/campo_Cod_rama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_gravity="center_horizontal"
+
+       >
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/Codigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:theme="@style/EditText"
+
+            android:drawablePadding="10dp"
+            />
+
+        <Button
+            android:id="@+id/Continuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continuar" />
+
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

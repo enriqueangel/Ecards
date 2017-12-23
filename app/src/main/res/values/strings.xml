@@ -44,4 +44,7 @@
     <string name="ima">ima</string>
     <string name="Imagen">Buttonima</string>
     <string name="im">Imagen</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
