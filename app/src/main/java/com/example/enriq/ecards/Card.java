@@ -32,7 +32,6 @@ public class Card extends AppCompatActivity {
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
 
-
         //creacion de lista para la tarjeta BLANCA
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
@@ -56,7 +55,7 @@ public class Card extends AppCompatActivity {
         //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
         //contenedor.setAdapter(new Adaptador(lista));
         contenedor.setAdapter(new Adaptador_reunion(lista2));
-        contenedor.setAdapter(new Adaptador_yellow(lista3));
+        // contenedor.setAdapter(new Adaptador_yellow(lista3));
         //contenedor.setAdapter(new Adaptador_red(lista4));
 
         contenedor.setLayoutManager(new LinearLayoutManager(this));

@@ -26,7 +26,6 @@ public class Root_Registro extends Fragment {
 
     Button btr1,btr2;
 
-
     public Root_Registro() {
         // Required empty public constructor
     }
@@ -62,7 +61,7 @@ public class Root_Registro extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_root__registro, container, false);
+        View view = inflater.inflate(R.layout.fragment_root_registro, container, false);
 
         Cod_Rama fragmento1 = new Cod_Rama();
 

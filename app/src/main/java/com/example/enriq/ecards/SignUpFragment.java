@@ -4,8 +4,11 @@ package com.example.enriq.ecards;
  * Created by enriq on 14/12/2017.
  */
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -47,6 +50,7 @@ public class SignUpFragment extends Fragment {
     EditText correo, contrasena, nombre, apellido, telefono, confirmar;
     Button btnSignUp;
     RequestQueue requestQueue;
+    Activity Actividad;
 
     String baseUrl = "https://webserver-enriqeangel.c9users.io/";
     String url;
@@ -57,7 +61,7 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-        String CODIGORAMA = getArguments().getString("CODRAMA");
+        final String CODIGORAMA = getArguments().getString("CODRAMA");
 
         campoCorreo = (TextInputLayout) view.findViewById(R.id.campo_correo);
         campoContrasena = (TextInputLayout) view.findViewById(R.id.campo_contrasena);
@@ -106,9 +110,10 @@ public class SignUpFragment extends Fragment {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
                     params.put("password", password_inp);
-                    params.put("nombre", nombre_inp);
-                    params.put("apellido", apellido_inp);
+                    params.put("nombres", nombre_inp);
+                    params.put("apellidos", apellido_inp);
                     params.put("telefono", telefono_inp);
+                    params.put("area", CODIGORAMA);
 
                     JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                             new Response.Listener<JSONObject>() {
@@ -118,12 +123,23 @@ public class SignUpFragment extends Fragment {
                                         String respuesta = response.get("respuesta").toString();
                                         if(respuesta.equals("si")){
                                             dialog.dismiss();
-                                            Snackbar.make(view, "Registro realizado.", Snackbar.LENGTH_SHORT).show();
-                                            // Intent i = new Intent(getActivity(), Card.class);
-                                            // startActivity(i);
-                                        } else {
+                                            String token = response.get("token").toString();
+                                            Actividad = getActivity();
+
+                                            SharedPreferences SP = Actividad.getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = SP.edit();
+                                            editor.putString("token",token);
+                                            editor.apply();
+
+                                            Intent intent = new Intent(getActivity(), Crear_Pin.class);
+                                            intent.putExtra( "Correo", correo_inp);
+                                            startActivity(intent);
+                                        } else if (respuesta.equals("no")){
                                             dialog.dismiss();
                                             Snackbar.make(view, "Error en el registro.", Snackbar.LENGTH_SHORT).show();
+                                        } else {
+                                            dialog.dismiss();
+                                            Snackbar.make(view, respuesta, Snackbar.LENGTH_LONG).show();
                                         }
                                     } catch (JSONException e) {
                                         Log.e("Volley", "Invalid JSON Object.");
@@ -206,7 +222,7 @@ public class SignUpFragment extends Fragment {
         } else {
             campoConfirmar.setError(null);
             if (valor){
-                if (!confirmar.getText().equals(contrasena.getText())){
+                if (!confirmar.getText().toString().equals(contrasena.getText().toString())){
                     campoContrasena.setError("Las contraseñas deben ser iguales");
                     campoConfirmar.setError("Las contraseñas deben ser iguales");
                     return false;
