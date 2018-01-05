@@ -83,6 +83,7 @@ public class RecuperarContrasena extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),"Contraseña cambiada", Toast.LENGTH_LONG).show();
                                             Intent i = new Intent(RecuperarContrasena.this, MainActivity.class);
                                             startActivity(i);
+                                            finish();
                                         } else {
                                             Toast.makeText(getApplicationContext(),"Error al hacer el cambio", Toast.LENGTH_LONG).show();
                                         }

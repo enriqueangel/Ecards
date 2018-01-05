@@ -54,9 +54,9 @@ public class login_pin extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences SP = getSharedPreferences("PIN",MODE_PRIVATE);
                 String pin = SP.getString("Pin", "");
-
+                dialog.show();
                 if(pin.equals( PIN.getText().toString())){
-                    dialog.show();
+                    dialog.dismiss();
                     campoPin.setError(null);
                     Intent intent = new Intent(login_pin.this, Card.class);
                     startActivity(intent);

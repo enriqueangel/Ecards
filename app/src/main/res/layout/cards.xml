@@ -37,11 +37,10 @@
         android:id="@+id/contenedor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/floatingActionsMenu" />
+        android:scrollbars="vertical" />
 
     </RelativeLayout>
 
