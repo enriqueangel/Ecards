@@ -41,11 +41,19 @@
     <string name="arama">Name</string>
     <string name="seleccionarim">seleccionar</string>
     <string name="n">TextView</string>
-    <string name="ima">ima</string>
+    <string name="imag">ima</string>
     <string name="Imagen">Buttonima</string>
     <string name="im">Imagen</string>
     <string name="continuar">Continuar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buttoneditar">Button</string>
+    <string name="tipo_tarea">Tipo Tarea</string>
+    <string name="proyecto">Proyecto</string>
+    <string name="link_ayuda">Link ayuda</string>
+    <string name="link_evidencia">Link Evidencia</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="ima">ima</string>
+    <string name="nombree">Nombre</string>
 </resources>
