@@ -2,7 +2,7 @@ package com.example.enriq.ecards;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,7 +30,7 @@ public class Card extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
 
-        //clickperf = (FloatingActionButton) findViewById(R.id.perfil);
+        clickperf = (FloatingActionButton) findViewById(R.id.perfil);
 
         //creacion de lista para la tarjeta BLANCA
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
@@ -49,7 +49,7 @@ public class Card extends AppCompatActivity {
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
         lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
 
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -67,16 +67,17 @@ public class Card extends AppCompatActivity {
 
 
 
+        clickperf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Card.this, perfil.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
-   /*clickperf.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            startActivity(new Intent(Card.this,perfil.class));
-
-        }
-    });*/
 
 
 }
