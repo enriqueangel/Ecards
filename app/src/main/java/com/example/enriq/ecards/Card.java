@@ -32,24 +32,14 @@ public class Card extends AppCompatActivity {
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
 
-        //creacion de lista para la tarjeta BLANCA
+
         ArrayList<Fuente> lista = new ArrayList<Fuente>();
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
-        //creacion de lista para la tarjeta AZUL   (REUNION)
-        ArrayList<Fuente_reunion> lista2 = new ArrayList<Fuente_reunion>();
-        lista2.add(new Fuente_reunion("Reunion Mobil","Oficina","5 pm","Azul","14-12-2017"));
-        //creacion de lista para la tarjeta AMARILLA
-        ArrayList<Fuente> lista3 = new ArrayList<Fuente>();
-        lista3.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Blanco"));
-        //creacion de lista para la tarjeta ROJA
-        ArrayList<Fuente> lista4 = new ArrayList<Fuente>();
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
-        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1","Naranja"));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_green,false));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_indigo,true));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_red,false));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_white,false));
+        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_yellow,false));
+
 
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -70,7 +60,7 @@ public class Card extends AppCompatActivity {
         clickperf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Card.this, perfil.class);
+                Intent intent = new Intent(Card.this, editperfil.class);
                 startActivity(intent);
             }
         });

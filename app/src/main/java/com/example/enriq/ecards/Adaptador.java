@@ -27,11 +27,29 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
+
+
         holder.titulo.setText(ListaObjeto.get(position).getTitulo());
         holder.tipo.setText(ListaObjeto.get(position).getTipo());
         holder.fecha_e.setText(ListaObjeto.get(position).getTiempo_e());
         holder.tiempo_r.setText(ListaObjeto.get(position).getTiempo_r());
         holder.version.setText(ListaObjeto.get(position).getVersion());
+        holder.TarjetaColor.setImageResource(ListaObjeto.get(position).getColor());
+
+
+        if (ListaObjeto.get(position).getReunion()) {
+
+            holder.tiempo_r.setVisibility(View.INVISIBLE);
+            holder.fecha_e.setVisibility(View.GONE);
+
+        }else{
+
+
+
+        };
+
+
+
     }
 
     @Override
