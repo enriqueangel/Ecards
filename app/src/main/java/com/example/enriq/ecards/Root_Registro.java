@@ -67,8 +67,6 @@ public class Root_Registro extends Fragment {
 
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.CONTENEDOR,fragmento1).commit();
 
-
-
         return view;
     }
 

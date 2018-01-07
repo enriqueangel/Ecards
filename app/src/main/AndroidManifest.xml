@@ -29,7 +29,7 @@
         <activity android:name=".RecuperarContrasena" />
         <activity android:name=".perfil" />
         <activity android:name=".editperfil" />
-        <activity android:name=".CrearTarjeta"></activity>
+        <activity android:name=".Dashboard" />
     </application>
 
 </manifest>

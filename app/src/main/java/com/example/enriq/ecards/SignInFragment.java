@@ -304,7 +304,7 @@ public class SignInFragment extends Fragment {
             intent.putExtra( "Codigo", codigo);
             intent.putExtra("Correo", emailDialog);
             startActivity(intent);
-
+            getActivity().finish();
             //Showing a success message
             Toast.makeText(context,"Mensaje enviado", Toast.LENGTH_LONG).show();
         }

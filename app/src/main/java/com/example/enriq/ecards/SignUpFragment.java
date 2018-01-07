@@ -134,6 +134,7 @@ public class SignUpFragment extends Fragment {
                                             Intent intent = new Intent(getActivity(), Crear_Pin.class);
                                             intent.putExtra( "Correo", correo_inp);
                                             startActivity(intent);
+                                            getActivity().finish();
                                         } else if (respuesta.equals("no")){
                                             dialog.dismiss();
                                             Snackbar.make(view, "Error en el registro.", Snackbar.LENGTH_SHORT).show();
