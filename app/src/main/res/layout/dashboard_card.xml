@@ -27,7 +27,7 @@
             android:layout_height="74dp"
             android:background="@drawable/circlebackground"
             android:padding="10dp"
-            app:srcCompat="@drawable/ic_perm_identity_black_24dp" />
+            app:srcCompat="@drawable/ic_empleado" />
 
         <TextView
             android:id="@+id/textCard"

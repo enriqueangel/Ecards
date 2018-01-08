@@ -57,10 +57,10 @@ public class Dashboard extends AppCompatActivity {
                 String nombreTipo = tipo.get("tipo").toString();
                 switch (nombreTipo){
                     case "empleado":
-                        items.add(new Rol("Empleado", R.drawable.ic_perm_identity_black_24dp, nombreTipo));
+                        items.add(new Rol("Empleado", R.drawable.ic_empleado, nombreTipo));
                         break;
                     case "administrador":
-                        items.add(new Rol("Administrador", R.drawable.ic_empleado, nombreTipo));
+                        items.add(new Rol("Administrador", R.drawable.ic_user, nombreTipo));
                         break;
                     case "lider":
                         items.add(new Rol("Lider", R.drawable.ic_usuario, nombreTipo));

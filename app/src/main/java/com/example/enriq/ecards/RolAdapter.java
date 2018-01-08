@@ -39,19 +39,16 @@ public class RolAdapter extends RecyclerView.Adapter<RolAdapter.RolViewHolder>{
                             v.getContext().startActivity(intent);
                             break;
                         case "Administrador":
-                            //intent = new Intent(v.getContext(), Card.class);
-                            //v.getContext().startActivity(intent);
-                            Toast.makeText(v.getContext(), "En produccion. " + rol, Toast.LENGTH_SHORT).show();
+                            intent = new Intent(v.getContext(), MenuAdmin.class);
+                            v.getContext().startActivity(intent);
                             break;
                         case "Lider":
-                            //intent = new Intent(v.getContext(), Card.class);
+                            //intent = new Intent(v.getContext(), MenuLider.class);
                             //v.getContext().startActivity(intent);
-                            Toast.makeText(v.getContext(), "En produccion. " + rol, Toast.LENGTH_SHORT).show();
                             break;
                         case "Super Usuario":
-                            //intent = new Intent(v.getContext(), Card.class);
-                            //v.getContext().startActivity(intent);
-                            Toast.makeText(v.getContext(), "En produccion. " + rol, Toast.LENGTH_SHORT).show();
+                            intent = new Intent(v.getContext(), MenuLider.class);
+                            v.getContext().startActivity(intent);
                             break;
                         default:
                             break;

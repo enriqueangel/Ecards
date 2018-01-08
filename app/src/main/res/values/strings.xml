@@ -56,4 +56,10 @@
     <string name="descripcion">Descripcion</string>
     <string name="ima">ima</string>
     <string name="nombree">Nombre</string>
+    <string name="crear_tarjeta">Crear Tarjeta</string>
+    <string name="crear_reunion">Crear Reunion</string>
+    <string name="usuarios">Usuarios</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="rama">Rama</string>
+    <string name="corte">Corte</string>
 </resources>

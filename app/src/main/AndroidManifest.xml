@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Splash_screen"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +28,8 @@
         <activity android:name=".perfil" />
         <activity android:name=".editperfil" />
         <activity android:name=".Dashboard" />
+        <activity android:name=".MenuAdmin" />
+        <activity android:name=".MenuLider"></activity>
     </application>
 
 </manifest>
