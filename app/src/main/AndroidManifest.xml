@@ -32,7 +32,8 @@
         <activity android:name=".editperfil" />
         <activity android:name=".Dashboard" />
         <activity android:name=".MenuAdmin" />
-        <activity android:name=".MenuLider"></activity>
+        <activity android:name=".MenuLider" />
+        <activity android:name=".creareunion"></activity>
     </application>
 
 </manifest>
