@@ -16,8 +16,6 @@ public class Splash_screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-
-
                 SharedPreferences SP = getSharedPreferences("PIN",MODE_PRIVATE);
 
                 SharedPreferences.Editor editor = SP.edit();
@@ -39,16 +37,11 @@ public class Splash_screen extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-
+                //Intent intent = new Intent(Splash_screen.this, Dashboard.class);
+                //startActivity(intent);
 
                 finish();
-
-
-
-
-
             }
         },3000);
-
     }
 }
