@@ -53,8 +53,7 @@ public class Dashboard extends AppCompatActivity {
             JSONArray listaAreas = new JSONArray(Areas);
             for (int i = 0; i < listaAreas.length(); i++){
                 JSONObject area = listaAreas.getJSONObject(i);
-                JSONObject tipo = area.getJSONObject("tipo");
-                String nombreTipo = tipo.get("tipo").toString();
+                String nombreTipo = area.get("tipo").toString();
                 switch (nombreTipo){
                     case "empleado":
                         items.add(new Rol("Empleado", R.drawable.ic_empleado, nombreTipo));

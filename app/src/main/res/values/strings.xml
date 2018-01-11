@@ -62,4 +62,5 @@
     <string name="dashboard">Dashboard</string>
     <string name="rama">Rama</string>
     <string name="corte">Corte</string>
+    <string name="crear_tipo_tarea">Crear Tipo Tarea</string>
 </resources>
