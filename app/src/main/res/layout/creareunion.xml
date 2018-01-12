@@ -6,6 +6,20 @@
 
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"/>
+
+        <ScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+    <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -15,13 +29,13 @@
             android:id="@+id/campo_titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="3dp"
             android:hint="@string/titulo"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/FloatingLabel">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/titulo"
@@ -115,9 +129,29 @@
                 />
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/campo_asistentes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_gravity="center_horizontal"
+            android:hint="Asistentes"
+            app:hintTextAppearance="@style/FloatingLabel"
+            app:errorEnabled="true">
 
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/asistentes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:theme="@style/EditText" />
+        </android.support.design.widget.TextInputLayout>
 
-
+        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
