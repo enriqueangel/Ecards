@@ -30,6 +30,7 @@
             android:layout_marginRight="20dp"
             android:hint="@string/correo"
             app:errorEnabled="true"
+            app:errorTextAppearance="@style/CampoTextoRojo"
             app:hintTextAppearance="@style/FloatingLabel">
 
             <android.support.design.widget.TextInputEditText

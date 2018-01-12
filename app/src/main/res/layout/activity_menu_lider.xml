@@ -43,7 +43,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="#F9A825"
+                        app:cardBackgroundColor="#D32F2F"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -81,7 +81,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="#C62828"
+                        app:cardBackgroundColor="#512DA8"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -120,6 +120,44 @@
                     android:clipToPadding="false">
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/crear_tester"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="#388E3C"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="74dp"
+                                android:layout_height="78dp"
+                                android:background="@drawable/circlebackground"
+                                android:padding="10dp"
+                                app:srcCompat="@drawable/ic_scissors" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/crear_tester"
+                                android:textColor="@color/blanco"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
                         android:id="@+id/corte"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
@@ -128,7 +166,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/azul_card"
+                        app:cardBackgroundColor="#D32F2F"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -157,6 +195,15 @@
 
                     </android.support.v7.widget.CardView>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:clipToPadding="false">
+
                     <android.support.v7.widget.CardView
                         android:id="@+id/rama"
                         android:layout_width="140dp"
@@ -166,7 +213,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="#00695C"
+                        app:cardBackgroundColor="#512DA8"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -195,15 +242,6 @@
 
                     </android.support.v7.widget.CardView>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:clipToPadding="false">
-
                     <android.support.v7.widget.CardView
                         android:id="@+id/usuarios"
                         android:layout_width="140dp"
@@ -213,7 +251,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="#F9A825"
+                        app:cardBackgroundColor="#388E3C"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -242,6 +280,15 @@
 
                     </android.support.v7.widget.CardView>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:clipToPadding="false">
+
                     <android.support.v7.widget.CardView
                         android:id="@+id/crear_tipo_tarea"
                         android:layout_width="140dp"
@@ -251,7 +298,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="#C62828"
+                        app:cardBackgroundColor="#D32F2F"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -280,17 +327,8 @@
 
                     </android.support.v7.widget.CardView>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:clipToPadding="false">
-
                     <android.support.v7.widget.CardView
-                        android:id="@+id/crear_dashboard"
+                        android:id="@+id/dashboard"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
@@ -298,7 +336,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/azul_card"
+                        app:cardBackgroundColor="#512DA8"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
