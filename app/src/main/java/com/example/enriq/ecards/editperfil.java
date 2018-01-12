@@ -1,6 +1,9 @@
 package com.example.enriq.ecards;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.TextInputEditText;
@@ -33,7 +36,21 @@ public class editperfil extends AppCompatActivity {
             case ImagenNueva:
                 if (resultCode == RESULT_OK){
                     Uri path = data.getData();
-                    Foto.setImageURI(path);
+
+                    try {
+
+                        Bitmap original = BitmapFactory.decodeFile(path.toString());
+                        original = RotateBitmap(original, 90);
+                        Foto.setImageBitmap(original);
+
+                    }catch (Exception e){
+
+                        Foto.setImageURI(path);
+                    }
+
+
+
+
                 }
 
 
@@ -77,5 +94,11 @@ public class editperfil extends AppCompatActivity {
                 startActivityForResult(intent,ImagenNueva);
             }
         });
+    }
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
