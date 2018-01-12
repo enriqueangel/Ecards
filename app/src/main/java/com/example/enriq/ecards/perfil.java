@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 public class perfil extends AppCompatActivity {
 
-
     JSONObject DATOS;
     TextView Correo,Nombres,Apellidos,Telefono,Rama,HrsLaborales;
     Button EditarDAtos;
@@ -74,8 +73,7 @@ public class perfil extends AppCompatActivity {
 
 
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject jsonObject = jsonArray.getJSONObject(i);
-            JSONObject Rama = jsonObject.getJSONObject("area");
+            JSONObject Rama = jsonArray.getJSONObject(i);
             if (!Primero){
                 Ramas += ", ";
             };

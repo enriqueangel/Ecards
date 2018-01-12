@@ -73,13 +73,16 @@ public class SelectImagen extends AppCompatActivity {
     private void decodeBITMAP(String dir) {
 
 
-        Matrix matrix = new Matrix();
-        matrix.postRotate(45.0f);
-
         Bitmap original = BitmapFactory.decodeFile(dir);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(original, 0, 0, original.getWidth(), original.getHeight(), matrix, true);
 
-        Prevista.setImageBitmap(rotatedBitmap);
+        original = RotateBitmap(original, 90);
+
+
+        Prevista.setImageBitmap(original);
+
+
+
+        //Prevista.setRotation((float) 45.0);
 
     }
 
@@ -99,7 +102,7 @@ public class SelectImagen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (!VerificaPermisos()) {
+                if (!VerificaPermisos(false,true,true)) {
                     return;
                 }
 
@@ -114,7 +117,7 @@ public class SelectImagen extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if (!VerificaPermisos()) {
+                if (!VerificaPermisos(true,true,true)) {
                     return;
                 }
 
@@ -155,7 +158,7 @@ public class SelectImagen extends AppCompatActivity {
 
     }
 
-    private boolean VerificaPermisos(){
+    private boolean VerificaPermisos(boolean camara,boolean WES,boolean RES){
 
         int permissionCheck1 = ContextCompat.checkSelfPermission(SelectImagen.this,
                 Manifest.permission.CAMERA);
@@ -164,18 +167,25 @@ public class SelectImagen extends AppCompatActivity {
         int permissionCheck3 = ContextCompat.checkSelfPermission(SelectImagen.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
 
-        if (permissionCheck1 ==  PackageManager.PERMISSION_DENIED) {
+        if (permissionCheck1 ==  PackageManager.PERMISSION_DENIED && camara) {
             Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para acceder a la camara.", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (permissionCheck2 ==  PackageManager.PERMISSION_DENIED){
+        }else if (permissionCheck2 ==  PackageManager.PERMISSION_DENIED && WES){
             Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para modificar el almacenamiento.", Toast.LENGTH_SHORT).show();
             return false;
-        }else if (permissionCheck3 ==  PackageManager.PERMISSION_DENIED){
+        }else if (permissionCheck3 ==  PackageManager.PERMISSION_DENIED && RES){
             Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para leer el almacenamiento..", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
+    }
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
 
