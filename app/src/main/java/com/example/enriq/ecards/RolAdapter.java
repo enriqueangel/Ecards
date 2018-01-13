@@ -43,11 +43,11 @@ public class RolAdapter extends RecyclerView.Adapter<RolAdapter.RolViewHolder>{
                             v.getContext().startActivity(intent);
                             break;
                         case "Lider":
-                            //intent = new Intent(v.getContext(), MenuLider.class);
-                            //v.getContext().startActivity(intent);
+                            intent = new Intent(v.getContext(), MenuLider.class);
+                            v.getContext().startActivity(intent);
                             break;
                         case "Super Usuario":
-                            intent = new Intent(v.getContext(), MenuLider.class);
+                            intent = new Intent(v.getContext(), MenuSuperU.class);
                             v.getContext().startActivity(intent);
                             break;
                         default:

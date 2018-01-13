@@ -158,7 +158,7 @@
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/corte"
+                        android:id="@+id/crear_tipo_tarea"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
@@ -178,16 +178,16 @@
 
                             <ImageView
                                 android:layout_width="74dp"
-                                android:layout_height="78dp"
+                                android:layout_height="74dp"
                                 android:background="@drawable/circlebackground"
-                                android:padding="10dp"
-                                app:srcCompat="@drawable/ic_scissors" />
+                                android:padding="11dp"
+                                app:srcCompat="@drawable/ic_change_users" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="@string/corte"
+                                android:text="@string/tipos_tareas"
                                 android:textColor="@color/blanco"
                                 android:textStyle="bold" />
 
@@ -205,7 +205,7 @@
                     android:clipToPadding="false">
 
                     <android.support.v7.widget.CardView
-                        android:id="@+id/rama"
+                        android:id="@+id/proyectos"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
@@ -234,7 +234,92 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="@string/rama"
+                                android:text="@string/proyectos"
+                                android:textColor="@color/blanco"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/usuarios_nuevos"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/verde_card"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="74dp"
+                                android:layout_height="78dp"
+                                android:background="@drawable/circlebackground"
+                                android:padding="10dp"
+                                app:srcCompat="@drawable/ic_usuarios_multiples_en_silueta" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/usuarios_nuevos"
+                                android:textColor="@color/blanco"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:clipToPadding="false">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/rama"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@color/rojo_card"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="74dp"
+                                android:layout_height="74dp"
+                                android:background="@drawable/circlebackground"
+                                android:padding="11dp"
+                                app:srcCompat="@drawable/ic_motorcycle_black_24dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/ramas"
                                 android:textColor="@color/blanco"
                                 android:textStyle="bold" />
 
@@ -251,7 +336,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/verde_card"
+                        app:cardBackgroundColor="@color/morado_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -298,7 +383,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/rojo_card"
+                        app:cardBackgroundColor="@color/verde_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
@@ -313,13 +398,13 @@
                                 android:layout_height="74dp"
                                 android:background="@drawable/circlebackground"
                                 android:padding="11dp"
-                                app:srcCompat="@drawable/ic_change_users" />
+                                app:srcCompat="@drawable/ic_scissors" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="@string/crear_tipo_tarea"
+                                android:text="@string/corte"
                                 android:textColor="@color/blanco"
                                 android:textStyle="bold" />
 
@@ -336,7 +421,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
-                        app:cardBackgroundColor="@color/morado_card"
+                        app:cardBackgroundColor="@color/rojo_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
 
