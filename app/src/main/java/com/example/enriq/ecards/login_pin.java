@@ -44,6 +44,9 @@ public class login_pin extends AppCompatActivity {
 
     RequestQueue requestQueue;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,8 @@ public class login_pin extends AppCompatActivity {
         buttonIngresarpin = (Button)findViewById(R.id.buttonIngresarpin);
         PIN = (EditText)findViewById(R.id.editTextIngresePIN );
         TextOlvidePIN = (TextView)findViewById(R.id.TextViewOlviPIN);
+
+        final VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
 
         SharedPreferences SP = getSharedPreferences("PIN",MODE_PRIVATE);
         String CorreO = SP.getString("Correo","");
@@ -91,17 +96,18 @@ public class login_pin extends AppCompatActivity {
                                 public void onResponse(JSONObject response) {
                                     try {
                                         JSONArray areas = response.getJSONArray("roles");
+                                        PIN.setText("");
+                                        globalVariable.setAreas(areas.toString());
                                         if (areas.length() < 2){
                                             Intent intent = new Intent(login_pin.this, Card.class);
                                             startActivity(intent);
                                             dialog.dismiss();
-                                            finish();
                                         } else {
                                             Intent intent = new Intent(login_pin.this, Dashboard.class);
                                             intent.putExtra( "Areas", areas.toString());
                                             startActivity(intent);
                                             dialog.dismiss();
-                                            finish();
+
                                         }
 
                                     } catch (JSONException e) {

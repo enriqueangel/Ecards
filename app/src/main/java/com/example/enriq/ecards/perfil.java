@@ -53,6 +53,7 @@ public class perfil extends AppCompatActivity {
                 Intent intent = new Intent(perfil.this, editperfil.class);
                 intent.putExtra( "DATOS", DATOS.toString());
                 startActivity(intent);
+                finish();
             }
         });
 
