@@ -25,130 +25,183 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="3dp"
-            android:hint="@string/titulo"
-            app:errorEnabled="true"
-            app:hintTextAppearance="@style/FloatingLabel">
-
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/titulo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:inputType="textPersonName"
-                android:theme="@style/EditText" />
-        </android.support.design.widget.TextInputLayout>
+                android:orientation="vertical"
+                android:paddingLeft="40dp"
+                android:paddingStart="40dp"
+                android:paddingRight="40dp"
+                android:layout_marginTop="7dp">
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_fecha"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="?attr/actionMenuTextColor"
+                    android:text="Titulo"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="3dp"
+                    />
+
+                <EditText
+                    android:id="@+id/titulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/actionMenuTextColor"
+                    android:text=""
+                    />
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="Fecha"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="7dp">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text="Fecha"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+
+            <TextView
                 android:id="@+id/fecha"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:inputType="textPersonName"
-                android:theme="@style/EditText" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_height="35dp"
+                android:text=""
+                android:textColor="?attr/actionMenuTextColor" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_hora"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/linear"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="Hora"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="7dp">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/hora"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditText"
-                android:drawablePadding="10dp"
-                />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginBottom="3dp"
+                android:text="Hora"
+                android:textColor="?attr/actionMenuTextColor"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/hora"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text="" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_lugar"
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:src="@drawable/linear"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="Lugar"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="7dp">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text="Lugar"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+
+            <EditText
                 android:id="@+id/lugar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:selectAllOnFocus="false"
-                android:singleLine="false"
-                android:theme="@style/EditText" />
-        </android.support.design.widget.TextInputLayout>
+                android:textColor="?attr/actionMenuTextColor"
+                android:text=""
+                />
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_descripcion"
+
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="@string/descripcion"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="7dp">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text="Descripcion"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+
+            <EditText
                 android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditText"
-                android:inputType="textImeMultiLine"
-                android:drawablePadding="10dp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text=""
                 />
-        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/campo_asistentes"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_gravity="center_horizontal"
-            android:hint="Asistentes"
-            app:hintTextAppearance="@style/FloatingLabel"
-            app:errorEnabled="true">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_marginTop="7dp">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="?attr/actionMenuTextColor"
+                android:text="Asistentes"
+                android:textStyle="bold"
+                android:layout_marginBottom="3dp"
+                />
+
+            <Spinner
                 android:id="@+id/asistentes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:selectAllOnFocus="false"
-                android:singleLine="false"
-                android:theme="@style/EditText" />
-        </android.support.design.widget.TextInputLayout>
+                android:text=""
+                android:textColor="?attr/actionMenuTextColor" />
+        </LinearLayout>
 
         </LinearLayout>
         </ScrollView>
