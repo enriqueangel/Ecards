@@ -17,7 +17,8 @@
             android:id="@+id/collapsingtoolbar"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:background="@drawable/fondo_azul"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
             app:title="Tarjeta"
             app:expandedTitleMarginStart="48dp"
@@ -28,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             </android.support.v7.widget.Toolbar>
@@ -36,260 +38,40 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <include layout="@layout/activity_content_card" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_change_users"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|end" />-->
+
+    <!--<com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/floatingActionsMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|center"
+        app:fab_addButtonColorNormal="@color/indigo"
+        >
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/perfil"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="#fcfcfc">
+            app:fab_colorNormal="@color/indigo"
+            app:fab_icon="@drawable/ic_persona" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:layout_marginTop="7dp">
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/indigo"
+            app:fab_icon="@drawable/ic_flama" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Proyecto"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:id="@+id/proyecto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Tarjetas"
-                    />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:layout_marginTop="7dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Tipo Tarea"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Backend"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:layout_marginTop="7dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Fecha Entrega"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="25/01/2018"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:layout_marginTop="7dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Link Ayuda"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Link"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:layout_marginTop="7dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Tiempo Trabajado"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="02:00"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingStart="20dp"
-                android:paddingRight="20dp"
-                android:layout_marginTop="7dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="Descripcion"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="3dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="?attr/actionMenuTextColor"
-                    android:text="akjsdlfkajsldfjnasiduhfasjdnflajsdlfajsdlfkjansdlfjkasldkfjhalsdfhapsdiuhflajnwlnf"/>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.1dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:src="@drawable/linear"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginBottom="5dp">
-
-                <Button
-                    android:id="@+id/btnReportar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:text="Reportar Horas"
-                    android:theme="@style/PrimaryButton"
-                    />
-
-                <Button
-                    android:id="@+id/btnEntregar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:text="Entregar"
-                    android:theme="@style/PrimaryButton"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>-->
 
 </android.support.design.widget.CoordinatorLayout>

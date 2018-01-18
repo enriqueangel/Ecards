@@ -10,7 +10,7 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:name="com.example.enriq.ecards.VariablesGlobales"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -39,7 +39,6 @@
         <activity android:name=".SelectImagen" />
         <activity android:name=".creareunion" />
         <activity android:name=".MenuSuperU" />
-        <activity android:name=".Tarjeta"></activity>
     </application>
 
 </manifest>

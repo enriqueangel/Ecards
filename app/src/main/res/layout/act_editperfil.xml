@@ -87,7 +87,8 @@
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_account_circle_black_24dp"
                     android:inputType="textPersonName"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -105,7 +106,8 @@
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_account_box_black_24dp"
                     android:inputType="textPersonName"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_account_box_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -124,7 +126,8 @@
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_phone_black_24dp"
                     android:inputType="textEmailAddress"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
             <Button
