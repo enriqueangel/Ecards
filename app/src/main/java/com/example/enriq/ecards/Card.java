@@ -71,6 +71,8 @@ public class Card extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
 
+        listaTarjetas.clear();
+
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -237,16 +239,20 @@ public class Card extends AppCompatActivity {
             try {
                 fechaFin = format.parse(dtStart);
                 DiasRestantes = calcularColor(fechaFin);
+
+
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
             int ColorTArgeta ;
 
-            if (DiasRestantes < 4){
+            if (DiasRestantes <= 0){
                 ColorTArgeta  = R.drawable.card_red;
-            }else if(DiasRestantes < 2){
-                ColorTArgeta  = R.drawable.card_green;
+            }else if(DiasRestantes <= 2){
+                ColorTArgeta  = R.drawable.card_red;
+            }else if(DiasRestantes <= 4){
+                ColorTArgeta  = R.drawable.card_yellow;
             }else{
                 ColorTArgeta  = R.drawable.card_white;
             }
@@ -307,7 +313,7 @@ public class Card extends AppCompatActivity {
         long diffHoras =   (diferenciaMilisegundos / (60 * 60 * 1000));
 
         // calcular la diferencia en dias
-        long diffdias = Math.abs ( diferenciaMilisegundos / (24 * 60 * 60 * 1000) );
+        long diffdias = diferenciaMilisegundos / (24 * 60 * 60 * 1000) ;
 
         // devolvemos el resultado
         return diffdias;

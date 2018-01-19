@@ -25,7 +25,13 @@
         android:orientation="vertical"
         android:gravity="center">
 
-            <LinearLayout
+        <Button
+            android:id="@+id/BTNCrearRunion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -34,7 +40,7 @@
                 android:paddingRight="40dp"
                 android:layout_marginTop="7dp">
 
-                <TextView
+            <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="17sp"
@@ -45,7 +51,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/titulo"
+                    android:id="@+id/EDTtitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/actionMenuTextColor"
@@ -72,7 +78,7 @@
                 />
 
             <TextView
-                android:id="@+id/fecha"
+                android:id="@+id/EDTfecha"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:text=""
@@ -104,11 +110,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/hora"
+                android:id="@+id/EDThora"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:textColor="?attr/actionMenuTextColor"
-                android:text="" />
+                android:text=""
+                android:textColor="?attr/actionMenuTextColor" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -137,7 +143,7 @@
                 />
 
             <EditText
-                android:id="@+id/lugar"
+                android:id="@+id/EDTlugar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="?attr/actionMenuTextColor"
@@ -167,12 +173,11 @@
                 />
 
             <EditText
-                android:id="@+id/descripcion"
+                android:id="@+id/EDTdescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/actionMenuTextColor"
                 android:text=""
-                />
+                android:textColor="?attr/actionMenuTextColor" />
         </LinearLayout>
 
         <LinearLayout

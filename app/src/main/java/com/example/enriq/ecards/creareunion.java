@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -24,6 +26,8 @@ public class creareunion extends AppCompatActivity {
     int day,month,year,hour,minute;
     String format;
     Spinner mySpinner;
+    Button CrearReunion;
+    EditText Titulo,Lugar,Descripcion;
 
 
     @Override
@@ -31,9 +35,42 @@ public class creareunion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creareunion);
 
+        CrearReunion = (Button)  findViewById(R.id.BTNCrearRunion);
+        Titulo= (EditText)  findViewById(R.id.EDTtitulo);
+        Lugar= (EditText)  findViewById(R.id.EDTlugar);
+        Descripcion= (EditText)  findViewById(R.id.EDTdescripcion);
+
+
+
+        CrearReunion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if  (!MetodosGlobales.validarTelefono(Titulo.getText().toString())){
+                    Toast.makeText(creareunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if  (!MetodosGlobales.validarTelefono(Lugar.getText().toString())){
+                    Toast.makeText(creareunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
+
+                EnviarDatosWS();
+
+
+
+
+            }
+        });
+
         //Fecha
 
-        tv = (TextView) findViewById(R.id.fecha);
+        tv = (TextView) findViewById(R.id.EDTfecha);
 
         Date = Calendar.getInstance();
 
@@ -64,7 +101,7 @@ public class creareunion extends AppCompatActivity {
 
         //Hora
 
-        tve = (TextView) findViewById(R.id.hora);
+        tve = (TextView) findViewById(R.id.EDThora);
 
         Time = Calendar.getInstance();
 
@@ -123,6 +160,8 @@ public class creareunion extends AppCompatActivity {
         });
     }
 
+
+
     //Hora
     public void selectedTimeFormat(int hour){
 
@@ -138,4 +177,6 @@ public class creareunion extends AppCompatActivity {
             format = "AM";
         }
     }
+
+    private void EnviarDatosWS(){}
 }
