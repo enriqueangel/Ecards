@@ -29,5 +29,7 @@
     <color name="rojo_card">#D32F2F</color>
     <color name="verde_card">#2E7D32</color>
     <color name="morado_card">#512DA8</color>
+
+    <color name="negro_semitransparente">#B2000000</color>
 </resources>
 

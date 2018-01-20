@@ -73,6 +73,7 @@ public class RolAdapter extends RecyclerView.Adapter<RolAdapter.RolViewHolder>{
     public RolViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.dashboard_card, viewGroup, false);
+        //v.setLayoutParams(new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT));
         return new RolViewHolder(v);
     }
 
@@ -82,4 +83,8 @@ public class RolAdapter extends RecyclerView.Adapter<RolAdapter.RolViewHolder>{
         viewHolder.texto.setText(items.get(i).getText());
         viewHolder.roles = items.get(i);;
     }
+
+    /*public void onAttachedToRecyclerView(RecyclerView recyclerView){
+        super.onAttachedToRecyclerView(recyclerView);
+    }*/
 }
