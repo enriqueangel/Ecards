@@ -81,13 +81,14 @@
                 app:hintTextAppearance="@style/FloatingLabel">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/nombre"
+                    android:id="@+id/TXTEDTnombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_account_circle_black_24dp"
                     android:inputType="textPersonName"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_account_circle_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -99,17 +100,19 @@
                 app:hintTextAppearance="@style/FloatingLabel">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/apellido"
+                    android:id="@+id/TXTEDTapellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_account_box_black_24dp"
                     android:inputType="textPersonName"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_account_box_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
+
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/campo_correo"
+                android:id="@+id/campo_Telefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -117,13 +120,14 @@
                 app:hintTextAppearance="@style/FloatingLabel">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/TXTEDTcorreo"
+                    android:id="@+id/TXTEDTTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawableStart="@drawable/ic_phone_black_24dp"
                     android:inputType="textEmailAddress"
-                    android:theme="@style/EditText" />
+                    android:theme="@style/EditText"
+                    android:drawableLeft="@drawable/ic_phone_black_24dp" />
             </android.support.design.widget.TextInputLayout>
 
             <Button

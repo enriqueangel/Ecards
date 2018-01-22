@@ -51,7 +51,7 @@
     <string name="buttoneditar">Button</string>
     <string name="tipo_tarea">Tipo Tarea</string>
     <string name="proyecto">Proyecto</string>
-    <string name="link_ayuda">Link ayuda</string>
+    <string name="link_ayuda">Link Ayuda</string>
     <string name="link_evidencia">Link Evidencia</string>
     <string name="descripcion">Descripcion</string>
     <string name="ima">ima</string>
@@ -65,4 +65,10 @@
     <string name="crear_tipo_tarea">Crear Tipo Tarea</string>
     <string name="logo">Logo</string>
     <string name="crear_tester">Crear Tester</string>
+    <string name="ramas">Ramas</string>
+    <string name="tipos_tareas">Tipos Tareas</string>
+    <string name="proyectos">Proyectos</string>
+    <string name="usuarios_nuevos">Usuarios Nuevos</string>
+    <string name="fecha_entrega">Fecha Entrega</string>
+    <string name="tiempo_realizado">Tiempo Realizado</string>
 </resources>

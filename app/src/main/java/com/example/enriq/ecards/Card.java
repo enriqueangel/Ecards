@@ -30,7 +30,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +52,11 @@ public class Card extends AppCompatActivity {
     RequestQueue requestQueue;
     JSONArray TARJETAS;
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
-    FloatingActionButton clickperf;
+    FloatingActionButton clickperf,clickDashboard;
+
+    Date FechaServidor;
+
+
 
     @Override
     protected void onStart() {
@@ -62,6 +71,8 @@ public class Card extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
 
+        listaTarjetas.clear();
+
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -70,6 +81,13 @@ public class Card extends AppCompatActivity {
                         try {
 
                             TARJETAS = response.getJSONArray("tarjetas");
+                            String dtStart = response.getString("fecha");
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                            try {
+                                FechaServidor = format.parse(dtStart);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             ImprimirTargetas();
 
                         } catch (JSONException e) {
@@ -114,17 +132,21 @@ public class Card extends AppCompatActivity {
         setContentView(R.layout.cards);
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
+        clickDashboard = (FloatingActionButton) findViewById(R.id.exit);
+
+        final VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
 
 
-
-//        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_green,false));
-//        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_indigo,true));
-//        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_red,false));
-//        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_white,false));
-//        lista.add(new Fuente("Creación de vista","Frontend","32 Horas","10 Horas","1",R.drawable.card_yellow,false));
-
-
-
+        clickDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Card.this, Dashboard.class);
+                String areasTEmp = globalVariable.getAreas();
+                intent.putExtra( "Areas", areasTEmp);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 
@@ -199,7 +221,45 @@ public class Card extends AppCompatActivity {
     }
 
 
-    private void ImprimirTargetas(){
+    private void ImprimirTargetas() throws JSONException {
+
+        for (int i = 0; i < TARJETAS.length(); i++) {
+            JSONObject row = TARJETAS.getJSONObject(i);
+            String DescripcionTEMP = row.getString("descripcion");
+
+            JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
+            String TipoTEMP = TipoTareaTEMP.getString("nombre");
+
+            String VersionTEMP = row.getString("version");
+
+            String dtStart = row.getString("plazo");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            Date fechaFin ;
+            long DiasRestantes = 100;
+            try {
+                fechaFin = format.parse(dtStart);
+                DiasRestantes = calcularColor(fechaFin);
+
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            int ColorTArgeta ;
+
+            if (DiasRestantes <= 0){
+                ColorTArgeta  = R.drawable.card_red;
+            }else if(DiasRestantes <= 2){
+                ColorTArgeta  = R.drawable.card_red;
+            }else if(DiasRestantes <= 4){
+                ColorTArgeta  = R.drawable.card_yellow;
+            }else{
+                ColorTArgeta  = R.drawable.card_white;
+            }
+
+
+            listaTarjetas.add(new Fuente(DescripcionTEMP,"Frontend","32 Horas","10 Horas","1",ColorTArgeta,false));
+        }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
         contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
@@ -213,6 +273,52 @@ public class Card extends AppCompatActivity {
         contenedor.setLayoutManager(new LinearLayoutManager(this));
 
     };
+
+
+    private long calcularColor(Date FechaFin){
+
+        Date fechaInicio = FechaServidor;
+        Date fechaLlegada = FechaFin;
+
+
+
+        // tomamos la instancia del tipo de calendario
+        Calendar calendarInicio = Calendar.getInstance();
+        Calendar calendarFinal = Calendar.getInstance();
+
+        // Configramos la fecha del calendatio, tomando los valores del date que
+        // generamos en el parse
+        calendarInicio.setTime(fechaInicio);
+        calendarFinal.setTime(fechaLlegada);
+
+        // obtenemos el valor de las fechas en milisegundos
+        long milisegundos1 = calendarInicio.getTimeInMillis();
+        long milisegundos2 = calendarFinal.getTimeInMillis();
+
+        // tomamos la diferencia
+        long diferenciaMilisegundos = milisegundos2 - milisegundos1;
+
+        // Despues va a depender en que formato queremos  mostrar esa
+        // diferencia, minutos, segundo horas, dias, etc, aca van algunos
+        // ejemplos de conversion
+
+        // calcular la diferencia en segundos
+        long diffSegundos =  Math.abs (diferenciaMilisegundos / 1000);
+
+        // calcular la diferencia en minutos
+        long diffMinutos =  Math.abs (diferenciaMilisegundos / (60 * 1000));
+        long restominutos = diffMinutos%60;
+
+        // calcular la diferencia en horas
+        long diffHoras =   (diferenciaMilisegundos / (60 * 60 * 1000));
+
+        // calcular la diferencia en dias
+        long diffdias = diferenciaMilisegundos / (24 * 60 * 60 * 1000) ;
+
+        // devolvemos el resultado
+        return diffdias;
+
+    }
 
 
 

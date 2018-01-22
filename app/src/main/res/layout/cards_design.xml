@@ -58,7 +58,7 @@
 
 
         <TextView
-            android:id="@+id/titulo"
+            android:id="@+id/EDTtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tipo"
@@ -72,7 +72,7 @@
             android:id="@+id/tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/titulo"
+            android:layout_below="@+id/EDTtitulo"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="11dp"
