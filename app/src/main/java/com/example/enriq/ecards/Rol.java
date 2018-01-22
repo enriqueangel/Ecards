@@ -9,7 +9,7 @@ public class Rol {
     private int image;
     private String id;
 
-    public Rol (String text, int imagen, String id){
+    Rol(String text, int imagen, String id){
         this.text = text;
         this.image = imagen;
         this.id = id;
@@ -19,7 +19,7 @@ public class Rol {
         return this.text;
     }
 
-    public int getImage(){
+    int getImage(){
         return this.image;
     }
 

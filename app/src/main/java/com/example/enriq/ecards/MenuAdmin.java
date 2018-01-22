@@ -10,22 +10,22 @@ import android.view.View;
 public class MenuAdmin extends AppCompatActivity implements View.OnClickListener{
 
     private CardView CrearTarjeta, CrearReunion,Usuarios, Dashboard;
-
+    private VariablesGlobales globalVariable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_admin);
 
+        globalVariable = (VariablesGlobales) getApplicationContext();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.include);
         setSupportActionBar(toolbar);
-
 
         CrearTarjeta = (CardView) findViewById(R.id.crear_tarjeta);
         CrearReunion = (CardView) findViewById(R.id.crear_reunion);
         Usuarios = (CardView) findViewById(R.id.usuarios);
         Dashboard = (CardView) findViewById(R.id.dashboard);
-
 
         CrearTarjeta.setOnClickListener(this);
         CrearReunion.setOnClickListener(this);
@@ -41,13 +41,15 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
             case R.id.crear_tarjeta:
                 break;
             case R.id.crear_reunion:
-                i = new Intent(MenuAdmin.this,creareunion.class);
+                i = new Intent(MenuAdmin.this, com.example.enriq.ecards.CrearReunion.class);
                 startActivity(i);
                 break;
             case R.id.usuarios:
                 break;
             case R.id.dashboard:
                 i = new Intent(this, Dashboard.class);
+                String areasTEmp = globalVariable.getAreas();
+                i.putExtra( "Areas", areasTEmp);
                 startActivity(i);
                 break;
             default:
