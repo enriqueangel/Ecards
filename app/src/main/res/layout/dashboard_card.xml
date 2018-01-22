@@ -1,7 +1,3 @@
-<LinearLayout android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -45,6 +41,3 @@
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
-</LinearLayout>
-
-

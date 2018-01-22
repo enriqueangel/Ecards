@@ -37,8 +37,9 @@
         <activity android:name=".MenuAdmin" />
         <activity android:name=".MenuLider" />
         <activity android:name=".SelectImagen" />
-        <activity android:name=".creareunion" />
+        <activity android:name=".CrearReunion" />
         <activity android:name=".MenuSuperU" />
+        <activity android:name=".Tarjeta"/>
     </application>
 
 </manifest>

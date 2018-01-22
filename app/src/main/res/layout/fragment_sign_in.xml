@@ -30,7 +30,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:hint="@string/correo"
-            app:errorTextAppearance="@style/CampoTextoRojo"
+            app:errorTextAppearance="@style/Error"
             app:errorEnabled="true"
             app:hintTextAppearance="@style/FloatingLabel">
 
@@ -52,7 +52,7 @@
             android:hint="@string/contrasena"
             app:hintTextAppearance="@style/FloatingLabel"
             app:errorEnabled="true"
-            app:errorTextAppearance="@style/CampoTextoRojo"
+            app:errorTextAppearance="@style/Error"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@color/casi_negro">
 

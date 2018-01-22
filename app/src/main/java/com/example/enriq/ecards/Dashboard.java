@@ -59,8 +59,11 @@ public class Dashboard extends AppCompatActivity {
             RecyclerView contenedor = (RecyclerView) findViewById(R.id.contenedor);
             contenedor.setHasFixedSize(true);
 
+            LinearLayoutManager linear =  new LinearLayoutManager(getApplicationContext());
+            linear.setOrientation(LinearLayoutManager.VERTICAL);
+
             contenedor.setAdapter(new RolAdapter(items));
-            contenedor.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            contenedor.setLayoutManager(linear);
 
         } catch (JSONException e) {
             e.printStackTrace();

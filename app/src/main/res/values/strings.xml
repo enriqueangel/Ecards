@@ -30,32 +30,16 @@
     <string name="m">Name</string>
     <string name="ma">m</string>
     <string name="imageperfil">TODO</string>
-    <string name="nom">TextView</string>
-    <string name="ape">TextView</string>
-    <string name="tel">TextView</string>
-    <string name="correeo">TextView</string>
-    <string name="ram">TextView</string>
-    <string name="edinom" />
-    <string name="apelli">Name</string>
-    <string name="atel">Name</string>
-    <string name="arama">Name</string>
     <string name="seleccionarim">seleccionar</string>
-    <string name="n">TextView</string>
-    <string name="imag">ima</string>
-    <string name="Imagen">Buttonima</string>
-    <string name="im">Imagen</string>
     <string name="continuar">Continuar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="buttoneditar">Button</string>
     <string name="tipo_tarea">Tipo Tarea</string>
     <string name="proyecto">Proyecto</string>
     <string name="link_ayuda">Link Ayuda</string>
     <string name="link_evidencia">Link Evidencia</string>
     <string name="descripcion">Descripcion</string>
-    <string name="ima">ima</string>
-    <string name="nombree">Nombre</string>
     <string name="crear_tarjeta">Crear Tarjeta</string>
     <string name="crear_reunion">Crear Reunion</string>
     <string name="usuarios">Usuarios</string>
@@ -71,4 +55,5 @@
     <string name="usuarios_nuevos">Usuarios Nuevos</string>
     <string name="fecha_entrega">Fecha Entrega</string>
     <string name="tiempo_realizado">Tiempo Realizado</string>
+    <string name="fecha">Fecha</string>
 </resources>
