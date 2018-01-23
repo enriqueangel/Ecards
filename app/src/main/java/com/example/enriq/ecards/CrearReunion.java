@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -20,17 +21,24 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class CrearReunion extends AppCompatActivity {
 
+    int day, month, year, hour, minute;
+
     TextView tv, tve;
     Calendar Date, Time;
-    int day, month, year, hour, minute;
     String format;
     Spinner mySpinner;
     Button CrearReunion;
     EditText Titulo, Lugar, Descripcion;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView listView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +46,14 @@ public class CrearReunion extends AppCompatActivity {
         setContentView(R.layout.activity_crear_reunion);
 
         Toolbar toolbar = findViewById(R.id.include);
-        //Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Crear Reunion");
+
+        listView = (ExpandableListView) findViewById(R.id.usuarios);
+        prepareListData();
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        listView.setAdapter(listAdapter);
 
         CrearReunion = (Button)  findViewById(R.id.BTNCrearRunion);
         Titulo= (EditText)  findViewById(R.id.EDTtitulo);
@@ -71,7 +83,7 @@ public class CrearReunion extends AppCompatActivity {
         year = Date.get(Calendar.YEAR);
 
         month = month + 1;
-        tv.setText(day + "/" + month + "/" + year);
+        //tv.setText(day + "/" + month + "/" + year);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +104,7 @@ public class CrearReunion extends AppCompatActivity {
         hour = Time.get(Calendar.HOUR_OF_DAY);
         minute = Time.get(Calendar.MINUTE);
         selectedTimeFormat(hour);
-        tve.setText(hour + " : " + minute + " " + format);
+        //tve.setText(hour + " : " + minute + " " + format);
         tve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,16 +112,18 @@ public class CrearReunion extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         selectedTimeFormat(hourOfDay);
-                        tve.setText(hourOfDay + " : " + minute + " " + format);
+                        String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
+                        String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
+                        tve.setText(horaFormateada + " : " + minutoFormateada + " " + format);
                     }
-                }, hour, minute, true);
+                }, hour, minute, false);
                 timePickerDialog.show();
             }
         });
 
         //Spinner
 
-        mySpinner = (Spinner) findViewById(R.id.asistentes);
+        /*mySpinner = (Spinner) findViewById(R.id.asistentes);
 
         List<String> list = new ArrayList<>();
         list.add("Valentina");
@@ -136,7 +150,48 @@ public class CrearReunion extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+    }
+
+    private void prepareListData(){
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        //Agrego cabecera principal
+        listDataHeader.add("data 1");
+        listDataHeader.add("data 2");
+        listDataHeader.add("data 3");
+        listDataHeader.add("data 4");
+
+        //Agrego cabecera de opciones
+        List<String> usuarios = new ArrayList<>();
+        usuarios.add("Enrique Angel");
+        usuarios.add("Valentina Rojas");
+        usuarios.add("Ronal Gonzales");
+        usuarios.add("Laura Gonzales");
+
+        List<String> otros = new ArrayList<>();
+        otros.add("Enrique Angel");
+        otros.add("Valentina Rojas");
+        otros.add("Ronal Gonzales");
+        otros.add("Laura Gonzales");
+
+        List<String> otros2 = new ArrayList<>();
+        otros2.add("Enrique Angel");
+        otros2.add("Valentina Rojas");
+        otros2.add("Ronal Gonzales");
+        otros2.add("Laura Gonzales");
+
+        List<String> otros3 = new ArrayList<>();
+        otros3.add("Enrique Angel");
+        otros3.add("Valentina Rojas");
+        otros3.add("Ronal Gonzales");
+        otros3.add("Laura Gonzales");
+
+        listDataChild.put("data 1", usuarios);
+        listDataChild.put("data 2", otros);
+        listDataChild.put("data 3", otros2);
+        listDataChild.put("data 4", otros3);
     }
 
     @Override
