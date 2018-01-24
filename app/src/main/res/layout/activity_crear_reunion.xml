@@ -1,131 +1,157 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.enriq.ecards.CrearReunion"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    tools:context="com.example.enriq.ecards.CrearReunion">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include
             android:id="@+id/include"
-            layout="@layout/toolbar"/>
+            layout="@layout/toolbar"
+
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="452dp"
+
+            android:layout_marginTop="56dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_begin="56dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ScrollView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:fillViewport="true">
+            android:id="@+id/scrollView4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="8dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toTopOf="@+id/usuarios"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline">
 
             <LinearLayout
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/CampoTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="20dp"
                     android:hint="@string/titulo"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:hintTextAppearance="@style/FloatingLabel">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTtitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:theme="@style/EditText"
-                        />
+                        android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/CampoFecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:hint="@string/fecha"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:hintTextAppearance="@style/FloatingLabel">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTfecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:theme="@style/EditText"
                         android:focusable="false"
-                        android:focusableInTouchMode="false"/>
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/CampoHora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:hint="@string/hora"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:hintTextAppearance="@style/FloatingLabel">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDThora"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:theme="@style/EditText"
                         android:focusable="false"
-                        android:focusableInTouchMode="false" />
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/CampoLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:hint="@string/lugar"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:hintTextAppearance="@style/FloatingLabel">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTlugar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:theme="@style/EditText"
-                        />
+                        android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/CampoDescripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:hint="@string/descripcion"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:errorEnabled="true">
+                    app:errorEnabled="true"
+                    app:hintTextAppearance="@style/FloatingLabel">
 
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTdescripcion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:theme="@style/EditText"
-                        />
+                        android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
                 <!--<LinearLayout
@@ -153,30 +179,37 @@
                         android:text=""
                         android:textColor="?attr/actionMenuTextColor" />
                 </LinearLayout>-->
-
-                <ExpandableListView
-                    android:id="@+id/usuarios"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-                    android:divider="@color/rojo_card"
-                    android:dividerHeight="0.5dp"
-                    />
-
-                <Button
-                    android:id="@+id/BTNCrearRunion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginBottom="18dp"
-                    android:layout_gravity="end"
-                    android:text="@string/crear_reunion"
-                    android:theme="@style/PrimaryButton"
-                    />
-
-                </LinearLayout>
+            </LinearLayout>
         </ScrollView>
-    </LinearLayout>
+
+        <ExpandableListView
+            android:id="@+id/usuarios"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:divider="@color/rojo_card"
+            android:dividerHeight="0.5dp"
+            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+            app:layout_constraintBottom_toTopOf="@+id/BTNCrearRunion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
+
+
+        <Button
+            android:id="@+id/BTNCrearRunion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="7dp"
+            android:text="@string/crear_reunion"
+            android:theme="@style/PrimaryButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/usuarios" />
+
+    </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>

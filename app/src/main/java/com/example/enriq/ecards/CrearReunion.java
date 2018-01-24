@@ -3,6 +3,7 @@ package com.example.enriq.ecards;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,7 @@ public class CrearReunion extends AppCompatActivity {
     Spinner mySpinner;
     Button CrearReunion;
     EditText Titulo, Lugar, Descripcion;
+    TextInputLayout TILTitulo, TILLugar;
 
     ExpandableListAdapter listAdapter;
     ExpandableListView listView;
@@ -59,17 +61,26 @@ public class CrearReunion extends AppCompatActivity {
         Titulo= (EditText)  findViewById(R.id.EDTtitulo);
         Lugar= (EditText)  findViewById(R.id.EDTlugar);
         Descripcion= (EditText)  findViewById(R.id.EDTdescripcion);
+        TILTitulo= (TextInputLayout)  findViewById(R.id.CampoTitulo);
+        TILLugar= (TextInputLayout)  findViewById(R.id.CampoLugar);
+
 
         CrearReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if  (!MetodosGlobales.validarTelefono(Titulo.getText().toString())){
-                    Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
+                    TILTitulo.setError("Ingrese un Titulo");
+                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
                     return;
+                }else{
+                    TILTitulo.setError(null);
                 }
                 if  (!MetodosGlobales.validarTelefono(Lugar.getText().toString())){
-                    Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
+                    TILLugar.setError("Ingrese un lugar");
+                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
                     return;
+                }else{
+                    TILLugar.setError(null);
                 }
                 EnviarDatosWS();
             }
@@ -181,6 +192,19 @@ public class CrearReunion extends AppCompatActivity {
         otros2.add("Valentina Rojas");
         otros2.add("Ronal Gonzales");
         otros2.add("Laura Gonzales");
+        otros2.add("Enrique Angel");
+        otros2.add("Valentina Rojas");
+        otros2.add("Ronal Gonzales");
+        otros2.add("Laura Gonzales");
+        otros2.add("Enrique Angel");
+        otros2.add("Valentina Rojas");
+        otros2.add("Ronal Gonzales");
+        otros2.add("Laura Gonzales");
+        otros2.add("Enrique Angel");
+        otros2.add("Valentina Rojas");
+        otros2.add("Ronal Gonzales");
+        otros2.add("Laura Gonzales");
+
 
         List<String> otros3 = new ArrayList<>();
         otros3.add("Enrique Angel");
