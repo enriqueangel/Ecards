@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_perfil"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/perfil" />
+
+    <item
+        android:id="@+id/navigation_desempeño"
+        android:icon="@drawable/ic_motorcycle_black_24dp"
+        android:title="@string/desempe_o" />
+
+    <item
+        android:id="@+id/navigation_tarjetas"
+        android:icon="@drawable/ic_flama"
+        android:title="@string/tarjetas" />
+</menu>
