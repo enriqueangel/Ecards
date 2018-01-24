@@ -1,5 +1,7 @@
 package com.example.enriq.ecards;
 
+import org.json.JSONObject;
+
 /**
  * Created by Laura on 7/12/2017.
  */
@@ -13,8 +15,9 @@ public class Fuente {
     String titulo,tipo,tiempo_e,tiempo_r,version;
     int color;
     Boolean IsReunion;
+    JSONObject DATOS;
 
-    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String version, int color,boolean isReunion) {
+    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String version, int color,boolean isReunion,JSONObject DATOS) {
         this.titulo = titulo;
         this.tipo = tipo;
         this.tiempo_e = tiempo_e;
@@ -22,6 +25,15 @@ public class Fuente {
         this.version = version;
         this.color = color;
         this.IsReunion = isReunion;
+        this.DATOS = DATOS;
+    }
+
+    public JSONObject getDATOS() {
+        return DATOS;
+    }
+
+    public void setDATOS(JSONObject DATOS) {
+        this.DATOS = DATOS;
     }
 
     public String getTitulo() {

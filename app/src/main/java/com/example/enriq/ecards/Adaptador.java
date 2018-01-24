@@ -25,6 +25,8 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         return new viewHolder(vista);
     }
 
+
+
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
 
@@ -35,6 +37,7 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         holder.tiempo_r.setText(ListaObjeto.get(position).getTiempo_r());
         holder.version.setText(ListaObjeto.get(position).getVersion());
         holder.TarjetaColor.setImageResource(ListaObjeto.get(position).getColor());
+        holder.DATOS = ListaObjeto.get(position).getDATOS();
 
 
         if (ListaObjeto.get(position).getReunion()) {

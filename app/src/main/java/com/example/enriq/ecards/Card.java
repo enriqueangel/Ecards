@@ -258,7 +258,7 @@ public class Card extends AppCompatActivity {
             }
 
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,"Frontend","32 Horas","10 Horas","1",ColorTArgeta,false));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,"Frontend","32 Horas","10 Horas","1",ColorTArgeta,false,row));
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);

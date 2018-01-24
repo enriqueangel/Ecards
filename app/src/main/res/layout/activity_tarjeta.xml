@@ -88,7 +88,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/fecha_entrega"
+                                android:id="@+id/TXVfecha_entrega"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="15/ene/17"
@@ -135,7 +135,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/proyecto"
+                                android:id="@+id/TXVproyecto"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Tarjetas"
@@ -182,7 +182,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tipo"
+                                android:id="@+id/TXVtipo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Backen"
@@ -229,7 +229,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tiempo_desarrollo"
+                                android:id="@+id/TXVtiempo_desarrollo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="02:00"
@@ -276,7 +276,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/link"
+                                android:id="@+id/TXVlink"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="aoiahsoidjflskdjflskdjlfs"
@@ -323,7 +323,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/descripcion"
+                                android:id="@+id/TXVdescripcion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="aoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfs"
