@@ -24,6 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/indigo"
+            app:fab_icon="@drawable/ic_persona"
+            app:fab_size="mini"
             />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
@@ -31,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/indigo"
-            app:srcCompat="@drawable/ic_flama"/>
+            />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

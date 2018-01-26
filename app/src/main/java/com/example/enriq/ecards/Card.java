@@ -135,7 +135,7 @@ public class Card extends AppCompatActivity {
         final VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
 
         //clickperf.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_persona));
-        clickDashboard.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_access_time_black_24dp));
+        //clickDashboard.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_access_time_black_24dp));
 
         clickDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
