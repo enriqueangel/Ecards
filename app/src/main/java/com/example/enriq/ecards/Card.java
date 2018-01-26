@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,8 +57,6 @@ public class Card extends AppCompatActivity {
 
     Date FechaServidor;
 
-
-
     @Override
     protected void onStart() {
 
@@ -72,7 +71,6 @@ public class Card extends AppCompatActivity {
         Map<String, String> params = new HashMap<String, String>();
 
         listaTarjetas.clear();
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -136,6 +134,8 @@ public class Card extends AppCompatActivity {
 
         final VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
 
+        //clickperf.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_persona));
+        clickDashboard.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_access_time_black_24dp));
 
         clickDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,13 +148,9 @@ public class Card extends AppCompatActivity {
             }
         });
 
-
-
-
         clickperf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
 
                 url = getString(R.string.URLWS);
                 url = url+"user/datos_perfil";
@@ -166,15 +162,12 @@ public class Card extends AppCompatActivity {
 
                 Map<String, String> params = new HashMap<String, String>();
 
-
                 JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-
                                     JSONObject Respuesta = response.getJSONObject("user");
-
 
                                     Intent intent = new Intent(Card.this, perfil.class);
                                     intent.putExtra( "DATOS", Respuesta.toString());
@@ -211,15 +204,11 @@ public class Card extends AppCompatActivity {
                         return headers;
                     }
                 };
-
                 requestQueue.add(arrReq);
-
             }
         });
 
-
     }
-
 
     private void ImprimirTargetas() throws JSONException {
 
@@ -239,8 +228,6 @@ public class Card extends AppCompatActivity {
             try {
                 fechaFin = format.parse(dtStart);
                 DiasRestantes = calcularColor(fechaFin);
-
-
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -257,7 +244,6 @@ public class Card extends AppCompatActivity {
                 ColorTArgeta  = R.drawable.card_white;
             }
 
-
             listaTarjetas.add(new Fuente(DescripcionTEMP,"Frontend","32 Horas","10 Horas","1",ColorTArgeta,false,row));
         }
 
@@ -269,18 +255,13 @@ public class Card extends AppCompatActivity {
         //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
         contenedor.setAdapter(new Adaptador(listaTarjetas));
 
-
         contenedor.setLayoutManager(new LinearLayoutManager(this));
-
     };
-
 
     private long calcularColor(Date FechaFin){
 
         Date fechaInicio = FechaServidor;
         Date fechaLlegada = FechaFin;
-
-
 
         // tomamos la instancia del tipo de calendario
         Calendar calendarInicio = Calendar.getInstance();
@@ -317,11 +298,7 @@ public class Card extends AppCompatActivity {
 
         // devolvemos el resultado
         return diffdias;
-
     }
-
-
-
 
 }
 

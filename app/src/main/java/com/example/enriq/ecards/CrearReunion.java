@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,6 +57,14 @@ public class CrearReunion extends AppCompatActivity {
         prepareListData();
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+                setListViewHeight(expandableListView, i);
+                return false;
+            }
+        });
 
         CrearReunion = (Button)  findViewById(R.id.BTNCrearRunion);
         Titulo= (EditText)  findViewById(R.id.EDTtitulo);
@@ -169,10 +178,8 @@ public class CrearReunion extends AppCompatActivity {
         listDataChild = new HashMap<>();
 
         //Agrego cabecera principal
-        listDataHeader.add("data 1");
-        listDataHeader.add("data 2");
-        listDataHeader.add("data 3");
-        listDataHeader.add("data 4");
+        listDataHeader.add("Usuarios");
+        listDataHeader.add("Web");
 
         //Agrego cabecera de opciones
         List<String> usuarios = new ArrayList<>();
@@ -181,41 +188,14 @@ public class CrearReunion extends AppCompatActivity {
         usuarios.add("Ronal Gonzales");
         usuarios.add("Laura Gonzales");
 
-        List<String> otros = new ArrayList<>();
-        otros.add("Enrique Angel");
-        otros.add("Valentina Rojas");
-        otros.add("Ronal Gonzales");
-        otros.add("Laura Gonzales");
+        List<String> web = new ArrayList<>();
+        web.add("Enrique Angel");
+        web.add("Valentina Rojas");
+        web.add("Ronal Gonzales");
+        web.add("Laura Gonzales");
 
-        List<String> otros2 = new ArrayList<>();
-        otros2.add("Enrique Angel");
-        otros2.add("Valentina Rojas");
-        otros2.add("Ronal Gonzales");
-        otros2.add("Laura Gonzales");
-        otros2.add("Enrique Angel");
-        otros2.add("Valentina Rojas");
-        otros2.add("Ronal Gonzales");
-        otros2.add("Laura Gonzales");
-        otros2.add("Enrique Angel");
-        otros2.add("Valentina Rojas");
-        otros2.add("Ronal Gonzales");
-        otros2.add("Laura Gonzales");
-        otros2.add("Enrique Angel");
-        otros2.add("Valentina Rojas");
-        otros2.add("Ronal Gonzales");
-        otros2.add("Laura Gonzales");
-
-
-        List<String> otros3 = new ArrayList<>();
-        otros3.add("Enrique Angel");
-        otros3.add("Valentina Rojas");
-        otros3.add("Ronal Gonzales");
-        otros3.add("Laura Gonzales");
-
-        listDataChild.put("data 1", usuarios);
-        listDataChild.put("data 2", otros);
-        listDataChild.put("data 3", otros2);
-        listDataChild.put("data 4", otros3);
+        listDataChild.put(listDataHeader.get(0), usuarios);
+        listDataChild.put(listDataHeader.get(1), web);
     }
 
     @Override
@@ -228,6 +208,42 @@ public class CrearReunion extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void setListViewHeight(ExpandableListView listView,
+                                   int group) {
+        ExpandableListAdapter listAdapter = (ExpandableListAdapter) listView.getExpandableListAdapter();
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
+                View.MeasureSpec.EXACTLY);
+        for (int i = 0; i < listAdapter.getGroupCount(); i++) {
+            View groupItem = listAdapter.getGroupView(i, false, null, listView);
+            groupItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+            totalHeight += groupItem.getMeasuredHeight();
+
+            if (((listView.isGroupExpanded(i)) && (i != group))
+                    || ((!listView.isGroupExpanded(i)) && (i == group))) {
+                for (int j = 0; j < listAdapter.getChildrenCount(i); j++) {
+                    View listItem = listAdapter.getChildView(i, j, false, null,
+                            listView);
+                    listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+                    totalHeight += listItem.getMeasuredHeight();
+
+                }
+            }
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        int height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
+        if (height < 10)
+            height = 200;
+        params.height = height;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
     }
 
     //Hora
