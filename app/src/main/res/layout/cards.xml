@@ -1,58 +1,40 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contenedor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_above="@+id/floatingActionsMenu"
-        android:layout_alignParentEnd="true"
-
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="8dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.51" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/floatingActionsMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
         android:layout_marginBottom="8dp"
-
-        app:fab_addButtonColorNormal="@color/indigo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:fab_addButtonColorNormal="@color/indigo">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clickperf"
             app:fab_colorNormal="@color/indigo"
-            app:fab_icon="@drawable/ic_persona" />
+            />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="clicksalir"
             app:fab_colorNormal="@color/indigo"
-            app:fab_icon="@drawable/ic_flama" />
+            app:srcCompat="@drawable/ic_flama"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
 
 

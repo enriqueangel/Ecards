@@ -8,7 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,6 +54,9 @@ public class login_pin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_pin);
+
+        Toolbar toolbar = findViewById(R.id.include);
+        setSupportActionBar(toolbar);
 
         campoPin = (TextInputLayout) findViewById(R.id.campo_pin);
         textViewbienv = (TextView)findViewById(R.id.textViewbienv);

@@ -16,7 +16,8 @@
 
         <ScrollView
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_height="wrap_content"
@@ -51,7 +52,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="40dp"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
                     android:layout_gravity="center_horizontal"
                     android:hint="@string/fecha"
                     app:hintTextAppearance="@style/FloatingLabel"
@@ -63,105 +63,78 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:theme="@style/EditText"
-                        />
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/CampoHora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="40dp"
-                    android:layout_marginTop="7dp">
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/hora"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:errorEnabled="true">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="3dp"
-                        android:text="Hora"
-                        android:textColor="?attr/actionMenuTextColor"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-
-                    <TextView
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDThora"
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:text=""
-                        android:textColor="?attr/actionMenuTextColor" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:theme="@style/EditText"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false" />
+                </android.support.design.widget.TextInputLayout>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginLeft="2dp"
-                        android:layout_marginRight="2dp" />
-                </LinearLayout>
-
-                <LinearLayout
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/CampoLugar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="40dp"
-                    android:layout_marginTop="7dp">
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/lugar"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:errorEnabled="true">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:textColor="?attr/actionMenuTextColor"
-                        android:text="Lugar"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="3dp"
-                        />
-
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTlugar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/actionMenuTextColor"
-                        android:text=""
+                        android:inputType="text"
+                        android:theme="@style/EditText"
                         />
-                </LinearLayout>
+                </android.support.design.widget.TextInputLayout>
 
-
-
-
-                <LinearLayout
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/CampoDescripcion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingLeft="40dp"
-                    android:paddingRight="40dp"
-                    android:layout_marginTop="7dp">
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/descripcion"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:errorEnabled="true">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:textColor="?attr/actionMenuTextColor"
-                        android:text="Descripcion"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="3dp"
-                        />
-
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/EDTdescripcion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="?attr/actionMenuTextColor" />
-                </LinearLayout>
+                        android:inputType="text"
+                        android:theme="@style/EditText"
+                        />
+                </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"
                     android:layout_marginTop="7dp">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -171,22 +144,37 @@
                         android:textStyle="bold"
                         android:layout_marginBottom="3dp"
                         />
-
                     <Spinner
                         android:id="@+id/asistentes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="?attr/actionMenuTextColor" />
-                </LinearLayout>
+                </LinearLayout>-->
+
+                <ExpandableListView
+                    android:id="@+id/usuarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+                    android:divider="@color/rojo_card"
+                    android:dividerHeight="0.5dp"
+                    />
 
                 <Button
                     android:id="@+id/BTNCrearRunion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="18dp"
+                    android:layout_gravity="end"
+                    android:text="@string/crear_reunion"
+                    android:theme="@style/PrimaryButton"
+                    />
 
-                </LinearLayout>
+            </LinearLayout>
         </ScrollView>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

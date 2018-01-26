@@ -60,4 +60,10 @@
     <string name="usuarios_nuevos">Usuarios Nuevos</string>
     <string name="tiempo_realizado">Tiempo Realizado</string>
     <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="lugar">Lugar</string>
+    <string name="horas_contratadas">Horas contratadas</string>
+    <string name="perfil">Perfil</string>
+    <string name="desempe_o">Desempeño</string>
+    <string name="tarjetas">Tarjetas</string>
 </resources>

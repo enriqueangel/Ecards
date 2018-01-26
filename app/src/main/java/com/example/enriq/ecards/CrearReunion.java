@@ -3,16 +3,19 @@ package com.example.enriq.ecards;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -20,44 +23,73 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class CrearReunion extends AppCompatActivity {
 
+    int day, month, year, hour, minute;
+
     TextView tv, tve;
     Calendar Date, Time;
-    int day, month, year, hour, minute;
     String format;
     Spinner mySpinner;
     Button CrearReunion;
     EditText Titulo, Lugar, Descripcion;
+    TextInputLayout TILTitulo, TILLugar;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView listView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_reunion);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.include);
-        //Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Crear Reunion");
+
+        listView = (ExpandableListView) findViewById(R.id.usuarios);
+        prepareListData();
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        listView.setAdapter(listAdapter);
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+                setListViewHeight(expandableListView, i);
+                return false;
+            }
+        });
 
         CrearReunion = (Button)  findViewById(R.id.BTNCrearRunion);
         Titulo= (EditText)  findViewById(R.id.EDTtitulo);
         Lugar= (EditText)  findViewById(R.id.EDTlugar);
         Descripcion= (EditText)  findViewById(R.id.EDTdescripcion);
+        TILTitulo= (TextInputLayout)  findViewById(R.id.CampoTitulo);
+        TILLugar= (TextInputLayout)  findViewById(R.id.CampoLugar);
+
 
         CrearReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if  (!MetodosGlobales.validarTelefono(Titulo.getText().toString())){
-                    Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
+                    TILTitulo.setError("Ingrese un Titulo");
+                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
                     return;
+                }else{
+                    TILTitulo.setError(null);
                 }
                 if  (!MetodosGlobales.validarTelefono(Lugar.getText().toString())){
-                    Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
+                    TILLugar.setError("Ingrese un lugar");
+                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
                     return;
+                }else{
+                    TILLugar.setError(null);
                 }
                 EnviarDatosWS();
             }
@@ -71,7 +103,7 @@ public class CrearReunion extends AppCompatActivity {
         year = Date.get(Calendar.YEAR);
 
         month = month + 1;
-        tv.setText(day + "/" + month + "/" + year);
+        //tv.setText(day + "/" + month + "/" + year);
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +124,7 @@ public class CrearReunion extends AppCompatActivity {
         hour = Time.get(Calendar.HOUR_OF_DAY);
         minute = Time.get(Calendar.MINUTE);
         selectedTimeFormat(hour);
-        tve.setText(hour + " : " + minute + " " + format);
+        //tve.setText(hour + " : " + minute + " " + format);
         tve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,16 +132,18 @@ public class CrearReunion extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         selectedTimeFormat(hourOfDay);
-                        tve.setText(hourOfDay + " : " + minute + " " + format);
+                        String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
+                        String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
+                        tve.setText(horaFormateada + " : " + minutoFormateada + " " + format);
                     }
-                }, hour, minute, true);
+                }, hour, minute, false);
                 timePickerDialog.show();
             }
         });
 
         //Spinner
 
-        mySpinner = (Spinner) findViewById(R.id.asistentes);
+        /*mySpinner = (Spinner) findViewById(R.id.asistentes);
 
         List<String> list = new ArrayList<>();
         list.add("Valentina");
@@ -136,7 +170,32 @@ public class CrearReunion extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+    }
+
+    private void prepareListData(){
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        //Agrego cabecera principal
+        listDataHeader.add("Usuarios");
+        listDataHeader.add("Web");
+
+        //Agrego cabecera de opciones
+        List<String> usuarios = new ArrayList<>();
+        usuarios.add("Enrique Angel");
+        usuarios.add("Valentina Rojas");
+        usuarios.add("Ronal Gonzales");
+        usuarios.add("Laura Gonzales");
+
+        List<String> web = new ArrayList<>();
+        web.add("Enrique Angel");
+        web.add("Valentina Rojas");
+        web.add("Ronal Gonzales");
+        web.add("Laura Gonzales");
+
+        listDataChild.put(listDataHeader.get(0), usuarios);
+        listDataChild.put(listDataHeader.get(1), web);
     }
 
     @Override
@@ -149,6 +208,42 @@ public class CrearReunion extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void setListViewHeight(ExpandableListView listView,
+                                   int group) {
+        ExpandableListAdapter listAdapter = (ExpandableListAdapter) listView.getExpandableListAdapter();
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
+                View.MeasureSpec.EXACTLY);
+        for (int i = 0; i < listAdapter.getGroupCount(); i++) {
+            View groupItem = listAdapter.getGroupView(i, false, null, listView);
+            groupItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+            totalHeight += groupItem.getMeasuredHeight();
+
+            if (((listView.isGroupExpanded(i)) && (i != group))
+                    || ((!listView.isGroupExpanded(i)) && (i == group))) {
+                for (int j = 0; j < listAdapter.getChildrenCount(i); j++) {
+                    View listItem = listAdapter.getChildView(i, j, false, null,
+                            listView);
+                    listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+                    totalHeight += listItem.getMeasuredHeight();
+
+                }
+            }
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        int height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getGroupCount() - 1));
+        if (height < 10)
+            height = 200;
+        params.height = height;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+
     }
 
     //Hora
