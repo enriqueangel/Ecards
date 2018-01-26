@@ -3,6 +3,11 @@
     <string name="tipo">Tipo</string>
     <string name="tiempo_de_entrega">Tiempo de entrega</string>
     <string name="tiempo_restante">Tiempo restante</string>
+    <string name="fecha_entrega">Fecha de entrega</string>
+    <string name="tiempo_estimado">Tiempo estimado</string>
+    <string name="encargado">Encargado</string>
+    <string name="tester">Tester</string>
+    <string name="crear">Crear</string>
     <string name="titulo">Titulo</string>
     <string name="vr">Vr.</string>
     <string name="tarjeta">tarjeta</string>
@@ -53,7 +58,6 @@
     <string name="tipos_tareas">Tipos Tareas</string>
     <string name="proyectos">Proyectos</string>
     <string name="usuarios_nuevos">Usuarios Nuevos</string>
-    <string name="fecha_entrega">Fecha Entrega</string>
     <string name="tiempo_realizado">Tiempo Realizado</string>
     <string name="fecha">Fecha</string>
 </resources>

@@ -37,7 +37,7 @@ public class CrearReunion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_reunion);
 
-        Toolbar toolbar = findViewById(R.id.include);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.include);
         //Toolbar toolbar = (Toolbar) viewToolbar.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
