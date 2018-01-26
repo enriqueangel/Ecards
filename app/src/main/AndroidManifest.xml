@@ -40,6 +40,7 @@
         <activity android:name=".CrearReunion" />
         <activity android:name=".MenuSuperU" />
         <activity android:name=".Tarjeta" />
+        <activity android:name=".ListaUsuarios" />
         <!--<activity android:name=".PerfilUsuario" />-->
         <!--<activity android:name=".InfoUser"/>-->
     </application>

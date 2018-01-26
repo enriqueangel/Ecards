@@ -12,7 +12,11 @@ import org.json.JSONObject;
 
 public class Fuente {
 
-    String titulo,tipo,tiempo_e,tiempo_r,version;
+    String titulo;
+    String tipo;
+    String tiempo_e;
+    String tiempo_r;
+    String version;
     int color;
     Boolean IsReunion;
     JSONObject DATOS;
@@ -36,6 +40,8 @@ public class Fuente {
         this.DATOS = DATOS;
     }
 
+
+
     public String getTitulo() {
         return titulo;
     }
@@ -52,9 +58,7 @@ public class Fuente {
         this.titulo = titulo;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
+    public String getTipo() {return tipo;}
 
     public void setTipo(String tipo) {
         this.tipo = tipo;

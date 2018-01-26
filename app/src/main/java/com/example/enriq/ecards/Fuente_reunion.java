@@ -15,6 +15,7 @@ public class Fuente_reunion {
         Titulo = titulo;
         Lugar = lugar;
         Hora = hora;
+
         Color = color;
         Fecha = fecha;
     }
