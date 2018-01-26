@@ -179,7 +179,6 @@ public class CrearReunion extends AppCompatActivity {
 
         //Agrego cabecera principal
         listDataHeader.add("Usuarios");
-        listDataHeader.add("Web");
 
         //Agrego cabecera de opciones
         List<String> usuarios = new ArrayList<>();
@@ -188,14 +187,7 @@ public class CrearReunion extends AppCompatActivity {
         usuarios.add("Ronal Gonzales");
         usuarios.add("Laura Gonzales");
 
-        List<String> web = new ArrayList<>();
-        web.add("Enrique Angel");
-        web.add("Valentina Rojas");
-        web.add("Ronal Gonzales");
-        web.add("Laura Gonzales");
-
         listDataChild.put(listDataHeader.get(0), usuarios);
-        listDataChild.put(listDataHeader.get(1), web);
     }
 
     @Override

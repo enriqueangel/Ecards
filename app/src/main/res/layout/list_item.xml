@@ -2,15 +2,35 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/lblListItem"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-        android:paddingTop="5dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/lblListItem"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:textSize="15dp"
+            android:paddingBottom="5dp"
+            android:text="Enrique Angel"
+            android:layout_centerVertical="true"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/lblListItem"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:layout_marginRight="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:focusable="false"
+            android:clickable="false"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

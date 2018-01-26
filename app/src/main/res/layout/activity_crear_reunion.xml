@@ -156,9 +156,12 @@
                     android:id="@+id/usuarios"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-                    android:divider="@color/rojo_card"
+                    android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
+                    android:divider="@color/blanco"
                     android:dividerHeight="0.5dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:childDivider="@color/blanco"
                     />
 
                 <Button
