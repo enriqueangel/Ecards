@@ -1,10 +1,11 @@
 package com.example.enriq.ecards;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -29,10 +30,22 @@ public class InfoUser extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
+
+        //Paso 1: Obtener la instancia del administrador de fragmentos
+        FragmentManager fragmentManager = getFragmentManager();
+
+        //Paso 2: Crear una nueva transacción
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //Paso 3: Crear un nuevo fragmento y añadirlo
+
+        transaction.replace(R.id.InfUserCONTENEDOR, fragment);
+
+
+        //Paso 4: Confirmar el cambio
         transaction.commit();
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -44,18 +57,21 @@ public class InfoUser extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_perfil:
                     toolbar.setTitle("Perfil");
-                    fragment = new PerfilFragment();
-                    loadFragment(fragment);
+
+                    PerfilFragment Fr1 = new PerfilFragment();
+                    loadFragment(Fr1);
                     return true;
+
                 case R.id.navigation_desempeño:
                     toolbar.setTitle("Desempeño");
-                    fragment = new DesempenoFragment();
-                    loadFragment(fragment);
+                    DesempenoFragment Fr2 = new DesempenoFragment();
+                    loadFragment(Fr2);
                     return true;
                 case R.id.navigation_tarjetas:
                     toolbar.setTitle("Tarjetas");
-                    fragment = new TarjetasFragment();
-                    loadFragment(fragment);
+
+                    TarjetasFragment Fr3 = new TarjetasFragment();
+                    loadFragment(Fr3);
                     return true;
             }
 

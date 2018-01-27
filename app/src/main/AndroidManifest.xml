@@ -42,7 +42,7 @@
         <activity android:name=".Tarjeta" />
         <activity android:name=".ListaUsuarios" />
         <!--<activity android:name=".PerfilUsuario" />-->
-        <!--<activity android:name=".InfoUser"/>-->
+        <activity android:name=".InfoUser"/>
     </application>
 
 </manifest>

@@ -1,11 +1,14 @@
 package com.example.enriq.ecards;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
     class UsuarioViewHolder extends RecyclerView.ViewHolder{
         ImageView imagen;
         TextView nombre, horasl, horast,hl,ht;
+        JSONObject DATOS;
 
         UsuarioViewHolder(View itemView) {
             super(itemView);
@@ -29,6 +33,17 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
             horast = itemView.findViewById(R.id.horas2);
             hl = itemView.findViewById(R.id.hlab);
             ht = itemView.findViewById(R.id.htra);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent;
+                    intent = new Intent(v.getContext(), InfoUser.class);
+                    intent.putExtra( "DATOS", DATOS.toString());
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         }
     }
 
@@ -51,6 +66,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
         holder.horast.setText(items.get(position).getHorast());
         holder.hl.setText(items.get(position).getHl());
         holder.ht.setText(items.get(position).getHt());
+        holder.DATOS = items.get(position).getDATOS();
     }
 
     @Override

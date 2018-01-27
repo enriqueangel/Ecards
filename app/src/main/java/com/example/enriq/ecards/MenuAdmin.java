@@ -60,7 +60,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
                 break;
         }
 
-        finish();
+
 
     }
 }

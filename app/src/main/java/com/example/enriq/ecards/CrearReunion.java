@@ -186,6 +186,16 @@ public class CrearReunion extends AppCompatActivity {
         usuarios.add("Valentina Rojas");
         usuarios.add("Ronal Gonzales");
         usuarios.add("Laura Gonzales");
+        usuarios.add("Valentina Rojas");
+        usuarios.add("Ronal Gonzales");
+        usuarios.add("Laura Gonzales");
+        usuarios.add("Valentina Rojas");
+        usuarios.add("Ronal Gonzales");
+        usuarios.add("Laura Gonzales");
+        usuarios.add("Valentina Rojas");
+        usuarios.add("Ronal Gonzales");
+        usuarios.add("Laura Gonzales");
+
 
         listDataChild.put(listDataHeader.get(0), usuarios);
     }
@@ -194,8 +204,9 @@ public class CrearReunion extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent i = new Intent(CrearReunion.this, MenuAdmin.class);
-                startActivity(i);
+                //Intent i = new Intent(CrearReunion.this, MenuAdmin.class);
+                //startActivity(i);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -253,5 +264,7 @@ public class CrearReunion extends AppCompatActivity {
         }
     }
 
-    private void EnviarDatosWS(){}
+    private void EnviarDatosWS(){
+        Object Respuesta = listAdapter.getChildS(0,1);
+    }
 }

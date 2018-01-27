@@ -23,6 +23,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listHashMap;
 
+
     ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
@@ -93,4 +94,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
+
+    public Object getChildS(int i, int i1) {
+        return this.listHashMap.get(this.listDataHeader.get(i)); // i = Grupo, i1 = Hijo Item
+    }
+
+
 }
