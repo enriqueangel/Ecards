@@ -8,20 +8,29 @@
     <color name="secondary_text">#757575</color>
     <color name="divider">#BDBDBD</color>
 
+    <!-- Colores Tarjetas -->
     <color name="blanco">#ffffff</color>
-    <color name="amarillo">#FF5722</color>
+    <color name="naranja">#FF5722</color>
     <color name="verde">#388E3C</color>
     <color name="rojo">#D32F2F</color>
+    <color name="indigo">#3F51B5</color>
 
+    <!-- Colores Complementos Tarjetas -->
     <color name="primary_rojo">#F44336</color>
+    <color name="accent_rojo">#FF5252</color>
+    <color name="primary_dark_naranja">#E64A19</color>
+    <color name="accent_naranja">#FF9800</color>
+    <color name="primary_verde">#4CAF50</color>
+    <color name="accent_verde">#8BC34A</color>
+    <color name="primary_dark_gris">#616161</color>
+    <color name="primary_gris">#9E9E9E</color>
 
     <color name="fondo">#28385c</color>
     <color name="fondo_oscuro">#13161d</color>
     <color name="gris">#E5E5E5</color>
-    <color name="indigo">#3F51B5</color>
     <color name="casi_negro">#0B0B61</color>
 
-
+    <!-- Colores items menus -->
     <color name="azul_card">#283593</color>
     <color name="rojo_card">#D32F2F</color>
     <color name="verde_card">#2E7D32</color>

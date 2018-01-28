@@ -10,6 +10,30 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
     </style>
 
+    <style name="ThemeRojo">
+        <item name="colorPrimary">@color/primary_rojo</item>
+        <item name="colorPrimaryDark">@color/rojo</item>
+        <item name="colorAccent">@color/accent_rojo</item>
+    </style>
+
+    <style name="ThemeNaranja">
+        <item name="colorPrimary">@color/naranja</item>
+        <item name="colorPrimaryDark">@color/primary_dark_naranja</item>
+        <item name="colorAccent">@color/accent_naranja</item>
+    </style>
+
+    <style name="ThemeVerde">
+        <item name="colorPrimary">@color/primary_verde</item>
+        <item name="colorPrimaryDark">@color/verde</item>
+        <item name="colorAccent">@color/accent_verde</item>
+    </style>
+
+    <style name="ThemeGris">
+        <item name="colorPrimary">@color/primary_gris</item>
+        <item name="colorPrimaryDark">@color/primary_dark_gris</item>
+        <item name="colorAccent">@color/primary_gris</item>
+    </style>
+
     <!-- Sin action bar. -->
     <style name="AppTheme.NoActionBar" parent="AppTheme">
         <item name="windowNoTitle">true</item>

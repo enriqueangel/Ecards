@@ -30,7 +30,6 @@ public class InfoUser extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment) {
-
         //Paso 1: Obtener la instancia del administrador de fragmentos
         FragmentManager fragmentManager = getFragmentManager();
 
@@ -38,14 +37,10 @@ public class InfoUser extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         //Paso 3: Crear un nuevo fragmento y añadirlo
-
         transaction.replace(R.id.InfUserCONTENEDOR, fragment);
-
 
         //Paso 4: Confirmar el cambio
         transaction.commit();
-
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -53,15 +48,12 @@ public class InfoUser extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.navigation_perfil:
                     toolbar.setTitle("Perfil");
-
                     PerfilFragment Fr1 = new PerfilFragment();
                     loadFragment(Fr1);
                     return true;
-
                 case R.id.navigation_desempeño:
                     toolbar.setTitle("Desempeño");
                     DesempenoFragment Fr2 = new DesempenoFragment();
@@ -69,7 +61,6 @@ public class InfoUser extends AppCompatActivity {
                     return true;
                 case R.id.navigation_tarjetas:
                     toolbar.setTitle("Tarjetas");
-
                     TarjetasFragment Fr3 = new TarjetasFragment();
                     loadFragment(Fr3);
                     return true;

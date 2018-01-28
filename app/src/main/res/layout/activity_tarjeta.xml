@@ -35,320 +35,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <FrameLayout
+        android:id="@+id/contenedor"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:showIn="@layout/activity_tarjeta">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:padding="16dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fcfcfc"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="15dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemEntrega"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_today_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemEntrega"
-                            android:layout_toRightOf="@id/itemEntrega"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVfecha_entrega"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="15/ene/17"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/fecha_entrega"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemProyecto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_phone_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemProyecto"
-                            android:layout_toRightOf="@id/itemProyecto"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVproyecto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Tarjetas"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/proyecto"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemTipo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_assignment_late_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemTipo"
-                            android:layout_toRightOf="@id/itemTipo"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVtipo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Backen"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/tipo_tarea"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemTiempo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_timer_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemTiempo"
-                            android:layout_toRightOf="@id/itemTiempo"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVtiempo_desarrollo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="02:00"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/tiempo_realizado"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemLink"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_today_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemLink"
-                            android:layout_toRightOf="@id/itemLink"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVlink"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="aoiahsoidjflskdjflskdjlfs"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/link_ayuda"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:id="@+id/itemDescripcion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            app:srcCompat="@drawable/ic_error_outline_black_24dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_toEndOf="@id/itemDescripcion"
-                            android:layout_toRightOf="@id/itemDescripcion"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/TXVdescripcion"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="aoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfs"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textColor="#212121" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/descripcion"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                                android:textColor="#727272" />
-
-                            <include layout="@layout/item_divider" />
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-
-    </android.support.v4.widget.NestedScrollView>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/btnMenu"
@@ -356,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_gravity="bottom|end"
-        app:fab_addButtonColorNormal="@color/colorPrimaryDark"
+        app:fab_addButtonColorNormal="?attr/colorPrimaryDark"
         app:fab_labelStyle="@style/Etiquetas"
         app:fab_labelsPosition="left"
         >
@@ -365,7 +56,7 @@
             android:id="@+id/btnEntregar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorPrimaryDark"
+            app:fab_colorNormal="?attr/colorAccent"
             app:fab_size="mini"
             app:fab_icon="@drawable/ic_check_black_24dp"
             app:fab_title="Entregar"/>
@@ -374,9 +65,9 @@
             android:id="@+id/btnReportar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorPrimaryDark"
+            app:fab_colorNormal="?attr/colorAccent"
             app:fab_size="mini"
-            app:fab_icon="@drawable/ic_access_time_black_24dp"
+            app:fab_icon="@drawable/ic_access_time_white_24dp"
             app:fab_title="Reportar horas"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
