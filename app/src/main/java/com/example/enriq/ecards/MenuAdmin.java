@@ -39,15 +39,15 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
         Intent i;
         switch (v.getId()){
             case R.id.crear_tarjeta:
-                i = new Intent(MenuAdmin.this,Crear_Tarjeta.class);
+                i = new Intent(MenuAdmin.this, Crear_Tarjeta.class);
                 startActivity(i);
                 break;
             case R.id.crear_reunion:
-                i = new Intent(MenuAdmin.this, com.example.enriq.ecards.CrearReunion.class);
+                i = new Intent(MenuAdmin.this, CrearReunion.class);
                 startActivity(i);
                 break;
             case R.id.usuarios:
-                i = new Intent(MenuAdmin.this,ListaUsuarios.class);
+                i = new Intent(MenuAdmin.this, ListaUsuarios.class);
                 startActivity(i);
                 break;
             case R.id.dashboard:

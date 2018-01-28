@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,14 +20,18 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:hint="@string/fecha_entrega"
-            app:hintTextAppearance="@style/FloatingLabel">
+            app:hintTextAppearance="@style/FloatingLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/Error">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/fecha_e_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:theme="@style/EditText" />
+                android:theme="@style/EditText"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -37,16 +41,19 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="15dp"
             android:hint="@string/tiempo_estimado"
-            app:hintTextAppearance="@style/FloatingLabel">
+            app:hintTextAppearance="@style/FloatingLabel"
+            app:errorEnabled="true"
+            app:errorTextAppearance="@style/Error">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/tiempo_e_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:theme="@style/EditText" />
+                android:theme="@style/EditText"
+                android:focusable="false"
+                android:focusableInTouchMode="false"/>
         </android.support.design.widget.TextInputLayout>
 
         <fr.ganfra.materialspinner.MaterialSpinner
@@ -89,4 +96,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

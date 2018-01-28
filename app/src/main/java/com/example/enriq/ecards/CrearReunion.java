@@ -107,7 +107,7 @@ public class CrearReunion extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(com.example.enriq.ecards.CrearReunion.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CrearReunion.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
@@ -128,49 +128,18 @@ public class CrearReunion extends AppCompatActivity {
         tve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(com.example.enriq.ecards.CrearReunion.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CrearReunion.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        selectedTimeFormat(hourOfDay);
+                        hourOfDay = selectedTimeFormat(hourOfDay);
                         String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
                         String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
-                        tve.setText(horaFormateada + " : " + minutoFormateada + " " + format);
+                        tve.setText(horaFormateada + ":" + minutoFormateada + " " + format);
                     }
                 }, hour, minute, false);
                 timePickerDialog.show();
             }
         });
-
-        //Spinner
-
-        /*mySpinner = (Spinner) findViewById(R.id.asistentes);
-
-        List<String> list = new ArrayList<>();
-        list.add("Valentina");
-        list.add("Laura");
-        list.add("Enrique");
-        list.add("Ronald");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        mySpinner.setAdapter(adapter);
-
-        mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                String itemvalue = parent.getItemAtPosition(position).toString();
-
-                Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Selected: " + itemvalue, Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });*/
     }
 
     private void prepareListData(){
@@ -250,17 +219,20 @@ public class CrearReunion extends AppCompatActivity {
     }
 
     //Hora
-    public void selectedTimeFormat(int hour){
+    public int selectedTimeFormat(int hour){
         if (hour == 0){
-            hour += 12;
             format = "AM";
+            return hour += 12;
         } else if (hour == 12){
             format = "PM";
+            return hour;
         } else if (hour > 12) {
-            hour -= 12;
             format = "PM";
+            hour -= 12;
+            return hour;
         } else {
             format = "AM";
+            return hour;
         }
     }
 
