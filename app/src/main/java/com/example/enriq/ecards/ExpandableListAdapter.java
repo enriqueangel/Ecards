@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -21,10 +22,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<String>> listHashMap;
+    private HashMap<String, List<ItemListCheckbox>> listHashMap;
 
 
-    ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
+    ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<ItemListCheckbox>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -80,13 +81,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, final int i1, boolean b, View view, ViewGroup viewGroup) {
-        final String childText = (String) getChild(i, i1);
+        // Nombre
+        ItemListCheckbox child = (ItemListCheckbox) getChild(i, i1);
+        String nombre = child.getNombre();
+        boolean check = child.isCheck();
+
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
         }
         TextView txtListChild = (TextView) view.findViewById(R.id.lblListItem);
-        txtListChild.setText(childText);
+        CheckBox checkListChild = (CheckBox) view.findViewById(R.id.checkbox);
+        checkListChild.setChecked(check);
+        txtListChild.setText(nombre);
         return view;
     }
 
@@ -94,10 +101,4 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int i, int i1) {
         return true;
     }
-
-    public Object getChildS(int i, int i1) {
-        return this.listHashMap.get(this.listDataHeader.get(i)); // i = Grupo, i1 = Hijo Item
-    }
-
-
 }

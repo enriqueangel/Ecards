@@ -41,7 +41,7 @@ public class CrearReunion extends AppCompatActivity {
     ExpandableListAdapter listAdapter;
     ExpandableListView listView;
     List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    HashMap<String, List<ItemListCheckbox>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,21 +150,11 @@ public class CrearReunion extends AppCompatActivity {
         listDataHeader.add("Usuarios");
 
         //Agrego cabecera de opciones
-        List<String> usuarios = new ArrayList<>();
-        usuarios.add("Enrique Angel");
-        usuarios.add("Valentina Rojas");
-        usuarios.add("Ronal Gonzales");
-        usuarios.add("Laura Gonzales");
-        usuarios.add("Valentina Rojas");
-        usuarios.add("Ronal Gonzales");
-        usuarios.add("Laura Gonzales");
-        usuarios.add("Valentina Rojas");
-        usuarios.add("Ronal Gonzales");
-        usuarios.add("Laura Gonzales");
-        usuarios.add("Valentina Rojas");
-        usuarios.add("Ronal Gonzales");
-        usuarios.add("Laura Gonzales");
-
+        List<ItemListCheckbox> usuarios = new ArrayList<>();
+        usuarios.add(new ItemListCheckbox("Enrique Angel", "alsdjflkasdf", true));
+        usuarios.add(new ItemListCheckbox("Valentina Rojas", "alsdjflkasdf", false));
+        usuarios.add(new ItemListCheckbox("Ronal Gonzales", "alsdjflkasdf", true));
+        usuarios.add(new ItemListCheckbox("Laura Gonzales", "alsdjflkasdf", false));
 
         listDataChild.put(listDataHeader.get(0), usuarios);
     }
@@ -237,6 +227,6 @@ public class CrearReunion extends AppCompatActivity {
     }
 
     private void EnviarDatosWS(){
-        Object Respuesta = listAdapter.getChildS(0,1);
+
     }
 }
