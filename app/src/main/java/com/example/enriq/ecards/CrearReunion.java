@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
+import android.view.View;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -63,17 +64,11 @@ public class CrearReunion extends AppCompatActivity {
     List<String> listDataHeader;
     HashMap<String, List<ItemListCheckbox>> listDataChild;
 
-    @Override
-    protected void onStart() {
+    String MetodoWS = "tarjetas/crear_reunion";
+
+    AlertDialog dialog;
 
 
-
-
-
-
-
-        super.onStart();
-    }
 
     private void CargarUsuarios() throws JSONException {
 
@@ -190,24 +185,30 @@ public class CrearReunion extends AppCompatActivity {
         TILHora= (TextInputLayout)  findViewById(R.id.CampoHora);
         TILFecha= (TextInputLayout)  findViewById(R.id.CampoFecha);
 
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        dialog = mBuilder.create();
+
 
 
         CrearReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if  (!MetodosGlobales.validarCampoVacio(Titulo.getText().toString())){
-//                    TILTitulo.setError("Ingrese un Titulo");
-//                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }else{
-//                    TILTitulo.setError(null);
-//                }
-                if  (!MetodosGlobales.validarCampoVacio(Lugar.getText().toString())){
-                    TILLugar.setError("Ingrese un lugar");
+                if  (!MetodosGlobales.validarCampoVacio(Titulo.getText().toString())){
+                    TILTitulo.setError("Ingrese un Titulo");
+                    //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un Titulo", Toast.LENGTH_SHORT).show();
+                    return;
+                }else{
+                    TILTitulo.setError(null);
+                }
+
+                if  (!MetodosGlobales.validarCampoVacio(Fecha.getText().toString())){
+                    TILFecha.setError("Ingrese una fecha");
                     //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    TILLugar.setError(null);
+                    TILFecha.setError(null);
                 }
                 if  (!MetodosGlobales.validarCampoVacio(Hora.getText().toString())){
                     TILHora.setError("Ingrese una hora");
@@ -216,13 +217,14 @@ public class CrearReunion extends AppCompatActivity {
                 }else{
                     TILHora.setError(null);
                 }
-                if  (!MetodosGlobales.validarCampoVacio(Fecha.getText().toString())){
-                    TILFecha.setError("Ingrese una fecha");
+                if  (!MetodosGlobales.validarCampoVacio(Lugar.getText().toString())){
+                    TILLugar.setError("Ingrese un lugar");
                     //Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Ingrese un lugar" , Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-                    TILFecha.setError(null);
+                    TILLugar.setError(null);
                 }
+
                 EnviarDatosWS();
             }
         });
@@ -344,19 +346,85 @@ public class CrearReunion extends AppCompatActivity {
     }
 
     private void EnviarDatosWS(){
-        GetUsuariosSeleccionados();
+        ArrayList ListaUsuarios = GetUsuariosSeleccionados();
+
+        if ( ListaUsuarios == null || !(ListaUsuarios.size() > 0) ){
+            Toast.makeText(com.example.enriq.ecards.CrearReunion.this, "Debe seleccionar minimo un usuario" , Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        String url = getString(R.string.URLWS);
+        url = url + MetodoWS;
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("titulo", Titulo.getText().toString());
+        params.put("fecha", Fecha.getText().toString());
+        params.put("hora", Hora.getText().toString());
+        params.put("lugar", Lugar.getText().toString());
+        params.put("descripcion", Descripcion.getText().toString());
+        params.put("Usuarios", ListaUsuarios.toString());
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String respuesta = response.get("respuesta").toString();
+                            if(respuesta.equals("si")){
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Reunion Creada.", Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            } else {
+                                dialog.dismiss();
+                                //Snackbar.make(view, "Error modificando los datos.", Snackbar.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            Log.e("Volley", "Invalid JSON Object.");
+                            //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        dialog.dismiss();
+                        Log.e("Volley", error.toString());
+                        //Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            /*
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                String tokenTemp = SP.getString("token","");
+                headers.put("token", tokenTemp);
+                return headers;
+            }
+        };
+
+        requestQueue.add(arrReq);
 
     }
 
-    private void GetUsuariosSeleccionados() {
+    private ArrayList GetUsuariosSeleccionados() {
         List<ItemListCheckbox> ListaTemp =   listAdapter.getChilds(0);
         int tam = ListaTemp.size() ;
-        ArrayList ListaUsuarios = null;
+        ArrayList<String> ListaUsuarios = new ArrayList<String>();
         for (int i = 0; i < tam ; i++) {
             if (ListaTemp.get(i).isCheck()){
                 ListaUsuarios.add(ListaTemp.get(i).getId());
             }
 
         }
+
+        return  ListaUsuarios;
     }
 }

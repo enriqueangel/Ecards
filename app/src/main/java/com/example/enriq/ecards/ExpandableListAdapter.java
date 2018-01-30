@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -47,7 +48,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getChild(int i, int i1) {
+    public ItemListCheckbox getChild(int i, int i1) {
         return this.listHashMap.get(this.listDataHeader.get(i)).get(i1); // i = Grupo, i1 = Hijo Item
     }
 
@@ -80,6 +81,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader = (TextView) view.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+
         return view;
     }
 
@@ -90,14 +92,26 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         String nombre = child.getNombre();
         boolean check = child.isCheck();
 
+        final int iTemp = i;
+
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
         }
         TextView txtListChild = (TextView) view.findViewById(R.id.lblListItem);
-        CheckBox checkListChild = (CheckBox) view.findViewById(R.id.checkbox);
+        final CheckBox checkListChild = (CheckBox) view.findViewById(R.id.ListUsercheckbox);
         checkListChild.setChecked(check);
         txtListChild.setText(nombre);
+
+        checkListChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ItemListCheckbox objeto = getChild( iTemp,  i1);
+                objeto.setCheck(checkListChild.isChecked());
+
+            }
+        });
+
         return view;
     }
 

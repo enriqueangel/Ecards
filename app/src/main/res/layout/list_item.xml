@@ -22,14 +22,14 @@
             android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft" />
 
         <CheckBox
-            android:id="@+id/checkbox"
+            android:id="@+id/ListUsercheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/lblListItem"
             android:layout_alignRight="@+id/lblListItem"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:layout_marginRight="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:layout_alignEnd="@+id/lblListItem" />
+            android:layout_marginRight="?android:attr/expandableListPreferredChildPaddingLeft" />
 
     </RelativeLayout>
 
