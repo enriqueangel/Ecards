@@ -7,7 +7,7 @@ package com.example.enriq.ecards;
 public abstract class MetodosGlobales {
 
 
-    public static boolean validarTelefono(String texto){
+    public static boolean validarCampoVacio(String texto){
         if (texto.equals("")){
 
             return false;

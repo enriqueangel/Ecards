@@ -51,6 +51,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return this.listHashMap.get(this.listDataHeader.get(i)).get(i1); // i = Grupo, i1 = Hijo Item
     }
 
+    public List<ItemListCheckbox> getChilds(int i) {
+        return this.listHashMap.get(this.listDataHeader.get(i)); // i = Grupo, i1 = Hijo Item
+    }
+
     @Override
     public long getGroupId(int i) {
         return i;

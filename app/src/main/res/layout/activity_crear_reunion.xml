@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:theme="@style/EditText"
-                        android:focusable="false"
+
                         />
                 </android.support.design.widget.TextInputLayout>
 
