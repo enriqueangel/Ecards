@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="50dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/ListItemcorte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="15dp"
-        android:text="Valentina Rojas"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/horascorte"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ListItemcorte"
-        android:layout_alignBottom="@+id/ListItemcorte"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="19dp"
-        android:layout_marginRight="19dp"
-        android:text="Horas" />
+        <TextView
+            android:id="@+id/ListItemcorte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingTop="5dp"
+            android:text="Enrique Angel"
+            android:textSize="15sp"
+            android:paddingEnd="5dp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/horascorte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="02:30"
+            android:layout_marginEnd="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:layout_marginRight="?android:attr/expandableListPreferredChildPaddingLeft" />
+
+    </RelativeLayout>
+
+</LinearLayout>

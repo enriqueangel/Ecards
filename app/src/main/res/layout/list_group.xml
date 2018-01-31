@@ -5,7 +5,8 @@
     android:layout_height="50dp"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/lblListHeader"

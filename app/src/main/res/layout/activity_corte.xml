@@ -18,7 +18,7 @@
             android:id="@+id/ramas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
             android:divider="@color/blanco"
             android:dividerHeight="0.5dp"

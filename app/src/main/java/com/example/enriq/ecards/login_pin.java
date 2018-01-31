@@ -108,13 +108,13 @@ public class login_pin extends AppCompatActivity {
                                             Intent intent = new Intent(login_pin.this, Card.class);
                                             startActivity(intent);
                                             dialog.dismiss();
-
+                                            finish();
                                         } else {
                                             Intent intent = new Intent(login_pin.this, Dashboard.class);
                                             intent.putExtra( "Areas", areas.toString());
                                             startActivity(intent);
                                             dialog.dismiss();
-
+                                            finish();
                                         }
 
                                     } catch (JSONException e) {

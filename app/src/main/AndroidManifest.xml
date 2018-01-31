@@ -44,7 +44,7 @@
         <activity android:name=".Crear_Tarjeta" />
         <!--<activity android:name=".PerfilUsuario" />-->
         <activity android:name=".InfoUser"/>
-        <activity android:name=".CorteActivity"/>
+        <activity android:name=".Corte"/>
 
     </application>
 

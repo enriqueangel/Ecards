@@ -11,22 +11,28 @@
 
         <TextView
             android:id="@+id/lblListItem"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:textSize="15sp"
-            android:paddingBottom="5dp"
-            android:text="Enrique Angel"
             android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="49dp"
+            android:layout_marginRight="49dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="5dp"
             android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-            android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft" />
+            android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft"
+            android:paddingTop="5dp"
+            android:text="Enrique Angel"
+            android:textSize="15sp"
+            android:paddingEnd="5dp" />
 
         <CheckBox
             android:id="@+id/ListUsercheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/lblListItem"
-            android:layout_alignRight="@+id/lblListItem"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="?android:attr/expandableListPreferredChildPaddingLeft"
             android:layout_marginRight="?android:attr/expandableListPreferredChildPaddingLeft" />

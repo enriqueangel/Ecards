@@ -9,6 +9,7 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 public class InfoUser extends AppCompatActivity {
 
@@ -19,13 +20,14 @@ public class InfoUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_user);
 
-        toolbar = (Toolbar) findViewById(R.id.include);
+        toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("Perfil");
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        toolbar.setTitle("Perfil");
         loadFragment(new PerfilFragment());
     }
 
@@ -69,4 +71,17 @@ public class InfoUser extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                //Intent i = new Intent(CrearReunion.this, MenuAdmin.class);
+                //startActivity(i);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

@@ -19,10 +19,9 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listDataHeader;
-    private String hora;
-    private HashMap<String, List<String>> listHashMap;
+    private HashMap<String, List<UsuarioCorte>> listHashMap;
 
-    ExpanListAdapterCorte(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
+    ExpanListAdapterCorte(Context context, List<String> listDataHeader, HashMap<String, List<UsuarioCorte>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -60,25 +59,27 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
         String headerTitle = (String) getGroup(i);
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_group_corte, null);
+            view = inflater.inflate(R.layout.list_group, null);
         }
-        TextView ListHeaderCorte = (TextView) view.findViewById(R.id.ListHeaderCorte);
-        TextView HorasCorte = (TextView) view.findViewById(R.id.horascorte);
-        ListHeaderCorte.setTypeface(null, Typeface.BOLD);
-        ListHeaderCorte.setText(headerTitle);
+        TextView lblListHeader = (TextView) view.findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(null, Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
         return view;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        final String childText = (String) getChild(i, i1);
+        UsuarioCorte child = (UsuarioCorte) getChild(i, i1);
+        String nombre = child.getNombre();
+        String hora = child.getHora();
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item_corte, null);
         }
         TextView txtListChild = (TextView) view.findViewById(R.id.ListItemcorte);
         TextView HorasCorte = (TextView) view.findViewById(R.id.horascorte);
-        txtListChild.setText(childText);
+        txtListChild.setText(nombre);
+        HorasCorte.setText(hora);
         return view;
     }
 
