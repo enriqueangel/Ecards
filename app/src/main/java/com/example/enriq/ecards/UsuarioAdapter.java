@@ -29,10 +29,10 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
 
             imagen = itemView.findViewById(R.id.imageV);
             nombre = itemView.findViewById(R.id.nombre);
-            horasl = itemView.findViewById(R.id.horas1);
-            horast = itemView.findViewById(R.id.horas2);
-            hl = itemView.findViewById(R.id.hlab);
-            ht = itemView.findViewById(R.id.htra);
+            horasl = itemView.findViewById(R.id.campo_horas_laborales);
+            horast = itemView.findViewById(R.id.campo_horas_trabajadas);
+            hl = itemView.findViewById(R.id.horas_laborales);
+            ht = itemView.findViewById(R.id.horas_trabajadas);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

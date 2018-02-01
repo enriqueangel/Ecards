@@ -59,8 +59,5 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
             default:
                 break;
         }
-
-
-
     }
 }

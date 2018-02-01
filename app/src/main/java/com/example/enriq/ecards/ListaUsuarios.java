@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -100,15 +102,17 @@ public class ListaUsuarios extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_usuarios);
 
+        Toolbar toolbar = findViewById(R.id.include);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("Usuarios");
+
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
         contenedor.setHasFixedSize(true);
 
     }
 
     private void CargarUsuarios() throws JSONException {
-
-        LinearLayoutManager linear =  new LinearLayoutManager(getApplicationContext());
-        linear.setOrientation(LinearLayoutManager.VERTICAL);
 
         ArrayList<Usuario> items = new ArrayList<Usuario>();
 
@@ -120,13 +124,27 @@ public class ListaUsuarios extends AppCompatActivity {
             String HorasLaboralesTEmp = row.getString("horas_contratadas");
             String HorasTrabajadasTEmp = row.getString("horas_trabajadas");
 
-            items.add(new Usuario(R.drawable.noimg, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
+            items.add(new Usuario(R.drawable.imagen_perfil, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
 
         }
+
+        LinearLayoutManager linear =  new LinearLayoutManager(this);
+        linear.setOrientation(LinearLayoutManager.VERTICAL);
 
         contenedor.setAdapter(new UsuarioAdapter(items));
         contenedor.setLayoutManager(linear);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
