@@ -54,6 +54,8 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
             case R.id.crear_tester:
                 break;
             case R.id.crear_tipo_tarea:
+                i = new Intent(this, TiposTareas.class);
+                startActivity(i);
                 break;
             case R.id.corte:
                 i = new Intent(MenuLider.this,Corte.class);
@@ -72,7 +74,5 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
             default:
                 break;
         }
-
-        finish();
     }
 }

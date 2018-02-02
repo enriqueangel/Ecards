@@ -319,7 +319,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="@string/crear_tipo_tarea"
+                                android:text="@string/tipos_tareas"
                                 android:textColor="@color/blanco"
                                 android:textStyle="bold" />
 
