@@ -353,6 +353,7 @@ public class CrearReunion extends AppCompatActivity {
             return;
         }
 
+        dialog.show();
 
         String url = getString(R.string.URLWS);
         url = url + MetodoWS;
@@ -378,11 +379,12 @@ public class CrearReunion extends AppCompatActivity {
 
                             } else {
                                 dialog.dismiss();
-                                //Snackbar.make(view, "Error modificando los datos.", Snackbar.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Error modificando los datos.", Toast.LENGTH_SHORT).show();
+
                             }
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
-                            //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Error desconocido.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -391,7 +393,7 @@ public class CrearReunion extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         dialog.dismiss();
                         Log.e("Volley", error.toString());
-                        //Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Error en la conexion.", Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
