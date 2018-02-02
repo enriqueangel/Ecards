@@ -32,7 +32,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     TextView FechaEntrega,Proyecto,TipoTarea,TiempoRealizado,Link,Descripcion;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnReportar, btnEntregar;
-    String color = "blanco";
+    String color = "naranja";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
