@@ -364,7 +364,8 @@ public class CrearReunion extends AppCompatActivity {
         params.put("hora", Hora.getText().toString());
         params.put("lugar", Lugar.getText().toString());
         params.put("descripcion", Descripcion.getText().toString());
-        params.put("Usuarios", ListaUsuarios.toString());
+        JSONArray jsArray = new JSONArray(ListaUsuarios);
+        params.put("Usuarios", jsArray.toString());
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
