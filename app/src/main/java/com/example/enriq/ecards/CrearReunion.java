@@ -379,7 +379,7 @@ public class CrearReunion extends AppCompatActivity {
 
                             } else {
                                 dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Error modificando los datos.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Error creando la reunion.", Toast.LENGTH_SHORT).show();
 
                             }
                         } catch (JSONException e) {

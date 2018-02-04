@@ -48,6 +48,7 @@ import java.util.Map;
 
 public class Card extends AppCompatActivity {
     RecyclerView contenedor;
+    AlertDialog dialog;
 
     String url;
     RequestQueue requestQueue;
@@ -62,9 +63,7 @@ public class Card extends AppCompatActivity {
 
         url = getString(R.string.URLWS);
         url = url+"tarjetas";
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -87,10 +86,12 @@ public class Card extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             ImprimirTargetas();
+                            dialog.dismiss();
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
-                            Toast.makeText(getApplicationContext(), "Error desconocido.", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error cargando las tarjetas.", Toast.LENGTH_SHORT).show();
                             //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
                         }
                     }
@@ -133,6 +134,11 @@ public class Card extends AppCompatActivity {
         clickDashboard = (FloatingActionButton) findViewById(R.id.exit);
 
         final VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
 
         //clickperf.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_persona));
         //clickDashboard.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_access_time_black_24dp));
