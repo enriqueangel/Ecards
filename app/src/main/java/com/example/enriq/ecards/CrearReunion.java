@@ -230,7 +230,6 @@ public class CrearReunion extends AppCompatActivity {
         });
 
         //Fecha
-        tv = (TextView) findViewById(R.id.EDTfecha);
         Date = Calendar.getInstance();
         day = Date.get(Calendar.DAY_OF_MONTH);
         month = Date.get(Calendar.MONTH);
@@ -238,14 +237,16 @@ public class CrearReunion extends AppCompatActivity {
 
         month = month + 1;
         //tv.setText(day + "/" + month + "/" + year);
-        tv.setOnClickListener(new View.OnClickListener() {
+        Fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(CrearReunion.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
-                        tv.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                        String diaFormateada = (dayOfMonth < 10)? String.valueOf("0" + dayOfMonth) : String.valueOf(dayOfMonth);
+                        String mesFormateada = (monthOfYear < 10)? String.valueOf("0" + monthOfYear) : String.valueOf(monthOfYear);
+                        Fecha.setText(diaFormateada + "/" + mesFormateada + "/" + year);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -253,13 +254,12 @@ public class CrearReunion extends AppCompatActivity {
         });
 
         //Hora
-        tve = (TextView) findViewById(R.id.EDThora);
         Time = Calendar.getInstance();
         hour = Time.get(Calendar.HOUR_OF_DAY);
         minute = Time.get(Calendar.MINUTE);
         selectedTimeFormat(hour);
         //tve.setText(hour + " : " + minute + " " + format);
-        tve.setOnClickListener(new View.OnClickListener() {
+        Hora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(CrearReunion.this, new TimePickerDialog.OnTimeSetListener() {
@@ -268,7 +268,7 @@ public class CrearReunion extends AppCompatActivity {
                         hourOfDay = selectedTimeFormat(hourOfDay);
                         String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
                         String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
-                        tve.setText(horaFormateada + ":" + minutoFormateada + " " + format);
+                        Hora.setText(horaFormateada + ":" + minutoFormateada + " " + format);
                     }
                 }, hour, minute, false);
                 timePickerDialog.show();
@@ -364,8 +364,7 @@ public class CrearReunion extends AppCompatActivity {
         params.put("hora", Hora.getText().toString());
         params.put("lugar", Lugar.getText().toString());
         params.put("descripcion", Descripcion.getText().toString());
-        JSONArray jsArray = new JSONArray(ListaUsuarios);
-        params.put("Usuarios", jsArray.toString());
+        params.put("Usuarios", ListaUsuarios.toString());
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {

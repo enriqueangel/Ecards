@@ -106,10 +106,6 @@ public class ListaUsuarios extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Usuarios");
-
-        contenedor = (RecyclerView) findViewById(R.id.contenedor);
-        contenedor.setHasFixedSize(true);
-
     }
 
     private void CargarUsuarios() throws JSONException {
@@ -122,11 +118,15 @@ public class ListaUsuarios extends AppCompatActivity {
             String ApellidosTEmp = row.getString("apellidos");
             String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
             String HorasLaboralesTEmp = row.getString("horas_contratadas");
-            String HorasTrabajadasTEmp = row.getString("horas_trabajadas");
+            //String HorasTrabajadasTEmp = row.getString("horas_trabajadas");
+            String HorasTrabajadasTEmp = "00:00";
 
             items.add(new Usuario(R.drawable.imagen_perfil, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
 
         }
+
+        contenedor = (RecyclerView) findViewById(R.id.contenedor);
+        contenedor.setHasFixedSize(true);
 
         LinearLayoutManager linear =  new LinearLayoutManager(this);
         linear.setOrientation(LinearLayoutManager.VERTICAL);

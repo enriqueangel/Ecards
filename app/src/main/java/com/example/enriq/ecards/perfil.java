@@ -30,8 +30,6 @@ public class perfil extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Correo = (TextView) findViewById(R.id.TXTVCorreo);
-        Nombres = (TextView) findViewById(R.id.TXTVNombres);
-        Apellidos = (TextView) findViewById(R.id.TXTVApellidos);
         Telefono = (TextView) findViewById(R.id.TXTVTelefono);
         Rama = (TextView) findViewById(R.id.TXTVRama);
         HrsLaborales = (TextView) findViewById(R.id.TXTVHrsLaborales);

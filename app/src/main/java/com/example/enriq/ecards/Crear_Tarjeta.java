@@ -136,7 +136,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         });
 
         //Fecha
-        fecha = (TextView) findViewById(R.id.EDTfecha);
         Date = Calendar.getInstance();
         day = Date.get(Calendar.DAY_OF_MONTH);
         month = Date.get(Calendar.MONTH);
@@ -144,14 +143,16 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         month = month + 1;
         //tv.setText(day + "/" + month + "/" + year);
-        fecha.setOnClickListener(new View.OnClickListener() {
+        Fechaentrega.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(Crear_Tarjeta.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
-                        fecha.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+                        String diaFormateada = (dayOfMonth < 10)? String.valueOf("0" + dayOfMonth) : String.valueOf(dayOfMonth);
+                        String mesFormateada = (monthOfYear < 10)? String.valueOf("0" + monthOfYear) : String.valueOf(monthOfYear);
+                        Fechaentrega.setText(diaFormateada + "/" + mesFormateada + "/" + year);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -159,12 +160,11 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         });
 
         //Hora
-        hora = (TextView) findViewById(R.id.EDThora);
         Time = Calendar.getInstance();
         hour = Time.get(Calendar.HOUR_OF_DAY);
         minute = Time.get(Calendar.MINUTE);
         //tve.setText(hour + " : " + minute + " " + format);
-        hora.setOnClickListener(new View.OnClickListener() {
+        Horas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(Crear_Tarjeta.this, new TimePickerDialog.OnTimeSetListener() {
@@ -172,7 +172,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
                         String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
-                        hora.setText(horaFormateada + ":" + minutoFormateada);
+                        Horas.setText(horaFormateada + ":" + minutoFormateada);
                     }
                 }, hour, minute, true);
                 timePickerDialog.show();

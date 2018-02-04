@@ -1,6 +1,7 @@
 package com.example.enriq.ecards;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class TiposTareas extends AppCompatActivity {
+
+    FloatingActionButton agregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class TiposTareas extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.lista);
         TipoTareaAdapter adapter = new TipoTareaAdapter(this, tareas);
         list.setAdapter(adapter);
+
+        agregar = (FloatingActionButton) findViewById(R.id.agregar);
     }
 
     @Override

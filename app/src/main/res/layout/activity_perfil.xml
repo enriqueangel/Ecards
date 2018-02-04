@@ -276,6 +276,6 @@
         android:theme="@style/MyDialogTheme"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end|right"
-        app:srcCompat="@drawable/ic_edit_black_24dp"/>
+        app:srcCompat="@drawable/ic_edit_white_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -17,13 +17,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginBottom="8dp"
-        app:fab_addButtonColorNormal="@color/indigo">
+        app:fab_addButtonColorNormal="?attr/colorPrimary">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/indigo"
+            app:fab_colorNormal="?attr/colorAccent"
             app:fab_icon="@drawable/ic_persona"
             app:fab_size="mini"
             />
@@ -32,7 +32,9 @@
             android:id="@+id/exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/indigo"
+            app:fab_colorNormal="?attr/colorAccent"
+            app:fab_icon="@drawable/ic_flama"
+            app:fab_size="mini"
             />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
