@@ -32,12 +32,23 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     TextView FechaEntrega,Proyecto,TipoTarea,TiempoRealizado,Link,Descripcion;
     CollapsingToolbarLayout collapsingToolbarLayout;
     FloatingActionButton btnReportar, btnEntregar;
-    String color = "naranja";
+    String color = "";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(layout.activity_tarjeta);
+
+
+        try {
+            DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
+            color = DATOS.getString("Color");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         switch (color){
             case "blanco":
                 setTheme(style.ThemeGris);
@@ -53,7 +64,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
 
-        setContentView(layout.activity_tarjeta);
+
 
         btnReportar = (FloatingActionButton) findViewById(id.btnReportar);
         btnEntregar = (FloatingActionButton) findViewById(id.btnEntregar);
@@ -69,46 +80,10 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         btnEntregar.setOnClickListener(this);
         btnReportar.setOnClickListener(this);
 
-        /*FechaEntrega = (TextView) findViewById(id.TXVfecha_entrega);
-        Proyecto = (TextView) findViewById(id.TXVproyecto);
-        TipoTarea = (TextView) findViewById(id.TXVtipo);
-        TiempoRealizado = (TextView) findViewById(id.TXVtiempo_desarrollo);
-        Link = (TextView) findViewById(id.TXVlink);
-        Descripcion = (TextView) findViewById(id.TXVdescripcion);
 
-        try {
-            DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
 
-            String dtStart = DATOS.getString("plazo");
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yy");
-            Date fechaFin ;
-            String FechaFinString = "Error obteniendo fecha.";
 
-            try {
-                fechaFin = format.parse(dtStart);
-                FechaFinString = formateador.format(fechaFin);
 
-            } catch (ParseException e) {
-
-                e.printStackTrace();
-            }
-
-             FechaEntrega.setText(FechaFinString);
-
-            //Proyecto.setText(DATOS.get("nombres").toString());
-
-            JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
-            String TipoTEMP = TipoTareaTEMP.getString("nombre");
-            TipoTarea.setText(TipoTEMP);
-
-            TiempoRealizado.setText(DATOS.get("tiempo_trabajado").toString());
-            Link.setText(DATOS.get("link").toString());
-            Descripcion.setText(DATOS.get("descripcion").toString());
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
 
     }
 
@@ -121,29 +96,39 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void actualizarContenido() {
+
+        // Creamos un nuevo Bundle
+        Bundle args = new Bundle();
+        args.putString("DATOS", DATOS.toString());
+
         switch (color){
             case "blanco":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_gris));
                 TarjetaFragment Fr1 = new TarjetaFragment();
+                Fr1.setArguments(args);
                 loadFragment(Fr1);
                 break;
             case "naranja":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_naranja));
                 TarjetaFragment Fr2 = new TarjetaFragment();
+                Fr2.setArguments(args);
                 loadFragment(Fr2);
                 break;
             case "rojo":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_rojo));
                 TarjetaFragment Fr3 = new TarjetaFragment();
+                Fr3.setArguments(args);
                 loadFragment(Fr3);
                 break;
             case "verde":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde));
                 TarjetaFragment Fr4 = new TarjetaFragment();
+                Fr4.setArguments(args);
                 loadFragment(Fr4);
                 break;
             case "azul":
                 ReunionFragment Fr5 = new ReunionFragment();
+                Fr5.setArguments(args);
                 loadFragment(Fr5);
 
         }
@@ -153,8 +138,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent i = new Intent(Tarjeta.this, Card.class);
-                startActivity(i);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

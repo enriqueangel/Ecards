@@ -437,7 +437,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
                             } else {
                                 dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Error modificando los datos.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Error creando la tarjeta.", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");

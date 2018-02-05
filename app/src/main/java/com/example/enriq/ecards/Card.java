@@ -227,8 +227,10 @@ public class Card extends AppCompatActivity {
 
             String VersionTEMP = row.getString("version");
 
-            String dtStart = row.getString("plazo");
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            String TiempoEsperado = row.getString("tiempo_estimado");
+
+            String dtStart = row.getString("fecha_entrega");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             Date fechaFin ;
             long DiasRestantes = 100;
             try {
@@ -240,17 +242,25 @@ public class Card extends AppCompatActivity {
 
             int ColorTArgeta ;
 
+            String COLORTEMP = "";
+
             if (DiasRestantes <= 0){
                 ColorTArgeta  = R.drawable.card_red;
+                COLORTEMP = "rojo";
             }else if(DiasRestantes <= 2){
                 ColorTArgeta  = R.drawable.card_red;
+                COLORTEMP = "rojo";
             }else if(DiasRestantes <= 4){
                 ColorTArgeta  = R.drawable.card_yellow;
+                COLORTEMP = "naranja";
             }else{
                 ColorTArgeta  = R.drawable.card_white;
+                COLORTEMP = "blanco";
             }
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,"Frontend","32 Horas","10 Horas","1",ColorTArgeta,false,row));
+            row.put("Color",COLORTEMP);
+
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,false,row));
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);

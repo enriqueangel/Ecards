@@ -55,7 +55,7 @@
                             android:id="@+id/TXVfecha_entrega"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="15/ene/17"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -102,7 +102,7 @@
                             android:id="@+id/TXVproyecto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tarjetas"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -149,7 +149,7 @@
                             android:id="@+id/TXVtipo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Backen"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -196,7 +196,7 @@
                             android:id="@+id/TXVtiempo_estimado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="02:00"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -243,7 +243,7 @@
                             android:id="@+id/TXVtiempo_desarrollo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="02:00"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -290,7 +290,7 @@
                             android:id="@+id/TXVlink"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="aoiahsoidjflskdjflskdjlfs"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -337,7 +337,6 @@
                             android:id="@+id/TXVdescripcion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="aoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfs"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
