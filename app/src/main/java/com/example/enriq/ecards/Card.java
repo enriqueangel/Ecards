@@ -1,5 +1,6 @@
 package com.example.enriq.ecards;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +21,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
@@ -55,6 +59,8 @@ public class Card extends AppCompatActivity {
     JSONArray TARJETAS;
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
     FloatingActionButton clickperf,clickDashboard;
+
+    Toolbar toolbar, cards;
 
     Date FechaServidor;
 
@@ -129,6 +135,12 @@ public class Card extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
+
+        toolbar = findViewById(R.id.toolbar);
+        cards = findViewById(R.id.cards);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Enrique Angel");
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
         clickDashboard = (FloatingActionButton) findViewById(R.id.exit);
@@ -213,7 +225,24 @@ public class Card extends AppCompatActivity {
                 requestQueue.add(arrReq);
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.notification:
+                Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void ImprimirTargetas() throws JSONException {

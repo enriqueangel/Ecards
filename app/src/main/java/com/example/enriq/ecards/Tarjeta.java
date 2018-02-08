@@ -38,8 +38,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layout.activity_tarjeta);
-
 
         try {
             DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
@@ -47,7 +45,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
         switch (color){
             case "blanco":
@@ -64,7 +61,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
 
-
+        setContentView(layout.activity_tarjeta);
 
         btnReportar = (FloatingActionButton) findViewById(id.btnReportar);
         btnEntregar = (FloatingActionButton) findViewById(id.btnEntregar);
@@ -79,12 +76,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
         btnEntregar.setOnClickListener(this);
         btnReportar.setOnClickListener(this);
-
-
-
-
-
-
     }
 
     private void loadFragment(Fragment fragment) {
