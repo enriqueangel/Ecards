@@ -69,6 +69,11 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+            getSupportActionBar().setTitle(DATOS.getString("titulo"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(id.collapsingtoolbar);
 
