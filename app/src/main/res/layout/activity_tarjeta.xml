@@ -21,7 +21,7 @@
             android:background="@drawable/fondo_azul"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
-            app:title="Tarjeta"
+
             >
 
             <android.support.v7.widget.Toolbar

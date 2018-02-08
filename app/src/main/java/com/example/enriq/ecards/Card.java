@@ -137,7 +137,7 @@ public class Card extends AppCompatActivity {
         setContentView(R.layout.cards);
 
         toolbar = findViewById(R.id.toolbar);
-        cards = findViewById(R.id.cards);
+        cards = findViewById(R.id.TARJETAS);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Enrique Angel");
@@ -249,7 +249,7 @@ public class Card extends AppCompatActivity {
 
         for (int i = 0; i < TARJETAS.length(); i++) {
             JSONObject row = TARJETAS.getJSONObject(i);
-            String DescripcionTEMP = row.getString("descripcion");
+            String DescripcionTEMP = row.getString("titulo");
 
             JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
             String TipoTEMP = TipoTareaTEMP.getString("nombre");
