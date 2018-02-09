@@ -326,44 +326,56 @@ public class Card extends AppCompatActivity {
             JSONObject row = TARJETAS.getJSONObject(i);
             String DescripcionTEMP = row.getString("titulo");
 
-            JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
-            String TipoTEMP = TipoTareaTEMP.getString("nombre");
-
-            String VersionTEMP = row.getString("version");
+            String TipoTEMP;
+            String VersionTEMP;
 
             String TiempoEsperado = row.getString("tiempo_estimado");
-
             String dtStart = row.getString("fecha_entrega");
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-            Date fechaFin ;
-            long DiasRestantes = 100;
-            try {
-                fechaFin = format.parse(dtStart);
-                DiasRestantes = calcularColor(fechaFin);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
             int ColorTArgeta ;
 
             String COLORTEMP = "";
 
-            if (DiasRestantes <= 0){
-                ContCardsRojoint ++;
-                ColorTArgeta  = R.drawable.card_red;
-                COLORTEMP = "rojo";
-            }else if(DiasRestantes <= 2){
-                ContCardsRojoint ++;
-                ColorTArgeta  = R.drawable.card_red;
-                COLORTEMP = "rojo";
-            }else if(DiasRestantes <= 4){
-                ContCardsAmarilloint ++;
-                ColorTArgeta  = R.drawable.card_yellow;
-                COLORTEMP = "naranja";
+
+            if (row.getString("color").equals("verde")){
+                TipoTEMP = "";
+                VersionTEMP = "1";
+                ColorTArgeta  = R.drawable.card_green;
+                COLORTEMP = "verde";
+                ContCardsVerdeint ++;
             }else{
-                ContCardsBlancoint ++;
-                ColorTArgeta  = R.drawable.card_white;
-                COLORTEMP = "blanco";
+                JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
+                TipoTEMP = TipoTareaTEMP.getString("nombre");
+                VersionTEMP = row.getString("version");
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+                Date fechaFin ;
+                long DiasRestantes = 100;
+                try {
+                    fechaFin = format.parse(dtStart);
+                    DiasRestantes = calcularColor(fechaFin);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (DiasRestantes <= 0){
+                    ContCardsRojoint ++;
+                    ColorTArgeta  = R.drawable.card_red;
+                    COLORTEMP = "rojo";
+                }else if(DiasRestantes <= 2){
+                    ContCardsRojoint ++;
+                    ColorTArgeta  = R.drawable.card_red;
+                    COLORTEMP = "rojo";
+                }else if(DiasRestantes <= 4){
+                    ContCardsAmarilloint ++;
+                    ColorTArgeta  = R.drawable.card_yellow;
+                    COLORTEMP = "naranja";
+                }else{
+                    ContCardsBlancoint ++;
+                    ColorTArgeta  = R.drawable.card_white;
+                    COLORTEMP = "blanco";
+                }
             }
 
 

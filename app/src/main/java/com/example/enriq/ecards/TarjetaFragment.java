@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -19,6 +21,7 @@ public class TarjetaFragment extends Fragment {
 
     JSONObject DATOS;
     TextView Fecha_Entrega , Proyecto , TipoTarea, TiempoEstimado, TiempoRealizado, LinkAyuda , Descripcion;
+    RelativeLayout TILTipoTarea,TILTiempoEstimado,TILTiempoRealizado;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +38,9 @@ public class TarjetaFragment extends Fragment {
         LinkAyuda = (TextView) v.findViewById(R.id.TXVlink);
         Descripcion = (TextView) v.findViewById(R.id.TXVdescripcion);
 
+        TILTipoTarea = (RelativeLayout) v.findViewById(R.id.TILTipoTarea);
+
+
         try {
             DATOS = new JSONObject(getArguments().getString("DATOS"));
             Fecha_Entrega.setText(DATOS.getString("fecha_entrega"));
@@ -42,13 +48,23 @@ public class TarjetaFragment extends Fragment {
             JSONObject ProyectoTEMP = DATOS.getJSONObject("proyecto");
             Proyecto.setText(ProyectoTEMP.getString("nombre"));
 
-            JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
-            TipoTarea.setText(TipoTareaTemp.getString("nombre"));
-
-            TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
-            TiempoRealizado.setText(DATOS.getString("tiempo_trabajado"));
             LinkAyuda.setText(DATOS.getString("link_recurso"));
             Descripcion.setText(DATOS.getString("descripcion"));
+
+            if (DATOS.getString("color").equals("verde")){
+
+                TILTipoTarea.setVisibility(true ? View.VISIBLE : View.GONE);
+
+
+            }else{
+                JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
+                TipoTarea.setText(TipoTareaTemp.getString("nombre"));
+                TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
+                TiempoRealizado.setText(DATOS.getString("tiempo_trabajado"));
+            }
+
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
