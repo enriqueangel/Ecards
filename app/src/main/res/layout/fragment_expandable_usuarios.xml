@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.enriq.ecards.ExpandableUsuariosFragment">
+
+    <ExpandableListView
+        android:id="@+id/usuarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
+        android:divider="@color/blanco"
+        android:dividerHeight="0.5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:childDivider="@color/blanco"
+        />
+
+</LinearLayout>
