@@ -54,6 +54,8 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.crear_tester:
+                i = new Intent(MenuLider.this,Crear_Tester.class);
+                startActivity(i);
                 break;
             case R.id.crear_tipo_tarea:
                 i = new Intent(this, TiposTareas.class);

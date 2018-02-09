@@ -42,6 +42,7 @@
         <activity android:name=".Tarjeta" />
         <activity android:name=".ListaUsuarios" />
         <activity android:name=".Crear_Tarjeta" />
+        <activity android:name=".Crear_Tester" />
         <activity android:name=".InfoUser" />
         <activity android:name=".Corte" />
         <activity android:name=".TiposTareas"/>

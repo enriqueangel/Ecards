@@ -27,45 +27,13 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <fr.ganfra.materialspinner.MaterialSpinner
-                    android:id="@+id/encargado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="20dp"
-                    app:ms_arrowColor="@color/casi_negro"
-                    app:ms_floatingLabelColor="@color/casi_negro"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:ms_hint="@string/encargado"
-                    app:ms_floatingLabelText="@string/encargado"
-                    app:ms_enableErrorLabel="true"
-                    />
-
-
-
-                <fr.ganfra.materialspinner.MaterialSpinner
-                    android:id="@+id/proyecto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    app:ms_arrowColor="@color/casi_negro"
-                    app:ms_floatingLabelColor="@color/casi_negro"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:ms_hint="@string/proyecto"
-                    app:ms_floatingLabelText="@string/proyecto"
-                    app:ms_enableErrorLabel="true"
-                    />
-
-
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/fecha_e"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="40dp"
                     android:hint="@string/fecha_entrega"
                     app:hintTextAppearance="@style/FloatingLabel"
@@ -123,14 +91,43 @@
                         android:theme="@style/EditText" />
                 </android.support.design.widget.TextInputLayout>
 
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/encargado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:ms_arrowColor="@color/casi_negro"
+                    app:ms_floatingLabelColor="@color/casi_negro"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:ms_hint="@string/encargado"
+                    app:ms_floatingLabelText="@string/encargado"
+                    app:ms_enableErrorLabel="true"
+                    />
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/proyecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:ms_arrowColor="@color/casi_negro"
+                    app:ms_floatingLabelColor="@color/casi_negro"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:ms_hint="@string/proyecto"
+                    app:ms_floatingLabelText="@string/proyecto"
+                    app:ms_enableErrorLabel="true"
+                    />
+
                 <CheckBox
                     android:id="@+id/evidencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="@string/link_evidencia" />
-
 
                 <Button
                     android:id="@+id/BTNCrearTester"
