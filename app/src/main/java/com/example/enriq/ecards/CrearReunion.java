@@ -235,7 +235,6 @@ public class CrearReunion extends AppCompatActivity {
         month = Date.get(Calendar.MONTH);
         year = Date.get(Calendar.YEAR);
 
-        month = month + 1;
         //tv.setText(day + "/" + month + "/" + year);
         Fecha.setOnClickListener(new View.OnClickListener() {
             @Override

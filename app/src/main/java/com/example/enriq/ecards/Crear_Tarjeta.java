@@ -141,7 +141,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         month = Date.get(Calendar.MONTH);
         year = Date.get(Calendar.YEAR);
 
-        month = month + 1;
         //tv.setText(day + "/" + month + "/" + year);
         Fechaentrega.setOnClickListener(new View.OnClickListener() {
             @Override
