@@ -29,6 +29,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -54,11 +55,20 @@ public class Card extends AppCompatActivity {
     RecyclerView contenedor;
     AlertDialog dialog;
 
+    int ContCardsBlancoint = 0;
+    int ContCardsAmarilloint = 0;
+    int ContCardsRojoint = 0;
+    int ContCardsVerdeint = 0;
+    int ContCardsAzulint = 0;
+
+
     String url;
     RequestQueue requestQueue;
     JSONArray TARJETAS;
+    JSONArray Reuniones;
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
     FloatingActionButton clickperf,clickDashboard;
+    TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul;
 
     Toolbar toolbar, cards;
 
@@ -77,6 +87,12 @@ public class Card extends AppCompatActivity {
 
         listaTarjetas.clear();
 
+         ContCardsBlancoint = 0;
+         ContCardsAmarilloint = 0;
+         ContCardsRojoint = 0;
+         ContCardsVerdeint = 0;
+         ContCardsAzulint = 0;
+
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -84,6 +100,7 @@ public class Card extends AppCompatActivity {
                         try {
 
                             TARJETAS = response.getJSONArray("tarjetas");
+                            Reuniones = response.getJSONArray("reunion");
                             String dtStart = response.getString("fecha");
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                             try {
@@ -92,7 +109,10 @@ public class Card extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             ImprimirTargetas();
+                            ImprimirReuniones();
                             dialog.dismiss();
+
+
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
@@ -132,12 +152,67 @@ public class Card extends AppCompatActivity {
         super.onStart();
     }
 
+    private void ImprimirReuniones() throws JSONException {
+        for (int i = 0; i < Reuniones.length(); i++) {
+            JSONObject row = Reuniones.getJSONObject(i);
+            String DescripcionTEMP = row.getString("titulo");
+
+            String TipoTEMP = row.getString("hora");
+
+            String VersionTEMP = "1";
+
+            String TiempoEsperado = row.getString("lugar");
+
+            String dtStart = row.getString("fecha");
+
+            int ColorTArgeta ;
+
+            String COLORTEMP = "azul";
+
+            ColorTArgeta  = R.drawable.card_indigo;
+
+            row.put("Color",COLORTEMP);
+
+            ContCardsAzulint ++;
+
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,false,row));
+        }
+
+        contenedor = (RecyclerView) findViewById(R.id.contenedor);
+        contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
+        RelativeLayout layout = new RelativeLayout(getApplicationContext());
+        layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
+
+        //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
+        contenedor.setAdapter(new Adaptador(listaTarjetas));
+
+        contenedor.setLayoutManager(new LinearLayoutManager(this));
+
+        ContCardsBlanco.setText( String.valueOf(ContCardsBlancoint));
+        ContCardsAmarillo.setText(String.valueOf(ContCardsAmarilloint));
+        ContCardsRojo.setText(String.valueOf(ContCardsRojoint));
+        ContCardsVerde.setText(String.valueOf(ContCardsVerdeint));
+        ContCardsAzul.setText(String.valueOf(ContCardsAzulint));
+
+
+
+
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
 
         toolbar = findViewById(R.id.toolbar);
         cards = findViewById(R.id.TARJETAS);
+
+        ContCardsBlanco = (TextView) findViewById(R.id.card_blanco);
+        ContCardsAmarillo = (TextView) findViewById(R.id.card_naranja);
+        ContCardsRojo = (TextView) findViewById(R.id.card_rojo);
+        ContCardsVerde = (TextView) findViewById(R.id.card_verde);
+        ContCardsAzul = (TextView) findViewById(R.id.card_azul);
+
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Enrique Angel");
@@ -274,33 +349,29 @@ public class Card extends AppCompatActivity {
             String COLORTEMP = "";
 
             if (DiasRestantes <= 0){
+                ContCardsRojoint ++;
                 ColorTArgeta  = R.drawable.card_red;
                 COLORTEMP = "rojo";
             }else if(DiasRestantes <= 2){
+                ContCardsRojoint ++;
                 ColorTArgeta  = R.drawable.card_red;
                 COLORTEMP = "rojo";
             }else if(DiasRestantes <= 4){
+                ContCardsAmarilloint ++;
                 ColorTArgeta  = R.drawable.card_yellow;
                 COLORTEMP = "naranja";
             }else{
+                ContCardsBlancoint ++;
                 ColorTArgeta  = R.drawable.card_white;
                 COLORTEMP = "blanco";
             }
+
 
             row.put("Color",COLORTEMP);
 
             listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,false,row));
         }
 
-        contenedor = (RecyclerView) findViewById(R.id.contenedor);
-        contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
-        RelativeLayout layout = new RelativeLayout(getApplicationContext());
-        layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
-
-        //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
-        contenedor.setAdapter(new Adaptador(listaTarjetas));
-
-        contenedor.setLayoutManager(new LinearLayoutManager(this));
     };
 
     private long calcularColor(Date FechaFin){

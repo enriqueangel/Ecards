@@ -52,10 +52,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/TXVfecha_entrega"
+                            android:id="@+id/TXVfecha"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="15/ene/17"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -99,10 +99,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/TXVtiempo_desarrollo"
+                            android:id="@+id/TXVHora"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="02:00"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -146,10 +146,10 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/TXVtipo"
+                            android:id="@+id/TXVLugar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Oficina San Luis"
+
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -196,7 +196,6 @@
                             android:id="@+id/TXVdescripcion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="aoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfsaoiahsoidjflskdjflskdjlfs"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
