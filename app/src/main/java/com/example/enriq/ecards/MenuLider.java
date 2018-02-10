@@ -47,6 +47,7 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.crear_tarjeta:
                 i = new Intent(MenuLider.this, Crear_Tarjeta.class);
+                i.putExtra("TIPO", "LIDER");
                 startActivity(i);
                 break;
             case R.id.crear_reunion:

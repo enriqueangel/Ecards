@@ -26,7 +26,6 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/imagen_perfil"
                     app:civ_border_color="@color/blanco"
                     app:civ_border_width="1dp"
                     android:layout_gravity="top|center"
@@ -34,17 +33,16 @@
                     />
 
                 <TextView
+                    android:id="@+id/TXVnombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enrique Angel"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/blanco"
-                    android:textSize="30sp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginLeft="5dp"
-                    />
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/blanco"
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -111,10 +109,10 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/fecha_entrega"
+                                android:id="@+id/TXVCorreo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="enriqe.angel.596@gmail.com"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="#212121" />
 
@@ -158,10 +156,10 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/proyecto"
+                                android:id="@+id/Telefono"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3177808182"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="#212121" />
 
@@ -205,10 +203,10 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/TXVtipo"
+                                android:id="@+id/TXVRAMAS"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Movil"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="#212121" />
 
@@ -252,10 +250,10 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tiempo_desarrollo"
+                                android:id="@+id/Horas_Contratadas"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="20:00"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textColor="#212121" />
 

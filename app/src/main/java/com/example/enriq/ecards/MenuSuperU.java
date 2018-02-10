@@ -49,6 +49,9 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
         Intent i;
         switch (v.getId()){
             case R.id.crear_tarjeta:
+                i = new Intent(MenuSuperU.this, Crear_Tarjeta.class);
+                i.putExtra("TIPO", "SUPERUSER");
+                startActivity(i);
                 break;
             case R.id.crear_reunion:
 

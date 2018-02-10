@@ -1,5 +1,6 @@
 package com.example.enriq.ecards;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
 
     private CardView CrearTarjeta, CrearReunion,Usuarios, Dashboard;
     private VariablesGlobales globalVariable;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.crear_tarjeta:
                 i = new Intent(MenuAdmin.this, Crear_Tarjeta.class);
+                i.putExtra("TIPO", "ADMIN");
                 startActivity(i);
                 break;
             case R.id.crear_reunion:

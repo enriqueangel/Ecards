@@ -2,6 +2,8 @@ package com.example.enriq.ecards;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -67,24 +69,24 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
     String url ;
     RequestQueue requestQueue;
 
-    List<String> Usuarios = new ArrayList<>();
+
     List<String> Proyectos = new ArrayList<>();
     List<String> Tareas = new ArrayList<>();
 
+    String TIPOUSUARIO = "";
+
     TextView fecha, hora;
     Calendar Date, Time;
-    MaterialSpinner responsable, tester, tipo_tarea, proyecto;
+    MaterialSpinner  tipo_tarea, proyecto;
     CheckBox tiempoObligatorio , LinkEvidencia;
 
     Button CrearTarjeta;
     TextInputEditText Titulo, Fechaentrega, LinkAyuda, Descripcion , Horas;
     TextInputLayout TILTitulo,TILFechaentrega, TILDescripcion, TILHoras;
 
-    List<String> responItem = new ArrayList<>();
-    List<String> testerItem = new ArrayList<>();
     List<String> tareaItem = new ArrayList<>();
     List<String> proyectoItem = new ArrayList<>();
-    ArrayAdapter<String> responAdapter, testerAdapter, tareaAdapter, proyectoAdapter;
+    ArrayAdapter<String>  tareaAdapter, proyectoAdapter;
 
     AlertDialog dialog;
 
@@ -189,25 +191,21 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         CargarDatos();
 
-        responsable = (MaterialSpinner) findViewById(R.id.encargado);
-        tester = (MaterialSpinner) findViewById(R.id.tester);
+
         tipo_tarea = (MaterialSpinner) findViewById(R.id.tipotarea);
         proyecto = (MaterialSpinner) findViewById(R.id.proyecto);
 
-        responAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, responItem);
-        testerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, testerItem);
+
         tareaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tareaItem);
         proyectoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, proyectoItem);
 
-        responAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        testerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         tareaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         proyectoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        responsable.setAdapter(responAdapter);
-        tester.setAdapter(testerAdapter);
         tipo_tarea.setAdapter(tareaAdapter);
         proyecto.setAdapter(proyectoAdapter);
+
 
         /*
         responsable.setOnItemSelectedListener(this);
@@ -221,10 +219,14 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
     private boolean VerificarCampos() {
 
-        int Pos1 =  responsable.getSelectedItemPosition();
-        int Pos2 =  tester.getSelectedItemPosition();
+
         int Pos3 =  proyecto.getSelectedItemPosition();
         int Pos4 =  tipo_tarea.getSelectedItemPosition();
+
+        /*
+
+        int Pos1 =  responsable.getSelectedItemPosition();
+        int Pos2 =  tester.getSelectedItemPosition();
 
         if (Pos1 == 0){
             responsable.setError("Seleccione un usuario.");
@@ -244,6 +246,8 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
             Toast.makeText(this, "El responsable y el tester tienen que ser diferentes.", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        */
 
         if (Pos3 == 0){
             proyecto.setError("Seleccione un proyecto.");
@@ -376,16 +380,26 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
     private void CargarUsuarios() throws JSONException {
 
-        for (int i = 0; i < JSONUsuarios.length(); i++) {
-            JSONObject row = JSONUsuarios.getJSONObject(i);
-            String NombresTEmp = row.getString("nombres");
-            String ApellidosTEmp = row.getString("apellidos");
-            String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
-            String BDidTEmp = row.getString("_id");
-            Usuarios.add(BDidTEmp);
-            responItem.add(NombreMostrar);
-            testerItem.add(NombreMostrar);
+        Bundle args = new Bundle();
+        args.putString("USUARIOS", JSONUsuarios.toString());
+
+        ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
+        fragmento1.setArguments(args);
+        SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
+        fragmento2.setArguments(args);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        TIPOUSUARIO = getIntent().getStringExtra("TIPO");
+
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento1);
+        }else{
+            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento2);
         }
+        transaction.commit();
+
 
 
     }
@@ -400,14 +414,16 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         String urltemp = url + "tarjetas/crear_tarjeta";
 
         Map<String, String> params = new HashMap<String, String>();
-
+        /*
         int Pos1 =  responsable.getSelectedItemPosition();
         int Pos2 =  tester.getSelectedItemPosition();
+        */
         int Pos3 =  proyecto.getSelectedItemPosition();
         int Pos4 =  tipo_tarea.getSelectedItemPosition();
-
+        /*
         params.put("responsable", Usuarios.get(Pos1-1).toString());
         params.put("tester", Usuarios.get(Pos2-1).toString());
+        */
         params.put("proyecto", Proyectos.get(Pos3-1).toString());
         params.put("tipo_tarea", Tareas.get(Pos4-1).toString());
 

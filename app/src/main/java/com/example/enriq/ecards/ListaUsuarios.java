@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -38,14 +39,15 @@ public class ListaUsuarios extends AppCompatActivity {
     JSONArray Usuarios;
     RecyclerView contenedor;
 
+    AlertDialog dialog;
+
     @Override
     protected void onStart() {
 
+        dialog.show();
+
         url = getString(R.string.URLWS);
         url = url+"user/lista_rama";
-
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        final AlertDialog dialog = mBuilder.create();
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -56,6 +58,7 @@ public class ListaUsuarios extends AppCompatActivity {
                         try {
                             Usuarios = response.getJSONArray("users");
                             CargarUsuarios();
+                            dialog.dismiss();
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
@@ -101,6 +104,11 @@ public class ListaUsuarios extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_usuarios);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);

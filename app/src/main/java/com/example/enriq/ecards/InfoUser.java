@@ -11,8 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class InfoUser extends AppCompatActivity {
 
+    JSONObject DATOS;
     private Toolbar toolbar;
 
     @Override
@@ -25,10 +29,21 @@ public class InfoUser extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Perfil");
 
+        try {
+            DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment(new PerfilFragment());
+
+        PerfilFragment Fr1 = new PerfilFragment();
+        Bundle args = new Bundle();
+        args.putString("DATOS", DATOS.toString());
+        Fr1.setArguments(args);
+        loadFragment(Fr1);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -54,6 +69,10 @@ public class InfoUser extends AppCompatActivity {
                 case R.id.navigation_perfil:
                     toolbar.setTitle("Perfil");
                     PerfilFragment Fr1 = new PerfilFragment();
+
+                    Bundle args = new Bundle();
+                    args.putString("DATOS", DATOS.toString());
+                    Fr1.setArguments(args);
                     loadFragment(Fr1);
                     return true;
                 case R.id.navigation_desempeño:

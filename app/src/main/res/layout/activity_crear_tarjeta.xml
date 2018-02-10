@@ -147,7 +147,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/contenido"/>
+                    android:id="@+id/ContenedorCrearTarjeta"/>
 
                 <CheckBox
                     android:id="@+id/evidencia"
