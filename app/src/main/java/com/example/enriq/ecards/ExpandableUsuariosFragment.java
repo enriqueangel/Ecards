@@ -14,11 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableUsuariosFragment extends Fragment {
+
+
+    JSONArray USUARIOS;
 
     ExpandableListAdapter listAdapter;
     ExpandableListView listView;
@@ -34,21 +41,13 @@ public class ExpandableUsuariosFragment extends Fragment {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
-        listDataHeader.add("Movil");
-        listDataHeader.add("Juegos");
+        try {
+            USUARIOS = new JSONArray(getArguments().getString("USUARIOS"));
+            cargarUsuarios();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        List<ItemListCheckbox> usuariosTemp = new ArrayList<>();
-        usuariosTemp.add(new ItemListCheckbox("Enrique Angel", "aaaa", false));
-        usuariosTemp.add(new ItemListCheckbox("Valentina Rojas", "aaaa", false));
-        usuariosTemp.add(new ItemListCheckbox("Ronald Gonzales", "aaaa", false));
-
-        List<ItemListCheckbox> usuariosTemp2 = new ArrayList<>();
-        usuariosTemp2.add(new ItemListCheckbox("Enrique Angel", "aaaa", false));
-        usuariosTemp2.add(new ItemListCheckbox("Valentina Rojas", "aaaa", false));
-        usuariosTemp2.add(new ItemListCheckbox("Ronald Gonzales", "aaaa", false));
-
-        listDataChild.put(listDataHeader.get(0), usuariosTemp);
-        listDataChild.put(listDataHeader.get(1), usuariosTemp2);
 
         listView = (ExpandableListView) view.findViewById(R.id.usuarios);
 
@@ -56,5 +55,42 @@ public class ExpandableUsuariosFragment extends Fragment {
         listView.setAdapter(listAdapter);
 
         return view;
+    }
+
+    private void cargarUsuarios()throws JSONException {
+
+        List<ItemListCheckbox> usuariosTemp = new ArrayList<>();
+        int contTemp = 0;
+        String UltimaRama = "";
+
+        for (int i = 0; i < USUARIOS.length(); i++) {
+            JSONObject row = USUARIOS.getJSONObject(i);
+            String NombresTEmp = row.getString("nombres");
+            String ApellidosTEmp = row.getString("apellidos");
+            String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
+            String BDidTEmp = row.getString("_id");
+
+
+            JSONArray RamaTemp = row.getJSONArray("areas");
+            String AreaTemp = RamaTemp.getJSONObject(0).getString("nombre");
+
+
+            if (i == 0){
+                UltimaRama = AreaTemp;
+                listDataHeader.add(UltimaRama);
+            }else{
+                if (!UltimaRama.equals(AreaTemp)){
+                    contTemp++;
+                    listDataHeader.add(UltimaRama);
+                    listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
+                    usuariosTemp.clear();
+                }
+            }
+
+            usuariosTemp.add(new ItemListCheckbox(NombreMostrar, BDidTEmp, false));
+
+        }
+
+
     }
 }

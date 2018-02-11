@@ -5,11 +5,13 @@ import android.app.DatePickerDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.content.ContextCompat;
@@ -100,6 +102,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Crear Tarjeta");
 
+        TIPOUSUARIO = getIntent().getStringExtra("TIPO");
 
         TILTitulo = (TextInputLayout) findViewById(R.id.campo_titulo);
         Titulo = (TextInputEditText) findViewById(R.id.titulo);
@@ -307,7 +310,12 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("rol", TIPOUSUARIO);
+
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -316,7 +324,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
                             JSONUsuarios = response.getJSONArray("usuarios");
                             JSONproyectos = response.getJSONArray("proyectos");
                             JSONtareas = response.getJSONArray("tareas");
-                            
+
                             CargarUsuarios();
                             CargarProyectos();
                             CargarTareas();
@@ -390,8 +398,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-
-        TIPOUSUARIO = getIntent().getStringExtra("TIPO");
 
         if (TIPOUSUARIO.equals("SUPERUSER")){
             transaction.replace(R.id.ContenedorCrearTarjeta, fragmento1);
