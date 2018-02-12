@@ -108,8 +108,10 @@ public class Card extends AppCompatActivity {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                            ImprimirTargetas();
+
                             ImprimirReuniones();
+                            ImprimirTargetas();
+
                             dialog.dismiss();
 
 
