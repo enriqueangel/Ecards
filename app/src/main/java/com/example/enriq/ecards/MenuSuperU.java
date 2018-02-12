@@ -69,6 +69,8 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
             case R.id.usuarios_nuevos:
                 break;
             case R.id.rama:
+                i = new Intent(this, Ramas.class);
+                startActivity(i);
                 break;
             case R.id.usuarios:
                 break;
