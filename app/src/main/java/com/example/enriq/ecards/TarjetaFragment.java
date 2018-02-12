@@ -21,7 +21,7 @@ public class TarjetaFragment extends Fragment {
 
     JSONObject DATOS;
     TextView Fecha_Entrega , Proyecto , TipoTarea, TiempoEstimado, TiempoRealizado, LinkAyuda , Descripcion;
-    RelativeLayout TILTipoTarea,TILTiempoEstimado,TILTiempoRealizado;
+    RelativeLayout TILTipoTarea,TILTiempoEstimado,TILLinkAyuda;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,8 @@ public class TarjetaFragment extends Fragment {
         Descripcion = (TextView) v.findViewById(R.id.TXVdescripcion);
 
         TILTipoTarea = (RelativeLayout) v.findViewById(R.id.TILTipoTarea);
+        TILTiempoEstimado = (RelativeLayout) v.findViewById(R.id.TILTiempoEstimado);
+        TILLinkAyuda = (RelativeLayout) v.findViewById(R.id.TILLinkAyuda);
 
 
         try {
@@ -51,16 +53,23 @@ public class TarjetaFragment extends Fragment {
             LinkAyuda.setText(DATOS.getString("link_recurso"));
             Descripcion.setText(DATOS.getString("descripcion"));
 
+            if (DATOS.getString("link_recurso") == null){
+                TILLinkAyuda.setVisibility(View.GONE);
+            }
+
             if (DATOS.getString("color").equals("verde")){
 
-                TILTipoTarea.setVisibility(true ? View.VISIBLE : View.GONE);
-
+                TILTipoTarea.setVisibility(View.GONE);
+                TILTiempoEstimado.setVisibility(View.GONE);
 
             }else{
                 JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
                 TipoTarea.setText(TipoTareaTemp.getString("nombre"));
                 TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
                 TiempoRealizado.setText(DATOS.getString("tiempo_trabajado"));
+                if (DATOS.getString("tiempo_estimado").equals("00:00")){
+                    TILTiempoEstimado.setVisibility(View.GONE);
+                }
             }
 
 

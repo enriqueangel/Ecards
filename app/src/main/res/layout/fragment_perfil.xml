@@ -2,45 +2,49 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="215dp"
+            android:layout_height="wrap_content"
             android:elevation="5dp">
 
             <LinearLayout
+                android:id="@+id/cabecera"
                 android:layout_width="match_parent"
-                android:layout_height="195dp"
-                android:background="@drawable/fondo_perfil"
-                android:orientation="vertical"
-                android:id="@+id/cabecera">
+                android:layout_height="220dp"
+                android:background="?attr/colorPrimaryDark"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:civ_border_color="@color/blanco"
-                    app:civ_border_width="1dp"
                     android:layout_gravity="top|center"
                     android:layout_marginTop="20dp"
-                    />
+                    android:src="@drawable/noimg"
+                    app:civ_border_color="@color/blanco"
+                    app:civ_border_width="1dp" />
 
                 <TextView
                     android:id="@+id/TXVnombre"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="Ronald Felipe Gonzales Morales"
+                    android:textAlignment="center"
                     android:textColor="@color/blanco"
                     android:textSize="30sp" />
 
@@ -50,14 +54,16 @@
                 android:id="@+id/btnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:theme="?attr/colorAccent"
-                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="197dp"
+                android:theme="?attr/colorAccent"
                 app:layout_anchor="@id/cabecera"
                 app:layout_anchorGravity="bottom|end"
-                app:srcCompat="@drawable/ic_edit_white_24dp"
-                android:layout_alignParentEnd="true" />
+                app:srcCompat="@drawable/ic_edit_white_24dp" />
 
         </RelativeLayout>
 
@@ -214,7 +220,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="@string/ramas"
+                                android:text="@string/ramaS"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="#727272" />
 

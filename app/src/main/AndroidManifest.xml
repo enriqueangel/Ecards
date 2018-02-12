@@ -45,7 +45,8 @@
         <activity android:name=".Crear_Tester" />
         <activity android:name=".InfoUser" />
         <activity android:name=".Corte" />
-        <activity android:name=".TiposTareas"/>
+        <activity android:name=".TiposTareas" />
+        <activity android:name=".Proyectos"></activity>
     </application>
 
 </manifest>

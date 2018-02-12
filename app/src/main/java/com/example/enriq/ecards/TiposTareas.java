@@ -1,7 +1,6 @@
 package com.example.enriq.ecards;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,7 +31,7 @@ public class TiposTareas extends AppCompatActivity {
 
     String url ;
     RequestQueue requestQueue;
-    ArrayList<TipoTarea> tareas ;
+    ArrayList<ElementoLista> tareas ;
     JSONArray DATOS;
 
     AlertDialog dialog;
@@ -42,7 +41,7 @@ public class TiposTareas extends AppCompatActivity {
 
         dialog.show();
 
-        tareas = new ArrayList<TipoTarea>();
+        tareas = new ArrayList<ElementoLista>();
 
         String urltemp = url+"tareas";
 
@@ -110,11 +109,11 @@ public class TiposTareas extends AppCompatActivity {
             row = DATOS.getJSONObject(i);
             String NombreTEmp = row.getString("nombre");
             String BDidTEmp = row.getString("_id");
-            tareas.add(new TipoTarea(NombreTEmp, BDidTEmp));
+            tareas.add(new ElementoLista(NombreTEmp, BDidTEmp));
           }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        TipoTareaAdapter adapter = new TipoTareaAdapter(this, tareas);
+        ElementoListaAdapter adapter = new ElementoListaAdapter(this, tareas);
         list.setAdapter(adapter);
 
     }

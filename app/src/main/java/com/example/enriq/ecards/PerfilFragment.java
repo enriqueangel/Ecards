@@ -2,14 +2,17 @@ package com.example.enriq.ecards;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -21,11 +24,15 @@ public class PerfilFragment extends Fragment {
     JSONObject DATOS;
     TextView Nombre,Correo,Telefono,Ramas,HorasContratadas;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view =  inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        LinearLayout cabecera = (LinearLayout) view.findViewById(R.id.cabecera);
+        cabecera.setBackground(getResources().getDrawable(R.drawable.fondo_perfil));
 
         Nombre = (TextView) view.findViewById(R.id.TXVnombre);
         Correo = (TextView) view.findViewById(R.id.TXVCorreo);
