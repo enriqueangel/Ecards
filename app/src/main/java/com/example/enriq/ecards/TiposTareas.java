@@ -107,7 +107,7 @@ public class TiposTareas extends AppCompatActivity {
         for (int i = 0; i < DATOS.length(); i++) {
             JSONObject row = null;
             row = DATOS.getJSONObject(i);
-            String NombreTEmp = row.getString("nombre");
+            String NombreTEmp = row.getString("tipo");
             String BDidTEmp = row.getString("_id");
             tareas.add(new ElementoLista(NombreTEmp, BDidTEmp));
           }

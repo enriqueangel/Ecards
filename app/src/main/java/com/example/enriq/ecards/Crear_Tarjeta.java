@@ -366,7 +366,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
     private void CargarTareas() throws JSONException {
         for (int i = 0; i < JSONtareas.length(); i++) {
             JSONObject row = JSONtareas.getJSONObject(i);
-            String NombreTEmp = row.getString("nombre");
+            String NombreTEmp = row.getString("tipo");
             String BDidTEmp = row.getString("_id");
             Tareas.add(BDidTEmp);
             tareaItem.add(NombreTEmp);
