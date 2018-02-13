@@ -17,6 +17,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,7 @@ import java.util.Map;
 
 public class Card extends AppCompatActivity {
     RecyclerView contenedor;
+    RecyclerView menulateral;
     AlertDialog dialog;
 
     int ContCardsBlancoint = 0;
@@ -67,6 +69,7 @@ public class Card extends AppCompatActivity {
     JSONArray TARJETAS;
     JSONArray Reuniones;
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
+    ArrayList<Fuente_Notificaciones> listaNotificaciones = new ArrayList<Fuente_Notificaciones>();
     FloatingActionButton clickperf,clickDashboard;
     TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul;
 
@@ -314,9 +317,20 @@ public class Card extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-            case R.id.notification:
+           case R.id.notification:
                 Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
-                return true;
+                /*  menulateral = (RecyclerView) findViewById(R.id.menulateral);
+                menulateral.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
+                RelativeLayout layout = new RelativeLayout(getApplicationContext());
+                layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
+
+                //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
+
+                menulateral.setAdapter(new Adaptador_Notificaciones(Fuente_Notificaciones));
+
+                menulateral.setLayoutManager(new LinearLayoutManager(this));
+
+              */  return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

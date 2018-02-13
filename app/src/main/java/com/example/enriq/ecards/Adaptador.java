@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
 
     List<Fuente> ListaObjeto;
 
-    public Adaptador(List<Fuente> listaObjeto) {
+    public Adaptador(ArrayList<Fuente> listaObjeto) {
         ListaObjeto = listaObjeto;
     }
 
