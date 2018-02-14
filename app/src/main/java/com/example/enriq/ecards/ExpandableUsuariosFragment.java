@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,17 +52,9 @@ public class ExpandableUsuariosFragment extends Fragment {
             e.printStackTrace();
         }
 
-
         listView = (ExpandableListView) view.findViewById(R.id.encargados);
         listViewTester = (ExpandableListView) view.findViewById(R.id.tester);
 
-        // Datos de los usuarios tester
-        listDataHeaderTester.add("Juegos");
-        List<ItemListCheckbox> usuariosTemp = new ArrayList<>();
-        usuariosTemp.add(new ItemListCheckbox("Enrique Angel", "aaa", true));
-        usuariosTemp.add(new ItemListCheckbox("Enrique Angel", "aaa", false));
-        usuariosTemp.add(new ItemListCheckbox("Enrique Angel", "aaa", false));
-        listDataChildTester.put(listDataHeaderTester.get(0), usuariosTemp);
 
         listAdapter = new ExpandableListRadioAdapter(getActivity(), listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
@@ -91,6 +84,7 @@ public class ExpandableUsuariosFragment extends Fragment {
     private void cargarUsuarios()throws JSONException {
 
         List<ItemListCheckbox> usuariosTemp = new ArrayList<>();
+        List<ItemListCheckbox> usuariosTemp2 = new ArrayList<>();
         int contTemp = 0;
         String UltimaRama = "";
 
@@ -109,18 +103,27 @@ public class ExpandableUsuariosFragment extends Fragment {
             if (i == 0){
                 UltimaRama = AreaTemp;
                 listDataHeader.add(UltimaRama);
+                listDataHeaderTester.add(UltimaRama);
             }else{
                 if (!UltimaRama.equals(AreaTemp)){
+                    UltimaRama = AreaTemp;
+                    listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
+                    listDataChildTester.put(listDataHeaderTester.get(contTemp), usuariosTemp2);
                     contTemp++;
                     listDataHeader.add(UltimaRama);
-                    listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
-                    usuariosTemp.clear();
+                    listDataHeaderTester.add(UltimaRama);
+                    usuariosTemp = new ArrayList<>();
+                    usuariosTemp2 = new ArrayList<>();
                 }
             }
 
             usuariosTemp.add(new ItemListCheckbox(NombreMostrar, BDidTEmp, false));
+            usuariosTemp2.add(new ItemListCheckbox(NombreMostrar, BDidTEmp, false));
 
         }
+
+        listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
+        listDataChildTester.put(listDataHeaderTester.get(contTemp), usuariosTemp2);
     }
 
     private void setListViewHeight(ExpandableListView listView,
@@ -158,4 +161,96 @@ public class ExpandableUsuariosFragment extends Fragment {
         listView.requestLayout();
 
     }
+
+
+
+    public boolean verificarCampos(){
+
+        String EncargadoIDtemp = "-1";
+        String TesterIDtemp = "-1";
+
+        int NumRamas = listAdapter.getGroupCount();
+        for (int i = 0; i < NumRamas ; i++) {
+
+            List<ItemListCheckbox> ListaEncargado =   listAdapter.getChilds(i);
+            List<ItemListCheckbox> ListaTester =   listAdapterTester.getChilds(i);
+
+            int tam = ListaEncargado.size() ;
+            for (int i2 = 0; i2 < tam ; i2++) {
+                if (ListaEncargado.get(i2).isCheck()){
+                    EncargadoIDtemp = ListaEncargado.get(i2).getId();
+                }
+                if (ListaTester.get(i2).isCheck()){
+                    TesterIDtemp = ListaTester.get(i2).getId();
+                }
+
+            }
+
+
+        }
+
+        if (EncargadoIDtemp.equals("-1")){
+            Toast.makeText(getActivity(), "Seleccione un encargado.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (TesterIDtemp.equals("-1")){
+            Toast.makeText(getActivity(), "Seleccione un tester.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if (EncargadoIDtemp.equals(TesterIDtemp)){
+            Toast.makeText(getActivity(), "El responsable y el tester tienen que ser diferentes.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public String GetEncargadoID(){
+        String EncargadoIDtemp = "-1";
+
+        int NumRamas = listAdapter.getGroupCount();
+        for (int i = 0; i < NumRamas ; i++) {
+
+            List<ItemListCheckbox> ListaEncargado =   listAdapter.getChilds(i);
+
+
+            int tam = ListaEncargado.size() ;
+            for (int i2 = 0; i2 < tam ; i2++) {
+                if (ListaEncargado.get(i2).isCheck()){
+                    EncargadoIDtemp = ListaEncargado.get(i2).getId();
+                }
+
+
+            }
+        }
+
+        return EncargadoIDtemp;
+    }
+
+    public String GetTesterID(){
+        String TesterIDtemp = "-1";
+
+        int NumRamas = listAdapter.getGroupCount();
+        for (int i = 0; i < NumRamas ; i++) {
+
+            List<ItemListCheckbox> ListaTester =   listAdapterTester.getChilds(i);
+
+
+            int tam = ListaTester.size() ;
+            for (int i2 = 0; i2 < tam ; i2++) {
+                if (ListaTester.get(i2).isCheck()){
+                    TesterIDtemp = ListaTester.get(i2).getId();
+                }
+
+
+            }
+        }
+
+        return TesterIDtemp;
+    }
+
+
 }

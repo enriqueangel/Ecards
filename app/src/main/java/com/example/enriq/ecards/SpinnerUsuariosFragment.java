@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,5 +76,43 @@ public class SpinnerUsuariosFragment extends Fragment {
             testerItem.add(NombreMostrar);
         }
     }
+
+
+    public boolean verificarCampos(){
+        int Pos1 =  responsable.getSelectedItemPosition();
+        int Pos2 =  tester.getSelectedItemPosition();
+
+        if (Pos1 == 0){
+            responsable.setError("Seleccione un usuario.");
+            return false;
+        }else{
+            responsable.setError(null);
+        }
+
+        if (Pos2 == 0){
+            tester.setError("Seleccione un usuario.");
+            return false;
+        }else{
+            tester.setError(null);
+        }
+
+        if (Pos1 == Pos2){
+            Toast.makeText(getActivity(), "El responsable y el tester tienen que ser diferentes.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    public String GetEncargadoID(){
+        int Pos1 =  responsable.getSelectedItemPosition();
+        return Usuarios.get(Pos1-1).toString();
+    }
+
+    public String GetTesterID(){
+        int Pos2 =  tester.getSelectedItemPosition();
+        return Usuarios.get(Pos2-1).toString();
+    }
+
 }
 

@@ -71,6 +71,8 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
     String url ;
     RequestQueue requestQueue;
 
+    ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
+    SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
 
     List<String> Proyectos = new ArrayList<>();
     List<String> Tareas = new ArrayList<>();
@@ -226,45 +228,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         int Pos3 =  proyecto.getSelectedItemPosition();
         int Pos4 =  tipo_tarea.getSelectedItemPosition();
 
-        /*
-
-        int Pos1 =  responsable.getSelectedItemPosition();
-        int Pos2 =  tester.getSelectedItemPosition();
-
-        if (Pos1 == 0){
-            responsable.setError("Seleccione un usuario.");
-            return false;
-        }else{
-            responsable.setError(null);
-        }
-
-        if (Pos2 == 0){
-            tester.setError("Seleccione un usuario.");
-            return false;
-        }else{
-            tester.setError(null);
-        }
-
-        if (Pos1 == Pos2){
-            Toast.makeText(this, "El responsable y el tester tienen que ser diferentes.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        */
-
-        if (Pos3 == 0){
-            proyecto.setError("Seleccione un proyecto.");
-            return false;
-        }else{
-            proyecto.setError(null);
-        }
-        if (Pos4 == 0){
-            tipo_tarea.setError("Seleccione un tipo de tarea.");
-            return false;
-        }else{
-            tipo_tarea.setError(null);
-        }
-
 
         if  (!MetodosGlobales.validarCampoVacio(Titulo.getText().toString())){
             TILTitulo.setError("Ingrese un Titulo");
@@ -287,6 +250,30 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         }else{
             TILDescripcion.setError(null);
         }
+
+        if (Pos3 == 0){
+            proyecto.setError("Seleccione un proyecto.");
+            return false;
+        }else{
+            proyecto.setError(null);
+        }
+        if (Pos4 == 0){
+            tipo_tarea.setError("Seleccione un tipo de tarea.");
+            return false;
+        }else{
+            tipo_tarea.setError(null);
+        }
+
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            if (!fragmento1.verificarCampos()){
+                return false;
+            }
+        }else{
+            if (!fragmento2.verificarCampos()){
+                return false;
+            }
+        }
+
 
         if (tiempoObligatorio.isChecked()){
             if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
@@ -391,10 +378,9 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         Bundle args = new Bundle();
         args.putString("USUARIOS", JSONUsuarios.toString());
 
-        ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
         fragmento1.setArguments(args);
-        SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
         fragmento2.setArguments(args);
+
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -420,16 +406,18 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         String urltemp = url + "tarjetas/crear_tarjeta";
 
         Map<String, String> params = new HashMap<String, String>();
-        /*
-        int Pos1 =  responsable.getSelectedItemPosition();
-        int Pos2 =  tester.getSelectedItemPosition();
-        */
+
         int Pos3 =  proyecto.getSelectedItemPosition();
         int Pos4 =  tipo_tarea.getSelectedItemPosition();
-        /*
-        params.put("responsable", Usuarios.get(Pos1-1).toString());
-        params.put("tester", Usuarios.get(Pos2-1).toString());
-        */
+
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            params.put("responsable",fragmento1.GetEncargadoID());
+            params.put("tester", fragmento1.GetTesterID());
+        }else{
+            params.put("responsable",fragmento2.GetEncargadoID());
+            params.put("tester", fragmento2.GetTesterID());
+        }
+
         params.put("proyecto", Proyectos.get(Pos3-1).toString());
         params.put("tipo_tarea", Tareas.get(Pos4-1).toString());
 
