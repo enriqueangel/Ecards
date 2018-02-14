@@ -25,6 +25,7 @@ import java.util.List;
 
 public class ExpandableUsuariosFragment extends Fragment {
 
+    private int lastExpandedPosition = -1;
 
     JSONArray USUARIOS;
 

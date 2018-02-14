@@ -2,6 +2,7 @@ package com.example.enriq.ecards;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by enriq on 22/01/2018.
@@ -25,6 +27,11 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<ItemListCheckbox>> listHashMap;
+
+    private OnRbClickListener mOnRbClickListener;
+
+    private RadioButton childRb1;
+    private RadioButton childRb2;
 
 
     ExpandableListRadioAdapter(Context context, List<String> listDataHeader, HashMap<String, List<ItemListCheckbox>> listHashMap) {
@@ -87,7 +94,7 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int i, final int i1, boolean b, View view, ViewGroup viewGroup) {
+    public View getChildView(final int i, final int i1, boolean b, View view, ViewGroup viewGroup) {
         // Nombre
         ItemListCheckbox child = (ItemListCheckbox) getChild(i, i1);
         String nombre = child.getNombre();
@@ -107,8 +114,30 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
         checkListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemListCheckbox objeto = getChild( iTemp,  i1);
-                objeto.setCheck(checkListChild.isChecked());
+                Log.d("Radio",v.getId() + "");
+                Log.d("Radio",i + "");
+                if (i == 0) {
+                    if (childRb1 != null && childRb1 != checkListChild) {
+                        childRb1.setChecked(false);
+                    }
+                    if (childRb2 != null){
+                        childRb2.setChecked(false);
+                    }
+                    childRb1 = checkListChild;
+                } else {
+                    if (childRb2 != null && childRb2 != checkListChild) {
+                        childRb2.setChecked(false);
+                    }
+                    if (childRb1 != null){
+                        childRb1.setChecked(false);
+                    }
+                    childRb2 = checkListChild;
+                }
+                if (mOnRbClickListener != null) {
+                    mOnRbClickListener.onRbClick(i, i1);
+                }
+                //ItemListCheckbox objeto = getChild( iTemp,  i1);
+                //objeto.setCheck(checkListChild.isChecked());
 
             }
         });
@@ -119,5 +148,10 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
+    }
+
+    //child view radio button click listener
+    public interface OnRbClickListener {
+        void onRbClick(int groupPosition, int rbPosition);
     }
 }
