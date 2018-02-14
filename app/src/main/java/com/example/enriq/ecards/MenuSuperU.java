@@ -54,7 +54,9 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
                 startActivity(i);
                 break;
             case R.id.crear_reunion:
-
+                i = new Intent(MenuSuperU.this,CrearReunion.class);
+                i.putExtra("TIPO", "SUPERUSER");
+                startActivity(i);
                 break;
             case R.id.crear_tester:
                 break;

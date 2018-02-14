@@ -52,6 +52,7 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.crear_reunion:
                 i = new Intent(MenuLider.this,CrearReunion.class);
+                i.putExtra("TIPO", "LIDER");
                 startActivity(i);
                 break;
             case R.id.crear_tester:

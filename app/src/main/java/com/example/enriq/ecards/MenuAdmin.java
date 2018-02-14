@@ -47,6 +47,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
                 break;
             case R.id.crear_reunion:
                 i = new Intent(MenuAdmin.this, CrearReunion.class);
+                i.putExtra("TIPO", "ADMIN");
                 startActivity(i);
                 break;
             case R.id.usuarios:

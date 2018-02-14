@@ -51,6 +51,8 @@ public class CrearReunion extends AppCompatActivity {
     RequestQueue requestQueue;
     JSONArray Usuarios;
 
+    String TIPOUSUARIO = "";
+
     TextView tv, tve;
     Calendar Date, Time;
     String format;
@@ -80,16 +82,21 @@ public class CrearReunion extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, url,
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("rol", TIPOUSUARIO);
+
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            Usuarios = response.getJSONArray("users");
-                            //Agrego cabecera principal
-                            listDataHeader.add("Usuarios");
 
-                            //Agrego cabecera de opciones
+                            Usuarios = response.getJSONArray("users");
+
+                            int contTemp = 0;
+                            String UltimaRama = "";
+
                             List<ItemListCheckbox> usuariosTemp = new ArrayList<>();
 
                             for (int i = 0; i < Usuarios.length(); i++) {
@@ -98,14 +105,32 @@ public class CrearReunion extends AppCompatActivity {
                                 String ApellidosTEmp = row.getString("apellidos");
                                 String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
                                 String BDidTEmp = row.getString("_id");
+                                JSONArray RamaTemp = row.getJSONArray("areas");
+                                String AreaTemp = RamaTemp.getJSONObject(0).getString("nombre");
+                                if (i == 0){
+                                    UltimaRama = AreaTemp;
+                                    listDataHeader.add(UltimaRama);
+
+                                }else{
+                                    if (!UltimaRama.equals(AreaTemp)){
+                                        UltimaRama = AreaTemp;
+                                        listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
+
+                                        contTemp++;
+                                        listDataHeader.add(UltimaRama);
+
+                                        usuariosTemp = new ArrayList<>();
+
+                                    }
+                                }
 
                                 usuariosTemp.add(new ItemListCheckbox(NombreMostrar, BDidTEmp, false));
-
                             }
 
+                            listDataChild.put(listDataHeader.get(contTemp), usuariosTemp);
 
 
-                            listDataChild.put(listDataHeader.get(0), usuariosTemp);
+
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
@@ -155,6 +180,8 @@ public class CrearReunion extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Crear Reunion");
+
+        TIPOUSUARIO = getIntent().getStringExtra("TIPO");
 
         listView = (ExpandableListView) findViewById(R.id.usuarios);
         try {
@@ -416,14 +443,22 @@ public class CrearReunion extends AppCompatActivity {
     }
 
     private ArrayList GetUsuariosSeleccionados() {
-        List<ItemListCheckbox> ListaTemp =   listAdapter.getChilds(0);
-        int tam = ListaTemp.size() ;
-        ArrayList<String> ListaUsuarios = new ArrayList<String>();
-        for (int i = 0; i < tam ; i++) {
-            if (ListaTemp.get(i).isCheck()){
-                ListaUsuarios.add(ListaTemp.get(i).getId());
-            }
 
+        ArrayList<String> ListaUsuarios = new ArrayList<String>();
+        int NumRamas = listAdapter.getGroupCount();
+        for (int i = 0; i < NumRamas ; i++) {
+
+            List<ItemListCheckbox> ListaTemp =   listAdapter.getChilds(i);
+
+
+            int tam = ListaTemp.size() ;
+            for (int i2 = 0; i2 < tam ; i2++) {
+                if (ListaTemp.get(i2).isCheck()){
+                    ListaUsuarios.add(ListaTemp.get(i).getId());
+                }
+
+
+            }
         }
 
         return  ListaUsuarios;
