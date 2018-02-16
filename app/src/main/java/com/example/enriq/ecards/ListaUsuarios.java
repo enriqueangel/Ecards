@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ListaUsuarios extends AppCompatActivity {
@@ -51,14 +52,20 @@ public class ListaUsuarios extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, url,
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("rol", "ADMIN");
+
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
                             Usuarios = response.getJSONArray("users");
                             CargarUsuarios();
                             dialog.dismiss();
+
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
@@ -94,9 +101,6 @@ public class ListaUsuarios extends AppCompatActivity {
         requestQueue.add(arrReq);
 
 
-
-
-
         super.onStart();
     }
 
@@ -125,8 +129,8 @@ public class ListaUsuarios extends AppCompatActivity {
             String NombresTEmp = row.getString("nombres");
             String ApellidosTEmp = row.getString("apellidos");
             String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
-            String HorasLaboralesTEmp = row.getString("horas_contratadas");
-            //String HorasTrabajadasTEmp = row.getString("horas_trabajadas");
+
+            String HorasLaboralesTEmp = "00:00";
             String HorasTrabajadasTEmp = "00:00";
 
             items.add(new Usuario(R.drawable.imagen_perfil, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
