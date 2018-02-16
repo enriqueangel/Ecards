@@ -33,6 +33,9 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     private RadioButton childRb1;
     private RadioButton childRb2;
 
+    private int GrupAntTemp = -1;
+    private int HijoantTemp = -1;
+
 
     ExpandableListRadioAdapter(Context context, List<String> listDataHeader, HashMap<String, List<ItemListCheckbox>> listHashMap) {
         this.context = context;
@@ -114,8 +117,7 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
         checkListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Radio",v.getId() + "");
-                Log.d("Radio",i + "");
+
                 if (i == 0) {
                     if (childRb1 != null && childRb1 != checkListChild) {
                         childRb1.setChecked(false);
@@ -136,8 +138,18 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
                 if (mOnRbClickListener != null) {
                     mOnRbClickListener.onRbClick(i, i1);
                 }
-                //ItemListCheckbox objeto = getChild( iTemp,  i1);
-                //objeto.setCheck(checkListChild.isChecked());
+                ItemListCheckbox objeto = getChild( iTemp,  i1);
+                objeto.setCheck(checkListChild.isChecked());
+
+                if (GrupAntTemp != -1 && HijoantTemp != -1){
+                    ItemListCheckbox objetoanterior = getChild( GrupAntTemp,  HijoantTemp);
+                    objetoanterior.setCheck(false);
+                }
+
+                GrupAntTemp = iTemp;
+                HijoantTemp = i1;
+
+
 
             }
         });

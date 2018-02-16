@@ -2,6 +2,8 @@ package com.example.enriq.ecards;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -50,6 +52,10 @@ public class Crear_Tester extends AppCompatActivity {
     JSONArray JSONUsuarios;
     JSONArray JSONproyectos;
 
+    ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
+    SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
+
+    String TIPOUSUARIO = "";
 
     MaterialSpinner responsable, proyecto;
 
@@ -93,6 +99,8 @@ public class Crear_Tester extends AppCompatActivity {
         LinkEvidencia = (CheckBox) findViewById(R.id.evidencia);
 
         CrearTester = (Button) findViewById(R.id.BTNCrearTester);
+
+        TIPOUSUARIO = getIntent().getStringExtra("TIPO");
 
         //Fecha
         Date = Calendar.getInstance();
@@ -273,7 +281,12 @@ public class Crear_Tester extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("rol", TIPOUSUARIO);
+
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -335,16 +348,22 @@ public class Crear_Tester extends AppCompatActivity {
 
     private void CargarUsuarios() throws JSONException {
 
-        for (int i = 0; i < JSONUsuarios.length(); i++) {
-            JSONObject row = JSONUsuarios.getJSONObject(i);
-            String NombresTEmp = row.getString("nombres");
-            String ApellidosTEmp = row.getString("apellidos");
-            String NombreMostrar = NombresTEmp+" "+ApellidosTEmp;
-            String BDidTEmp = row.getString("_id");
-            Usuarios.add(BDidTEmp);
-            responItem.add(NombreMostrar);
+        Bundle args = new Bundle();
+        args.putString("USUARIOS", JSONUsuarios.toString());
 
+        fragmento1.setArguments(args);
+        fragmento2.setArguments(args);
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento1);
+        }else{
+            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento2);
         }
+        transaction.commit();
     }
 
     @Override
