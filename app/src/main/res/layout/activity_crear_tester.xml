@@ -92,6 +92,25 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/proyecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    app:ms_arrowColor="@color/casi_negro"
+                    app:ms_floatingLabelColor="@color/casi_negro"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:ms_hint="@string/proyecto"
+                    app:ms_floatingLabelText="@string/proyecto"
+                    app:ms_enableErrorLabel="true"
+                    />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Contenedor"/>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
                     android:id="@+id/encargado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,20 +122,6 @@
                     app:hintTextAppearance="@style/FloatingLabel"
                     app:ms_hint="@string/encargado"
                     app:ms_floatingLabelText="@string/encargado"
-                    app:ms_enableErrorLabel="true"
-                    />
-
-                <fr.ganfra.materialspinner.MaterialSpinner
-                    android:id="@+id/proyecto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    app:ms_arrowColor="@color/casi_negro"
-                    app:ms_floatingLabelColor="@color/casi_negro"
-                    app:hintTextAppearance="@style/FloatingLabel"
-                    app:ms_hint="@string/proyecto"
-                    app:ms_floatingLabelText="@string/proyecto"
                     app:ms_enableErrorLabel="true"
                     />
 

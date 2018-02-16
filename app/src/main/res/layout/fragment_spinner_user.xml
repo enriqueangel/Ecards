@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.enriq.ecards.SpinnerUserFragment"
+    android:orientation="vertical">
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/encargado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        app:ms_arrowColor="@color/casi_negro"
+        app:ms_floatingLabelColor="@color/casi_negro"
+        app:hintTextAppearance="@style/FloatingLabel"
+        app:ms_hint="@string/encargado"
+        app:ms_floatingLabelText="@string/encargado"
+        app:ms_enableErrorLabel="true"
+        />
+
+</LinearLayout>
