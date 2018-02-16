@@ -20,7 +20,7 @@ public class UsuariosNuevos extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Proyectos");
+        toolbar.setTitle("Usuarios Nuevos");
 
         usuarios = new ArrayList<ElementoLista>();
         usuarios.add(new ElementoLista("Ronald Gonzales", "aaa"));
