@@ -52,16 +52,16 @@ public class Crear_Tester extends AppCompatActivity {
     JSONArray JSONUsuarios;
     JSONArray JSONproyectos;
 
-    ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
-    SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
+    ExpandableUserFragment fragmento1 = new ExpandableUserFragment();
+    SpinnerUserFragment fragmento2 = new SpinnerUserFragment();
 
     String TIPOUSUARIO = "";
 
-    MaterialSpinner responsable, proyecto;
+    MaterialSpinner  proyecto;
 
-    List<String> responItem = new ArrayList<>();
+
     List<String> proyectoItem = new ArrayList<>();
-    ArrayAdapter<String> responAdapter, proyectoAdapter;
+    ArrayAdapter<String>  proyectoAdapter;
 
     List<String> Usuarios = new ArrayList<>();
     List<String> Proyectos = new ArrayList<>();
@@ -127,16 +127,16 @@ public class Crear_Tester extends AppCompatActivity {
 
         CargarDatos();
 
-        responsable = (MaterialSpinner) findViewById(R.id.encargado);
+
         proyecto = (MaterialSpinner) findViewById(R.id.proyecto);
 
-        responAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, responItem);
+
         proyectoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, proyectoItem);
 
-        responAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         proyectoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        responsable.setAdapter(responAdapter);
+
         proyecto.setAdapter(proyectoAdapter);
 
         CrearTester.setOnClickListener(new View.OnClickListener() {
@@ -160,12 +160,16 @@ public class Crear_Tester extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
 
-        int Pos1 =  responsable.getSelectedItemPosition();
 
         int Pos2 =  proyecto.getSelectedItemPosition();
 
 
-        params.put("responsable", Usuarios.get(Pos1-1).toString());
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            params.put("responsable",fragmento1.GetEncargadoID());
+        }else{
+            params.put("responsable",fragmento2.GetEncargadoID());
+        }
+
         params.put("proyecto", Proyectos.get(Pos2-1).toString());
 
 
@@ -231,7 +235,7 @@ public class Crear_Tester extends AppCompatActivity {
 
     private boolean VerificarCampos() {
 
-        int Pos1 =  responsable.getSelectedItemPosition();
+       // int Pos1 =  responsable.getSelectedItemPosition();
         int Pos2 =  proyecto.getSelectedItemPosition();
 
         if  (!MetodosGlobales.validarCampoVacio(Fechaentrega.getText().toString())){
@@ -249,13 +253,6 @@ public class Crear_Tester extends AppCompatActivity {
         }
 
 
-        if (Pos1 == 0){
-            responsable.setError("Seleccione un usuario.");
-            return false;
-        }else{
-            responsable.setError(null);
-        }
-
 
         if (Pos2 == 0){
             proyecto.setError("Seleccione un proyecto.");
@@ -264,9 +261,15 @@ public class Crear_Tester extends AppCompatActivity {
             proyecto.setError(null);
         }
 
-
-
-
+        if (TIPOUSUARIO.equals("SUPERUSER")){
+            if (!fragmento1.verificarCampos()){
+                return false;
+            }
+        }else{
+            if (!fragmento2.verificarCampos()){
+                return false;
+            }
+        }
 
 
         return true;
@@ -359,9 +362,9 @@ public class Crear_Tester extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         if (TIPOUSUARIO.equals("SUPERUSER")){
-            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento1);
+            transaction.replace(R.id.ContenedorCrearTester, fragmento1);
         }else{
-            transaction.replace(R.id.ContenedorCrearTarjeta, fragmento2);
+            transaction.replace(R.id.ContenedorCrearTester, fragmento2);
         }
         transaction.commit();
     }
