@@ -17,6 +17,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TarjetaFragment extends Fragment {
 
     JSONObject DATOS;
@@ -45,7 +49,22 @@ public class TarjetaFragment extends Fragment {
 
         try {
             DATOS = new JSONObject(getArguments().getString("DATOS"));
-            Fecha_Entrega.setText(DATOS.getString("fecha_entrega"));
+
+            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            // el que formatea
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
+            String fechaTemp1 = DATOS.getString("fecha_entrega") ;
+
+            Date date = null;
+            try {
+                date = parseador.parse(fechaTemp1);
+                Fecha_Entrega.setText(formateador.format(date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
 
             JSONObject ProyectoTEMP = DATOS.getJSONObject("proyecto");
             Proyecto.setText(ProyectoTEMP.getString("nombre"));

@@ -37,6 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,6 +116,12 @@ public class Card extends AppCompatActivity {
                             ImprimirReuniones();
                             ImprimirTargetas();
 
+                            ContCardsBlanco.setText( String.valueOf(ContCardsBlancoint));
+                            ContCardsAmarillo.setText(String.valueOf(ContCardsAmarilloint));
+                            ContCardsRojo.setText(String.valueOf(ContCardsRojoint));
+                            ContCardsVerde.setText(String.valueOf(ContCardsVerdeint));
+                            ContCardsAzul.setText(String.valueOf(ContCardsAzulint));
+
                             dialog.dismiss();
 
 
@@ -168,7 +175,23 @@ public class Card extends AppCompatActivity {
 
             String TiempoEsperado = row.getString("lugar");
 
-            String dtStart = row.getString("fecha");
+            String dtStart2 = row.getString("fecha");
+
+            String dtStart = "";
+
+            // el que parsea
+            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            // el que formatea
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date date = null;
+            try {
+                date = parseador.parse(dtStart2);
+                dtStart = formateador.format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
 
             int ColorTArgeta ;
 
@@ -192,14 +215,6 @@ public class Card extends AppCompatActivity {
         contenedor.setAdapter(new Adaptador(listaTarjetas));
 
         contenedor.setLayoutManager(new LinearLayoutManager(this));
-
-        ContCardsBlanco.setText( String.valueOf(ContCardsBlancoint));
-        ContCardsAmarillo.setText(String.valueOf(ContCardsAmarilloint));
-        ContCardsRojo.setText(String.valueOf(ContCardsRojoint));
-        ContCardsVerde.setText(String.valueOf(ContCardsVerdeint));
-        ContCardsAzul.setText(String.valueOf(ContCardsAzulint));
-
-
 
 
     }
@@ -346,7 +361,23 @@ public class Card extends AppCompatActivity {
             String VersionTEMP;
 
             String TiempoEsperado = row.getString("tiempo_estimado");
-            String dtStart = row.getString("fecha_entrega");
+            String dtStart2 = row.getString("fecha_entrega");
+            String dtStart = "";
+            Date FechaEntrega = null ;
+
+            SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
+
+            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                FechaEntrega = format2.parse(dtStart2);
+                dtStart = parseador.format(FechaEntrega);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
 
             int ColorTArgeta ;
 
@@ -361,19 +392,15 @@ public class Card extends AppCompatActivity {
                 ContCardsVerdeint ++;
             }else{
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
-                TipoTEMP = TipoTareaTEMP.getString("nombre");
+                TipoTEMP = TipoTareaTEMP.getString("tipo");
                 VersionTEMP = row.getString("version");
 
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-                Date fechaFin ;
+
                 long DiasRestantes = 100;
-                try {
-                    fechaFin = format.parse(dtStart);
-                    DiasRestantes = calcularColor(fechaFin);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                DiasRestantes = calcularColor(FechaEntrega);
+
 
                 if (DiasRestantes <= 0){
                     ContCardsRojoint ++;
