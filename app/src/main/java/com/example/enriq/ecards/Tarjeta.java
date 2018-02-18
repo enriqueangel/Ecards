@@ -1,8 +1,11 @@
 package com.example.enriq.ecards;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -12,7 +15,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -22,6 +27,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static com.example.enriq.ecards.R.*;
@@ -31,8 +37,12 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     JSONObject DATOS;
     TextView FechaEntrega,Proyecto,TipoTarea,TiempoRealizado,Link,Descripcion;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    FloatingActionButton btnReportar, btnEntregar;
+    FloatingActionButton btnReportar, btnEntregar, btnRechazar;
     String color = "";
+    int hour, minute;
+    Calendar Time;
+
+    boolean link_evidencia = false;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -65,6 +75,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
         btnReportar = (FloatingActionButton) findViewById(id.btnReportar);
         btnEntregar = (FloatingActionButton) findViewById(id.btnEntregar);
+        btnRechazar = (FloatingActionButton) findViewById(id.btnRechazar);
 
         Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
@@ -81,6 +92,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
         btnEntregar.setOnClickListener(this);
         btnReportar.setOnClickListener(this);
+        btnRechazar.setOnClickListener(this);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -126,7 +138,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 ReunionFragment Fr5 = new ReunionFragment();
                 Fr5.setArguments(args);
                 loadFragment(Fr5);
-
+                btnRechazar.setVisibility(View.GONE);
         }
     }
 
@@ -145,13 +157,117 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case id.btnEntregar:
+                crearDialogEntregar();
                 Toast.makeText(getApplicationContext(), "Entregar tarjeta", Toast.LENGTH_LONG).show();
                 break;
             case id.btnReportar:
-                Toast.makeText(getApplicationContext(), "Reportar horas", Toast.LENGTH_LONG).show();
+                crearDialogReportarHoras();
+                break;
+            case id.btnRechazar:
+                crearDialogRechazar();
                 break;
             default:
                 break;
         }
+    }
+
+    private void crearDialogRechazar() {
+        final AlertDialog.Builder rechazarTarjeta = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final View mView = this.getLayoutInflater().inflate(layout.dialog_rechazar, null);
+        rechazarTarjeta.setView(mView);
+        rechazarTarjeta.setTitle("Rechazar tarjeta");
+
+        rechazarTarjeta.setPositiveButton("Rechazar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Tarjeta rechazada", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        rechazarTarjeta.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = rechazarTarjeta.create();
+        dialog.show();
+    }
+
+    private void crearDialogEntregar() {
+        final AlertDialog.Builder entregarTarjeta = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final View mView = this.getLayoutInflater().inflate(layout.dialog_entregar, null);
+        entregarTarjeta.setView(mView);
+        entregarTarjeta.setTitle("Entregar tarjeta");
+
+        LinearLayout evidencia = (LinearLayout) mView.findViewById(id.evidencia);
+
+        if (link_evidencia){
+            evidencia.setVisibility(View.VISIBLE);
+        }
+
+        entregarTarjeta.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Tarjeta entrega", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        entregarTarjeta.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = entregarTarjeta.create();
+        dialog.show();
+    }
+
+    private void crearDialogReportarHoras() {
+        final AlertDialog.Builder reportarHoras = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final View mView = this.getLayoutInflater().inflate(layout.dialog_reportar_horas, null);
+        reportarHoras.setView(mView);
+        reportarHoras.setTitle("Reportar horas");
+
+        final TextView Horas = (TextView) mView.findViewById(R.id.EDThora);
+
+        //Hora
+        Time = Calendar.getInstance();
+        hour = Time.get(Calendar.HOUR_OF_DAY);
+        minute = Time.get(Calendar.MINUTE);
+        //tve.setText(hour + " : " + minute + " " + format);
+        Horas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Tarjeta.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        String horaFormateada = (hourOfDay < 10)? String.valueOf("0" + hourOfDay) : String.valueOf(hourOfDay);
+                        String minutoFormateada = (minute < 10)? String.valueOf("0" + minute) : String.valueOf(minute);
+                        Horas.setText(horaFormateada + ":" + minutoFormateada);
+                    }
+                }, hour, minute, true);
+                timePickerDialog.show();
+            }
+        });
+
+        reportarHoras.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Reportar horas", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        reportarHoras.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = reportarHoras.create();
+        dialog.show();
     }
 }

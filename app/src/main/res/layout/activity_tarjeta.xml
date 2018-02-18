@@ -62,6 +62,15 @@
             app:fab_title="Entregar"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnRechazar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="?attr/colorAccent"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_close_white_24dp"
+            app:fab_title="Rechazar"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnReportar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
