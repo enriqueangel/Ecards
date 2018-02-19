@@ -7,12 +7,15 @@ import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,6 +23,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
@@ -29,6 +39,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.enriq.ecards.R.*;
 
@@ -42,12 +54,18 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     int hour, minute;
     Calendar Time;
 
+    String url ;
+
+    RequestQueue requestQueue;
+
     boolean link_evidencia = false;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        url = getString(R.string.URLWS);
 
         try {
             DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
@@ -210,7 +228,65 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         entregarTarjeta.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Tarjeta entrega", Toast.LENGTH_LONG).show();
+
+
+                String urltemp = url+"entregar_tarjeta";
+
+                requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                try {
+                    params.put("id", DATOS.getString("_id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String tipoTemp = "";
+
+                if (color.equals("azul")){
+                    tipoTemp = "reunion";
+                }else{
+                    tipoTemp = "tarjeta";
+                }
+
+                params.put("tipo", tipoTemp);
+
+                JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    JSONObject Respuesta = response.getJSONObject("user");
+                                    finish();
+
+                                } catch (JSONException e) {
+                                    Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                ){
+                    /*
+                    /**
+                     * Passing some request headers
+                     * */
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<String, String>();
+                        headers.put("Content-Type", "application/json; charset=utf-8");
+                        SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                        String tokenTemp = SP.getString("token","");
+                        headers.put("token", tokenTemp);
+                        return headers;
+                    }
+                };
+                requestQueue.add(arrReq);
             }
         });
 
@@ -256,14 +332,21 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         reportarHoras.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Reportar horas", Toast.LENGTH_LONG).show();
+
+                if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "No ingreso ningun tiempo", Toast.LENGTH_LONG).show();
+                }else{
+
+                }
+
+
             }
         });
 
         reportarHoras.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                dialog.cancel();
+                //dialog.cancel();
             }
         });
 

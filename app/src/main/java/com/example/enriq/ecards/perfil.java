@@ -25,7 +25,7 @@ public class perfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbarPerfil);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -37,8 +37,9 @@ public class perfil extends AppCompatActivity {
 
         try {
             DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
+            String NombreTemp = DATOS.get("nombres").toString() + " " + DATOS.get("apellidos").toString();
 
-            toolbar.setTitle(DATOS.get("nombres").toString() + " " + DATOS.get("apellidos").toString());
+            getSupportActionBar().setTitle(NombreTemp);
             Correo.setText(DATOS.get("email").toString());
             Telefono.setText(DATOS.get("telefono").toString());
             Rama.setText(GetRamas(DATOS.getJSONArray("areas")));

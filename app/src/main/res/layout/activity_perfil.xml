@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:background="@drawable/fondo_perfil"
             app:contentScrim="?attr/colorPrimary"
-            app:title="Enrique Angel"
             app:expandedTitleMarginTop="20dp"
             app:expandedTitleGravity="center_horizontal|bottom"
             >
@@ -38,11 +37,11 @@
                 />
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

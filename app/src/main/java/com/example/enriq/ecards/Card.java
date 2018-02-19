@@ -235,7 +235,7 @@ public class Card extends AppCompatActivity {
 
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Enrique Angel");
+        getSupportActionBar().setTitle("TARJETAS");
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
         clickDashboard = (FloatingActionButton) findViewById(R.id.exit);

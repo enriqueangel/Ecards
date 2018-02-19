@@ -72,6 +72,11 @@ public class TarjetaFragment extends Fragment {
             LinkAyuda.setText(DATOS.getString("link_recurso"));
             Descripcion.setText(DATOS.getString("descripcion"));
 
+            JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
+            TipoTarea.setText(TipoTareaTEMP.getString("tipo"));
+
+
+
             if (DATOS.getString("link_recurso") == null){
                 TILLinkAyuda.setVisibility(View.GONE);
             }
