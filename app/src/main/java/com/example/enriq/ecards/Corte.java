@@ -22,10 +22,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +39,12 @@ public class Corte extends AppCompatActivity {
 
     String url ;
     RequestQueue requestQueue;
+    JSONArray CargarUsuarios;
 
     @Override
     protected void onStart() {
 
-        String urltemp = url+"user/lista_rama";
+        String urltemp = url+"corte";
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         final AlertDialog dialog = mBuilder.create();
@@ -50,7 +56,12 @@ public class Corte extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-
+                        try {
+                            CargarUsuarios = response.getJSONArray("horas");
+                            cargarHoras();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
 
@@ -84,6 +95,29 @@ public class Corte extends AppCompatActivity {
 
 
         super.onStart();
+    }
+
+    private void cargarHoras() throws JSONException {
+
+
+        for (int i = 0; i < CargarUsuarios.length(); i++) {
+            JSONObject row = CargarUsuarios.getJSONObject(i);
+
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.set(Calendar.HOUR_OF_DAY, 12);
+            calendar.set(Calendar.MINUTE, 0);
+            calendar.set(Calendar.SECOND, 0);
+
+            calendar.add(Calendar.HOUR, 1);  // numero de horas a añadir, o restar en caso de horas<0
+
+            calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+
+
+        }
+
+
+
     }
 
     ExpanListAdapterCorte listAdapter;
