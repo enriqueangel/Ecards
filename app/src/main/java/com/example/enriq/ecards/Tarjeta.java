@@ -176,7 +176,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case id.btnEntregar:
                 crearDialogEntregar();
-                Toast.makeText(getApplicationContext(), "Entregar tarjeta", Toast.LENGTH_LONG).show();
                 break;
             case id.btnReportar:
                 crearDialogReportarHoras();
@@ -219,6 +218,11 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         entregarTarjeta.setView(mView);
         entregarTarjeta.setTitle("Entregar tarjeta");
 
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
+
         LinearLayout evidencia = (LinearLayout) mView.findViewById(id.evidencia);
 
         if (link_evidencia){
@@ -230,7 +234,10 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
             public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                String urltemp = url+"entregar_tarjeta";
+                dialogCargando.show();
+
+
+                String urltemp = url+"trabajo/entregar_tarjeta";
 
                 requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -257,10 +264,18 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    JSONObject Respuesta = response.getJSONObject("user");
-                                    finish();
+                                    String Respuesta = response.getString("respuesta");
+                                    if (Respuesta.equals("si")){
+                                        dialogCargando.dismiss();
+                                        finish();
+                                    }else{
+                                        dialogCargando.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
+                                    }
+
 
                                 } catch (JSONException e) {
+                                    dialogCargando.dismiss();
                                     Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
                                 }
                             }
@@ -268,7 +283,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
                             }
                         }
                 ){
