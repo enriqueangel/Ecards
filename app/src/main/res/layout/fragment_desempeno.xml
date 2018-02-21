@@ -1,15 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.enriq.ecards.DesempenoFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#f4f4f4" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Desempeño"
-        android:textSize="20dp"
-        android:gravity="center"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ExpandableListView
+            android:id="@+id/desempeno"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
+            android:divider="@color/blanco"
+            android:dividerHeight="0.5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:childDivider="@color/blanco"
+            />
+    </LinearLayout>
+
+</LinearLayout>

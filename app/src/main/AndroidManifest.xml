@@ -48,7 +48,9 @@
         <activity android:name=".TiposTareas" />
         <activity android:name=".Proyectos" />
         <activity android:name=".Ramas" />
-        <activity android:name=".UsuariosNuevos"></activity>
+        <activity android:name=".UsuariosNuevos" />
+        <activity android:name=".Desempeno" />
+        <activity android:name=".DesempenoFragment"></activity>
     </application>
 
 </manifest>

@@ -1,66 +1,61 @@
 package com.example.enriq.ecards;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link DesempenoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DesempenoFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import static com.example.enriq.ecards.R.id.*;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class DesempenoFragment extends Fragment{
 
-    public DesempenoFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DesempenoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DesempenoFragment newInstance(String param1, String param2) {
-        DesempenoFragment fragment = new DesempenoFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    ExpanListAdapterDesem listAdapter;
+    ExpandableListView listView;
+    List<String> listDataHeader;
+    HashMap<String, List<UsuarioDesempeno>> listDataChild;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_desempeno, container, false);
+        final View view = inflater.inflate(R.layout.fragment_desempeno, container, false);
+
+        listView = (ExpandableListView) view.findViewById(desempeno);
+        prepareListData();
+        listAdapter = new ExpanListAdapterDesem(getActivity(),listDataHeader,listDataChild);
+        listView.setAdapter(listAdapter);
+        
+        
+        return view;
+    }
+
+    private void prepareListData() {
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        // Adding child data
+        listDataHeader.add("Fecha1");
+        listDataHeader.add("Fecha2");
+
+        // Adding child data
+        List<UsuarioDesempeno> top250 = new ArrayList<>();
+        top250.add(new UsuarioDesempeno("Valentina Rojas", "18:30", "eshbdvhhfhfhfffhfbfehhfbbdhvbdbvvbhvbvvbhvvvbjch hcvhdv dhbcsjbbbdhjdbdbdhdhbdbddb"));
+        top250.add(new UsuarioDesempeno("Enrique Angel", "00:00","ggfhh"));
+        top250.add(new UsuarioDesempeno("Ronal Gonzales", "03:00","ttuii"));
+        top250.add(new UsuarioDesempeno("Laura Gonzales", "12:45","yg"));
+
+        List<UsuarioDesempeno> nowShowing = new ArrayList<>();
+        nowShowing.add(new UsuarioDesempeno("Laura Galenano", "10:00","gyfbhfdbfdjkdsfhvfdfgufvffffg"));
+        nowShowing.add(new UsuarioDesempeno("Daniela Ramirez", "08:00","098"));
+
+        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), nowShowing);
     }
 }
