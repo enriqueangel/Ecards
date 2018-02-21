@@ -1,7 +1,9 @@
 package com.example.enriq.ecards;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TiposTareas extends AppCompatActivity {
+public class TiposTareas extends AppCompatActivity implements View.OnClickListener {
 
     String url ;
     RequestQueue requestQueue;
@@ -40,31 +42,20 @@ public class TiposTareas extends AppCompatActivity {
     protected void onStart() {
 
         dialog.show();
-
         tareas = new ArrayList<ElementoLista>();
-
         String urltemp = url+"tareas";
-
-
         requestQueue = Volley.newRequestQueue(this);
-
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             CargarDATOS(response);
                             dialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -92,17 +83,11 @@ public class TiposTareas extends AppCompatActivity {
         };
 
         requestQueue.add(arrReq);
-
-
         super.onStart();
     }
 
     private void CargarDATOS(JSONObject response) throws JSONException  {
-
-
-
         DATOS = response.getJSONArray("tareas");
-
 
         for (int i = 0; i < DATOS.length(); i++) {
             JSONObject row = null;
@@ -115,7 +100,6 @@ public class TiposTareas extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.lista);
         ElementoListaAdapter adapter = new ElementoListaAdapter(this, tareas);
         list.setAdapter(adapter);
-
     }
 
     @Override
@@ -135,8 +119,8 @@ public class TiposTareas extends AppCompatActivity {
         mBuilder.setView(mView);
         dialog = mBuilder.create();
 
-
-
+        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.agregar);
+        btnCrear.setOnClickListener(this);
     }
 
     @Override
@@ -148,5 +132,38 @@ public class TiposTareas extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.agregar:
+                crearDialogAgregar();
+                break;
+        }
+    }
+
+    private void crearDialogAgregar() {
+        final AlertDialog.Builder agregarTarea = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final View mView = this.getLayoutInflater().inflate(R.layout.dialog_crear_tarea, null);
+        agregarTarea.setView(mView);
+        agregarTarea.setTitle("Crear tipo tarea");
+
+        agregarTarea.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Tipo tarea creado", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        agregarTarea.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = agregarTarea.create();
+        dialog.show();
     }
 }

@@ -27,7 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:theme="?attr/colorAccent"
         android:layout_gravity="right|bottom"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 

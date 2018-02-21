@@ -12,12 +12,14 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -323,6 +325,9 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         reportarHoras.setTitle("Reportar horas");
 
         final TextView Horas = (TextView) mView.findViewById(R.id.EDThora);
+        final TextView Descripcion = (TextView) mView.findViewById(id.EDTdescripcion);
+        final TextInputLayout campoHoras = (TextInputLayout) mView.findViewById(id.CampoHora);
+        final TextInputLayout campoDescripcion = (TextInputLayout) mView.findViewById(id.CampoDescripcion);
 
         //Hora
         Time = Calendar.getInstance();
@@ -344,7 +349,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        reportarHoras.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
+        /*reportarHoras.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -356,16 +361,47 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
 
             }
-        });
+        });*/
+
+        reportarHoras.setPositiveButton("Reportar", null);
 
         reportarHoras.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                //dialog.cancel();
+                dialog.cancel();
             }
         });
 
         final AlertDialog dialog = reportarHoras.create();
+        final boolean enviar = false;
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
+                            campoHoras.setError("Debe ingresar el tiempo");
+                        }else{
+                            campoHoras.setError(null);
+                        }
+
+                        if  (!MetodosGlobales.validarCampoVacio(Descripcion.getText().toString())){
+                            campoDescripcion.setError("Debe ingresar una descripcion");
+                        }else{
+                            campoDescripcion.setError(null);
+                        }
+
+                        if(enviar){
+                            dialog.dismiss();
+                        }
+                    }
+                });
+            }
+        });
+
         dialog.show();
     }
 }
