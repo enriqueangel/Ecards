@@ -109,9 +109,14 @@ public class Corte extends AppCompatActivity {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
 
-            calendar.add(Calendar.HOUR, 1);  // numero de horas a añadir, o restar en caso de horas<0
+            calendar.add(Calendar.HOUR, -1);  // numero de horas a añadir, o restar en caso de horas<0
 
-            calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+            Date X = calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+            long Z = X.getTime();
+            Date M = new Date(Z);
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+            String dateString = formatter.format(M);
+            int Y = 1;
 
 
         }

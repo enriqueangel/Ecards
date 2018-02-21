@@ -59,6 +59,7 @@ public class MenuAdmin extends AppCompatActivity implements View.OnClickListener
                 String areasTEmp = globalVariable.getAreas();
                 i.putExtra( "Areas", areasTEmp);
                 startActivity(i);
+                finish();
                 break;
             default:
                 break;

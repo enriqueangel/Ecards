@@ -331,8 +331,8 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
 
         //Hora
         Time = Calendar.getInstance();
-        hour = Time.get(Calendar.HOUR_OF_DAY);
-        minute = Time.get(Calendar.MINUTE);
+        hour = 0;
+        minute = 0;
         //tve.setText(hour + " : " + minute + " " + format);
         Horas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -373,7 +373,12 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         });
 
         final AlertDialog dialog = reportarHoras.create();
-        final boolean enviar = false;
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
+
 
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -382,20 +387,108 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+
+
+                        boolean enviar = true;
+
                         if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
                             campoHoras.setError("Debe ingresar el tiempo");
+                            enviar = false;
                         }else{
                             campoHoras.setError(null);
                         }
 
                         if  (!MetodosGlobales.validarCampoVacio(Descripcion.getText().toString())){
                             campoDescripcion.setError("Debe ingresar una descripcion");
+                            enviar = false;
                         }else{
                             campoDescripcion.setError(null);
+
                         }
 
                         if(enviar){
-                            dialog.dismiss();
+
+                            dialogCargando.show();
+
+
+                            String urltemp = url+"trabajo/reportar_horas";
+
+                            requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                            Map<String, String> params = new HashMap<String, String>();
+
+                            params.put("descripcion", Descripcion.getText().toString());
+                            params.put("horas_trabajadas", Horas.getText().toString());
+
+
+
+                            try {
+                                switch (color){
+                                    case ("azul"):
+                                        params.put("reunion", DATOS.getString("_id"));
+                                        break;
+
+                                    default:
+                                        params.put("tarjeta", DATOS.getString("_id"));
+
+                                        JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
+                                        params.put("tipotarea", TipoTareaTEMP.getString("_id"));
+                                        break;
+
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+
+
+
+                            JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+                                                String Respuesta = response.getString("respuesta");
+                                                if (Respuesta.equals("si")){
+                                                    dialogCargando.dismiss();
+                                                    finish();
+                                                }else{
+                                                    dialogCargando.dismiss();
+                                                    Toast.makeText(getApplicationContext(), "Error reportando las horas", Toast.LENGTH_LONG).show();
+                                                }
+
+
+                                            } catch (JSONException e) {
+                                                dialogCargando.dismiss();
+                                                Toast.makeText(getApplicationContext(), "Error reportando las horas", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                            ){
+                                /*
+                                /**
+                                 * Passing some request headers
+                                 * */
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    HashMap<String, String> headers = new HashMap<String, String>();
+                                    headers.put("Content-Type", "application/json; charset=utf-8");
+                                    SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                                    String tokenTemp = SP.getString("token","");
+                                    headers.put("token", tokenTemp);
+                                    return headers;
+                                }
+                            };
+                            requestQueue.add(arrReq);
                         }
                     }
                 });

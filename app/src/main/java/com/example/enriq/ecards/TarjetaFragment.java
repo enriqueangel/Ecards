@@ -75,9 +75,9 @@ public class TarjetaFragment extends Fragment {
             JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
             TipoTarea.setText(TipoTareaTEMP.getString("tipo"));
 
+            String LinkRecurso = DATOS.getString("link_recurso");
 
-
-            if (DATOS.getString("link_recurso") == null){
+            if ( LinkRecurso == null || LinkRecurso.equals("")){
                 TILLinkAyuda.setVisibility(View.GONE);
             }
 
@@ -88,10 +88,15 @@ public class TarjetaFragment extends Fragment {
 
             }else{
                 JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
-                TipoTarea.setText(TipoTareaTemp.getString("nombre"));
+                TipoTarea.setText(TipoTareaTemp.getString("tipo"));
                 TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
-                TiempoRealizado.setText(DATOS.getString("tiempo_trabajado"));
-                if (DATOS.getString("tiempo_estimado").equals("00:00")){
+                String tiempoRealizadoTemp = DATOS.getString("tiempo_trabajado");
+                if (tiempoRealizadoTemp.equals("")){
+                    tiempoRealizadoTemp = "00:00";
+                }
+                TiempoRealizado.setText(tiempoRealizadoTemp);
+                String TiempoEstimadoTemp = DATOS.getString("tiempo_estimado");
+                if (TiempoEstimadoTemp.equals("00:00") || TiempoEstimadoTemp.equals("")){
                     TILTiempoEstimado.setVisibility(View.GONE);
                 }
             }

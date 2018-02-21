@@ -75,6 +75,7 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
             case R.id.rama:
                 i = new Intent(this, Ramas.class);
                 startActivity(i);
+
                 break;
             case R.id.usuarios:
                 break;
@@ -85,6 +86,7 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
                 String areasTEmp = globalVariable.getAreas();
                 i.putExtra( "Areas", areasTEmp);
                 startActivity(i);
+                finish();
                 break;
             default:
                 break;
