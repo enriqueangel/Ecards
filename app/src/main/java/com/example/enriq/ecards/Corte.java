@@ -41,13 +41,14 @@ public class Corte extends AppCompatActivity {
     RequestQueue requestQueue;
     JSONArray CargarUsuarios;
 
+    AlertDialog dialog;
+
     @Override
     protected void onStart() {
 
         String urltemp = url+"corte";
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        final AlertDialog dialog = mBuilder.create();
+        dialog.show();
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -63,7 +64,7 @@ public class Corte extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
 
                     }
                 },
@@ -99,28 +100,117 @@ public class Corte extends AppCompatActivity {
 
     private void cargarHoras() throws JSONException {
 
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        // Adding child data
+        listDataHeader.add("Sin problemas");
+        listDataHeader.add("Con problemas");
+
+        // Adding child data
+        List<UsuarioCorte> SinProblemas = new ArrayList<>();
+        List<UsuarioCorte> ConProblemas = new ArrayList<>();
 
         for (int i = 0; i < CargarUsuarios.length(); i++) {
             JSONObject row = CargarUsuarios.getJSONObject(i);
 
             Calendar calendar = Calendar.getInstance();
+            Calendar calendar2 = Calendar.getInstance();
 
-            calendar.set(Calendar.HOUR_OF_DAY, 12);
-            calendar.set(Calendar.MINUTE, 0);
+            JSONObject UserTemp = row.getJSONObject("usuario");
+            String HorasContratas = UserTemp.getString("horas_contratadas");
+            String[] separated0 = HorasContratas.split(":");
+            int horasContratadasTemp = Integer.parseInt(separated0[0]);
+            int MinutosContratasTemp = Integer.parseInt(separated0[1]);
+
+            String ReunionTimeTemp = row.getString("horas_reunion");
+            String[] separated = ReunionTimeTemp.split(":");
+            int horasReunionTemp = Integer.parseInt(separated[0]);
+            int MinutosReunionTemp = Integer.parseInt(separated[1]);
+
+
+            String EstudioTimeTemp = row.getString("horas_estudio");
+            String[] separated2 = EstudioTimeTemp.split(":");
+            int horasEstudioTemp = Integer.parseInt(separated2[0]);
+            int MinutosEstudioTemp = Integer.parseInt(separated2[1]);
+
+            String TrabajoTimeTemp = row.getString("horas_trabajadas");
+            String[] separated3 = TrabajoTimeTemp.split(":");
+            int horasTrabajoTemp = Integer.parseInt(separated3[0]);
+            int MinutosTrabajoTemp = Integer.parseInt(separated3[1]);
+
+
+            calendar.set(Calendar.HOUR_OF_DAY, horasContratadasTemp);
+            calendar.set(Calendar.MINUTE, MinutosContratasTemp);
             calendar.set(Calendar.SECOND, 0);
 
-            calendar.add(Calendar.HOUR, -1);  // numero de horas a añadir, o restar en caso de horas<0
+            calendar2.set(Calendar.HOUR_OF_DAY, 0);
+            calendar2.set(Calendar.MINUTE, 0);
+            calendar2.set(Calendar.SECOND, 0);
 
-            Date X = calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
-            long Z = X.getTime();
-            Date M = new Date(Z);
-            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-            String dateString = formatter.format(M);
-            int Y = 1;
+            calendar2.add(Calendar.HOUR, horasReunionTemp);
+            calendar2.add(Calendar.HOUR, horasEstudioTemp);
+            calendar2.add(Calendar.HOUR, horasTrabajoTemp);
 
+            calendar2.add(Calendar.MINUTE, MinutosReunionTemp);
+            calendar2.add(Calendar.MINUTE, MinutosEstudioTemp);
+            calendar2.add(Calendar.MINUTE, MinutosTrabajoTemp);
+
+            Date Fecha1 = calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+            Date Fecha2 = calendar2.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
+
+
+            long diff = Fecha1.getTime() - Fecha2.getTime();
+
+            Boolean IsNegativo = false;
+
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+
+            if (diffHours < 0){
+                IsNegativo = true;
+                diffHours = diffHours*-1;
+            }
+
+            if (diffMinutes > 0){
+                diffHours = diffHours-1;
+                diffMinutes = 60-diffMinutes;
+            }else{
+                diffMinutes = diffMinutes*-1;
+            }
+
+            String HorasFinalTemp = String.valueOf(diffHours) ;
+            String MinutosFinalTemp = String.valueOf(diffMinutes) ;
+
+            if (diffHours < 10){
+                HorasFinalTemp = "0"+String.valueOf(diffHours);
+            }
+
+            if (diffMinutes < 10){
+                MinutosFinalTemp = "0"+String.valueOf(diffMinutes);
+            }
+
+            String TiempoTemp = HorasFinalTemp+":"+MinutosFinalTemp;
+
+            if (IsNegativo){
+                TiempoTemp = "-"+TiempoTemp;
+            }
+
+            String NombreMostrarTemp = UserTemp.getString("nombres") +" "+ UserTemp.getString("apellidos");
+
+            if (IsNegativo || TiempoTemp.equals("00:00")){
+                SinProblemas.add(new UsuarioCorte(NombreMostrarTemp, TiempoTemp));
+            }else{
+                ConProblemas.add(new UsuarioCorte(NombreMostrarTemp, TiempoTemp));
+            }
 
         }
 
+        listDataChild.put(listDataHeader.get(0), SinProblemas); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), ConProblemas);
+
+        listAdapter = new ExpanListAdapterCorte(this, listDataHeader, listDataChild);
+        listView.setAdapter(listAdapter);
 
 
     }
@@ -143,17 +233,19 @@ public class Corte extends AppCompatActivity {
         url = getString(R.string.URLWS);
 
         listView = (ExpandableListView) findViewById(R.id.ramas);
-        prepareListData();
-        listAdapter = new ExpanListAdapterCorte(this, listDataHeader, listDataChild);
-        listView.setAdapter(listAdapter);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        dialog = mBuilder.create();
+
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case android.R.id.home:
-                //Intent i = new Intent(CrearReunion.this, MenuAdmin.class);
-                //startActivity(i);
                 finish();
                 return true;
             default:
@@ -161,28 +253,6 @@ public class Corte extends AppCompatActivity {
         }
     }
 
-    private void prepareListData() {
-        listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<>();
-
-        // Adding child data
-        listDataHeader.add("Sin problemas");
-        listDataHeader.add("Con problemas");
-
-        // Adding child data
-        List<UsuarioCorte> top250 = new ArrayList<>();
-        top250.add(new UsuarioCorte("Valentina Rojas", "18:30"));
-        top250.add(new UsuarioCorte("Enrique Angel", "00:00"));
-        top250.add(new UsuarioCorte("Ronal Gonzales", "03:00"));
-        top250.add(new UsuarioCorte("Laura Gonzales", "12:45"));
-
-        List<UsuarioCorte> nowShowing = new ArrayList<>();
-        nowShowing.add(new UsuarioCorte("Laura Galenano", "10:00"));
-        nowShowing.add(new UsuarioCorte("Daniela Ramirez", "08:00"));
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-    }
 
 
 }
