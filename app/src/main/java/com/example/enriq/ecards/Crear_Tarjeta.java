@@ -398,8 +398,8 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
     private void EnviarDatosWS() {
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
-        final AlertDialog dialog = mBuilder.create();
+        //AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        //final AlertDialog dialog = mBuilder.create();
 
         dialog.show();
 
