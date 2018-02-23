@@ -15,20 +15,28 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
+import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuView;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,9 +61,11 @@ import java.util.Map;
 
 /* contenedor es el id del recyclerview en el layout de cards*/
 
-public class Card extends AppCompatActivity {
+public class Card extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView contenedor;
-    RecyclerView menulateral;
+    DrawerLayout drawer;
+    ListView menulateral;
+
     AlertDialog dialog;
 
     int ContCardsBlancoint = 0;
@@ -68,9 +78,12 @@ public class Card extends AppCompatActivity {
     String url;
     RequestQueue requestQueue;
     JSONArray TARJETAS;
+
     JSONArray Reuniones;
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
-    ArrayList<Fuente_Notificaciones> listaNotificaciones = new ArrayList<Fuente_Notificaciones>();
+    ArrayList<Fuente_Notificaciones> listanotificacion = new ArrayList<>();
+
+
     FloatingActionButton clickperf,clickDashboard;
     TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul;
 
@@ -223,6 +236,8 @@ public class Card extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cards);
 
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        menulateral =(ListView) findViewById(R.id.menulateral);
         toolbar = findViewById(R.id.toolbar);
         cards = findViewById(R.id.TARJETAS);
 
@@ -232,6 +247,26 @@ public class Card extends AppCompatActivity {
         ContCardsVerde = (TextView) findViewById(R.id.card_verde);
         ContCardsAzul = (TextView) findViewById(R.id.card_azul);
 
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+
+        //ArrayAdapter <String> adp = new ArrayAdapter<String>(this,R.layout.design_notificacion,opciones);
+        //menulateral.setAdapter(adp);
+
+        Adaptador_Notificaciones adapter = new Adaptador_Notificaciones(this, listanotificacion);
+        menulateral.setAdapter(adapter);
+        //listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
+        //menulateral.setAdapter(new Adaptador_Notificaciones(listanotificacion));
+        //menulateral.setLayoutManager(new LinearLayoutManager(this));
 
 
         setSupportActionBar(toolbar);
@@ -331,25 +366,36 @@ public class Card extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
+
         switch (item.getItemId()){
            case R.id.notification:
-                Toast.makeText(this, "Notificaciones", Toast.LENGTH_SHORT).show();
-                /*  menulateral = (RecyclerView) findViewById(R.id.menulateral);
-                menulateral.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
-                RelativeLayout layout = new RelativeLayout(getApplicationContext());
-                layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
 
-                //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
+               if (drawer.isDrawerOpen(Gravity.RIGHT)) {
+                   drawer.closeDrawer(Gravity.RIGHT);
+               }
+               drawer.openDrawer(Gravity.RIGHT);
+               return true;
 
-                menulateral.setAdapter(new Adaptador_Notificaciones(Fuente_Notificaciones));
+               //menulateral.setNavigationItemSelectedListener(this);
 
-                menulateral.setLayoutManager(new LinearLayoutManager(this));
-
-              */  return true;
             default:
-                return super.onOptionsItemSelected(item);
+               return super.onOptionsItemSelected(item);
         }
     }
+
+    /*private void ImprimirNotificaciones() throws JSONException{
+        for (int i = 0; i < TARJETASNOTI.length(); i++) {
+            JSONObject row = TARJETASNOTI.getJSONObject(i);
+            String TituloN = row.getString("titulo");
+
+            String TipoTEMP;
+            String VersionTEMP;
+
+            String TiempoEsperado = row.getString("tiempo_estimado");
+            String dtStart = row.getString("fecha_entrega");
+    }*/
+
+
 
     private void ImprimirTargetas() throws JSONException {
 
@@ -471,6 +517,14 @@ public class Card extends AppCompatActivity {
         return diffdias;
     }
 
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        return true;
+
+    }
 }
 
 

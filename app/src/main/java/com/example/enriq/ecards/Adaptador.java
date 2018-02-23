@@ -60,4 +60,6 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
     public int getItemCount() {
         return ListaObjeto.size();
     }
+
+
 }
