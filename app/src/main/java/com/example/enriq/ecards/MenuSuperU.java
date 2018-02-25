@@ -59,6 +59,9 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
                 startActivity(i);
                 break;
             case R.id.crear_tester:
+                i = new Intent(MenuSuperU.this,Crear_Tester.class);
+                i.putExtra("TIPO", "SUPERUSER");
+                startActivity(i);
                 break;
             case R.id.crear_tipo_tarea:
                 i = new Intent(this, TiposTareas.class);
@@ -75,11 +78,14 @@ public class MenuSuperU extends AppCompatActivity implements View.OnClickListene
             case R.id.rama:
                 i = new Intent(this, Ramas.class);
                 startActivity(i);
-
                 break;
             case R.id.usuarios:
+                i = new Intent(this, ListaUsuarios.class);
+                startActivity(i);
                 break;
             case R.id.corte:
+                i = new Intent(this,Corte.class);
+                startActivity(i);
                 break;
             case R.id.dashboard:
                 i = new Intent(this, Dashboard.class);

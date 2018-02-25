@@ -77,9 +77,12 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
     String url;
     RequestQueue requestQueue;
-    JSONArray TARJETAS;
 
+    JSONArray TARJETAS;
     JSONArray Reuniones;
+    JSONArray Testers;
+
+
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
     ArrayList<Fuente_Notificaciones> listanotificacion = new ArrayList<>();
 
@@ -118,6 +121,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
                             TARJETAS = response.getJSONArray("tarjetas");
                             Reuniones = response.getJSONArray("reunion");
+                            Testers = response.getJSONArray("tester");
                             String dtStart = response.getString("fecha");
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                             try {
