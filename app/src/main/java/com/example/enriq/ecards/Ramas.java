@@ -48,7 +48,7 @@ public class Ramas extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Proyectos");
+        toolbar.setTitle("Ramas");
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
@@ -71,7 +71,7 @@ public class Ramas extends AppCompatActivity {
 
 
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp,
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

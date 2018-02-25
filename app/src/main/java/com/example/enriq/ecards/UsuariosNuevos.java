@@ -103,9 +103,11 @@ public class UsuariosNuevos extends AppCompatActivity {
         for (int i = 0; i < DATOS.length(); i++) {
             JSONObject row = null;
             row = DATOS.getJSONObject(i);
-            String NombreTEmp = row.getString("nombre");
+            String NombreTEmp = row.getString("nombres");
+            String ApellidosTEmp = row.getString("apellidos");
+            String NombreMostrar = NombreTEmp+" "+ApellidosTEmp;
             String BDidTEmp = row.getString("_id");
-            usuarios.add(new ElementoLista(NombreTEmp, BDidTEmp));
+            usuarios.add(new ElementoLista(NombreMostrar, BDidTEmp));
         }
 
         ListView list = (ListView) findViewById(R.id.lista);

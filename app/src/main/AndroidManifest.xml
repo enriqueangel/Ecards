@@ -50,7 +50,14 @@
         <activity android:name=".Ramas" />
         <activity android:name=".UsuariosNuevos" />
         <activity android:name=".Desempeno" />
-        <activity android:name=".DesempenoFragment"></activity>
+        <activity android:name=".DesempenoFragment" />
+        <activity android:name=".Rama">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
