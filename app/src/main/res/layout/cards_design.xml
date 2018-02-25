@@ -5,103 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp">
-
-<FrameLayout
-    android:layout_width="105dp"
-    android:layout_height="match_parent"
-    android:background="@color/indigo">
-
-</FrameLayout>
-
+    app:cardCornerRadius="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:focusable="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="131dp"
+        android:layout_height="wrap_content"
         android:clipChildren="false">
 
-        <ImageView
-            android:id="@+id/imagen"
-            android:layout_margin="2dp"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_above="@+id/version"
-            android:contentDescription="@string/tarjeta"
-
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:id="@+id/version"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/tiempo_r"
-            android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp"
-            android:text="@string/vr"
-            android:textColor="@color/blanco"
-            android:textStyle="bold" />
+            android:id="@+id/campoImagen"
+            android:orientation="vertical"
+            android:background="@color/indigo"
+            android:gravity="center">
 
-        <TextView
-            android:id="@+id/vr"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/imagen"
+                android:layout_margin="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_above="@+id/version"
+                android:contentDescription="@string/tarjeta"
+                android:src="@drawable/card_green"
+                android:layout_gravity="top"/>
+
+            <TextView
+                android:id="@+id/vr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vr"
+                android:textColor="@color/blanco"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/version"
-            android:layout_toRightOf="@+id/version"
-            android:text=""
-            android:textColor="@color/blanco"
-            android:textStyle="bold" />
+            android:layout_toEndOf="@+id/campoImagen"
+            android:layout_toRightOf="@+id/campoImagen">
 
+            <TextView
+                android:id="@+id/EDTtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/titulo"
+                android:textSize="18sp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp" />
 
-        <TextView
-            android:id="@+id/EDTtitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/TXVtipo"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/TXVtipo"
-            android:layout_marginTop="11dp"
-            android:text="@string/titulo"
-            android:textSize="25sp" />
+            <TextView
+                android:id="@+id/TXVtipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/EDTtitulo"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/tipo" />
 
-        <TextView
-            android:id="@+id/TXVtipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/EDTtitulo"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="11dp"
-            android:layout_toEndOf="@+id/imagen"
-            android:layout_toRightOf="@+id/imagen"
-            android:text="@string/tipo" />
+            <TextView
+                android:id="@+id/fecha_e"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TXVtipo"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/tiempo_de_entrega" />
 
-        <TextView
-            android:id="@+id/fecha_e"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tiempo_r"
-            android:layout_alignLeft="@+id/TXVtipo"
-            android:layout_alignStart="@+id/TXVtipo"
-            android:layout_marginTop="11dp"
-            android:text="@string/tiempo_de_entrega" />
+            <TextView
+                android:id="@+id/tiempo_r"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fecha_e"
+                android:layout_alignLeft="@+id/fecha_e"
+                android:layout_marginTop="10dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/tiempo_restante" />
 
-        <TextView
-            android:id="@+id/tiempo_r"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/fecha_e"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/fecha_e"
-            android:layout_marginTop="11dp"
-            android:text="@string/tiempo_restante" />
-
-
+        </RelativeLayout>
     </RelativeLayout>
-
 
 </android.support.v7.widget.CardView>

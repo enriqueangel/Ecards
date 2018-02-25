@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +25,9 @@ public class PerfilFragment extends Fragment {
 
     JSONObject DATOS;
     TextView Nombre,Correo,Telefono,Ramas,HorasContratadas;
+    FloatingActionButton btnEditar;
+
+    String tipoUsuario = "LIDER";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -34,11 +39,17 @@ public class PerfilFragment extends Fragment {
         LinearLayout cabecera = (LinearLayout) view.findViewById(R.id.cabecera);
         cabecera.setBackground(getResources().getDrawable(R.drawable.fondo_perfil));
 
+        btnEditar = (FloatingActionButton) view.findViewById(R.id.btnEditar);
+
         Nombre = (TextView) view.findViewById(R.id.TXVnombre);
         Correo = (TextView) view.findViewById(R.id.TXVCorreo);
         Telefono = (TextView) view.findViewById(R.id.Telefono);
         Ramas = (TextView) view.findViewById(R.id.TXVRAMAS);
         HorasContratadas = (TextView) view.findViewById(R.id.Horas_Contratadas);
+
+        if(tipoUsuario.equals("SUPERU")){
+            btnEditar.setVisibility(View.VISIBLE);
+        }
 
         try {
             DATOS = new JSONObject(getArguments().getString("DATOS"));
