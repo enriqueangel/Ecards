@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.enriq.ecards.Recuperar_PIN">
+    tools:context="com.woldev.enriq.ecards.Recuperar_PIN">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.enriq.ecards.RecuperarContrasena"
+    tools:context="com.woldev.enriq.ecards.RecuperarContrasena"
     android:layout_gravity="center">
 
     <LinearLayout

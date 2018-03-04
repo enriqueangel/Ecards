@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.example.enriq.ecards.Cod_Rama"
+    tools:context="com.woldev.enriq.ecards.Cod_Rama"
     android:gravity="center">
 
     <!-- TODO: Update blank fragment layout -->

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.enriq.ecards">
+    package="com.woldev.enriq.ecards">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".VariablesGlobales"
+        android:name="com.woldev.enriq.ecards.VariablesGlobales"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,40 +17,40 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen">
+        <activity android:name="com.woldev.enriq.ecards.Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Card" />
-        <activity android:name=".Crear_Pin" />
-        <activity android:name=".login_pin" />
-        <activity android:name=".Recuperar_PIN" />
-        <activity android:name=".RecuperarContrasena" />
-        <activity android:name=".perfil" />
-        <activity android:name=".editperfil" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".MenuAdmin" />
-        <activity android:name=".MenuLider" />
-        <activity android:name=".SelectImagen" />
-        <activity android:name=".CrearReunion" />
-        <activity android:name=".MenuSuperU" />
-        <activity android:name=".Tarjeta" />
-        <activity android:name=".ListaUsuarios" />
-        <activity android:name=".Crear_Tarjeta" />
-        <activity android:name=".Crear_Tester" />
-        <activity android:name=".InfoUser" />
-        <activity android:name=".Corte" />
-        <activity android:name=".TiposTareas" />
-        <activity android:name=".Proyectos" />
-        <activity android:name=".Ramas" />
-        <activity android:name=".UsuariosNuevos" />
+        <activity android:name="com.woldev.enriq.ecards.MainActivity" />
+        <activity android:name="com.woldev.enriq.ecards.Card" />
+        <activity android:name="com.woldev.enriq.ecards.Crear_Pin" />
+        <activity android:name="com.woldev.enriq.ecards.login_pin" />
+        <activity android:name="com.woldev.enriq.ecards.Recuperar_PIN" />
+        <activity android:name="com.woldev.enriq.ecards.RecuperarContrasena" />
+        <activity android:name="com.woldev.enriq.ecards.perfil" />
+        <activity android:name="com.woldev.enriq.ecards.editperfil" />
+        <activity android:name="com.woldev.enriq.ecards.Dashboard" />
+        <activity android:name="com.woldev.enriq.ecards.MenuAdmin" />
+        <activity android:name="com.woldev.enriq.ecards.MenuLider" />
+        <activity android:name="com.woldev.enriq.ecards.SelectImagen" />
+        <activity android:name="com.woldev.enriq.ecards.CrearReunion" />
+        <activity android:name="com.woldev.enriq.ecards.MenuSuperU" />
+        <activity android:name="com.woldev.enriq.ecards.Tarjeta" />
+        <activity android:name="com.woldev.enriq.ecards.ListaUsuarios" />
+        <activity android:name="com.woldev.enriq.ecards.Crear_Tarjeta" />
+        <activity android:name="com.woldev.enriq.ecards.Crear_Tester" />
+        <activity android:name="com.woldev.enriq.ecards.InfoUser" />
+        <activity android:name="com.woldev.enriq.ecards.Corte" />
+        <activity android:name="com.woldev.enriq.ecards.TiposTareas" />
+        <activity android:name="com.woldev.enriq.ecards.Proyectos" />
+        <activity android:name="com.woldev.enriq.ecards.Ramas" />
+        <activity android:name="com.woldev.enriq.ecards.UsuariosNuevos" />
         <activity android:name=".Desempeno" />
-        <activity android:name=".DesempenoFragment" />
-        <activity android:name=".Rama">
+        <activity android:name="com.woldev.enriq.ecards.DesempenoFragment" />
+        <activity android:name="com.woldev.enriq.ecards.Rama">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

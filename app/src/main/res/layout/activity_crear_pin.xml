@@ -6,7 +6,7 @@
     android:id="@+id/activity_crear_pin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.enriq.ecards.Crear_Pin"
+    tools:context="com.woldev.enriq.ecards.Crear_Pin"
     >
 
     <LinearLayout

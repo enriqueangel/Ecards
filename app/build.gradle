@@ -1,10 +1,18 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        tarjetas {
+            keyAlias 'keytarjetas'
+            keyPassword '123456'
+            storeFile file('C:/Users/mvrp0/AndroidStudioProjects/Ecards/app/release/app-release.apk')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.example.enriq.ecards"
+        applicationId "com.woldev.enriq.ecards"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -38,8 +46,6 @@ dependencies {
     compile 'com.github.ganfra:material-spinner:2.0.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:26.1.0'
-
-
 }
 
 
