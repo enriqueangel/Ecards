@@ -48,15 +48,7 @@
         <activity android:name="com.woldev.enriq.ecards.Proyectos" />
         <activity android:name="com.woldev.enriq.ecards.Ramas" />
         <activity android:name="com.woldev.enriq.ecards.UsuariosNuevos" />
-        <activity android:name=".Desempeno" />
-        <activity android:name="com.woldev.enriq.ecards.DesempenoFragment" />
-        <activity android:name="com.woldev.enriq.ecards.Rama">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="com.woldev.enriq.ecards.Rama"/>
     </application>
 
 </manifest>

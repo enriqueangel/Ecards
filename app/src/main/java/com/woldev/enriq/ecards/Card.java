@@ -263,7 +263,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("TARJETAS");
+        getSupportActionBar().setTitle("Tarjetas");
 
         clickperf = (FloatingActionButton) findViewById(R.id.perfil);
         clickDashboard = (FloatingActionButton) findViewById(R.id.exit);

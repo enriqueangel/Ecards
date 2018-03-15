@@ -74,4 +74,9 @@
     <string name="motivo">Motivo</string>
     <string name="nombre_tarea">Nombre tarea</string>
     <string name="clasificacion_tarea">Clasificación tarea</string>
+    <string name="editar">Editar</string>
+    <string name="guardar">Guardar</string>
+    <string name="camara">Camara</string>
+    <string name="galeria">Galeria</string>
+    <string name="seleccionar">Seleccionar</string>
 </resources>

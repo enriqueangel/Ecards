@@ -11,7 +11,9 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -50,37 +52,27 @@ public class editperfil extends AppCompatActivity {
             case ImagenNueva:
                 if (resultCode == RESULT_OK){
                     Uri path = data.getData();
-
                     try {
-
                         Bitmap original = BitmapFactory.decodeFile(path.toString());
                         original = RotateBitmap(original, 90);
                         Foto.setImageBitmap(original);
-
                     }catch (Exception e){
-
                         Foto.setImageURI(path);
                     }
-
-
-
-
                 }
-
-
                 break;
-
-
-
-
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_editperfil);
+        setContentView(R.layout.activity_editar_perfil);
 
+        Toolbar toolbar = findViewById(R.id.include);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("Editar Perfil");
 
         Nombres = (TextInputEditText) findViewById(R.id.TXTEDTnombre);
         Apellidos = (TextInputEditText) findViewById(R.id.TXTEDTapellido);
@@ -109,7 +101,6 @@ public class editperfil extends AppCompatActivity {
         GuardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
                 dialog.show();
                 final String nombresTEMP = Nombres.getText().toString();
                 final String apellidosTEMP = Apellidos.getText().toString();
@@ -181,10 +172,21 @@ public class editperfil extends AppCompatActivity {
             }
         });
     }
-    public static Bitmap RotateBitmap(Bitmap source, float angle)
-    {
+
+    public static Bitmap RotateBitmap(Bitmap source, float angle){
         Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
