@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class viewHolder extends RecyclerView.ViewHolder {
 
-    TextView titulo,tipo,fecha_e,tiempo_r,version;
+    TextView titulo,tipo,fecha_e,tiempo_r,version,TituloCampo1,TituloCampo2;
     ImageView TarjetaColor;
     JSONObject DATOS;
 
@@ -29,6 +29,9 @@ public class viewHolder extends RecyclerView.ViewHolder {
         tiempo_r = (TextView) itemView.findViewById(R.id.tiempo_r);
         version = (TextView) itemView.findViewById(R.id.vr);
         TarjetaColor = (ImageView) itemView.findViewById(R.id.imagen);
+
+        TituloCampo1 = (TextView) itemView.findViewById(R.id.titulo_tiempo);
+        TituloCampo2 = (TextView) itemView.findViewById(R.id.titulo_fecha);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

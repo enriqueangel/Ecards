@@ -209,7 +209,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
             ContCardsAzulint ++;
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row));
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -399,7 +399,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             String TipoTEMP;
             String VersionTEMP;
 
-            String TiempoEsperado = row.getString("tiempo_estimado");
+            String TiempoRealizado = row.getString("tiempo_trabajado");
             String dtStart2 = row.getString("fecha_entrega");
             String dtStart = "";
             Date FechaEntrega = null ;
@@ -423,7 +423,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             String COLORTEMP = "";
 
 
-            if (row.getString("color").equals("verde")){
+            if (row.getString("tipo").equals("2")){
                 TipoTEMP = "";
                 VersionTEMP = "1";
                 ColorTArgeta  = R.drawable.card_green;
@@ -463,7 +463,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
             row.put("Color",COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
         }
 
     };

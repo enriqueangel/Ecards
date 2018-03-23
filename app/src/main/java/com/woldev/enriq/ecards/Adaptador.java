@@ -43,8 +43,8 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
 
         if (ListaObjeto.get(position).getReunion()) {
 
-            holder.tiempo_r.setVisibility(View.INVISIBLE);
-            holder.fecha_e.setVisibility(View.GONE);
+            holder.TituloCampo1.setText("Lugar");
+            holder.TituloCampo2.setText("Fecha");
 
         }else{
 
