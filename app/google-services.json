@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "946570232458",
+    "firebase_url": "https://ecards-3fa31.firebaseio.com",
+    "project_id": "ecards-3fa31",
+    "storage_bucket": "ecards-3fa31.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946570232458:android:f9906bd07ddf58a1",
+        "android_client_info": {
+          "package_name": "com.woldev.enriq.ecards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946570232458-70d1b19hnprjgn4qndkg7fs7ik90gtlc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4daWq6pt9VdLqTwzSxj_cRhO2z_a5rbQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
