@@ -1,10 +1,14 @@
 package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -35,7 +39,6 @@ public class Corte extends AppCompatActivity {
     String url ;
     RequestQueue requestQueue;
     JSONArray CargarUsuarios;
-
     AlertDialog dialog;
 
     @Override
@@ -225,6 +228,8 @@ public class Corte extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Corte");
 
+
+
         url = getString(R.string.URLWS);
 
         listView = (ExpandableListView) findViewById(R.id.ramas);
@@ -238,16 +243,25 @@ public class Corte extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.historial, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
+        Intent i;
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.historial:
+                i = new Intent(Corte.this, HistorialCorteActivity.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
 }

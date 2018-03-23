@@ -8,41 +8,43 @@
     tools:context="com.woldev.enriq.ecards.MenuLider">
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="194dp">
 
         <include
             android:id="@+id/include"
-            layout="@layout/toolbar"/>
+            layout="@layout/toolbar" />
 
         <ScrollView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:orientation="vertical"
                 android:scrollbars="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:clipToPadding="false">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/crear_tarjeta"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/rojo_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -77,10 +79,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/morado_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -115,19 +117,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:clipToPadding="false">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/crear_tester"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/verde_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -162,10 +164,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/rojo_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -200,19 +202,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:clipToPadding="false">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/proyectos"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/morado_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -247,10 +249,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/verde_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -285,19 +287,19 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:clipToPadding="false">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/rama"
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/rojo_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -332,10 +334,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/morado_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
@@ -370,9 +372,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:clipToPadding="false">
+                    android:orientation="horizontal">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/corte"
@@ -417,10 +419,10 @@
                         android:layout_width="140dp"
                         android:layout_height="140dp"
                         android:layout_margin="10dp"
-                        android:orientation="horizontal"
                         android:clickable="true"
                         android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
+                        android:orientation="horizontal"
                         app:cardBackgroundColor="@color/rojo_card"
                         app:cardCornerRadius="7dp"
                         app:cardElevation="5dp">
