@@ -33,15 +33,32 @@
                 android:src="@drawable/card_green"
                 android:layout_gravity="top"/>
 
-            <TextView
-                android:id="@+id/vr"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/vr"
-                android:textColor="@color/blanco"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vr. "
+                    android:textColor="@color/blanco"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/vr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textColor="@color/blanco"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -49,7 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/campoImagen"
-            android:layout_toRightOf="@+id/campoImagen">
+            android:layout_toRightOf="@+id/campoImagen"
+            android:paddingLeft="5dp">
 
             <TextView
                 android:id="@+id/EDTtitulo"
@@ -58,8 +76,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="10dp"
                 android:text="@string/titulo"
-                android:textSize="18sp"
-                android:paddingRight="5dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingRight="10dp"
                 android:paddingLeft="5dp" />
 
             <TextView
@@ -67,32 +86,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EDTtitulo"
-                android:paddingRight="5dp"
+                android:paddingRight="10dp"
                 android:paddingLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:text="@string/tipo" />
 
-            <TextView
-                android:id="@+id/fecha_e"
+            <LinearLayout
+                android:id="@+id/contenedor_fecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_below="@+id/TXVtipo"
-                android:paddingRight="5dp"
-                android:paddingLeft="5dp"
+                android:layout_alignLeft="@+id/TXVtipo"
+                android:layout_alignStart="@+id/TXVtipo"
                 android:layout_marginTop="10dp"
-                android:text="@string/tiempo_de_entrega" />
+                android:paddingRight="10dp"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/tiempo_r"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/titulo_tiempo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tiempo_realizado_2"
+                    android:gravity="left"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/tiempo_r"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20:30"
+                    android:gravity="right"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/fecha_e"
-                android:layout_alignLeft="@+id/fecha_e"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
-                android:paddingRight="5dp"
+                android:paddingRight="10dp"
                 android:paddingLeft="5dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/tiempo_restante" />
+                android:layout_below="@+id/contenedor_fecha"
+                android:layout_alignLeft="@+id/contenedor_fecha"
+                android:layout_alignStart="@+id/contenedor_fecha">
+
+                <TextView
+                    android:id="@+id/titulo_fecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fecha_de_entrega"
+                    android:layout_weight="1"
+                    android:gravity="left"/>
+
+                <TextView
+                    android:id="@+id/fecha_e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="23/03/2018"
+                    android:layout_weight="1"
+                    android:gravity="right"/>/>
+
+            </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>
