@@ -227,7 +227,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         RelativeLayout layout = new RelativeLayout(getApplicationContext());
         layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
 
-        //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
+
         contenedor.setAdapter(new Adaptador(listaTarjetas));
 
         contenedor.setLayoutManager(new LinearLayoutManager(this));

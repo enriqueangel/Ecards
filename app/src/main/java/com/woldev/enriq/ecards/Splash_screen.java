@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Splash_screen extends AppCompatActivity {
 
@@ -18,14 +21,6 @@ public class Splash_screen extends AppCompatActivity {
             public void run() {
                 SharedPreferences SP = getSharedPreferences("PIN",MODE_PRIVATE);
 
-                SharedPreferences.Editor editor = SP.edit();
-
-                //editor.clear();
-
-                // editor.remove("Correo");
-                // editor.putBoolean("User",true);
-                //editor.putString("Correo","ronald-1524@hotmail.com");
-                //editor.apply();
 
                 boolean HayUsuario = SP.getBoolean("User",false);
 

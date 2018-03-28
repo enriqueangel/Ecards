@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +50,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class SignInFragment extends Fragment {
 
@@ -178,9 +181,12 @@ public class SignInFragment extends Fragment {
                     url = getString(R.string.URLWS);
                     url = url+"login";
 
+                    String token = FirebaseInstanceId.getInstance().getToken();
+
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
                     params.put("password", password_inp);
+                    params.put("TokenFB", token);
 
                     JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                             new Response.Listener<JSONObject>() {
@@ -193,10 +199,15 @@ public class SignInFragment extends Fragment {
                                             String token = response.get("token").toString();
                                             Actividad = getActivity();
 
-                                            SharedPreferences SP = Actividad.getSharedPreferences("TOKEN", Context.MODE_PRIVATE);
+                                            SharedPreferences SP = Actividad.getSharedPreferences("TOKEN", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = SP.edit();
                                             editor.putString("token",token);
                                             editor.apply();
+
+                                            SharedPreferences SP2 = Actividad.getSharedPreferences("FireBase",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor2 = SP2.edit();
+                                            editor2.putString("token",token);
+                                            editor2.apply();
 
                                             Intent intent = new Intent(getActivity(), Crear_Pin.class);
                                             intent.putExtra( "Correo", correo.getText().toString());

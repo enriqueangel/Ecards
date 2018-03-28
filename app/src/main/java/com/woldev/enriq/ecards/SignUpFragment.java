@@ -28,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,6 +105,8 @@ public class SignUpFragment extends Fragment {
 
                     url = baseUrl + "registro";
 
+                    String tokenFB = FirebaseInstanceId.getInstance().getToken();
+
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("correo", correo_inp);
                     params.put("password", password_inp);
@@ -111,6 +114,7 @@ public class SignUpFragment extends Fragment {
                     params.put("apellidos", apellido_inp);
                     params.put("telefono", telefono_inp);
                     params.put("area", CODIGORAMA);
+                    params.put("TokenFB", tokenFB);
 
                     JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                             new Response.Listener<JSONObject>() {
