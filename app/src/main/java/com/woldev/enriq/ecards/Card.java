@@ -119,6 +119,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                                 e.printStackTrace();
                             }
 
+
+                            ImprimirTesters();
                             ImprimirReuniones();
                             ImprimirTargetas();
 
@@ -168,6 +170,14 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         requestQueue.add(arrReq);
 
         super.onStart();
+    }
+
+    private void ImprimirTesters() throws JSONException {
+        for (int i = 0; i < Testers.length(); i++) {
+            JSONObject row = Testers.getJSONObject(i);
+
+        }
+
     }
 
     private void ImprimirReuniones() throws JSONException {
