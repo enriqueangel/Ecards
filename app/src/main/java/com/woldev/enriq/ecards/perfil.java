@@ -1,6 +1,7 @@
 package com.woldev.enriq.ecards;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,16 +10,20 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class perfil extends AppCompatActivity {
 
     JSONObject DATOS;
     TextView Correo,Nombres,Apellidos,Telefono,Rama,HrsLaborales;
     FloatingActionButton EditarDAtos;
+    CircleImageView circleImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +39,15 @@ public class perfil extends AppCompatActivity {
         Rama = (TextView) findViewById(R.id.TXTVRama);
         HrsLaborales = (TextView) findViewById(R.id.TXTVHrsLaborales);
         EditarDAtos = (FloatingActionButton) findViewById(R.id.BTNEditarDatos);
+        circleImageView = (CircleImageView) findViewById(R.id.imageView2);
+
+
+
+        Picasso.with(getApplicationContext()).load("http://i.imgur.com/DvpvklR.png").into(circleImageView);
 
         try {
             DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
             String NombreTemp = DATOS.get("nombres").toString() + " " + DATOS.get("apellidos").toString();
-
             getSupportActionBar().setTitle(NombreTemp);
             Correo.setText(DATOS.get("email").toString());
             Telefono.setText(DATOS.get("telefono").toString());
