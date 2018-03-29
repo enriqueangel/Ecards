@@ -204,11 +204,6 @@ public class SignInFragment extends Fragment {
                                             editor.putString("token",token);
                                             editor.apply();
 
-                                            SharedPreferences SP2 = Actividad.getSharedPreferences("FireBase",MODE_PRIVATE);
-                                            SharedPreferences.Editor editor2 = SP2.edit();
-                                            editor2.putString("token",token);
-                                            editor2.apply();
-
                                             Intent intent = new Intent(getActivity(), Crear_Pin.class);
                                             intent.putExtra( "Correo", correo.getText().toString());
                                             startActivity(intent);

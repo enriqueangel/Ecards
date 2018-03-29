@@ -39,69 +39,19 @@ public class FireBaseInstanceIDService extends FirebaseInstanceIdService {
 
         String token = FirebaseInstanceId.getInstance().getToken();
 
-        enviarTokenAlServidor(token);
-    }
+        SharedPreferences SP2 = getSharedPreferences("FireBase",MODE_PRIVATE);
+        SharedPreferences.Editor editor2 = SP2.edit();
 
-    private void enviarTokenAlServidor(String token) {
+        String TokenFBtemp  = SP2.getString("TokenFB","");
 
-        SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
-        final String  tokenWS = SP.getString("token","");
-
-        if  (tokenWS.equals("")){
-            return;
+        if(TokenFBtemp.equals("")){
+            editor2.putString("TokenFB",token);
         }
 
-        RequestQueue requestQueue;
-        requestQueue = Volley.newRequestQueue(this);
-
-
-        String urltemp = getString(R.string.URLWS)+"tokenfbput";
-
-
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("token", token);
-
-
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String respuesta = response.get("respuesta").toString();
-                            if(respuesta.equals("si")){
-
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Error enviando el token de notificaciones al WS", Toast.LENGTH_LONG).show();
-                            }
-
-                        } catch (JSONException e) {
-
-                            Toast.makeText(getApplicationContext(), "Error enviando el token de notificaciones al WS", Toast.LENGTH_LONG).show();
-
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), "Error enviando el token de notificaciones al WS", Toast.LENGTH_LONG).show();
-                    }
-                }
-        ){
-            /*
-            /**
-             * Passing some request headers
-             * */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("token", tokenWS);
-                return headers;
-            }
-        };
-
-        requestQueue.add(arrReq);
+        editor2.putString("TokenFBnuevo",token);
+        editor2.apply();
 
     }
+
+
 }
