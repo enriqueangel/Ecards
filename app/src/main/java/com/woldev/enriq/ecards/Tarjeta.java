@@ -143,6 +143,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 loadFragment(Fr3);
                 break;
             case "verde":
+                btnRechazar.setVisibility(View.VISIBLE);
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde));
                 TarjetaFragment Fr4 = new TarjetaFragment();
                 Fr4.setArguments(args);
@@ -228,13 +229,8 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         entregarTarjeta.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-
                 dialogCargando.show();
-
-
                 String urltemp = url+"trabajo/entregar_tarjeta";
-
                 requestQueue = Volley.newRequestQueue(getApplicationContext());
 
                 Map<String, String> params = new HashMap<String, String>();
@@ -268,8 +264,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                                         dialogCargando.dismiss();
                                         Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
                                     }
-
-
                                 } catch (JSONException e) {
                                     dialogCargando.dismiss();
                                     Toast.makeText(getApplicationContext(), "Error entregando la tarjeta", Toast.LENGTH_LONG).show();
@@ -381,9 +375,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
-
-
                         boolean enviar = true;
 
                         if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
@@ -398,13 +389,10 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                             enviar = false;
                         }else{
                             campoDescripcion.setError(null);
-
                         }
 
                         if(enviar){
-
                             dialogCargando.show();
-
 
                             String urltemp = url+"trabajo/reportar_horas";
 
@@ -415,30 +403,21 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                             params.put("descripcion", Descripcion.getText().toString());
                             params.put("horas_trabajadas", Horas.getText().toString());
 
-
-
                             try {
                                 switch (color){
                                     case ("azul"):
                                         params.put("reunion", DATOS.getString("_id"));
                                         break;
-
                                     default:
                                         params.put("tarjeta", DATOS.getString("_id"));
 
                                         JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
                                         params.put("tipotarea", TipoTareaTEMP.getString("_id"));
                                         break;
-
-
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
-
-
-
 
                             JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                                     new Response.Listener<JSONObject>() {
@@ -453,7 +432,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                                                     dialogCargando.dismiss();
                                                     Toast.makeText(getApplicationContext(), "Error reportando las horas", Toast.LENGTH_LONG).show();
                                                 }
-
 
                                             } catch (JSONException e) {
                                                 dialogCargando.dismiss();

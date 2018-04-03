@@ -55,7 +55,6 @@
                             android:id="@+id/TXVfecha_entrega"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -102,7 +101,6 @@
                             android:id="@+id/TXVproyecto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -111,102 +109,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/proyecto"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="#727272" />
-
-                        <include layout="@layout/item_divider" />
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/TILTipoTarea"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
-
-                    <ImageView
-                        android:id="@+id/itemTipo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        app:srcCompat="@drawable/ic_assignment_late_black_24dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/itemTipo"
-                        android:layout_toRightOf="@id/itemTipo"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/TXVtipo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#212121" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/tipo_tarea"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="#727272" />
-
-                        <include layout="@layout/item_divider" />
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/TILTiempoEstimado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
-
-                    <ImageView
-                        android:id="@+id/itemTiempoEstimado"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        app:srcCompat="@drawable/ic_access_time_black_24dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/itemTiempoEstimado"
-                        android:layout_toRightOf="@id/itemTiempoEstimado"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/TXVtiempo_estimado"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#212121" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/tiempo_estimado"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="#727272" />
 
@@ -245,7 +147,6 @@
                             android:id="@+id/TXVtiempo_desarrollo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             android:textColor="#212121" />
 
@@ -304,54 +205,6 @@
                             android:text="@string/link_ayuda"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="#727272" />
-
-                        <include layout="@layout/item_divider" />
-
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/TILRechazo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:background="?attr/selectableItemBackground"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
-
-                    <ImageView
-                        android:id="@+id/itemRechazo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        app:srcCompat="@drawable/ic_block_red_24dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@id/itemRechazo"
-                        android:layout_toRightOf="@id/itemRechazo"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/TXVRechaza"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="@color/rojo"
-                            android:text="asdfasdfasdfa"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Motivo del rechazo"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                            android:textColor="@color/accent_rojo" />
 
                         <include layout="@layout/item_divider" />
 

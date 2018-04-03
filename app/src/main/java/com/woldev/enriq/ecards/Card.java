@@ -63,7 +63,6 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     int ContCardsVerdeint = 0;
     int ContCardsAzulint = 0;
 
-
     String url;
     RequestQueue requestQueue;
 
@@ -71,21 +70,16 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     JSONArray Reuniones;
     JSONArray Testers;
 
-
     ArrayList<Fuente> listaTarjetas = new ArrayList<Fuente>();
     ArrayList<Fuente_Notificaciones> listanotificacion = new ArrayList<>();
 
-
     FloatingActionButton clickperf,clickDashboard;
     TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul;
-
     Toolbar toolbar, cards;
-
     Date FechaServidor;
 
     @Override
     protected void onStart() {
-
         url = getString(R.string.URLWS);
         url = url+"tarjetas";
         dialog.show();
@@ -96,18 +90,17 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
         listaTarjetas.clear();
 
-         ContCardsBlancoint = 0;
-         ContCardsAmarilloint = 0;
-         ContCardsRojoint = 0;
-         ContCardsVerdeint = 0;
-         ContCardsAzulint = 0;
+        ContCardsBlancoint = 0;
+        ContCardsAmarilloint = 0;
+        ContCardsRojoint = 0;
+        ContCardsVerdeint = 0;
+        ContCardsAzulint = 0;
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             TARJETAS = response.getJSONArray("tarjetas");
                             Reuniones = response.getJSONArray("reunion");
                             Testers = response.getJSONArray("tester");
@@ -118,7 +111,6 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-
 
                             ImprimirTesters();
                             ImprimirReuniones();
@@ -131,9 +123,6 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                             ContCardsAzul.setText(String.valueOf(ContCardsAzulint));
 
                             dialog.dismiss();
-
-
-
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
                             dialog.dismiss();
@@ -168,31 +157,23 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         };
 
         requestQueue.add(arrReq);
-
         super.onStart();
     }
 
     private void ImprimirTesters() throws JSONException {
         for (int i = 0; i < Testers.length(); i++) {
             JSONObject row = Testers.getJSONObject(i);
-
         }
-
     }
 
     private void ImprimirReuniones() throws JSONException {
         for (int i = 0; i < Reuniones.length(); i++) {
             JSONObject row = Reuniones.getJSONObject(i);
             String DescripcionTEMP = row.getString("titulo");
-
             String TipoTEMP = row.getString("hora");
-
             String VersionTEMP = "1";
-
             String TiempoEsperado = row.getString("lugar");
-
             String dtStart2 = row.getString("fecha");
-
             String dtStart = "";
 
             // el que parsea
@@ -207,18 +188,11 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
             int ColorTArgeta ;
-
             String COLORTEMP = "azul";
-
             ColorTArgeta  = R.drawable.card_indigo;
-
             row.put("Color",COLORTEMP);
-
             ContCardsAzulint ++;
-
             listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row));
         }
 
@@ -227,12 +201,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         RelativeLayout layout = new RelativeLayout(getApplicationContext());
         layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
 
-
         contenedor.setAdapter(new Adaptador(listaTarjetas));
-
         contenedor.setLayoutManager(new LinearLayoutManager(this));
-
-
     }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -270,8 +240,6 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         //listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
         //menulateral.setAdapter(new Adaptador_Notificaciones(listanotificacion));
         //menulateral.setLayoutManager(new LinearLayoutManager(this));
-
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tarjetas");
 
@@ -369,16 +337,13 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-
         switch (item.getItemId()){
            case R.id.notification:
-
                if (drawer.isDrawerOpen(Gravity.RIGHT)) {
                    drawer.closeDrawer(Gravity.RIGHT);
                }
                drawer.openDrawer(Gravity.RIGHT);
                return true;
-
                //menulateral.setNavigationItemSelectedListener(this);
 
             default:
@@ -398,10 +363,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             String dtStart = row.getString("fecha_entrega");
     }*/
 
-
-
     private void ImprimirTargetas() throws JSONException {
-
         for (int i = 0; i < TARJETAS.length(); i++) {
             JSONObject row = TARJETAS.getJSONObject(i);
             String DescripcionTEMP = row.getString("titulo");
@@ -415,8 +377,6 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             Date FechaEntrega = null ;
 
             SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
-
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
 
             try {
@@ -426,17 +386,13 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                 e.printStackTrace();
             }
 
-
-
             int ColorTArgeta ;
-
             String COLORTEMP = "";
-
 
             if (row.getString("tipo").equals("2")){
                 TipoTEMP = "";
                 VersionTEMP = "1";
-                ColorTArgeta  = R.drawable.card_green;
+                ColorTArgeta  = R.drawable.ic_card_green;
                 COLORTEMP = "verde";
                 ContCardsVerdeint ++;
             }else{
@@ -446,40 +402,34 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-
                 long DiasRestantes = 100;
                 DiasRestantes = calcularColor(FechaEntrega);
 
-
                 if (DiasRestantes <= 0){
                     ContCardsRojoint ++;
-                    ColorTArgeta  = R.drawable.card_red;
+                    ColorTArgeta  = R.drawable.ic_card_red;
                     COLORTEMP = "rojo";
                 }else if(DiasRestantes <= 2){
                     ContCardsRojoint ++;
-                    ColorTArgeta  = R.drawable.card_red;
+                    ColorTArgeta  = R.drawable.ic_card_red;
                     COLORTEMP = "rojo";
                 }else if(DiasRestantes <= 4){
                     ContCardsAmarilloint ++;
-                    ColorTArgeta  = R.drawable.card_yellow;
+                    ColorTArgeta  = R.drawable.ic_card_yellow;
                     COLORTEMP = "naranja";
                 }else{
                     ContCardsBlancoint ++;
-                    ColorTArgeta  = R.drawable.card_white;
+                    ColorTArgeta  = R.drawable.ic_card_white;
                     COLORTEMP = "blanco";
                 }
             }
-
-
             row.put("Color",COLORTEMP);
 
             listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
         }
-
     };
 
     private long calcularColor(Date FechaFin){
-
         Date fechaInicio = FechaServidor;
         Date fechaLlegada = FechaFin;
 
@@ -520,13 +470,10 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         return diffdias;
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         return true;
-
     }
 }
 

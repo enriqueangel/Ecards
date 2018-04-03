@@ -20,9 +20,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/fondo_azul"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary"
-
-            >
+            app:contentScrim="?attr/colorPrimary">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -68,7 +66,8 @@
             app:fab_colorNormal="?attr/colorAccent"
             app:fab_size="mini"
             app:fab_icon="@drawable/ic_close_white_24dp"
-            app:fab_title="Rechazar"/>
+            app:fab_title="Rechazar"
+            android:visibility="gone"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnReportar"
