@@ -83,6 +83,9 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
             case "verde":
                 setTheme(style.ThemeVerde);
                 break;
+            case "morado":
+                setTheme(style.ThemePurple);
+                break;
         }
 
         setContentView(layout.activity_tarjeta);
@@ -154,6 +157,13 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 Fr5.setArguments(args);
                 loadFragment(Fr5);
                 btnRechazar.setVisibility(View.GONE);
+                break;
+            case "morado":
+                collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_morado));
+                TarjetaFragment Fr6 = new TarjetaFragment();
+                Fr6.setArguments(args);
+                loadFragment(Fr6);
+                break;
         }
     }
 
@@ -172,7 +182,10 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case id.btnEntregar:
-                crearDialogEntregar();
+                if(color.equals("verde"))
+                    crearDialogCalificar();
+                else
+                    crearDialogEntregar();
                 break;
             case id.btnReportar:
                 crearDialogReportarHoras();
@@ -183,6 +196,44 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    private void crearDialogCalificar() {
+        final AlertDialog.Builder calificarTarjeta = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final View mView = this.getLayoutInflater().inflate(layout.dialog_calificacion, null);
+        calificarTarjeta.setView(mView);
+        calificarTarjeta.setTitle("Calificar tarjeta");
+
+        calificarTarjeta.setPositiveButton("Calificar", null);
+
+        calificarTarjeta.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = calificarTarjeta.create();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getApplicationContext(), "Calificacion realizada", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
+        dialog.show();
     }
 
     private void crearDialogRechazar() {
@@ -337,20 +388,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        /*reportarHoras.setPositiveButton("Reportar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "No ingreso ningun tiempo", Toast.LENGTH_LONG).show();
-                }else{
-
-                }
-
-
-            }
-        });*/
-
         reportarHoras.setPositiveButton("Reportar", null);
 
         reportarHoras.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -366,7 +403,6 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
         View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView2);
         final AlertDialog dialogCargando = mBuilder.create();
-
 
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override

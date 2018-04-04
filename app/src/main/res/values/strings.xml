@@ -81,4 +81,5 @@
     <string name="seleccionar">Seleccionar</string>
     <string name="fecha_de_entrega">Fecha de entrega</string>
     <string name="tiempo_realizado_2">Tiempo realizado</string>
+    <string name="observaciones">Observaciones</string>
 </resources>

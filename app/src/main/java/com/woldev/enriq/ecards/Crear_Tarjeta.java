@@ -101,7 +101,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         TILFechaentrega = (TextInputLayout) findViewById(R.id.fecha_e);
         Fechaentrega = (TextInputEditText) findViewById(R.id.EDTfecha);
 
-
         LinkAyuda = (TextInputEditText) findViewById(R.id.link);
 
         TILDescripcion = (TextInputLayout) findViewById(R.id.campo_descripcion);
@@ -110,14 +109,12 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         LinkEvidencia = (CheckBox) findViewById(R.id.evidencia);
         tiempoObligatorio = (CheckBox) findViewById(R.id.horasduracion);
 
-
         TILHoras = (TextInputLayout) findViewById(R.id.tiempo_e);
         Horas = (TextInputEditText) findViewById(R.id.EDThora);
 
         CrearTarjeta = (Button) findViewById(R.id.BTNCrearTarjeta);
 
         url = getString(R.string.URLWS);
-
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
@@ -185,14 +182,11 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         CargarDatos();
 
-
         tipo_tarea = (MaterialSpinner) findViewById(R.id.tipotarea);
         proyecto = (MaterialSpinner) findViewById(R.id.proyecto);
 
-
         tareaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tareaItem);
         proyectoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, proyectoItem);
-
 
         tareaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         proyectoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -200,23 +194,17 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         tipo_tarea.setAdapter(tareaAdapter);
         proyecto.setAdapter(proyectoAdapter);
 
-
         /*
         responsable.setOnItemSelectedListener(this);
         tester.setOnItemSelectedListener(this);
         tipo_tarea.setOnItemSelectedListener(this);
         proyecto.setOnItemSelectedListener(this);
         */
-
-
     }
 
     private boolean VerificarCampos() {
-
-
         int Pos3 =  proyecto.getSelectedItemPosition();
         int Pos4 =  tipo_tarea.getSelectedItemPosition();
-
 
         if  (!MetodosGlobales.validarCampoVacio(Titulo.getText().toString())){
             TILTitulo.setError("Ingrese un Titulo");
@@ -263,7 +251,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
             }
         }
 
-
         if (tiempoObligatorio.isChecked()){
             if  (!MetodosGlobales.validarCampoVacio(Horas.getText().toString())){
                 TILHoras.setError("Ingrese las horas");
@@ -278,7 +265,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void CargarDatos() {
-
         String urltemp = url+"informacion/crear_tarjeta";
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
@@ -286,10 +272,8 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
 
         requestQueue = Volley.newRequestQueue(this);
 
-
         Map<String, String> params = new HashMap<String, String>();
         params.put("rol", TIPOUSUARIO);
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -346,30 +330,25 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
             String BDidTEmp = row.getString("_id");
             Tareas.add(BDidTEmp);
             tareaItem.add(NombreTEmp);
-
         }
     }
 
     private void CargarProyectos() throws JSONException {
-
         for (int i = 0; i < JSONproyectos.length(); i++) {
             JSONObject row = JSONproyectos.getJSONObject(i);
             String NombreTEmp = row.getString("nombre");
             String BDidTEmp = row.getString("_id");
             Proyectos.add(BDidTEmp);
             proyectoItem.add(NombreTEmp);
-
         }
     }
 
     private void CargarUsuarios() throws JSONException {
-
         Bundle args = new Bundle();
         args.putString("USUARIOS", JSONUsuarios.toString());
 
         fragmento1.setArguments(args);
         fragmento2.setArguments(args);
-
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -380,13 +359,9 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
             transaction.replace(R.id.ContenedorCrearTarjeta, fragmento2);
         }
         transaction.commit();
-
-
-
     }
 
     private void EnviarDatosWS() {
-
         //AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         //final AlertDialog dialog = mBuilder.create();
 
@@ -419,8 +394,6 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         params.put("link_evidencia", String.valueOf(LinkEvidencia.isChecked()) );
         params.put("horas_obligatorias", String.valueOf(tiempoObligatorio.isChecked()) );
         params.put("horas", Horas.getText().toString());
-
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -469,13 +442,7 @@ public class Crear_Tarjeta extends AppCompatActivity implements AdapterView.OnIt
         };
 
         requestQueue.add(arrReq);
-
-
-
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

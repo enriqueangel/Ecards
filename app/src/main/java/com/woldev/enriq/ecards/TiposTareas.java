@@ -40,7 +40,6 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
 
     @Override
     protected void onStart() {
-
         dialog.show();
         tareas = new ArrayList<ElementoLista>();
         String urltemp = url+"tareas";

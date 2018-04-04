@@ -31,34 +31,6 @@
                 android:theme="@style/EditText"/>
         </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/actionMenuTextColor"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
-            android:text="Clasificación"/>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estudio"
-                android:layout_weight="1"/>
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trabajo"
-                android:layout_weight="1"/>
-
-        </RadioGroup>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

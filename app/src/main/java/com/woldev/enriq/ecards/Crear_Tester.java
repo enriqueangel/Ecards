@@ -48,6 +48,8 @@ public class Crear_Tester extends AppCompatActivity {
 
     int day, month, year;
     Calendar Date;
+    String TIPOUSUARIO = "";
+    String url;
 
     JSONArray JSONUsuarios;
     JSONArray JSONproyectos;
@@ -55,22 +57,17 @@ public class Crear_Tester extends AppCompatActivity {
     ExpandableUserFragment fragmento1 = new ExpandableUserFragment();
     SpinnerUserFragment fragmento2 = new SpinnerUserFragment();
 
-    String TIPOUSUARIO = "";
-
     MaterialSpinner  proyecto;
 
-
     List<String> proyectoItem = new ArrayList<>();
-    ArrayAdapter<String>  proyectoAdapter;
-
     List<String> Usuarios = new ArrayList<>();
     List<String> Proyectos = new ArrayList<>();
+    ArrayAdapter<String>  proyectoAdapter;
 
     Button CrearTester;
     TextInputEditText  Fechaentrega, LinkAyuda, Descripcion ;
     TextInputLayout TILFechaentrega,TILLinkAyuda, TILDescripcion ;
 
-    String url ;
     RequestQueue requestQueue;
 
     CheckBox  LinkEvidencia;
@@ -127,16 +124,9 @@ public class Crear_Tester extends AppCompatActivity {
 
         CargarDatos();
 
-
         proyecto = (MaterialSpinner) findViewById(R.id.proyecto);
-
-
         proyectoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, proyectoItem);
-
-
         proyectoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
         proyecto.setAdapter(proyectoAdapter);
 
         CrearTester.setOnClickListener(new View.OnClickListener() {
@@ -147,11 +137,12 @@ public class Crear_Tester extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void EnviarDatosWS() {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
         final AlertDialog dialog = mBuilder.create();
 
         dialog.show();
@@ -160,9 +151,7 @@ public class Crear_Tester extends AppCompatActivity {
 
         Map<String, String> params = new HashMap<String, String>();
 
-
         int Pos2 =  proyecto.getSelectedItemPosition();
-
 
         if (TIPOUSUARIO.equals("SUPERUSER")){
             params.put("responsable",fragmento1.GetEncargadoID());
@@ -171,17 +160,10 @@ public class Crear_Tester extends AppCompatActivity {
         }
 
         params.put("proyecto", Proyectos.get(Pos2-1).toString());
-
-
-
         params.put("fecha_entrega", Fechaentrega.getText().toString());
         params.put("link_ayuda", LinkAyuda.getText().toString());
         params.put("descripcion", Descripcion.getText().toString());
-
-
         params.put("link_evidencia", String.valueOf(LinkEvidencia.isChecked()) );
-
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -234,7 +216,6 @@ public class Crear_Tester extends AppCompatActivity {
     }
 
     private boolean VerificarCampos() {
-
        // int Pos1 =  responsable.getSelectedItemPosition();
         int Pos2 =  proyecto.getSelectedItemPosition();
 
@@ -251,8 +232,6 @@ public class Crear_Tester extends AppCompatActivity {
         }else{
             TILDescripcion.setError(null);
         }
-
-
 
         if (Pos2 == 0){
             proyecto.setError("Seleccione un proyecto.");
@@ -271,23 +250,21 @@ public class Crear_Tester extends AppCompatActivity {
             }
         }
 
-
         return true;
     }
 
     private void CargarDatos() {
-
         String urltemp = url+"informacion/crear_tarjeta";
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
         final AlertDialog dialog = mBuilder.create();
 
         requestQueue = Volley.newRequestQueue(this);
 
-
         Map<String, String> params = new HashMap<String, String>();
         params.put("rol", TIPOUSUARIO);
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -298,10 +275,8 @@ public class Crear_Tester extends AppCompatActivity {
                             JSONUsuarios = response.getJSONArray("usuarios");
                             JSONproyectos = response.getJSONArray("proyectos");
 
-
                             CargarUsuarios();
                             CargarProyectos();
-
 
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
@@ -345,18 +320,15 @@ public class Crear_Tester extends AppCompatActivity {
             String BDidTEmp = row.getString("_id");
             Proyectos.add(BDidTEmp);
             proyectoItem.add(NombreTEmp);
-
         }
     }
 
     private void CargarUsuarios() throws JSONException {
-
         Bundle args = new Bundle();
         args.putString("USUARIOS", JSONUsuarios.toString());
 
         fragmento1.setArguments(args);
         fragmento2.setArguments(args);
-
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
