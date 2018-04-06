@@ -51,6 +51,7 @@
         <activity android:name=".UsuariosNuevos" />
         <activity android:name=".Rama" />
         <activity android:name=".HistorialCorteActivity"/>
+        <activity android:name=".ExpandableUsuarioActivity"/>
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>

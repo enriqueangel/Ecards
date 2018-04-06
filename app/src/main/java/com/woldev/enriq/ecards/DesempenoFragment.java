@@ -29,8 +29,7 @@ public class DesempenoFragment extends Fragment{
         prepareListData();
         listAdapter = new ExpanListAdapterDesem(getActivity(),listDataHeader,listDataChild);
         listView.setAdapter(listAdapter);
-        
-        
+
         return view;
     }
 
