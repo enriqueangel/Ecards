@@ -111,7 +111,7 @@ public class UsuariosNuevos extends AppCompatActivity {
         }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListaAdapter adapter = new ElementoListaAdapter(this, usuarios);
+        ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, usuarios);
         list.setAdapter(adapter);
     }
 

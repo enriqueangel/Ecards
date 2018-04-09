@@ -1,6 +1,7 @@
 package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import java.util.Map;
 public class Ramas extends AppCompatActivity {
 
     ArrayList<ElementoLista> ramas;
+    ListView list;
 
     String url ;
     RequestQueue requestQueue;
@@ -55,37 +58,28 @@ public class Ramas extends AppCompatActivity {
         mBuilder.setView(mView);
         dialog = mBuilder.create();
 
+        list = (ListView) findViewById(R.id.lista);
     }
 
     @Override
     protected void onStart() {
-
         dialog.show();
-
         ramas = new ArrayList<ElementoLista>();
 
         String urltemp = url+"ramas";
 
-
         requestQueue = Volley.newRequestQueue(this);
-
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             CargarDATOS(response);
                             dialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -114,14 +108,11 @@ public class Ramas extends AppCompatActivity {
 
         requestQueue.add(arrReq);
 
-
         super.onStart();
     }
 
     private void CargarDATOS(JSONObject response) throws JSONException {
-
         DATOS = response.getJSONArray("ramas");
-
 
         for (int i = 0; i < DATOS.length(); i++) {
             JSONObject row = null;
@@ -131,11 +122,19 @@ public class Ramas extends AppCompatActivity {
             ramas.add(new ElementoLista(NombreTEmp, BDidTEmp));
         }
 
-        ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListaAdapter adapter = new ElementoListaAdapter(this, ramas);
+        ElementoListAdapter adapter = new ElementoListAdapter(this, ramas);
         list.setAdapter(adapter);
 
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ElementoLista item = ramas.get(i);
+                Toast.makeText(getApplicationContext(), item.getNombre(), Toast.LENGTH_SHORT).show();
+                Intent b =  new Intent(Ramas.this, Rama.class);
+                startActivity(b);
+            }
+        });
     }
 
     @Override

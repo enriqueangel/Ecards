@@ -97,7 +97,7 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
           }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListaAdapter adapter = new ElementoListaAdapter(this, tareas);
+        ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, tareas);
         list.setAdapter(adapter);
     }
 

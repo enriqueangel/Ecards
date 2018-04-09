@@ -93,7 +93,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item, null);
+            view = inflater.inflate(R.layout.list_item_checkbox, null);
         }
         TextView txtListChild = (TextView) view.findViewById(R.id.lblListItem);
         final CheckBox checkListChild = (CheckBox) view.findViewById(R.id.ListUsercheckbox);
@@ -105,7 +105,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             public void onClick(View v) {
                 ItemListCheckbox objeto = getChild( iTemp,  i1);
                 objeto.setCheck(checkListChild.isChecked());
-
             }
         });
 
