@@ -31,9 +31,12 @@ import android.widget.Toast;
 import android.content.Context;
 
 import java.io.File;
+import java.net.URI;
 
 import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.support.v4.content.FileProvider.getUriForFile;
 
 public class SelectImagen extends AppCompatActivity {
 
@@ -41,6 +44,7 @@ public class SelectImagen extends AppCompatActivity {
     ImageView Prevista;
 
     String Directorio;
+    Context prueba=this;
 
     private static String APP_DIRECTORY = "MyPictureApp/";
     private static String MEDIA_DIRECTORY = APP_DIRECTORY + "PictureApp";
@@ -72,7 +76,7 @@ public class SelectImagen extends AppCompatActivity {
         GALERIA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!VerificaPermisos(false,true,true)) {
+                if (!VerificaPermisos(true,true,true)) {
                     return;
                 }
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -85,8 +89,30 @@ public class SelectImagen extends AppCompatActivity {
         CAAMARA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!VerificaPermisos(true, true, true)) {
-                    tomarfoto();
+                if (VerificaPermisos(true, false, false)) {
+
+                    File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
+                    file.mkdirs();
+
+                    String Path = Environment.getExternalStorageDirectory() + File.separator +
+                            MEDIA_DIRECTORY + File.separator + imageName;
+
+                    File NewFile = new File(Path);
+
+                    Intent intent=null;
+                    intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                    //startActivityForResult(intent, RespuestaCamara);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+
+                        String authorities=getApplicationContext().getPackageName()+".provider";
+                        Uri imageUri=FileProvider.getUriForFile(prueba,authorities,NewFile);
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                    }else
+                    {
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(NewFile));
+                    }
+                    startActivityForResult(intent, RespuestaCamara);
                 }
             }
 
@@ -109,10 +135,10 @@ public class SelectImagen extends AppCompatActivity {
     private boolean VerificaPermisos(boolean camara, boolean WES, boolean RES){
        int permissionCheck1 = ContextCompat.checkSelfPermission(SelectImagen.this,
                 CAMERA);
-      /* int permissionCheck2 = ContextCompat.checkSelfPermission(SelectImagen.this,
+       int permissionCheck2 = ContextCompat.checkSelfPermission(SelectImagen.this,
                 WRITE_EXTERNAL_STORAGE);
         int permissionCheck3 = ContextCompat.checkSelfPermission(SelectImagen.this,
-                Manifest.permission.READ_EXTERNAL_STORAGE);*/
+                Manifest.permission.READ_EXTERNAL_STORAGE);
 
 
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
@@ -121,54 +147,26 @@ public class SelectImagen extends AppCompatActivity {
 
 
 
-        if (permissionCheck1 ==  PackageManager.PERMISSION_DENIED && camara) {
+        if ((permissionCheck1 ==  PackageManager.PERMISSION_DENIED && camara)  &&
+                (permissionCheck2 ==  PackageManager.PERMISSION_DENIED && WES) &&
+                    (permissionCheck3 ==  PackageManager.PERMISSION_DENIED && RES)) {
             //Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para acceder a la camara.", Toast.LENGTH_SHORT).show();
-            requestPermissions(new String[]{CAMERA},100);
+            requestPermissions(new String[]{CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 100);
             return false;
-
-       }/*else if (permissionCheck2 ==  PackageManager.PERMISSION_DENIED && WES){
-            Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para modificar el almacenamiento.", Toast.LENGTH_SHORT).show();
-            return false;
-        }else if (permissionCheck3 ==  PackageManager.PERMISSION_DENIED && RES){
-            Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para leer el almacenamiento..", Toast.LENGTH_SHORT).show();
-            return false;
-        }*/
+        }
 
         return true;
     }
-
-/*
-    private void cargarDialogoRecomendacion() {
-
-        AlertDialog.Builder dialogo=new AlertDialog.Builder(SelectImagen.this);
-        dialogo.setTitle("Permisos Desactivados");
-        dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
-
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{CAMERA},100);
-                }
-
-
-            }
-        });
-        dialogo.show();
-    }*/
-
-    // String[] permissions PERTENECE A String[]{WRITE_EXTERNAL_STORAGE,CAMARA} DEL ELSE DEL PRIMER IF  DE CAMARA
-    //requestCode RECIBE EL 100 DEL MISMO ELSE
 
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if(requestCode==100){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //startActivityForResult(intent, RespuestaCamara);
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED
+                    && grantResults[1]==PackageManager.PERMISSION_GRANTED && grantResults[2]==PackageManager.PERMISSION_GRANTED) {
                 CAAMARA.setEnabled(true);
+                GALERIA.setEnabled(true);
                 Toast.makeText(getApplicationContext(), "La aplicación tiene permisos para acceder a la camara.", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para acceder a la camara.", Toast.LENGTH_SHORT).show();
@@ -204,33 +202,6 @@ public class SelectImagen extends AppCompatActivity {
         }
     }
 
-
-
-    private void tomarfoto(){
-
-        File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
-        file.mkdirs();
-        String Path = Environment.getExternalStorageDirectory() + File.separator +
-                MEDIA_DIRECTORY + File.separator + imageName;
-
-        File NewFile = new File(Path);
-
-        Intent intent=null;
-        intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
-            String authorities=getApplicationContext().getPackageName()+".provider";
-            Uri imageUri=FileProvider.getUriForFile(this,authorities,NewFile);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-        }else
-        {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(NewFile));
-        }
-        startActivityForResult(intent, RespuestaCamara);
-
-    }
 
 
 
