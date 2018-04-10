@@ -71,14 +71,20 @@ public class SelectImagen extends AppCompatActivity {
         Seleccionar = (Button) findViewById(R.id.BTNSeleccionar);
         Prevista = (ImageView) findViewById(R.id.PreView);
 
-
+        if (VerificaPermisos()){
+            CAAMARA.setEnabled(true);
+            GALERIA.setEnabled(true);
+            Seleccionar.setEnabled(true);
+        }else{
+            CAAMARA.setEnabled(false);
+            GALERIA.setEnabled(false);
+            Seleccionar.setEnabled(false);
+        }
 
         GALERIA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!VerificaPermisos(true,true,true)) {
-                    return;
-                }
+
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent.setType("image/*");
                 startActivityForResult(intent,RespuestaIMAGEN);
@@ -89,7 +95,6 @@ public class SelectImagen extends AppCompatActivity {
         CAAMARA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (VerificaPermisos(true, false, false)) {
 
                     File file = new File(Environment.getExternalStorageDirectory(), MEDIA_DIRECTORY);
                     file.mkdirs();
@@ -114,7 +119,7 @@ public class SelectImagen extends AppCompatActivity {
                     }
                     startActivityForResult(intent, RespuestaCamara);
                 }
-            }
+
 
         });
 
@@ -132,7 +137,7 @@ public class SelectImagen extends AppCompatActivity {
 
 
 
-    private boolean VerificaPermisos(boolean camara, boolean WES, boolean RES){
+    private boolean VerificaPermisos(){
        int permissionCheck1 = ContextCompat.checkSelfPermission(SelectImagen.this,
                 CAMERA);
        int permissionCheck2 = ContextCompat.checkSelfPermission(SelectImagen.this,
@@ -147,9 +152,9 @@ public class SelectImagen extends AppCompatActivity {
 
 
 
-        if ((permissionCheck1 ==  PackageManager.PERMISSION_DENIED && camara)  &&
-                (permissionCheck2 ==  PackageManager.PERMISSION_DENIED && WES) &&
-                    (permissionCheck3 ==  PackageManager.PERMISSION_DENIED && RES)) {
+        if ((permissionCheck1 ==  PackageManager.PERMISSION_DENIED )  &&
+                (permissionCheck2 ==  PackageManager.PERMISSION_DENIED ) &&
+                    (permissionCheck3 ==  PackageManager.PERMISSION_DENIED )) {
             //Toast.makeText(getApplicationContext(), "La aplicación no tiene permisos para acceder a la camara.", Toast.LENGTH_SHORT).show();
             requestPermissions(new String[]{CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 100);
             return false;
@@ -186,7 +191,7 @@ public class SelectImagen extends AppCompatActivity {
 
     private void decodeBITMAP(String dir) {
         Bitmap original = BitmapFactory.decodeFile(dir);
-        original = RotateBitmap(original, 90);
+        original = RotateBitmap(original, 0);
         Prevista.setImageBitmap(original);
         //Prevista.setRotation((float) 45.0);
     }

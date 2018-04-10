@@ -27,6 +27,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,6 +46,9 @@ public class editperfil extends AppCompatActivity {
     ImageView Foto;
     RequestQueue requestQueue;
     String MetodoWS = "user/modificar_perfil";
+
+    private StorageReference storageReference;
+
 
     private final int ImagenNueva = 999;
 
@@ -175,7 +183,7 @@ public class editperfil extends AppCompatActivity {
 
     public static Bitmap RotateBitmap(Bitmap source, float angle){
         Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
+        //matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
