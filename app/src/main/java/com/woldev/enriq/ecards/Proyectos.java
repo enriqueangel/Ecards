@@ -115,7 +115,7 @@ public class Proyectos extends AppCompatActivity {
         }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListaAdapter adapter = new ElementoListaAdapter(this, proyectos);
+        ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, proyectos);
         list.setAdapter(adapter);
     }
 

@@ -18,11 +18,11 @@ import java.util.ArrayList;
  * Created by enriq on 1/02/2018.
  */
 
-public class ElementoListaAdapter extends BaseAdapter {
+public class ElementoListButtonAdapter extends BaseAdapter {
     private ArrayList<ElementoLista> items;
     private Context context;
 
-    public ElementoListaAdapter(Context context, ArrayList<ElementoLista> items) {
+    public ElementoListButtonAdapter(Context context, ArrayList<ElementoLista> items) {
         this.items = items;
         this.context = context;
     }
