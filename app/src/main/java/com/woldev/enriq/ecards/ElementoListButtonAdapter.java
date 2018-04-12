@@ -7,10 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -52,32 +57,43 @@ public class ElementoListButtonAdapter extends BaseAdapter {
         TextView tipo_tarea = (TextView) view.findViewById(R.id.tipo_tarea);
         tipo_tarea.setText(tarea.getNombre());
 
-        ImageButton boton = (ImageButton) view.findViewById(R.id.editar);
-        boton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                crearDialogEditar(tarea.getNombre(), view);
-            }
-        });
+        try {
+            JSONObject datos = items.get(i).getDatos();
+            final String clasificacion = datos.getString("clasificacion_tarea");
+
+            ImageButton boton = (ImageButton) view.findViewById(R.id.editar);
+            boton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    crearDialogEditar(tarea.getNombre(), view, clasificacion);
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
-    private void crearDialogEditar(String nombre, final View view){
+    private void crearDialogEditar(String nombre, final View view, String clasificacion){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final AlertDialog.Builder agregarTarea = new AlertDialog.Builder(view.getContext(), R.style.MyDialogTheme);
-        View mView = inflater.inflate(R.layout.dialog_editar, null);
+        View mView = inflater.inflate(R.layout.dialog_crear_tarea, null);
         agregarTarea.setView(mView);
         agregarTarea.setTitle("Modificar tipo tarea");
 
         EditText campoNombre = mView.findViewById(R.id.nombre);
         campoNombre.setText(nombre);
 
-        agregarTarea.setPositiveButton("Modificar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(view.getContext(), "Tipo tarea modificado", Toast.LENGTH_LONG).show();
-            }
-        });
+        if (clasificacion.equals("estudio")) {
+            RadioButton estudio = (RadioButton) mView.findViewById(R.id.estudio);
+            estudio.setChecked(true);
+        } else {
+            RadioButton trabajo = (RadioButton) mView.findViewById(R.id.trabajo);
+            trabajo.setChecked(true);
+        }
+
+        agregarTarea.setPositiveButton("Modificar", null);
 
         agregarTarea.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -87,6 +103,20 @@ public class ElementoListButtonAdapter extends BaseAdapter {
         });
 
         final AlertDialog dialog = agregarTarea.create();
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(view.getContext(), "Tipo tarea modificado", Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+
         dialog.show();
     }
 }

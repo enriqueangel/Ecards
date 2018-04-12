@@ -1,5 +1,7 @@
 package com.woldev.enriq.ecards;
 
+import org.json.JSONObject;
+
 /**
  * Created by enriq on 1/02/2018.
  */
@@ -7,10 +9,12 @@ package com.woldev.enriq.ecards;
 public class ElementoLista {
     String nombre;
     String id;
+    JSONObject datos;
 
-    public ElementoLista(String nombre, String id) {
+    public ElementoLista(String nombre, String id, JSONObject datos) {
         this.nombre = nombre;
         this.id = id;
+        this.datos = datos;
     }
 
     public String getNombre() {
@@ -27,5 +31,13 @@ public class ElementoLista {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public JSONObject getDatos() {
+        return datos;
+    }
+
+    public void setDatos(JSONObject datos) {
+        this.datos = datos;
     }
 }

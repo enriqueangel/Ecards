@@ -93,7 +93,7 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
             row = DATOS.getJSONObject(i);
             String NombreTEmp = row.getString("tipo");
             String BDidTEmp = row.getString("_id");
-            tareas.add(new ElementoLista(NombreTEmp, BDidTEmp));
+            tareas.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
           }
 
         ListView list = (ListView) findViewById(R.id.lista);

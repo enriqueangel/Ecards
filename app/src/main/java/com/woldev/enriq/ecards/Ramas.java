@@ -119,7 +119,7 @@ public class Ramas extends AppCompatActivity {
             row = DATOS.getJSONObject(i);
             String NombreTEmp = row.getString("nombre");
             String BDidTEmp = row.getString("_id");
-            ramas.add(new ElementoLista(NombreTEmp, BDidTEmp));
+            ramas.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
         }
 
         ElementoListAdapter adapter = new ElementoListAdapter(this, ramas);

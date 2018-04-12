@@ -1,6 +1,7 @@
 package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,42 +35,27 @@ public class Proyectos extends AppCompatActivity {
     RequestQueue requestQueue;
 
     JSONArray DATOS;
-
     ArrayList<ElementoLista> proyectos ;
-
     AlertDialog dialog;
-
-
+    ListView list;
 
     @Override
     protected void onStart() {
-
         dialog.show();
-
         proyectos = new ArrayList<ElementoLista>();
-
         String urltemp = url+"proyectos";
-
-
         requestQueue = Volley.newRequestQueue(this);
-
-
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             CargarDATOS(response);
                             dialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -97,33 +84,38 @@ public class Proyectos extends AppCompatActivity {
 
         requestQueue.add(arrReq);
 
-
         super.onStart();
     }
 
     private void CargarDATOS(JSONObject response) throws JSONException {
-
         DATOS = response.getJSONArray("proyectos");
-
 
         for (int i = 0; i < DATOS.length(); i++) {
             JSONObject row = null;
             row = DATOS.getJSONObject(i);
             String NombreTEmp = row.getString("nombre");
             String BDidTEmp = row.getString("_id");
-            proyectos.add(new ElementoLista(NombreTEmp, BDidTEmp));
+            proyectos.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
         }
 
-        ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, proyectos);
+        ElementoListAdapter adapter = new ElementoListAdapter(this, proyectos);
         list.setAdapter(adapter);
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ElementoLista item = proyectos.get(i);
+                Toast.makeText(getApplicationContext(), item.getNombre(), Toast.LENGTH_SHORT).show();
+                Intent b =  new Intent(Proyectos.this, VerProyecto.class);
+                startActivity(b);
+            }
+        });
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_proyectos);
-
 
         url = getString(R.string.URLWS);
 
@@ -132,11 +124,12 @@ public class Proyectos extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Proyectos");
 
+        list = (ListView) findViewById(R.id.lista);
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         dialog = mBuilder.create();
-
     }
 
     @Override

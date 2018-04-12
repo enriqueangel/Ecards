@@ -50,15 +50,14 @@
         <activity android:name=".Ramas" />
         <activity android:name=".UsuariosNuevos" />
         <activity android:name=".Rama" />
-        <activity android:name=".HistorialCorteActivity"/>
-        <activity android:name=".ExpandableUsuarioActivity"/>
+        <activity android:name=".HistorialCorteActivity" />
+        <activity android:name=".ExpandableUsuarioActivity" />
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service android:name=".FireBaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
@@ -72,9 +71,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity android:name=".VerProyecto"></activity>
     </application>
 
 </manifest>
