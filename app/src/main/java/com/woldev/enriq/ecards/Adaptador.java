@@ -39,6 +39,7 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         holder.version.setText(ListaObjeto.get(position).getVersion());
         holder.TarjetaColor.setImageResource(ListaObjeto.get(position).getColor());
         holder.DATOS = ListaObjeto.get(position).getDATOS();
+        holder.Activo = ListaObjeto.get(position).getActiva();
 
 
         if (ListaObjeto.get(position).getReunion()) {

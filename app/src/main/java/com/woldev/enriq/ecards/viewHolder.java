@@ -18,6 +18,7 @@ public class viewHolder extends RecyclerView.ViewHolder {
     TextView titulo,tipo,fecha_e,tiempo_r,version,TituloCampo1,TituloCampo2;
     ImageView TarjetaColor;
     JSONObject DATOS;
+    Boolean Activo;
 
 
     public viewHolder(View itemView) {
@@ -36,10 +37,14 @@ public class viewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(v.getContext(), Tarjeta.class);
-                intent.putExtra( "DATOS", DATOS.toString());
-                v.getContext().startActivity(intent);
+
+                if (Activo){
+                    Intent intent;
+                    intent = new Intent(v.getContext(), Tarjeta.class);
+                    intent.putExtra( "DATOS", DATOS.toString());
+                    v.getContext().startActivity(intent);
+                }
+
             }
         });
     }

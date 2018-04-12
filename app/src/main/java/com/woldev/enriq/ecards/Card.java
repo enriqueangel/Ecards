@@ -62,6 +62,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     int ContCardsRojoint = 0;
     int ContCardsVerdeint = 0;
     int ContCardsAzulint = 0;
+    int ContCardsMoradoint = 0;
 
     String url;
     RequestQueue requestQueue;
@@ -74,7 +75,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     ArrayList<Fuente_Notificaciones> listanotificacion = new ArrayList<>();
 
     FloatingActionButton clickperf,clickDashboard;
-    TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul;
+    TextView ContCardsBlanco, ContCardsAmarillo,ContCardsRojo,ContCardsVerde,ContCardsAzul,ContCardsMorado;
     Toolbar toolbar, cards;
     Date FechaServidor;
 
@@ -95,6 +96,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         ContCardsRojoint = 0;
         ContCardsVerdeint = 0;
         ContCardsAzulint = 0;
+        ContCardsMoradoint = 0;
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -121,6 +123,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                             ContCardsRojo.setText(String.valueOf(ContCardsRojoint));
                             ContCardsVerde.setText(String.valueOf(ContCardsVerdeint));
                             ContCardsAzul.setText(String.valueOf(ContCardsAzulint));
+                            ContCardsMorado.setText(String.valueOf(ContCardsMoradoint));
 
                             dialog.dismiss();
                         } catch (JSONException e) {
@@ -189,8 +192,30 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
             TipoTEMP = "";
             VersionTEMP = "1";
-            ColorTArgeta  = R.drawable.ic_card_green;
-            COLORTEMP = "verde";
+
+
+            long DiasRestantes = 100;
+            DiasRestantes = calcularColor(FechaEntrega);
+
+            if (DiasRestantes <= 0){
+
+                ColorTArgeta  = R.drawable.ic_card_green_red;
+                COLORTEMP = "verde-rojo";
+            }else if(DiasRestantes <= 2){
+
+                ColorTArgeta  = R.drawable.ic_card_green_red;
+                COLORTEMP = "verde-rojo";
+            }else if(DiasRestantes <= 4){
+
+                ColorTArgeta  = R.drawable.ic_card_green_yellow;
+                COLORTEMP = "verde-naranja";
+            }else{
+
+                ColorTArgeta  = R.drawable.ic_card_green_white;
+                COLORTEMP = "verde-blanco";
+            }
+
+
 
             row.put("Color",COLORTEMP);
             ContCardsVerdeint ++;
@@ -254,6 +279,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
         ContCardsRojo = (TextView) findViewById(R.id.card_rojo);
         ContCardsVerde = (TextView) findViewById(R.id.card_verde);
         ContCardsAzul = (TextView) findViewById(R.id.card_azul);
+        ContCardsMorado = (TextView) findViewById(R.id.card_purple);
 
         listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
         listanotificacion.add(new Fuente_Notificaciones("hiada","nfsjdfns","fnjdsfn","fkdf"));
@@ -429,7 +455,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                 VersionTEMP = "1";
                 ColorTArgeta  = R.drawable.ic_card_purple;
                 COLORTEMP = "morado";
-                //ContCardsVerdeint ++;
+                ContCardsMoradoint ++;
             }else{
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");

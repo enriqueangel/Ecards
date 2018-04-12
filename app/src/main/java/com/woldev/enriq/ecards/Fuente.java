@@ -20,8 +20,9 @@ public class Fuente {
     int color;
     Boolean IsReunion;
     JSONObject DATOS;
+    Boolean Activa;
 
-    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String version, int color,boolean isReunion,JSONObject DATOS) {
+    public Fuente(String titulo, String tipo, String tiempo_e, String tiempo_r, String version, int color,boolean isReunion,JSONObject DATOS,Boolean Activa) {
         this.titulo = titulo;
         this.tipo = tipo;
         this.tiempo_e = tiempo_e;
@@ -30,6 +31,7 @@ public class Fuente {
         this.color = color;
         this.IsReunion = isReunion;
         this.DATOS = DATOS;
+        this.Activa = Activa;
     }
 
     public JSONObject getDATOS() {
@@ -94,5 +96,13 @@ public class Fuente {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public Boolean getActiva() {
+        return Activa;
+    }
+
+    public void setActiva(Boolean activa) {
+        Activa = activa;
     }
 }

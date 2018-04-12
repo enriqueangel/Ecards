@@ -82,6 +82,14 @@ public class InfoUser extends AppCompatActivity {
                 case R.id.navigation_tarjetas:
                     toolbar.setTitle("Tarjetas");
                     TarjetasFragment Fr3 = new TarjetasFragment();
+
+                    Bundle args2 = new Bundle();
+                    try {
+                        args2.putString("ID", DATOS.getString("_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Fr3.setArguments(args2);
                     loadFragment(Fr3);
                     return true;
             }
