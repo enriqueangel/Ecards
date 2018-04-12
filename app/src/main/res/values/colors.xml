@@ -44,6 +44,9 @@
     <color name="dot_light">#93c6fd</color>
     <color name="dot_dark">#2278d4</color>
 
+    <color name="grey_light">#CCCCCC</color>
+    <color name="grey_dark">#424242</color>
+
     <color name="barra">#EEEEEE</color>
 </resources>
 

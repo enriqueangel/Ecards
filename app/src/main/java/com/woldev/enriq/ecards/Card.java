@@ -219,7 +219,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
             row.put("Color",COLORTEMP);
             ContCardsVerdeint ++;
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, false));
 
 
 
@@ -253,7 +253,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             ColorTArgeta  = R.drawable.card_indigo;
             row.put("Color",COLORTEMP);
             ContCardsAzulint ++;
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row, false));
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -486,7 +486,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             }
             row.put("Color",COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row,false));
         }
     };
 

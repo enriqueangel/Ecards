@@ -210,7 +210,7 @@ public class TarjetasFragment extends Fragment {
             }
             row.put("Color",COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, false));
         }
     };
 
@@ -267,7 +267,7 @@ public class TarjetasFragment extends Fragment {
 
             row.put("Color",COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, false));
 
 
 
@@ -301,7 +301,7 @@ public class TarjetasFragment extends Fragment {
             ColorTArgeta = R.drawable.card_indigo;
             row.put("Color", COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP, TipoTEMP, dtStart, TiempoEsperado, VersionTEMP, ColorTArgeta, true, row));
+            listaTarjetas.add(new Fuente(DescripcionTEMP, TipoTEMP, dtStart, TiempoEsperado, VersionTEMP, ColorTArgeta, true, row, false));
         }
     }
 
