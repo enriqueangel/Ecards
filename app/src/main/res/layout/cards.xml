@@ -58,7 +58,6 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="3dp"
                         android:gravity="center"
-
                         android:textColor="@color/blanco"
                         android:textSize="22sp" />
 
@@ -76,7 +75,6 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="3dp"
                         android:gravity="center"
-
                         android:textColor="@color/blanco"
                         android:textSize="22sp" />
 
@@ -94,9 +92,26 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="3dp"
                         android:gravity="center"
-
                         android:textColor="@color/blanco"
                         android:textSize="22sp" />
+
+                    <ImageView
+                        android:layout_width="27dp"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_card_purple" />
+
+                    <TextView
+                        android:id="@+id/card_purple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="3dp"
+                        android:gravity="center"
+                        android:textColor="@color/blanco"
+                        android:textSize="22sp" />
+
 
                     <ImageView
                         android:layout_width="27dp"
@@ -112,7 +127,6 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginStart="3dp"
                         android:gravity="center"
-
                         android:textColor="@color/blanco"
                         android:textSize="22sp" />
 
