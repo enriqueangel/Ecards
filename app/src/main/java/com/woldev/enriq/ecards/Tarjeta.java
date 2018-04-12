@@ -159,7 +159,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                 btnRechazar.setVisibility(View.GONE);
                 break;
             case "morado":
-                collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_rojo));
+                collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_morado));
                 TarjetaFragment Fr6 = new TarjetaFragment();
                 Fr6.setArguments(args);
                 loadFragment(Fr6);

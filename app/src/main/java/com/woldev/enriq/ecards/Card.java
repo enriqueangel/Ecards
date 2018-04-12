@@ -112,8 +112,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                                 e.printStackTrace();
                             }
 
-                            ImprimirTesters();
                             ImprimirReuniones();
+                            ImprimirTesters();
                             ImprimirTargetas();
 
                             ContCardsBlanco.setText( String.valueOf(ContCardsBlancoint));
@@ -163,6 +163,41 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     private void ImprimirTesters() throws JSONException {
         for (int i = 0; i < Testers.length(); i++) {
             JSONObject row = Testers.getJSONObject(i);
+
+            String DescripcionTEMP = "Tester";
+
+            String TipoTEMP;
+            String VersionTEMP;
+
+            String TiempoRealizado = row.getString("tiempo_trabajado");
+            String dtStart2 = row.getString("fecha_entrega");
+            String dtStart = "";
+            Date FechaEntrega = null ;
+
+            SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                FechaEntrega = format2.parse(dtStart2);
+                dtStart = parseador.format(FechaEntrega);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            int ColorTArgeta ;
+            String COLORTEMP = "";
+
+            TipoTEMP = "";
+            VersionTEMP = "1";
+            ColorTArgeta  = R.drawable.ic_card_green;
+            COLORTEMP = "verde";
+
+            row.put("Color",COLORTEMP);
+            ContCardsVerdeint ++;
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row));
+
+
+
         }
     }
 
@@ -392,9 +427,9 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             if (row.getString("tipo").equals("2")){
                 TipoTEMP = "";
                 VersionTEMP = "1";
-                ColorTArgeta  = R.drawable.ic_card_green;
-                COLORTEMP = "verde";
-                ContCardsVerdeint ++;
+                ColorTArgeta  = R.drawable.ic_card_purple;
+                COLORTEMP = "morado";
+                //ContCardsVerdeint ++;
             }else{
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");
