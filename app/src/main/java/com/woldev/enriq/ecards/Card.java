@@ -164,6 +164,9 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     private void ImprimirTesters() throws JSONException {
+
+        Boolean isprimero = true;
+
         for (int i = 0; i < Testers.length(); i++) {
             JSONObject row = Testers.getJSONObject(i);
 
@@ -219,8 +222,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
 
             row.put("Color",COLORTEMP);
             ContCardsVerdeint ++;
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, false));
-
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isprimero));
+            isprimero = false;
 
 
         }
@@ -253,7 +256,7 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             ColorTArgeta  = R.drawable.card_indigo;
             row.put("Color",COLORTEMP);
             ContCardsAzulint ++;
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row, false));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoEsperado,VersionTEMP,ColorTArgeta,true,row, true));
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -425,6 +428,9 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
     }*/
 
     private void ImprimirTargetas() throws JSONException {
+
+        boolean isPrimero = true;
+        boolean isPrimeraTarjeta = true;
         for (int i = 0; i < TARJETAS.length(); i++) {
             JSONObject row = TARJETAS.getJSONObject(i);
             String DescripcionTEMP = row.getString("titulo");
@@ -457,6 +463,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
                 COLORTEMP = "morado";
                 ContCardsMoradoint ++;
             }else{
+                isPrimero = isPrimeraTarjeta;
+                isPrimeraTarjeta = false;
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");
                 VersionTEMP = row.getString("version");
@@ -486,7 +494,8 @@ public class Card extends AppCompatActivity implements NavigationView.OnNavigati
             }
             row.put("Color",COLORTEMP);
 
-            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row,false));
+            listaTarjetas.add(new Fuente(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row,isPrimero));
+            isPrimero = false;
         }
     };
 

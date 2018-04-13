@@ -36,10 +36,11 @@ import java.util.Map;
 
 public class Corte extends AppCompatActivity {
 
-    String url ;
+    String url ,TipoUsuario ;
     RequestQueue requestQueue;
     JSONArray CargarUsuarios;
     AlertDialog dialog;
+
 
     @Override
     protected void onStart() {
@@ -238,6 +239,10 @@ public class Corte extends AppCompatActivity {
         View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView2);
         dialog = mBuilder.create();
+
+
+        TipoUsuario = getIntent().getStringExtra("TIPO");
+
 
 
     }
