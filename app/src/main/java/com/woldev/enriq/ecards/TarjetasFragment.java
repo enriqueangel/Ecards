@@ -249,19 +249,19 @@ public class TarjetasFragment extends Fragment {
 
             if (DiasRestantes <= 0){
 
-                ColorTArgeta  = R.drawable.ic_card_red;
+                ColorTArgeta  = R.drawable.ic_card_green_red;
                 COLORTEMP = "verde-rojo";
             }else if(DiasRestantes <= 2){
 
-                ColorTArgeta  = R.drawable.ic_card_red;
+                ColorTArgeta  = R.drawable.ic_card_green_red;
                 COLORTEMP = "verde-rojo";
             }else if(DiasRestantes <= 4){
 
-                ColorTArgeta  = R.drawable.ic_card_yellow;
+                ColorTArgeta  = R.drawable.ic_card_green_yellow;
                 COLORTEMP = "verde-naranja";
             }else{
 
-                ColorTArgeta  = R.drawable.ic_card_white;
+                ColorTArgeta  = R.drawable.ic_card_green_white;
                 COLORTEMP = "verde-blanco";
             }
 

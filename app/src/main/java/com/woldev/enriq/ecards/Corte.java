@@ -7,12 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.support.v7.widget.Toolbar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,6 +29,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +44,9 @@ public class Corte extends AppCompatActivity {
     RequestQueue requestQueue;
     JSONArray CargarUsuarios;
     AlertDialog dialog;
+
+    private static final int CHILD_REQUEST = 696;
+
 
 
     @Override
@@ -255,6 +262,79 @@ public class Corte extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHILD_REQUEST){
+
+            switch (resultCode) {
+                case RESULT_OK:
+
+                    String urltemp = url+"corte/info";
+
+                    dialog.show();
+
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    String resultado = data.getExtras().getString("IDCorte");
+
+                    params.put("id", resultado);
+
+                    JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+
+
+                                        CargarUsuarios = response.getJSONArray("horas");
+                                        cargarHoras();
+                                        dialog.dismiss();
+
+
+                                    } catch (JSONException e) {
+                                        Log.e("Volley", "Invalid JSON Object.");
+                                        dialog.dismiss();
+                                        Toast.makeText(Corte.this, "Error cargando el corte", Toast.LENGTH_SHORT).show();
+                                        //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    dialog.dismiss();
+                                    Log.e("Volley", error.toString());
+                                    Toast.makeText(Corte.this, "Error en la conexion.", Toast.LENGTH_SHORT).show();
+                                    // Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
+                                }
+                            }
+                    ){
+                        /*
+                        /**
+                         * Passing some request headers
+                         * */
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            HashMap<String, String> headers = new HashMap<String, String>();
+                            headers.put("Content-Type", "application/json; charset=utf-8");
+                            SharedPreferences SP = Corte.this.getSharedPreferences("TOKEN",MODE_PRIVATE);
+                            String tokenTemp = SP.getString("token","");
+                            headers.put("token", tokenTemp);
+                            return headers;
+                        }
+                    };
+
+                    requestQueue.add(arrReq);
+
+                    break;
+
+                case RESULT_CANCELED:
+                    // Cancelación o cualquier situación de error
+                    break;
+            }
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         Intent i;
         switch (item.getItemId()){
@@ -263,7 +343,7 @@ public class Corte extends AppCompatActivity {
                 return true;
             case R.id.historial:
                 i = new Intent(Corte.this, HistorialCorteActivity.class);
-                startActivity(i);
+                startActivityForResult(i, CHILD_REQUEST);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
