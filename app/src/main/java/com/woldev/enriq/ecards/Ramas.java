@@ -130,8 +130,8 @@ public class Ramas extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ElementoLista item = ramas.get(i);
-                Toast.makeText(getApplicationContext(), item.getNombre(), Toast.LENGTH_SHORT).show();
                 Intent b =  new Intent(Ramas.this, Rama.class);
+                b.putExtra("IDRAMA", item.getId());
                 startActivity(b);
             }
         });

@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,16 +20,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Rama extends AppCompatActivity implements View.OnClickListener {
 
     FloatingActionButton btnEditar;
+    String url;
+    RequestQueue requestQueue;
+
+    String NombreRama,CodRama;
+    int CantUsuariosRama;
+    TextView RamaNombre;
+    TextView Codigo;
+    TextView Cantidad;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rama);
+
+         RamaNombre = (TextView) findViewById(R.id.Camponombrerama);
+         Codigo = (TextView) findViewById(R.id.Campocodigo);
+         Cantidad = (TextView) findViewById(R.id.CampoCantidad);
+
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
@@ -34,6 +65,80 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
 
         btnEditar = (FloatingActionButton) findViewById(R.id.BTNEditarinformacion);
         btnEditar.setOnClickListener(this);
+
+        String IDRama = "";
+
+        if(getIntent().getExtras()!=null){
+
+             IDRama =(getIntent().getExtras().getString("IDRAMA"));
+
+        }
+
+        url = getString(R.string.URLWS);
+        url = url+"ramas/informacion";
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getApplicationContext());
+        final AlertDialog dialog = mBuilder.create();
+
+
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        if(!IDRama.equals("")){
+            params.put("id", IDRama);
+        }
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            JSONObject Respuesta = response.getJSONObject("rama");
+                            NombreRama = Respuesta.getString("nombre");
+                            CodRama = Respuesta.getString("codigo");
+                            CantUsuariosRama = response.getInt("cantidad");
+
+                            RamaNombre.setText(NombreRama);
+                            Codigo.setText(CodRama);
+                            Cantidad.setText(String.valueOf(CantUsuariosRama));
+
+
+
+                        } catch (JSONException e) {
+                            Log.e("Volley", "Invalid JSON Object.");
+                            Toast.makeText(getApplicationContext(), "Error desconocido.", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        dialog.dismiss();
+                        Log.e("Volley", error.toString());
+                        Toast.makeText(getApplicationContext(), "Error en la conexion.", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+        ){
+            /*
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                String tokenTemp = SP.getString("token","");
+                headers.put("token", tokenTemp);
+                return headers;
+            }
+        };
+        requestQueue.add(arrReq);
+
     }
 
     @Override
@@ -53,10 +158,13 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
         EditRama.setView(mView);
         EditRama.setTitle("Editar Rama");
 
-        final TextView Nombrerama = (TextView) mView.findViewById(R.id.EDTnombrer);
-        final TextView Descripcion = (TextView) mView.findViewById(R.id.EDTcodigo);
-        final TextInputLayout campoHoras = (TextInputLayout) mView.findViewById(R.id.CamponombreRama);
-        final TextInputLayout campoDescripcion = (TextInputLayout) mView.findViewById(R.id.Campocodigo);
+        final TextView RamaNombre = (TextView) mView.findViewById(R.id.EDTnombrer);
+        final TextView Codigo = (TextView) mView.findViewById(R.id.EDTcodigo);
+        final TextInputLayout campoNombrerama = (TextInputLayout) mView.findViewById(R.id.CamponombreRama);
+        final TextInputLayout campoCodigo = (TextInputLayout) mView.findViewById(R.id.Campocodigo);
+
+        RamaNombre.setText(NombreRama);
+        Codigo.setText(CodRama);
 
         EditRama.setPositiveButton("Editar", null);
 

@@ -64,10 +64,11 @@
                                 android:textColor="#212121" />
 
                             <TextView
+                                android:id="@+id/Camponombrerama"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="Movil"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="#727272"
                                 android:textSize="18sp" />
@@ -114,10 +115,11 @@
                                 android:textColor="#212121" />
 
                             <TextView
+                                android:id="@+id/Campocodigo"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="123456"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="#727272"
                                 android:textSize="18sp" />
@@ -164,10 +166,11 @@
                                 android:textColor="#212121" />
 
                             <TextView
+                                android:id="@+id/CampoCantidad"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
-                                android:text="32"
+
                                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                 android:textColor="#727272"
                                 android:textSize="20dp" />
