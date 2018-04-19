@@ -53,10 +53,9 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rama);
 
-         RamaNombre = (TextView) findViewById(R.id.Camponombrerama);
-         Codigo = (TextView) findViewById(R.id.Campocodigo);
-         Cantidad = (TextView) findViewById(R.id.CampoCantidad);
-
+        RamaNombre = (TextView) findViewById(R.id.Camponombrerama);
+        Codigo = (TextView) findViewById(R.id.Campocodigo);
+        Cantidad = (TextView) findViewById(R.id.CampoCantidad);
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
@@ -69,17 +68,17 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
         String IDRama = "";
 
         if(getIntent().getExtras()!=null){
-
              IDRama =(getIntent().getExtras().getString("IDRAMA"));
-
         }
 
         url = getString(R.string.URLWS);
         url = url+"ramas/informacion";
 
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getApplicationContext());
-        final AlertDialog dialog = mBuilder.create();
-
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargar = mBuilder.create();
+        dialogCargar.show();
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -94,7 +93,6 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             JSONObject Respuesta = response.getJSONObject("rama");
                             NombreRama = Respuesta.getString("nombre");
                             CodRama = Respuesta.getString("codigo");
@@ -103,20 +101,18 @@ public class Rama extends AppCompatActivity implements View.OnClickListener {
                             RamaNombre.setText(NombreRama);
                             Codigo.setText(CodRama);
                             Cantidad.setText(String.valueOf(CantUsuariosRama));
-
-
-
+                            dialogCargar.dismiss();
                         } catch (JSONException e) {
+                            dialogCargar.dismiss();
                             Log.e("Volley", "Invalid JSON Object.");
                             Toast.makeText(getApplicationContext(), "Error desconocido.", Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        dialog.dismiss();
+                        dialogCargar.dismiss();
                         Log.e("Volley", error.toString());
                         Toast.makeText(getApplicationContext(), "Error en la conexion.", Toast.LENGTH_SHORT).show();
 

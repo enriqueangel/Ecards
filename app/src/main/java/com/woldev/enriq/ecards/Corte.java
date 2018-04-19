@@ -47,31 +47,24 @@ public class Corte extends AppCompatActivity {
 
     private static final int CHILD_REQUEST = 696;
 
-
-
     @Override
     protected void onStart() {
-
         String urltemp = url+"corte";
 
         dialog.show();
-
         requestQueue = Volley.newRequestQueue(this);
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urltemp,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
                         try {
                             CargarUsuarios = response.getJSONArray("horas");
                             cargarHoras();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         dialog.dismiss();
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -100,12 +93,10 @@ public class Corte extends AppCompatActivity {
 
         requestQueue.add(arrReq);
 
-
         super.onStart();
     }
 
     private void cargarHoras() throws JSONException {
-
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
@@ -134,7 +125,6 @@ public class Corte extends AppCompatActivity {
             int horasReunionTemp = Integer.parseInt(separated[0]);
             int MinutosReunionTemp = Integer.parseInt(separated[1]);
 
-
             String EstudioTimeTemp = row.getString("horas_estudio");
             String[] separated2 = EstudioTimeTemp.split(":");
             int horasEstudioTemp = Integer.parseInt(separated2[0]);
@@ -144,7 +134,6 @@ public class Corte extends AppCompatActivity {
             String[] separated3 = TrabajoTimeTemp.split(":");
             int horasTrabajoTemp = Integer.parseInt(separated3[0]);
             int MinutosTrabajoTemp = Integer.parseInt(separated3[1]);
-
 
             calendar.set(Calendar.HOUR_OF_DAY, horasContratadasTemp);
             calendar.set(Calendar.MINUTE, MinutosContratasTemp);
@@ -164,7 +153,6 @@ public class Corte extends AppCompatActivity {
 
             Date Fecha1 = calendar.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
             Date Fecha2 = calendar2.getTime(); // Devuelve el objeto Date con las nuevas horas añadidas
-
 
             long diff = Fecha1.getTime() - Fecha2.getTime();
 
@@ -217,8 +205,6 @@ public class Corte extends AppCompatActivity {
 
         listAdapter = new ExpanListAdapterCorte(this, listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
-
-
     }
 
     ExpanListAdapterCorte listAdapter;
@@ -236,8 +222,6 @@ public class Corte extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Corte");
 
-
-
         url = getString(R.string.URLWS);
 
         listView = (ExpandableListView) findViewById(R.id.ramas);
@@ -247,35 +231,29 @@ public class Corte extends AppCompatActivity {
         mBuilder.setView(mView2);
         dialog = mBuilder.create();
 
-
         TipoUsuario = getIntent().getStringExtra("TIPO");
-
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.historial, menu);
+        if (TipoUsuario.equals("SUPERUSER")) {
+            getMenuInflater().inflate(R.menu.historial, menu);
+        }
         return true;
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHILD_REQUEST){
-
             switch (resultCode) {
                 case RESULT_OK:
-
                     String urltemp = url+"corte/info";
-
                     dialog.show();
 
                     Map<String, String> params = new HashMap<String, String>();
 
                     String resultado = data.getExtras().getString("IDCorte");
-
                     params.put("id", resultado);
 
                     JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
@@ -283,13 +261,9 @@ public class Corte extends AppCompatActivity {
                                 @Override
                                 public void onResponse(JSONObject response) {
                                     try {
-
-
                                         CargarUsuarios = response.getJSONArray("horas");
                                         cargarHoras();
                                         dialog.dismiss();
-
-
                                     } catch (JSONException e) {
                                         Log.e("Volley", "Invalid JSON Object.");
                                         dialog.dismiss();
@@ -326,7 +300,6 @@ public class Corte extends AppCompatActivity {
                     requestQueue.add(arrReq);
 
                     break;
-
                 case RESULT_CANCELED:
                     // Cancelación o cualquier situación de error
                     break;

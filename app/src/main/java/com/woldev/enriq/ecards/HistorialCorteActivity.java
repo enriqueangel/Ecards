@@ -45,7 +45,7 @@ public class HistorialCorteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.historial_corte);
+        setContentView(R.layout.activity_historial_corte);
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
