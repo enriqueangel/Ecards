@@ -52,6 +52,7 @@
         <activity android:name=".Rama" />
         <activity android:name=".HistorialCorteActivity" />
         <activity android:name=".ExpandableUsuarioActivity" />
+        <activity android:name=".CrearRamaSuper" />
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>
@@ -74,7 +75,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".VerProyecto"></activity>
+        <activity android:name=".VerProyecto" />
+        <activity android:name=".CrearRamaSuperActivity"></activity>
     </application>
 
 </manifest>

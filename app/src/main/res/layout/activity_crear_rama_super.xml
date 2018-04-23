@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/toolbar"/>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/campo_nombrerama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/rama"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/Error">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/nombrer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:theme="@style/EditText"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/campo_cod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/codigo"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/Error">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/cod"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:theme="@style/EditText"
+                        />
+                </android.support.design.widget.TextInputLayout>
+
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="5dp"
+                    app:ms_arrowColor="@color/casi_negro"
+                    app:ms_floatingLabelColor="@color/casi_negro"
+                    app:hintTextAppearance="@style/FloatingLabel"
+                    app:ms_hint="Lider"
+                    app:ms_floatingLabelText="Lider"
+                    app:ms_enableErrorLabel="true"
+                    />
+
+            </LinearLayout>
+
+        <Button
+            android:id="@+id/BTNCrearama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="18dp"
+            android:layout_gravity="end"
+            android:text="Crear Rama"
+            android:theme="@style/PrimaryButton"
+            />
+
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

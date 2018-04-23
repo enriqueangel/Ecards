@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,10 +30,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Ramas extends AppCompatActivity {
+public class Ramas extends AppCompatActivity  {
 
     ArrayList<ElementoLista> ramas;
     ListView list;
+    FloatingActionButton btnAgregar;
 
     String url ;
     RequestQueue requestQueue;
@@ -58,7 +60,13 @@ public class Ramas extends AppCompatActivity {
         mBuilder.setView(mView);
         dialog = mBuilder.create();
 
+        mBuilder.setView(mView);
+        dialog = mBuilder.create();
         list = (ListView) findViewById(R.id.lista);
+
+       // btnAgregar = (FloatingActionButton) findViewById(R.id.BTNagregar);
+        //btnAgregar.setOnClickListener(this);
+
     }
 
     @Override
@@ -147,4 +155,18 @@ public class Ramas extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+  /*  @Override
+    public void onClick(View view) {
+        Intent i;
+        switch (view.getId()){
+            case R.id.BTNagregar:
+                i = new Intent(this, CrearRamaSuper.class);
+                startActivity(i);
+                break;
+        }
+
+    }*/
+
+
 }
