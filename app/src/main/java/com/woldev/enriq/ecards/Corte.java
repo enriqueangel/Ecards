@@ -47,8 +47,7 @@ public class Corte extends AppCompatActivity {
 
     private static final int CHILD_REQUEST = 696;
 
-    @Override
-    protected void onStart() {
+    private void PedirUltimo() {
         String urltemp = url+"corte";
 
         dialog.show();
@@ -92,8 +91,6 @@ public class Corte extends AppCompatActivity {
         };
 
         requestQueue.add(arrReq);
-
-        super.onStart();
     }
 
     private void cargarHoras() throws JSONException {
@@ -200,6 +197,7 @@ public class Corte extends AppCompatActivity {
 
         }
 
+
         listDataChild.put(listDataHeader.get(0), SinProblemas); // Header, Child data
         listDataChild.put(listDataHeader.get(1), ConProblemas);
 
@@ -232,6 +230,8 @@ public class Corte extends AppCompatActivity {
         dialog = mBuilder.create();
 
         TipoUsuario = getIntent().getStringExtra("TIPO");
+
+        PedirUltimo();
     }
 
     @Override
@@ -254,7 +254,7 @@ public class Corte extends AppCompatActivity {
                     Map<String, String> params = new HashMap<String, String>();
 
                     String resultado = data.getExtras().getString("IDCorte");
-                    params.put("id", resultado);
+                    params.put("fecha_inicio", resultado);
 
                     JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                             new Response.Listener<JSONObject>() {

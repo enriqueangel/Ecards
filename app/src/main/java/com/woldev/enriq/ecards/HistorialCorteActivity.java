@@ -141,7 +141,7 @@ public class HistorialCorteActivity extends AppCompatActivity {
 
 
             items.add(dtStart);
-            IDs.add(row.getString("_id"));
+            IDs.add(row.getString("fecha_inicio"));
         }
 
 
