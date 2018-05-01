@@ -358,6 +358,7 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void crearDialogReportarHoras() {
+
         final AlertDialog.Builder reportarHoras = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         final View mView = this.getLayoutInflater().inflate(layout.dialog_reportar_horas, null);
         reportarHoras.setView(mView);
@@ -440,17 +441,28 @@ public class Tarjeta extends AppCompatActivity implements View.OnClickListener {
                             params.put("horas_trabajadas", Horas.getText().toString());
 
                             try {
+
+                                String TipoTareatemp = "";
+
                                 switch (color){
                                     case ("azul"):
-                                        params.put("reunion", DATOS.getString("_id"));
-                                        break;
+                                        TipoTareatemp = "reunion";
                                     default:
-                                        params.put("tarjeta", DATOS.getString("_id"));
 
-                                        JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
-                                        params.put("tipotarea", TipoTareaTEMP.getString("_id"));
+                                        if(color.toLowerCase().contains("verde")){
+                                            TipoTareatemp = "tester";
+                                        }else{
+                                            TipoTareatemp = "tarjeta";
+                                        }
+
                                         break;
                                 }
+
+                                params.put(TipoTareatemp, DATOS.getString("_id"));
+                                JSONObject TipoTareaTEMP = DATOS.getJSONObject("tipotarea");
+                                params.put("tipotarea", TipoTareaTEMP.getString("_id"));
+
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

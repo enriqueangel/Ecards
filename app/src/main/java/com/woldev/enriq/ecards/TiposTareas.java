@@ -4,13 +4,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -40,6 +45,15 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
 
     @Override
     protected void onStart() {
+
+        TraerTareasWS();
+
+        super.onStart();
+    }
+
+    private void TraerTareasWS() {
+
+
         dialog.show();
         tareas = new ArrayList<ElementoLista>();
         String urltemp = url+"tareas";
@@ -82,7 +96,7 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
         };
 
         requestQueue.add(arrReq);
-        super.onStart();
+
     }
 
     private void CargarDATOS(JSONObject response) throws JSONException  {
@@ -148,12 +162,13 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
         agregarTarea.setView(mView);
         agregarTarea.setTitle("Crear tipo tarea");
 
-        agregarTarea.setPositiveButton("Crear", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Tipo tarea creado", Toast.LENGTH_LONG).show();
-            }
-        });
+        final TextInputEditText Nombre = (TextInputEditText) mView.findViewById(R.id.nombre);
+        final TextInputLayout CampoNombre = (TextInputLayout) mView.findViewById(R.id.CampoNombre);
+        final RadioButton RadioButtonestudio = (RadioButton) mView.findViewById(R.id.estudio);
+        final RadioButton RadioButtontrabajo = (RadioButton) mView.findViewById(R.id.trabajo);
+        RadioButtonestudio.setChecked(true);
+
+        agregarTarea.setPositiveButton("Reportar", null);
 
         agregarTarea.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
@@ -163,6 +178,100 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
         });
 
         final AlertDialog dialog = agregarTarea.create();
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
+
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button positiveButton = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                positiveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        boolean enviar = true;
+
+                        if  (!MetodosGlobales.validarCampoVacio(Nombre.getText().toString())){
+                            CampoNombre.setError("Debe ingresar el nombre");
+                            enviar = false;
+                        }else{
+                            CampoNombre.setError(null);
+                        }
+
+                        if(enviar){
+                            dialogCargando.show();
+
+                            String urltemp = url+"tareas/crear";
+
+                            requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                            Map<String, String> params = new HashMap<String, String>();
+
+                            params.put("tipo", Nombre.getText().toString());
+
+                            String Clasificacion = "";
+
+                            if(RadioButtonestudio.isChecked()){
+                                Clasificacion = "estudio";
+                            }else{
+                                Clasificacion = "trabajo";
+                            }
+
+                            params.put("clasificacion", Clasificacion);
+
+                            JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+                                                String Respuesta = response.getString("respuesta");
+                                                if (Respuesta.equals("si")){
+                                                    dialogCargando.dismiss();
+                                                    dialog.dismiss();
+                                                    TraerTareasWS();
+                                                }else{
+                                                    dialogCargando.dismiss();
+                                                    Toast.makeText(getApplicationContext(), "Error creando el nuevo tipo de tarea", Toast.LENGTH_LONG).show();
+                                                }
+
+                                            } catch (JSONException e) {
+                                                dialogCargando.dismiss();
+                                                Toast.makeText(getApplicationContext(), "Error creando el nuevo tipo de tarea", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                            ){
+                                /*
+                                /**
+                                 * Passing some request headers
+                                 * */
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    HashMap<String, String> headers = new HashMap<String, String>();
+                                    headers.put("Content-Type", "application/json; charset=utf-8");
+                                    SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                                    String tokenTemp = SP.getString("token","");
+                                    headers.put("token", tokenTemp);
+                                    return headers;
+                                }
+                            };
+                            requestQueue.add(arrReq);
+                        }
+                    }
+                });
+            }
+        });
+
+
         dialog.show();
     }
 }

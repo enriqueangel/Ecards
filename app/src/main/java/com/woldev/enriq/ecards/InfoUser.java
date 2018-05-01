@@ -75,8 +75,15 @@ public class InfoUser extends AppCompatActivity {
                     loadFragment(Fr1);
                     return true;
                 case R.id.navigation_desempeño:
+                    Bundle args1 = new Bundle();
                     toolbar.setTitle("Desempeño");
                     DesempenoFragment Fr2 = new DesempenoFragment();
+                    try {
+                        args1.putString("ID", DATOS.getString("_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Fr2.setArguments(args1);
                     loadFragment(Fr2);
                     return true;
                 case R.id.navigation_tarjetas:
