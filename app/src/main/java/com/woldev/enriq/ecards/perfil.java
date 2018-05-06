@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -21,9 +22,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class perfil extends AppCompatActivity {
 
     JSONObject DATOS;
-    TextView Correo,Nombres,Apellidos,Telefono,Rama,HrsLaborales;
+    TextView Correo,Nombres,Apellidos,Telefono,Rama,HrsLaborales,imagen;
     FloatingActionButton EditarDAtos;
     CircleImageView circleImageView;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,7 @@ public class perfil extends AppCompatActivity {
 
 
 
-        Picasso.with(getApplicationContext()).load("http://i.imgur.com/DvpvklR.png").into(circleImageView);
+        //Picasso.with(getApplicationContext()).load("http://i.imgur.com/DvpvklR.png").into(circleImageView);
 
         try {
             DATOS = new JSONObject(getIntent().getStringExtra("DATOS"));
@@ -53,6 +61,12 @@ public class perfil extends AppCompatActivity {
             Telefono.setText(DATOS.get("telefono").toString());
             Rama.setText(GetRamas(DATOS.getJSONArray("areas")));
             HrsLaborales.setText(DATOS.get("horas_contratadas").toString());
+
+            //Toast.makeText(this, DATOS.toString(), Toast.LENGTH_LONG).show();
+
+            Picasso.with(this).load(DATOS.get("foto").toString()).error(R.mipmap.ic_launcher).fit().centerInside().into(circleImageView);
+
+
 
         } catch (JSONException e) {
             e.printStackTrace();

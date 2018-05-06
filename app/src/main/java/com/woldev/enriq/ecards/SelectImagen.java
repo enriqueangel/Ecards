@@ -127,9 +127,10 @@ public class SelectImagen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent data = new Intent();
-                data.setData(Uri.parse(Directorio));
+                data.putExtra("data",Directorio);
                 setResult(RESULT_OK, data);
                 finish();
+
             }
         });
     }
@@ -185,7 +186,7 @@ public class SelectImagen extends AppCompatActivity {
 
     public static Bitmap RotateBitmap(Bitmap source, float angle) {
         Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
+       // matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
