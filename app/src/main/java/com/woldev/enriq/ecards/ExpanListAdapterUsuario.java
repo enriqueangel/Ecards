@@ -9,6 +9,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class ExpanListAdapterUsuario extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         Usuario child = (Usuario) getChild(i, i1);
-        int image = child.getImage();
+        String image = child.getFoto();
         String nombre = child.getNombre();
         String horasl = child.getHorasl();
         String horast = child.getHorast();
@@ -95,7 +97,7 @@ public class ExpanListAdapterUsuario extends BaseExpandableListAdapter {
         txtListChild.setText(nombre);
         HorasLaborales.setText(horasl);
         HorasTrabajadas.setText(horast);
-        imageView.setImageResource(image);
+        Picasso.with(context).load(image).into(imageView);
 
         return view;
     }

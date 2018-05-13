@@ -1,6 +1,10 @@
 package com.woldev.enriq.ecards;
 
+import android.net.Uri;
+
 import org.json.JSONObject;
+
+import java.net.URI;
 
 
 /**
@@ -9,16 +13,16 @@ import org.json.JSONObject;
 
 public class Usuario {
     private String nombre;
-    private int image;
+    private String foto;
     private String horasl;
     private String horast;
     private String hl;
     private String ht;
     JSONObject DATOS;
 
-     Usuario(int image,String nombre, String horasl, String horast, String hl, String ht,JSONObject DATOS) {
+     Usuario(String image, String nombre, String horasl, String horast, String hl, String ht, JSONObject DATOS) {
         this.nombre = nombre;
-        this.image = image;
+        this.foto = foto;
         this.horasl = horasl;
         this.horast = horast;
         this.hl = hl;
@@ -34,19 +38,20 @@ public class Usuario {
         this.DATOS = DATOS;
     }
 
+
+
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {this.nombre = nombre;}
 
-    int getImage() {
-        return image;
-    }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
+    public String getFoto() { return foto; }
+
+    public void setFoto(String foto) { this.foto = foto; }
+
+
 
     String getHorasl() {
         return horasl;
@@ -56,15 +61,21 @@ public class Usuario {
         this.horasl = horasl;
     }
 
+
+
     String getHorast() {return horast;}
 
     public void setHorast(String horast) {
         this.horast = horast;
     }
 
+
+
     public String getHl() {return hl;}
 
     public void setHl(String hl) {this.hl = hl;}
+
+
 
     public String getHt() {return ht;}
 

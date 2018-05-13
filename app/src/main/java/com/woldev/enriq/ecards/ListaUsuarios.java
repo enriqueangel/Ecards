@@ -51,7 +51,7 @@ public class ListaUsuarios extends AppCompatActivity {
         params.put("rol", "ADMIN");
 
 
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+        final JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -59,6 +59,7 @@ public class ListaUsuarios extends AppCompatActivity {
 
                             Usuarios = response.getJSONArray("users");
                             CargarUsuarios();
+                           // Toast.makeText(getApplicationContext(),Usuarios.toString(), Toast.LENGTH_LONG).show();
                             dialog.dismiss();
 
 
@@ -127,9 +128,10 @@ public class ListaUsuarios extends AppCompatActivity {
 
             String HorasLaboralesTEmp = "00:00";
             String HorasTrabajadasTEmp = "00:00";
+            String FotoTEmp = row.getString("foto");
 
-            items.add(new Usuario(R.drawable.imagen_perfil, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
-
+            items.add(new Usuario(FotoTEmp, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
+            Toast.makeText(getApplicationContext(),FotoTEmp,Toast.LENGTH_LONG).show();
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);
@@ -138,7 +140,7 @@ public class ListaUsuarios extends AppCompatActivity {
         LinearLayoutManager linear =  new LinearLayoutManager(this);
         linear.setOrientation(LinearLayoutManager.VERTICAL);
 
-        contenedor.setAdapter(new UsuarioAdapter(items));
+        contenedor.setAdapter(new UsuarioAdapter(items,this));
         contenedor.setLayoutManager(linear);
 
     }

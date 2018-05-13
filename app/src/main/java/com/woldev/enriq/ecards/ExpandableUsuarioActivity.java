@@ -46,14 +46,14 @@ public class ExpandableUsuarioActivity extends AppCompatActivity {
         JSONObject prueba = new JSONObject();
 
         List<Usuario> movil = new ArrayList<>();
-        movil.add(new Usuario(R.drawable.fondo_perfil, "Enrique Angel", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
+       /* movil.add(new Usuario(R.drawable.fondo_perfil, "Enrique Angel", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
         movil.add(new Usuario(R.drawable.fondo_perfil, "Valentina Rojas", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
-        movil.add(new Usuario(R.drawable.fondo_perfil, "Laura Gonzalez", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
+        movil.add(new Usuario(R.drawable.fondo_perfil, "Laura Gonzalez", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));*/
 
         List<Usuario> juegos = new ArrayList<>();
-        juegos.add(new Usuario(R.drawable.fondo_perfil, "Enrique Angel", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
+       /* juegos.add(new Usuario(R.drawable.fondo_perfil, "Enrique Angel", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
         juegos.add(new Usuario(R.drawable.fondo_perfil, "Valentina Rojas", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
-        juegos.add(new Usuario(R.drawable.fondo_perfil, "Laura Gonzalez", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));
+        juegos.add(new Usuario(R.drawable.fondo_perfil, "Laura Gonzalez", "Horas Laborales:", "Horas Trabajadas:", "00:00", "00:00", prueba));*/
 
         listDataChild.put(listDataHeader.get(0), movil); // Header, Child data
         listDataChild.put(listDataHeader.get(1), juegos);

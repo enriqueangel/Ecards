@@ -1,6 +1,11 @@
 package com.woldev.enriq.ecards;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +13,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONObject;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import com.squareup.picasso.Transformation;
 /**
  * Created by ValentinaR on 22/01/2018.
  */
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioViewHolder>{
     private List<Usuario> items;
+    private Context context;
 
     class UsuarioViewHolder extends RecyclerView.ViewHolder{
-        ImageView imagen;
+        CircleImageView imagen;
         TextView nombre, horasl, horast,hl,ht;
         JSONObject DATOS;
 
@@ -47,7 +57,8 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
         }
     }
 
-    UsuarioAdapter(List<Usuario> items){
+    UsuarioAdapter(List<Usuario> items, Context context){
+        this.context = context;
         this.items = items;
     }
 
@@ -60,8 +71,8 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
 
     @Override
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
-        holder.imagen.setImageResource(items.get(position).getImage());
         holder.nombre.setText(items.get(position).getNombre());
+        Picasso.with(context).load(items.get(position).getFoto()).into(holder.imagen);
         holder.horasl.setText(items.get(position).getHorasl());
         holder.horast.setText(items.get(position).getHorast());
         holder.hl.setText(items.get(position).getHl());
@@ -74,3 +85,5 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
         return items.size();
     }
 }
+
+

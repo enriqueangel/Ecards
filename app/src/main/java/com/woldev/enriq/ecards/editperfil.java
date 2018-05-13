@@ -82,7 +82,7 @@ public class editperfil extends AppCompatActivity {
                     String datos = data.getStringExtra("data");
                     path = Uri.parse(datos);
 
-
+                    Toast.makeText(getApplicationContext(),datos,Toast.LENGTH_LONG).show();
 
 
                     try {
