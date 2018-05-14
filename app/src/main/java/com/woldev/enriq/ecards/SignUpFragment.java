@@ -100,7 +100,7 @@ public class SignUpFragment extends Fragment {
                     final String correo_inp = correo.getText().toString();
                     final String password_inp = contrasena.getText().toString();
                     final String nombre_inp = nombre.getText().toString();
-                    final String apellido_inp = contrasena.getText().toString();
+                    final String apellido_inp = apellido.getText().toString();
                     final String telefono_inp = telefono.getText().toString();
 
                     url = baseUrl + "registro";

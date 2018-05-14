@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -125,29 +128,35 @@ public class UsuariosNuevos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ElementoLista item = usuarios.get(i);
-                Toast.makeText(getApplicationContext(), item.getNombre(), Toast.LENGTH_SHORT).show();
-                crearDialogAsignar();
+                crearDialogAsignar(item.getId());
             }
         });
     }
 
-    private void crearDialogAsignar() {
+    private void crearDialogAsignar(final String IDUser) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final AlertDialog.Builder agregarTarea = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final AlertDialog.Builder AsignarHoras = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         View mView = inflater.inflate(R.layout.dialog_asignar_horas, null);
-        agregarTarea.setView(mView);
-        agregarTarea.setTitle("Asignar horas");
+        AsignarHoras.setView(mView);
+        AsignarHoras.setTitle("Asignar horas");
 
-        agregarTarea.setPositiveButton("Asignar", null);
+        final TextInputEditText Horas = (TextInputEditText) mView.findViewById(R.id.horas);
 
-        agregarTarea.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
+
+        AsignarHoras.setPositiveButton("Asignar", null);
+
+        AsignarHoras.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 dialog.cancel();
             }
         });
 
-        final AlertDialog dialog = agregarTarea.create();
+        final AlertDialog dialog = AsignarHoras.create();
 
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -156,7 +165,58 @@ public class UsuariosNuevos extends AppCompatActivity {
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Horas asignadas", Toast.LENGTH_LONG).show();
+                        dialogCargando.show();
+                        String urltemp = url+"user/asignar_horas";
+                        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                        Map<String, String> params = new HashMap<String, String>();
+
+                        params.put("id", IDUser);
+                        params.put("tipo", Horas.getText().toString());
+
+                        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            String Respuesta = response.getString("respuesta");
+                                            if (Respuesta.equals("si")){
+                                                dialogCargando.dismiss();
+                                                finish();
+                                                Toast.makeText(getApplicationContext(), "Horas Asignadas", Toast.LENGTH_LONG).show();
+
+                                            }else{
+                                                dialogCargando.dismiss();
+                                                Toast.makeText(getApplicationContext(), "Error asignando horas", Toast.LENGTH_LONG).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            dialogCargando.dismiss();
+                                            Toast.makeText(getApplicationContext(), "Error asignando horas", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ){
+                            /*
+                            /**
+                             * Passing some request headers
+                             * */
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                HashMap<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                                String tokenTemp = SP.getString("token","");
+                                headers.put("token", tokenTemp);
+                                return headers;
+                            }
+                        };
+                        requestQueue.add(arrReq);
                     }
                 });
             }
