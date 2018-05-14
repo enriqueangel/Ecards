@@ -76,7 +76,6 @@
         </provider>
 
         <activity android:name=".VerProyecto" />
-        <activity android:name=".CrearRamaSuperActivity"></activity>
     </application>
 
 </manifest>
