@@ -20,9 +20,9 @@ public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<UsuarioDesempeno>> listHashMap;
+    private HashMap<String, List<Desempeno>> listHashMap;
 
-    ExpanListAdapterDesem(Context context, List<String> listDataHeader, HashMap<String, List<UsuarioDesempeno>> listHashMap) {
+    ExpanListAdapterDesem(Context context, List<String> listDataHeader, HashMap<String, List<Desempeno>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -69,7 +69,7 @@ public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        UsuarioDesempeno child = (UsuarioDesempeno) getChild(i, i1);
+        Desempeno child = (Desempeno) getChild(i, i1);
         String nombre = child.getNombre();
         String hora = child.getHora();
         String descripcion = child.getDescripcion();

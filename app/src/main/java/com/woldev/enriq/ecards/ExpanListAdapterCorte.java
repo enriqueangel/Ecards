@@ -19,9 +19,9 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<UsuarioCorte>> listHashMap;
+    private HashMap<String, List<Corte>> listHashMap;
 
-    ExpanListAdapterCorte(Context context, List<String> listDataHeader, HashMap<String, List<UsuarioCorte>> listHashMap) {
+    ExpanListAdapterCorte(Context context, List<String> listDataHeader, HashMap<String, List<Corte>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -69,7 +69,7 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        UsuarioCorte child = (UsuarioCorte) getChild(i, i1);
+        Corte child = (Corte) getChild(i, i1);
         String nombre = child.getNombre();
         String hora = child.getHora();
         if(view == null){

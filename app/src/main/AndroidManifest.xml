@@ -18,42 +18,42 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen">
+        <activity android:name=".ActivitySplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Card" />
-        <activity android:name=".Crear_Pin" />
-        <activity android:name=".login_pin" />
-        <activity android:name=".Recuperar_PIN" />
-        <activity android:name=".RecuperarContrasena" />
+        <activity android:name=".ActivityPrincipal" />
+        <activity android:name=".ActivityTarjetas" />
+        <activity android:name=".ActivityCrearPin" />
+        <activity android:name=".ActivityLoginPin" />
+        <activity android:name=".ActivityRecuperarPin" />
+        <activity android:name=".ActivityRecuperarContrasena" />
         <activity android:name=".perfil" />
         <activity android:name=".editperfil" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".MenuAdmin" />
-        <activity android:name=".MenuLider" />
-        <activity android:name=".SelectImagen" />
-        <activity android:name=".CrearReunion" />
-        <activity android:name=".MenuSuperU" />
-        <activity android:name=".Tarjeta" />
+        <activity android:name=".ActivityDashboard" />
+        <activity android:name=".ActivityMenuAdmin" />
+        <activity android:name=".ActivityMenuLider" />
+        <activity android:name=".ActivitySelectImagen" />
+        <activity android:name=".ActivityCrearReunion" />
+        <activity android:name=".ActivityMenuSuperU" />
+        <activity android:name=".ActivityVerTarjeta" />
         <activity android:name=".ListaUsuarios" />
-        <activity android:name=".Crear_Tarjeta" />
-        <activity android:name=".Crear_Tester" />
-        <activity android:name=".InfoUser" />
-        <activity android:name=".Corte" />
-        <activity android:name=".TiposTareas" />
-        <activity android:name=".Proyectos" />
-        <activity android:name=".Ramas" />
-        <activity android:name=".UsuariosNuevos" />
-        <activity android:name=".Rama" />
-        <activity android:name=".HistorialCorteActivity" />
+        <activity android:name=".ActivityCrearTarjeta" />
+        <activity android:name=".ActivityCrearTester" />
+        <activity android:name=".ActivityInformacionUsuario" />
+        <activity android:name=".ActivityCorte" />
+        <activity android:name=".ActivityTiposTareas" />
+        <activity android:name=".ActivityProyectos" />
+        <activity android:name=".ActivityRamas" />
+        <activity android:name=".ActivityUsuariosNuevos" />
+        <activity android:name=".ActivityRama" />
+        <activity android:name=".ActivityHistorialCorte" />
         <activity android:name=".ExpandableUsuarioActivity" />
-        <activity android:name=".CrearRamaSuper" />
-        <activity android:name=".CrearTipoTarea" />
+        <activity android:name=".ActivityCrearRama" />
+        <activity android:name=".ActivityCrearTipoTarea" />
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>
@@ -76,8 +76,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".VerProyecto" />
-        <activity android:name=".CrearTipoTarea"></activity>
+        <activity android:name=".ActivityVerProyecto" />
     </application>
 
 </manifest>

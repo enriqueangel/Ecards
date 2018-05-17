@@ -2,6 +2,7 @@ package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -102,6 +103,7 @@ public class ListaUsuarios extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_usuarios);
 
@@ -140,7 +142,7 @@ public class ListaUsuarios extends AppCompatActivity {
         LinearLayoutManager linear =  new LinearLayoutManager(this);
         linear.setOrientation(LinearLayoutManager.VERTICAL);
 
-        contenedor.setAdapter(new UsuarioAdapter(items,this));
+        contenedor.setAdapter(new AdapterUsuarios(items,this));
         contenedor.setLayoutManager(linear);
 
     }
