@@ -53,6 +53,7 @@
         <activity android:name=".HistorialCorteActivity" />
         <activity android:name=".ExpandableUsuarioActivity" />
         <activity android:name=".CrearRamaSuper" />
+        <activity android:name=".CrearTipoTarea" />
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>
@@ -76,6 +77,7 @@
         </provider>
 
         <activity android:name=".VerProyecto" />
+        <activity android:name=".CrearTipoTarea"></activity>
     </application>
 
 </manifest>

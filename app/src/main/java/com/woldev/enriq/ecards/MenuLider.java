@@ -70,7 +70,7 @@ public class MenuLider extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.rama:
-                i = new Intent(MenuLider.this, Rama.class);
+                i = new Intent(MenuLider.this, CrearTipoTarea.class);
                 startActivity(i);
                 break;
             case R.id.usuarios:

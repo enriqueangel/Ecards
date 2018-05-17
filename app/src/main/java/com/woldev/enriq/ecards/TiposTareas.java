@@ -2,6 +2,7 @@ package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
@@ -149,14 +150,18 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+        Intent i;
         switch (view.getId()){
             case R.id.agregar:
-                crearDialogAgregar();
+                i = new Intent(TiposTareas.this, CrearTipoTarea.class);
+                startActivity(i);
+                break;
+            default:
                 break;
         }
     }
 
-    private void crearDialogAgregar() {
+   /* private void crearDialogAgregar() {
         final AlertDialog.Builder agregarTarea = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         final View mView = this.getLayoutInflater().inflate(R.layout.dialog_crear_tarea, null);
         agregarTarea.setView(mView);
@@ -254,7 +259,7 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
                                 /**
                                  * Passing some request headers
                                  * */
-                                @Override
+                               /* @Override
                                 public Map<String, String> getHeaders() throws AuthFailureError {
                                     HashMap<String, String> headers = new HashMap<String, String>();
                                     headers.put("Content-Type", "application/json; charset=utf-8");
@@ -273,5 +278,5 @@ public class TiposTareas extends AppCompatActivity implements View.OnClickListen
 
 
         dialog.show();
-    }
+    }*/
 }
