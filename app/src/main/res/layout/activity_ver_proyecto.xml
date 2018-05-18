@@ -73,7 +73,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="12/12/12"
+
                                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                     android:textColor="#727272"
                                     android:textSize="18sp" />
@@ -123,7 +123,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Activo"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                     android:textColor="#727272"
                                     android:textSize="20sp" />
@@ -172,7 +171,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Enrique Angel"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                     android:textColor="#727272"
                                     android:textSize="20sp" />
@@ -221,7 +219,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Woldev"
+
                                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                     android:textColor="#727272"
                                     android:textSize="20sp" />
@@ -270,7 +268,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="oajdfoadsoh oaiushdoifuah oiuhpiauhpdfa"
                                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                                     android:textColor="#727272"
                                     android:textSize="20sp" />

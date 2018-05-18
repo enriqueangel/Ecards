@@ -106,8 +106,8 @@ public class ActivityProyectos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ElementoLista item = proyectos.get(i);
-                Toast.makeText(getApplicationContext(), item.getNombre(), Toast.LENGTH_SHORT).show();
                 Intent b =  new Intent(ActivityProyectos.this, ActivityVerProyecto.class);
+                b.putExtra("ID", item.getId());
                 startActivity(b);
             }
         });
