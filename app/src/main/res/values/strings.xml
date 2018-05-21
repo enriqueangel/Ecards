@@ -82,4 +82,8 @@
     <string name="fecha_de_entrega">Fecha de entrega</string>
     <string name="tiempo_realizado_2">Tiempo realizado</string>
     <string name="observaciones">Observaciones</string>
+    <string name="estado">Estado</string>
+    <string name="cliente">Cliente</string>
+    <string name="crear_proyecto">Crear Proyecto</string>
+    <string name="lider">Lider</string>
 </resources>
