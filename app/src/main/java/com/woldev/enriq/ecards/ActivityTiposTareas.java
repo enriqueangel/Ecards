@@ -1,17 +1,22 @@
 package com.woldev.enriq.ecards;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -145,15 +150,16 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
         Intent i;
         switch (view.getId()){
             case R.id.agregar:
-                i = new Intent(ActivityTiposTareas.this, ActivityCrearTipoTarea.class);
-                startActivity(i);
+                crearDialogAgregar();
+//                i = new Intent(ActivityTiposTareas.this, ActivityCrearTipoTarea.class);
+//                startActivity(i);
                 break;
             default:
                 break;
         }
     }
 
-   /* private void crearDialogAgregar() {
+    private void crearDialogAgregar() {
         final AlertDialog.Builder agregarTarea = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         final View mView = this.getLayoutInflater().inflate(R.layout.dialog_crear_tarea, null);
         agregarTarea.setView(mView);
@@ -247,11 +253,8 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
                                         }
                                     }
                             ){
-                                /*
-                                /**
-                                 * Passing some request headers
-                                 * */
-                               /* @Override
+
+
                                 public Map<String, String> getHeaders() throws AuthFailureError {
                                     HashMap<String, String> headers = new HashMap<String, String>();
                                     headers.put("Content-Type", "application/json; charset=utf-8");
@@ -270,5 +273,5 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
 
 
         dialog.show();
-    }*/
+    }
 }

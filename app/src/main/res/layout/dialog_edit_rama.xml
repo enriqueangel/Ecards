@@ -58,6 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
+                android:editable="false"
+                android:focusable="false"
                 android:theme="@style/EditText"
                 />
         </android.support.design.widget.TextInputLayout>

@@ -47,7 +47,7 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
     TextView RamaNombre;
     TextView Codigo;
     TextView Cantidad;
-
+    String IDRama;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +67,13 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
         btnEditar = (FloatingActionButton) findViewById(R.id.BTNEditarinformacion);
         btnEditar.setOnClickListener(this);
 
-        String IDRama = "";
+        IDRama = "";
 
         if(getIntent().getExtras()!=null){
              IDRama =(getIntent().getExtras().getString("IDRAMA"));
         }
 
         url = getString(R.string.URLWS);
-        url = url+"ramas/informacion";
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
@@ -89,14 +88,15 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
         if(!IDRama.equals("")){
             params.put("id", IDRama);
         }
-
-        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
+        String URLtemp  = url+"ramas/informacion";
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, URLtemp, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONObject Respuesta = response.getJSONObject("rama");
                             NombreRama = Respuesta.getString("nombre");
+                            IDRama = Respuesta.getString("_id");
                             CodRama = Respuesta.getString("codigo");
                             CantUsuariosRama = response.getInt("cantidad");
 
@@ -154,7 +154,7 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
         final AlertDialog.Builder EditRama = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         final View mView = this.getLayoutInflater().inflate(R.layout.dialog_edit_rama, null);
         EditRama.setView(mView);
-        EditRama.setTitle("Editar ActivityRama");
+        EditRama.setTitle("Editar Rama");
 
         final TextView RamaNombre = (TextView) mView.findViewById(R.id.EDTnombrer);
         final TextView Codigo = (TextView) mView.findViewById(R.id.EDTcodigo);
@@ -163,6 +163,11 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
 
         RamaNombre.setText(NombreRama);
         Codigo.setText(CodRama);
+
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView2);
+        final AlertDialog dialogCargando = mBuilder.create();
 
         EditRama.setPositiveButton("Editar", null);
 
@@ -182,7 +187,58 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
                 positiveButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "Editar", Toast.LENGTH_LONG).show();
+
+                        dialogCargando.show();
+                        String urltemp = url+"ramas/editar";
+                        requestQueue = Volley.newRequestQueue(getApplicationContext());
+
+                        Map<String, String> params = new HashMap<String, String>();
+
+                        params.put("id", IDRama);
+                        params.put("nombre", RamaNombre.getText().toString());
+
+                        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            String Respuesta = response.getString("respuesta");
+                                            if (Respuesta.equals("si")){
+                                                dialogCargando.dismiss();
+                                                finish();
+                                                Toast.makeText(getApplicationContext(), "Datos modificados", Toast.LENGTH_LONG).show();
+                                            }else{
+                                                dialogCargando.dismiss();
+                                                Toast.makeText(getApplicationContext(), "Error modificando la rama", Toast.LENGTH_LONG).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            dialogCargando.dismiss();
+                                            Toast.makeText(getApplicationContext(), "Error modificando la rama", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                },
+                                new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                        ){
+                            /*
+                            /**
+                             * Passing some request headers
+                             * */
+                            @Override
+                            public Map<String, String> getHeaders() throws AuthFailureError {
+                                HashMap<String, String> headers = new HashMap<String, String>();
+                                headers.put("Content-Type", "application/json; charset=utf-8");
+                                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                                String tokenTemp = SP.getString("token","");
+                                headers.put("token", tokenTemp);
+                                return headers;
+                            }
+                        };
+                        requestQueue.add(arrReq);
                     }
                 });
             }
