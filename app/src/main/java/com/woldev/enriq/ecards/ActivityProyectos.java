@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityProyectos extends AppCompatActivity {
+public class ActivityProyectos extends AppCompatActivity implements View.OnClickListener {
 
     String url ;
     RequestQueue requestQueue;
@@ -132,6 +133,9 @@ public class ActivityProyectos extends AppCompatActivity {
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         dialog = mBuilder.create();
+
+        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.agregar);
+        btnCrear.setOnClickListener(this);
     }
 
     @Override
@@ -142,6 +146,19 @@ public class ActivityProyectos extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent i;
+        switch (view.getId()){
+            case R.id.agregar:
+                i = new Intent(ActivityProyectos.this, ActivityCrearProyecto.class);
+                startActivity(i);
+                break;
+            default:
+                break;
         }
     }
 }
