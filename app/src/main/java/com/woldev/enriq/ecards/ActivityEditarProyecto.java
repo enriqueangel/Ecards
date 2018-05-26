@@ -1,7 +1,6 @@
 package com.woldev.enriq.ecards;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,33 +18,28 @@ import java.util.List;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
-public class ActivityCrearProyecto extends AppCompatActivity  {
+public class ActivityEditarProyecto extends AppCompatActivity {
 
     int day, month, year;
     Calendar Date;
-    EditText  Cliente, Descripcion ,Fecha;
+    EditText Cliente, Descripcion ,Fecha;
     TextInputLayout TILFecha;
     Button CrearProyecto;
-    MaterialSpinner estado,lider;
+    MaterialSpinner lider;
 
     List<String> estadoItem = new ArrayList<>();
     List<String> liderItem = new ArrayList<>();
     ArrayAdapter<String> estadoAdapter, liderAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_proyecto);
-
+        setContentView(R.layout.activity_editar_proyecto);
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Crear Proyecto");
-
-
+        toolbar.setTitle("Editar Proyecto");
 
         Fecha= (EditText)  findViewById(R.id.EDTfecha);
         Descripcion= (EditText)  findViewById(R.id.descripcion);
@@ -65,7 +58,7 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
         Fecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(ActivityCrearProyecto.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(ActivityEditarProyecto.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         monthOfYear = monthOfYear + 1;
@@ -78,35 +71,19 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
             }
         });
 
-        estado = (MaterialSpinner) findViewById(R.id.estado);
         lider = (MaterialSpinner) findViewById(R.id.lider);
-
-        estadoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, estadoItem);
         liderAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, liderItem);
-
-        estadoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         liderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        estado.setAdapter(estadoAdapter);
         lider.setAdapter(liderAdapter);
 
         List<String> list = new ArrayList<>();
-        list.add("Activo");
-        list.add("Inactivo");
+        list.add("Valentina Rojas");
+        list.add("Laura Gonzalez");
+        list.add("Enrique");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        estado.setAdapter(adapter);
-
-        List<String> list2 = new ArrayList<>();
-        list2.add("Enrique");
-        list2.add("Laura");
-        list2.add("Leonardo");
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list2);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lider.setAdapter(adapter);
-
 
     }
 
@@ -120,5 +97,4 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

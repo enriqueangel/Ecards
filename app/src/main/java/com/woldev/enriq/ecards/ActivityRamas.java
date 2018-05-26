@@ -35,7 +35,6 @@ public class ActivityRamas extends AppCompatActivity  {
 
     ArrayList<ElementoLista> ramas;
     ListView list;
-    FloatingActionButton btnAgregar;
 
     String url ;
     RequestQueue requestQueue;
@@ -66,8 +65,8 @@ public class ActivityRamas extends AppCompatActivity  {
         dialog = mBuilder.create();
         list = (ListView) findViewById(R.id.lista);
 
-       // btnAgregar = (FloatingActionButton) findViewById(R.id.BTNagregar);
-        //btnAgregar.setOnClickListener(this);
+        //FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.agregar);
+        //btnCrear.setOnClickListener(this);
 
     }
 
@@ -158,17 +157,22 @@ public class ActivityRamas extends AppCompatActivity  {
         }
     }
 
-  /*  @Override
+/*
+   @Override
     public void onClick(View view) {
         Intent i;
         switch (view.getId()){
-            case R.id.BTNagregar:
-                i = new Intent(this, CrearRamaSuper.class);
+            case R.id.agregar:
+                i = new Intent(ActivityRamas.this, ActivityCrearProyecto.class);
                 startActivity(i);
+                break;
+            default:
                 break;
         }
 
     }*/
+
+
 
 
 }

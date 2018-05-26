@@ -86,4 +86,5 @@
     <string name="cliente">Cliente</string>
     <string name="crear_proyecto">Crear Proyecto</string>
     <string name="lider">Lider</string>
+    <string name="editarproyecto">Editar Proyecto</string>
 </resources>

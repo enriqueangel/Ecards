@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,6 +60,11 @@ public class ActivityVerProyecto extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.opciones_proyecto, menu);
+        return true;
     }
 
     private void CargarDatos() {
@@ -143,6 +148,10 @@ public class ActivityVerProyecto extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.editarProyecto:
+                i = new Intent(ActivityVerProyecto.this, ActivityEditarProyecto.class);
+                startActivity(i);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
