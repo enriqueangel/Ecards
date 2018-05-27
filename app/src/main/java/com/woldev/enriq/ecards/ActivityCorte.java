@@ -215,6 +215,12 @@ public class ActivityCorte extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Corte");
 
+//        VariablesGlobales global=(VariablesGlobales) this.getApplicationContext();
+//        String X = global.getTipoUser();
+//        Toast.makeText(ActivityCorte.this, X, Toast.LENGTH_SHORT).show();
+
+
+
         url = getString(R.string.URLWS);
 
         listView = (ExpandableListView) findViewById(R.id.ramas);

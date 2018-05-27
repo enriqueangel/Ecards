@@ -39,19 +39,19 @@ public class ActivityDashboard extends AppCompatActivity {
                 switch (nombreTipo){
                     case "empleado":
                         String empleado = "Empleado";
-                        items.add(new Rol(empleado, R.drawable.ic_empleado, nombreTipo));
+                        items.add(new Rol(empleado, R.drawable.ic_empleado, nombreTipo,this.getApplicationContext()));
                         break;
                     case "administrador":
                         String administrador = "Administrador";
-                        items.add(new Rol(administrador, R.drawable.ic_user, nombreTipo));
+                        items.add(new Rol(administrador, R.drawable.ic_user, nombreTipo,this.getApplicationContext()));
                         break;
                     case "lider":
                         String lider = "Lider";
-                        items.add(new Rol(lider, R.drawable.ic_usuario, nombreTipo));
+                        items.add(new Rol(lider, R.drawable.ic_usuario, nombreTipo,this.getApplicationContext()));
                         break;
                     case "super":
                         String super_u = "Super Usuario";
-                        items.add(new Rol(super_u, R.drawable.ic_usuarios_multiples_en_silueta, nombreTipo));
+                        items.add(new Rol(super_u, R.drawable.ic_usuarios_multiples_en_silueta, nombreTipo,this.getApplicationContext()));
                         break;
                     default:
                         break;

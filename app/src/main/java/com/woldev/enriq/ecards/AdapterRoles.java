@@ -1,6 +1,7 @@
 package com.woldev.enriq.ecards;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class AdapterRoles extends RecyclerView.Adapter<AdapterRoles.RolViewHolde
         ImageView imagen;
         TextView texto;
         Rol roles;
+        Context Contexto;
 
         RolViewHolder(View v){
             super(v);
@@ -33,21 +35,29 @@ public class AdapterRoles extends RecyclerView.Adapter<AdapterRoles.RolViewHolde
                 public void onClick(View v) {
                     String rol = roles.getText();
                     Intent intent;
+
+                    VariablesGlobales global=(VariablesGlobales) Contexto;
+
+
                     switch (rol){
                         case "Empleado":
                             intent = new Intent(v.getContext(), ActivityTarjetas.class);
+                            global.setTipoUser("Empleado");
                             v.getContext().startActivity(intent);
                             break;
                         case "Administrador":
                             intent = new Intent(v.getContext(), ActivityMenuAdmin.class);
+                            global.setTipoUser("Administrador");
                             v.getContext().startActivity(intent);
                             break;
                         case "Lider":
                             intent = new Intent(v.getContext(), ActivityMenuLider.class);
+                            global.setTipoUser("Lider");
                             v.getContext().startActivity(intent);
                             break;
                         case "Super Usuario":
                             intent = new Intent(v.getContext(), ActivityMenuSuperU.class);
+                            global.setTipoUser("SuperU");
                             v.getContext().startActivity(intent);
                             break;
                         default:
@@ -79,6 +89,7 @@ public class AdapterRoles extends RecyclerView.Adapter<AdapterRoles.RolViewHolde
     public void onBindViewHolder(RolViewHolder viewHolder, int i) {
         viewHolder.imagen.setImageResource(items.get(i).getImage());
         viewHolder.texto.setText(items.get(i).getText());
-        viewHolder.roles = items.get(i);;
+        viewHolder.roles = items.get(i);
+        viewHolder.Contexto = items.get(i).getContexto();
     }
 }
