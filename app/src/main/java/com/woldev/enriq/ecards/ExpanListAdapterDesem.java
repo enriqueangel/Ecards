@@ -17,7 +17,6 @@ import java.util.List;
 
 public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
 
-
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<Desempeno>> listHashMap;
@@ -27,7 +26,6 @@ public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
     }
-
 
     @Override
     public int getGroupCount() {return this.listDataHeader.size();}

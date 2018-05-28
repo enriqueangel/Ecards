@@ -28,6 +28,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -261,6 +262,14 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
 
         contenedor.setAdapter(new AdapterTarjetas(listaTarjetas));
         contenedor.setLayoutManager(new LinearLayoutManager(this));
+
+        if(contenedor.getAdapter() != null){
+            if(contenedor.getAdapter().getItemCount() == 0){
+                LinearLayout contenedorVacio = findViewById(R.id.vacio);
+                contenedor.setVisibility(View.GONE);
+                contenedorVacio.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     protected void onCreate(Bundle savedInstanceState) {

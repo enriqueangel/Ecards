@@ -36,7 +36,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActivityTiposTareas extends AppCompatActivity implements View.OnClickListener {
-
     String url ;
     RequestQueue requestQueue;
     ArrayList<ElementoLista> tareas ;
@@ -105,11 +104,13 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
             String NombreTEmp = row.getString("tipo");
             String BDidTEmp = row.getString("_id");
             tareas.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
-          }
+        }
 
         ListView list = (ListView) findViewById(R.id.lista);
         ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, tareas);
         list.setAdapter(adapter);
+
+        list.setEmptyView(findViewById(R.id.emptyElement));
     }
 
     @Override
@@ -186,7 +187,6 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
         View mView2 = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView2);
         final AlertDialog dialogCargando = mBuilder.create();
-
 
         dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override

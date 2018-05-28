@@ -28,7 +28,6 @@ public class AdapterTarjetas extends RecyclerView.Adapter<ViewHolderTarjeta> {
         return new ViewHolderTarjeta(vista);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onBindViewHolder(ViewHolderTarjeta holder, int position) {
         holder.titulo.setText(ListaObjeto.get(position).getTitulo());

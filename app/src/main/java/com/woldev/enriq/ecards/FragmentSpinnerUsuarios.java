@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,13 +17,14 @@ import java.util.List;
 
 import fr.ganfra.materialspinner.MaterialSpinner;
 
-public class SpinnerUserFragment extends Fragment {
-
+public class FragmentSpinnerUsuarios extends Fragment {
 
     List<String> Usuarios = new ArrayList<>();
-    ArrayAdapter<String> responAdapter;
-    MaterialSpinner responsable;
+
+    ArrayAdapter<String> responAdapter, testerAdapter;
+    MaterialSpinner responsable, tester;
     List<String> responItem = new ArrayList<>();
+    List<String> testerItem = new ArrayList<>();
 
     JSONArray USUARIOS;
 
@@ -30,9 +32,10 @@ public class SpinnerUserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_spinner_user, container, false);
+        final View view =  inflater.inflate(R.layout.fragment_spinner_usuarios, container, false);
 
         responsable = (MaterialSpinner) view.findViewById(R.id.encargado);
+        tester = (MaterialSpinner) view.findViewById(R.id.tester);
 
         try {
             USUARIOS = new JSONArray(getArguments().getString("USUARIOS"));
@@ -43,12 +46,14 @@ public class SpinnerUserFragment extends Fragment {
 
 
         responAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, responItem);
-
+        testerAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, testerItem);
 
         responAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        testerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         responsable.setAdapter(responAdapter);
+        tester.setAdapter(testerAdapter);
+
 
 
         return view;
@@ -63,12 +68,14 @@ public class SpinnerUserFragment extends Fragment {
             String BDidTEmp = row.getString("_id");
             Usuarios.add(BDidTEmp);
             responItem.add(NombreMostrar);
+            testerItem.add(NombreMostrar);
         }
     }
 
+
     public boolean verificarCampos(){
         int Pos1 =  responsable.getSelectedItemPosition();
-
+        int Pos2 =  tester.getSelectedItemPosition();
 
         if (Pos1 == 0){
             responsable.setError("Seleccione un usuario.");
@@ -77,6 +84,17 @@ public class SpinnerUserFragment extends Fragment {
             responsable.setError(null);
         }
 
+        if (Pos2 == 0){
+            tester.setError("Seleccione un usuario.");
+            return false;
+        }else{
+            tester.setError(null);
+        }
+
+        if (Pos1 == Pos2){
+            Toast.makeText(getActivity(), "El responsable y el tester tienen que ser diferentes.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         return true;
     }
@@ -86,4 +104,10 @@ public class SpinnerUserFragment extends Fragment {
         return Usuarios.get(Pos1-1).toString();
     }
 
+    public String GetTesterID(){
+        int Pos2 =  tester.getSelectedItemPosition();
+        return Usuarios.get(Pos2-1).toString();
+    }
+
 }
+

@@ -103,6 +103,8 @@ public class ActivityProyectos extends AppCompatActivity implements View.OnClick
         ElementoListAdapter adapter = new ElementoListAdapter(this, proyectos);
         list.setAdapter(adapter);
 
+        list.setEmptyView(findViewById(R.id.emptyElement));
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

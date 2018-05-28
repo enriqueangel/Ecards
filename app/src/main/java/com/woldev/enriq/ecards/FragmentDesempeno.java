@@ -35,7 +35,6 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.woldev.enriq.ecards.R.id.*;
 
 public class FragmentDesempeno extends Fragment{
-
     ExpanListAdapterDesem listAdapter;
     ExpandableListView listView;
     List<String> listDataHeader;
@@ -50,7 +49,6 @@ public class FragmentDesempeno extends Fragment{
 
     @Override
     public void onStart() {
-
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
@@ -63,7 +61,6 @@ public class FragmentDesempeno extends Fragment{
         dialog.show();
 
         Map<String, String> params = new HashMap<String, String>();
-
         params.put("id", IDusuario);
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urlTemp, new JSONObject(params),
@@ -190,25 +187,5 @@ public class FragmentDesempeno extends Fragment{
         IDusuario = getArguments().getString("ID");
         listView = (ExpandableListView) view.findViewById(desempeno);
         return view;
-    }
-
-    private void prepareListData() {
-        // Adding child data
-        listDataHeader.add("Fecha1");
-        listDataHeader.add("Fecha2");
-
-        // Adding child data
-        List<Desempeno> top250 = new ArrayList<>();
-        top250.add(new Desempeno("Valentina Rojas", "18:30", "eshbdvhhfhfhfffhfbfehhfbbdhvbdbvvbhvbvvbhvvvbjch hcvhdv dhbcsjbbbdhjdbdbdhdhbdbddb"));
-        top250.add(new Desempeno("Enrique Angel", "00:00","ggfhh"));
-        top250.add(new Desempeno("Ronal Gonzales", "03:00","ttuii"));
-        top250.add(new Desempeno("Laura Gonzales", "12:45","yg"));
-
-        List<Desempeno> nowShowing = new ArrayList<>();
-        nowShowing.add(new Desempeno("Laura Galenano", "10:00","gyfbhfdbfdjkdsfhvfdfgufvffffg"));
-        nowShowing.add(new Desempeno("Daniela Ramirez", "08:00","098"));
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
     }
 }

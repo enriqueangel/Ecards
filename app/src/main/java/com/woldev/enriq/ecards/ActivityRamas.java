@@ -134,6 +134,7 @@ public class ActivityRamas extends AppCompatActivity  {
         ElementoListAdapter adapter = new ElementoListAdapter(this, ramas);
         list.setAdapter(adapter);
 
+        list.setEmptyView(findViewById(R.id.emptyElement));
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

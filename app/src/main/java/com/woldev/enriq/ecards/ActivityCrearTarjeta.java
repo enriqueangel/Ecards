@@ -62,7 +62,7 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
     RequestQueue requestQueue;
 
     ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
-    SpinnerUsuariosFragment fragmento2 = new SpinnerUsuariosFragment();
+    FragmentSpinnerUsuarios fragmento2 = new FragmentSpinnerUsuarios();
 
     List<String> Proyectos = new ArrayList<>();
     List<String> Tareas = new ArrayList<>();

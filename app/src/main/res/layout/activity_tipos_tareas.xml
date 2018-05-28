@@ -22,6 +22,14 @@
 
     </LinearLayout>
 
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/emptyElement"
+        android:text="No hay tipos de tareas."
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:layout_gravity="center" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/agregar"
         android:layout_width="wrap_content"

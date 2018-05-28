@@ -133,7 +133,7 @@ public class ListaUsuarios extends AppCompatActivity {
             String FotoTEmp = row.getString("foto");
 
             items.add(new Usuario(FotoTEmp, NombreMostrar, "Horas Laborales:", "Horas Trabajadas:",HorasLaboralesTEmp,HorasTrabajadasTEmp,row));
-            Toast.makeText(getApplicationContext(),FotoTEmp,Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),FotoTEmp,Toast.LENGTH_LONG).show();
         }
 
         contenedor = (RecyclerView) findViewById(R.id.contenedor);

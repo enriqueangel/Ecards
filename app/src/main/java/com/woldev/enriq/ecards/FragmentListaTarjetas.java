@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -36,7 +37,6 @@ import java.util.Map;
 import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentListaTarjetas extends Fragment {
-
     RecyclerView contenedor;
     ArrayList<Tarjeta> listaTarjetas = new ArrayList<Tarjeta>();
 
@@ -53,13 +53,12 @@ public class FragmentListaTarjetas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tarjetas, container, false);
+        final View view = inflater.inflate(R.layout.fragment_tarjetas, container, false);
 
         url = getString(R.string.URLWS);
         url = url+"tarjetas";
 
         contenedor = (RecyclerView) view.findViewById(R.id.contenedor);
-
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
@@ -70,9 +69,7 @@ public class FragmentListaTarjetas extends Fragment {
         dialog.show();
 
         Map<String, String> params = new HashMap<String, String>();
-
         String IDusuario = getArguments().getString("ID");
-
         params.put("id", IDusuario);
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
@@ -80,13 +77,11 @@ public class FragmentListaTarjetas extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             TARJETAS = response.getJSONArray("tarjetas");
                             Reuniones = response.getJSONArray("reunion");
                             Testers = response.getJSONArray("tester");
                             String dtStart = response.getString("fecha");
                             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
                             try {
                                 FechaServidor = format.parse(dtStart);
                             } catch (ParseException e) {
@@ -97,17 +92,21 @@ public class FragmentListaTarjetas extends Fragment {
                             ImprimirTesters();
                             ImprimirTargetas();
 
-
                             contenedor.setHasFixedSize(true);// no va a presentar variables en cuanto al tamaño
                             RelativeLayout layout = new RelativeLayout(getActivity().getApplicationContext());
                             layout.setVerticalGravity(RelativeLayout.CENTER_VERTICAL);
 
                             //INDICO CUAL TARJETA QUIERO MOSTRAR, PENDIENTE:PROGRAMAR LA ESCOGENCIA DE LA TARJETA
                             contenedor.setAdapter(new AdapterTarjetas(listaTarjetas));
-
                             contenedor.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
+                            if(contenedor.getAdapter() != null){
+                                if(contenedor.getAdapter().getItemCount() == 0){
+                                    LinearLayout contenedorVacio = view.findViewById(R.id.vacio);
+                                    contenedor.setVisibility(View.GONE);
+                                    contenedorVacio.setVisibility(View.VISIBLE);
+                                }
+                            }
 
                             dialog.dismiss();
                         } catch (JSONException e) {
@@ -248,19 +247,15 @@ public class FragmentListaTarjetas extends Fragment {
             DiasRestantes = calcularColor(FechaEntrega);
 
             if (DiasRestantes <= 0){
-
                 ColorTArgeta  = R.drawable.ic_card_green_red;
                 COLORTEMP = "verde-rojo";
             }else if(DiasRestantes <= 2){
-
                 ColorTArgeta  = R.drawable.ic_card_green_red;
                 COLORTEMP = "verde-rojo";
             }else if(DiasRestantes <= 4){
-
                 ColorTArgeta  = R.drawable.ic_card_green_yellow;
                 COLORTEMP = "verde-naranja";
             }else{
-
                 ColorTArgeta  = R.drawable.ic_card_green_white;
                 COLORTEMP = "verde-blanco";
             }
@@ -268,9 +263,6 @@ public class FragmentListaTarjetas extends Fragment {
             row.put("Color",COLORTEMP);
 
             listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, true));
-
-
-
         }
     }
 

@@ -117,6 +117,8 @@ public class ActivityUsuariosNuevos extends AppCompatActivity {
         ElementoListAdapter adapter = new ElementoListAdapter(this, usuarios);
         list.setAdapter(adapter);
 
+        list.setEmptyView(findViewById(R.id.emptyElement));
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -177,7 +179,6 @@ public class ActivityUsuariosNuevos extends AppCompatActivity {
                                                 dialogCargando.dismiss();
                                                 finish();
                                                 Toast.makeText(getApplicationContext(), "Horas Asignadas", Toast.LENGTH_LONG).show();
-
                                             }else{
                                                 dialogCargando.dismiss();
                                                 Toast.makeText(getApplicationContext(), "Error asignando horas", Toast.LENGTH_LONG).show();
@@ -235,8 +236,6 @@ public class ActivityUsuariosNuevos extends AppCompatActivity {
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
         dialog = mBuilder.create();
-
-
     }
 
     @Override
