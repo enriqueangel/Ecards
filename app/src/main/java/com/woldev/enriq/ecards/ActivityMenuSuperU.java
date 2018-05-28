@@ -82,7 +82,7 @@ public class ActivityMenuSuperU extends AppCompatActivity implements View.OnClic
                 startActivity(i);
                 break;
             case R.id.usuarios:
-                i = new Intent(this, ExpandableUsuarioActivity.class);
+                i = new Intent(this, ExpandableSuperuActivity.class);
                 startActivity(i);
                 break;
             case R.id.corte:

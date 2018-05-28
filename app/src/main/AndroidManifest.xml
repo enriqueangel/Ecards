@@ -78,7 +78,8 @@
 
         <activity android:name=".ActivityVerProyecto" />
         <activity android:name=".ActivityCrearProyecto" />
-        <activity android:name=".ActivityEditarProyecto"></activity>
+        <activity android:name=".ActivityEditarProyecto" />
+        <activity android:name=".ExpandableSuperuActivity"></activity>
     </application>
 
 </manifest>
