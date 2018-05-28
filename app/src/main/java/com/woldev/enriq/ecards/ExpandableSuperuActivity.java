@@ -53,6 +53,7 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
         List<String> web = new ArrayList<>();
         web.add("Daniela Jaramillo");
         web.add("Laura Galeano");
+        web.add("Jenifer Ramirez");
 
         listHash.put(listDataHeader.get(0),movil);
         listHash.put(listDataHeader.get(1),web);
