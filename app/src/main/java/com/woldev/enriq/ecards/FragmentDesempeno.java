@@ -173,8 +173,11 @@ public class FragmentDesempeno extends Fragment{
             ListaMostrar.add(new Desempeno(NombreTareaTemp, TiempoTemp, DescripcionTemp));
         }
 
-        listDataHeader.add(Ultifecha);
-        listDataChild.put(listDataHeader.get(ContTemp), ListaMostrar);
+
+        if (!Ultifecha.equals("")){
+            listDataHeader.add(Ultifecha);
+            listDataChild.put(listDataHeader.get(ContTemp), ListaMostrar);
+        }
 
         listAdapter = new ExpanListAdapterDesem(getActivity(),listDataHeader,listDataChild);
         listView.setAdapter(listAdapter);
