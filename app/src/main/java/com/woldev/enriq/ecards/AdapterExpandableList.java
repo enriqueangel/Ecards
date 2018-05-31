@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.RadioButton;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -16,22 +16,14 @@ import java.util.List;
  * Created by enriq on 22/01/2018.
  */
 
-public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
+public class AdapterExpandableList extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String, List<ItemListCheckbox>> listHashMap;
 
-    private OnRbClickListener mOnRbClickListener;
 
-    private RadioButton childRb1;
-    private RadioButton childRb2;
-
-    private int GrupAntTemp = -1;
-    private int HijoantTemp = -1;
-
-
-    ExpandableListRadioAdapter(Context context, List<String> listDataHeader, HashMap<String, List<ItemListCheckbox>> listHashMap) {
+    AdapterExpandableList(Context context, List<String> listDataHeader, HashMap<String, List<ItemListCheckbox>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -91,7 +83,7 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(final int i, final int i1, boolean b, View view, ViewGroup viewGroup) {
+    public View getChildView(int i, final int i1, boolean b, View view, ViewGroup viewGroup) {
         // Nombre
         ItemListCheckbox child = (ItemListCheckbox) getChild(i, i1);
         String nombre = child.getNombre();
@@ -101,50 +93,18 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
 
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item_radiobutton, null);
+            view = inflater.inflate(R.layout.list_item_checkbox, null);
         }
         TextView txtListChild = (TextView) view.findViewById(R.id.lblListItem);
-        final RadioButton checkListChild = (RadioButton) view.findViewById(R.id.ListUsercheckbox);
+        final CheckBox checkListChild = (CheckBox) view.findViewById(R.id.ListUsercheckbox);
         checkListChild.setChecked(check);
         txtListChild.setText(nombre);
 
         checkListChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (i == 0) {
-                    if (childRb1 != null && childRb1 != checkListChild) {
-                        childRb1.setChecked(false);
-                    }
-                    if (childRb2 != null){
-                        childRb2.setChecked(false);
-                    }
-                    childRb1 = checkListChild;
-                } else {
-                    if (childRb2 != null && childRb2 != checkListChild) {
-                        childRb2.setChecked(false);
-                    }
-                    if (childRb1 != null){
-                        childRb1.setChecked(false);
-                    }
-                    childRb2 = checkListChild;
-                }
-                if (mOnRbClickListener != null) {
-                    mOnRbClickListener.onRbClick(i, i1);
-                }
                 ItemListCheckbox objeto = getChild( iTemp,  i1);
                 objeto.setCheck(checkListChild.isChecked());
-
-                if (GrupAntTemp != -1 && HijoantTemp != -1){
-                    ItemListCheckbox objetoanterior = getChild( GrupAntTemp,  HijoantTemp);
-                    objetoanterior.setCheck(false);
-                }
-
-                GrupAntTemp = iTemp;
-                HijoantTemp = i1;
-
-
-
             }
         });
 
@@ -154,10 +114,5 @@ public class ExpandableListRadioAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return true;
-    }
-
-    //child view radio button click listener
-    public interface OnRbClickListener {
-        void onRbClick(int groupPosition, int rbPosition);
     }
 }

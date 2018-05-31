@@ -15,13 +15,13 @@ import java.util.List;
  * Created by ValentinaR on 27/05/2018.
  */
 
-public class ExpandableListAdapterSuperu extends BaseExpandableListAdapter{
+public class AdapterExpandableListUsuariosRamas extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listDataHeader;
     private HashMap<String,List<String>> listHashMap;
 
-    public ExpandableListAdapterSuperu(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
+    public AdapterExpandableListUsuariosRamas(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;

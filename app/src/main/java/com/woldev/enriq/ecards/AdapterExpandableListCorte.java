@@ -12,16 +12,16 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by ValentinaR on 17/02/2018.
+ * Created by ValentinaR on 26/01/2018.
  */
 
-public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
+public class AdapterExpandableListCorte extends BaseExpandableListAdapter{
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<Desempeno>> listHashMap;
+    private HashMap<String, List<Corte>> listHashMap;
 
-    ExpanListAdapterDesem(Context context, List<String> listDataHeader, HashMap<String, List<Desempeno>> listHashMap) {
+    AdapterExpandableListCorte(Context context, List<String> listDataHeader, HashMap<String, List<Corte>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
@@ -36,10 +36,12 @@ public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int i) {return this.listDataHeader.get(i);}
+    public Object getGroup(int i) {
+        return this.listDataHeader.get(i);
+    }
 
     @Override
-    public Object getChild(int  i, int i1) {
+    public Object getChild(int i, int i1) {
         return this.listHashMap.get(this.listDataHeader.get(i)).get(i1);
     }
 
@@ -67,23 +69,22 @@ public class ExpanListAdapterDesem extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        Desempeno child = (Desempeno) getChild(i, i1);
+        Corte child = (Corte) getChild(i, i1);
         String nombre = child.getNombre();
         String hora = child.getHora();
-        String descripcion = child.getDescripcion();
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item_desempeno, null);
+            view = inflater.inflate(R.layout.list_item_corte, null);
         }
-        TextView txtListChild = (TextView) view.findViewById(R.id.ListItemdesempeno);
-        TextView HorasDesempeno = (TextView) view.findViewById(R.id.horasdesempeno);
-        TextView Descripcion = (TextView) view.findViewById(R.id.descripcion);
+        TextView txtListChild = (TextView) view.findViewById(R.id.ListItemcorte);
+        TextView HorasCorte = (TextView) view.findViewById(R.id.horascorte);
         txtListChild.setText(nombre);
-        HorasDesempeno.setText(hora);
-        Descripcion.setText(descripcion);
+        HorasCorte.setText(hora);
         return view;
     }
 
     @Override
-    public boolean isChildSelectable(int i, int i1) {return true;}
+    public boolean isChildSelectable(int i, int i1) {
+        return true;
+    }
 }

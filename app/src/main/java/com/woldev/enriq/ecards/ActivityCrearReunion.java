@@ -58,7 +58,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
     EditText Titulo, Lugar, Descripcion ,Hora, Fecha;
     TextInputLayout TILTitulo, TILLugar , TILHora, TILFecha;
 
-    ExpandableListAdapter listAdapter;
+    AdapterExpandableList listAdapter;
     ExpandableListView listView;
     List<String> listDataHeader;
     HashMap<String, List<ItemListCheckbox>> listDataChild;
@@ -176,7 +176,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        listAdapter = new AdapterExpandableList(this, listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -302,7 +302,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
 
     private void setListViewHeight(ExpandableListView listView,
                                    int group) {
-        ExpandableListAdapter listAdapter = (ExpandableListAdapter) listView.getExpandableListAdapter();
+        AdapterExpandableList listAdapter = (AdapterExpandableList) listView.getExpandableListAdapter();
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
                 View.MeasureSpec.EXACTLY);

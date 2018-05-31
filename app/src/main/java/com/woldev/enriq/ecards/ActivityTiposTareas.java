@@ -107,7 +107,7 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
         }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListButtonAdapter adapter = new ElementoListButtonAdapter(this, tareas);
+        AdapterElementoListaButton adapter = new AdapterElementoListaButton(this, tareas);
         list.setAdapter(adapter);
 
         list.setEmptyView(findViewById(R.id.emptyElement));

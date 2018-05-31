@@ -15,11 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -114,7 +110,7 @@ public class ActivityUsuariosNuevos extends AppCompatActivity {
         }
 
         ListView list = (ListView) findViewById(R.id.lista);
-        ElementoListAdapter adapter = new ElementoListAdapter(this, usuarios);
+        AdapterElementoLista adapter = new AdapterElementoLista(this, usuarios);
         list.setAdapter(adapter);
 
         list.setEmptyView(findViewById(R.id.emptyElement));
@@ -167,7 +163,7 @@ public class ActivityUsuariosNuevos extends AppCompatActivity {
                         Map<String, String> params = new HashMap<String, String>();
 
                         params.put("id", IDUser);
-                        params.put("tipo", Horas.getText().toString());
+                        params.put("horas_contratadas", Horas.getText().toString());
 
                         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urltemp, new JSONObject(params),
                                 new Response.Listener<JSONObject>() {

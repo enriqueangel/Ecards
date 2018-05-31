@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExpandableUserFragment extends Fragment {
+public class FragmentExpandableUser extends Fragment {
 
     JSONArray USUARIOS;
 
-    ExpandableListRadioAdapter listAdapter;
+    AdapterExpandableListRadio listAdapter;
 
     List<String> listDataHeader;
 
@@ -47,7 +47,7 @@ public class ExpandableUserFragment extends Fragment {
 
         listView = (ExpandableListView) view.findViewById(R.id.encargados);
 
-        listAdapter = new ExpandableListRadioAdapter(getActivity(), listDataHeader, listDataChild);
+        listAdapter = new AdapterExpandableListRadio(getActivity(), listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -164,7 +164,7 @@ public class ExpandableUserFragment extends Fragment {
 
     private void setListViewHeight(ExpandableListView listView,
                                    int group) {
-        ExpandableListRadioAdapter listAdapter = (ExpandableListRadioAdapter) listView.getExpandableListAdapter();
+        AdapterExpandableListRadio listAdapter = (AdapterExpandableListRadio) listView.getExpandableListAdapter();
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
                 View.MeasureSpec.EXACTLY);

@@ -38,11 +38,11 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by enriq on 1/02/2018.
  */
 
-public class ElementoListButtonAdapter extends BaseAdapter {
+public class AdapterElementoListaButton extends BaseAdapter {
     private ArrayList<ElementoLista> items;
     private Context context;
 
-    public ElementoListButtonAdapter(Context context, ArrayList<ElementoLista> items) {
+    public AdapterElementoListaButton(Context context, ArrayList<ElementoLista> items) {
         this.items = items;
         this.context = context;
     }

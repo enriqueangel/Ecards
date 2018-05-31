@@ -35,7 +35,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.woldev.enriq.ecards.R.id.*;
 
 public class FragmentDesempeno extends Fragment{
-    ExpanListAdapterDesem listAdapter;
+    AdapterExpanbleListDesempeno listAdapter;
     ExpandableListView listView;
     List<String> listDataHeader;
     HashMap<String, List<Desempeno>> listDataChild;
@@ -179,7 +179,7 @@ public class FragmentDesempeno extends Fragment{
             listDataChild.put(listDataHeader.get(ContTemp), ListaMostrar);
         }
 
-        listAdapter = new ExpanListAdapterDesem(getActivity(),listDataHeader,listDataChild);
+        listAdapter = new AdapterExpanbleListDesempeno(getActivity(),listDataHeader,listDataChild);
         listView.setAdapter(listAdapter);
     }
 

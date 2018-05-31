@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class ExpandableEncargadoFragment extends Fragment {
+public class FragmentExpandableEncargado extends Fragment {
 
-    ExpandableListRadioAdapter listAdapterTester;
+    AdapterExpandableListRadio listAdapterTester;
     ExpandableListView listViewTester;
     List<String> listDataHeaderTester;
     HashMap<String, List<ItemListCheckbox>> listDataChildTester;
@@ -37,7 +37,7 @@ public class ExpandableEncargadoFragment extends Fragment {
         usuariosTemp.add(new ItemListCheckbox("Enrique Angel", "aaa", false));
         listDataChildTester.put(listDataHeaderTester.get(0), usuariosTemp);
 
-        listAdapterTester = new ExpandableListRadioAdapter(getActivity(), listDataHeaderTester, listDataChildTester);
+        listAdapterTester = new AdapterExpandableListRadio(getActivity(), listDataHeaderTester, listDataChildTester);
         listViewTester.setAdapter(listAdapterTester);
 
         listViewTester.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -53,7 +53,7 @@ public class ExpandableEncargadoFragment extends Fragment {
 
     private void setListViewHeight(ExpandableListView listView,
                                    int group) {
-        ExpandableListRadioAdapter listAdapter = (ExpandableListRadioAdapter) listView.getExpandableListAdapter();
+        AdapterExpandableListRadio listAdapter = (AdapterExpandableListRadio) listView.getExpandableListAdapter();
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
                 View.MeasureSpec.EXACTLY);

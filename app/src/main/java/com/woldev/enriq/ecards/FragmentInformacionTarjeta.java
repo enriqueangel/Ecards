@@ -19,7 +19,7 @@ public class FragmentInformacionTarjeta extends Fragment {
 
     JSONObject DATOS;
     TextView Fecha_Entrega , Proyecto , TipoTarea, TiempoEstimado, TiempoRealizado, LinkAyuda , Descripcion;
-    RelativeLayout TILTipoTarea,TILTiempoEstimado,TILLinkAyuda;
+    RelativeLayout TILTipoTarea,TILTiempoEstimado,TILLinkAyuda, TILTMotivoRechazo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,20 @@ public class FragmentInformacionTarjeta extends Fragment {
         TILTipoTarea = (RelativeLayout) v.findViewById(R.id.TILTipoTarea);
         TILTiempoEstimado = (RelativeLayout) v.findViewById(R.id.TILTiempoEstimado);
         TILLinkAyuda = (RelativeLayout) v.findViewById(R.id.TILLinkAyuda);
+        TILTMotivoRechazo = (RelativeLayout) v.findViewById(R.id.TILRechazo);
+
+
+        String color = getArguments().getString("color");
+
+        switch (color){
+            case "morado":
+                TILTipoTarea.setVisibility(View.GONE);
+                TILTiempoEstimado.setVisibility(View.GONE);
+                TILTMotivoRechazo.setVisibility(View.GONE);
+                break;
+            default:
+                break;
+        }
 
 
         try {
@@ -56,6 +70,10 @@ public class FragmentInformacionTarjeta extends Fragment {
                 Fecha_Entrega.setText(formateador.format(date));
             } catch (ParseException e) {
                 e.printStackTrace();
+            }
+
+            if (DATOS.getString("motivo_rechazo").equals("")){
+                TILTMotivoRechazo.setVisibility(View.GONE);
             }
 
             JSONObject ProyectoTEMP = DATOS.getJSONObject("proyecto");
@@ -76,7 +94,6 @@ public class FragmentInformacionTarjeta extends Fragment {
                 TILTiempoEstimado.setVisibility(View.GONE);
 
             }else{
-
                 JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
                 TipoTarea.setText(TipoTareaTemp.getString("tipo"));
                 TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
@@ -90,9 +107,6 @@ public class FragmentInformacionTarjeta extends Fragment {
                     TILTiempoEstimado.setVisibility(View.GONE);
                 }
             }
-
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

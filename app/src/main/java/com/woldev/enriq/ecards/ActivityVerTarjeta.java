@@ -33,6 +33,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
     JSONObject DATOS;
     TextView FechaEntrega,Proyecto,TipoTarea,TiempoRealizado,Link,Descripcion;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    FloatingActionButton btnReportar, btnEntregar, btnRechazar;
+    FloatingActionButton btnReportar, btnEntregar, btnRechazar, btnDesempeno;
     String color = "";
     int hour, minute;
     Calendar Time;
@@ -92,6 +93,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         btnReportar = (FloatingActionButton) findViewById(id.btnReportar);
         btnEntregar = (FloatingActionButton) findViewById(id.btnEntregar);
         btnRechazar = (FloatingActionButton) findViewById(id.btnRechazar);
+        btnDesempeno = (FloatingActionButton) findViewById(id.btnDesempeno);
 
         Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
@@ -110,6 +112,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         btnEntregar.setOnClickListener(this);
         btnReportar.setOnClickListener(this);
         btnRechazar.setOnClickListener(this);
+        btnDesempeno.setOnClickListener(this);
     }
 
     private void loadFragment(Fragment fragment) {
@@ -129,30 +132,34 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
             case "blanco":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_gris));
                 FragmentInformacionTarjeta Fr1 = new FragmentInformacionTarjeta();
+                args.putString("color", "blanco");
                 Fr1.setArguments(args);
                 loadFragment(Fr1);
                 break;
             case "naranja":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_naranja));
                 FragmentInformacionTarjeta Fr2 = new FragmentInformacionTarjeta();
+                args.putString("color", "naranja");
                 Fr2.setArguments(args);
                 loadFragment(Fr2);
                 break;
             case "rojo":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_rojo));
                 FragmentInformacionTarjeta Fr3 = new FragmentInformacionTarjeta();
+                args.putString("color", "rojo");
                 Fr3.setArguments(args);
                 loadFragment(Fr3);
                 break;
             case "verde":
                 btnRechazar.setVisibility(View.VISIBLE);
+                btnDesempeno.setVisibility(View.VISIBLE);
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde));
-                FragmentInformacionTarjeta Fr4 = new FragmentInformacionTarjeta();
+                FragmentInformacionTester Fr4 = new FragmentInformacionTester();
                 Fr4.setArguments(args);
                 loadFragment(Fr4);
                 break;
             case "azul":
-                ReunionFragment Fr5 = new ReunionFragment();
+                FragmentInformacionReunion Fr5 = new FragmentInformacionReunion();
                 Fr5.setArguments(args);
                 loadFragment(Fr5);
                 btnRechazar.setVisibility(View.GONE);
@@ -160,6 +167,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
             case "morado":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_morado));
                 FragmentInformacionTarjeta Fr6 = new FragmentInformacionTarjeta();
+                args.putString("color", "morado");
                 Fr6.setArguments(args);
                 loadFragment(Fr6);
                 break;
@@ -180,6 +188,9 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case id.btnDesempeno:
+                crearDialogDesempeno();
+                break;
             case id.btnEntregar:
                 if(color.equals("verde"))
                     crearDialogCalificar();
@@ -195,6 +206,31 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
             default:
                 break;
         }
+    }
+
+    private void crearDialogDesempeno() {
+        final AlertDialog.Builder desempenoTarjeta = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        desempenoTarjeta.setTitle("Desempeño");
+
+        ArrayList<Desempeno> desempenos = new ArrayList<>();
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+
+        AdapterListDesempeno adapter = new AdapterListDesempeno(getApplicationContext(), desempenos);
+
+        desempenoTarjeta.setAdapter(adapter, null);
+
+        desempenoTarjeta.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.cancel();
+            }
+        });
     }
 
     private void crearDialogCalificar() {

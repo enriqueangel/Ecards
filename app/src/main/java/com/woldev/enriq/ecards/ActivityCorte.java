@@ -195,11 +195,11 @@ public class ActivityCorte extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(0), SinProblemas); // Header, Child data
         listDataChild.put(listDataHeader.get(1), ConProblemas);
 
-        listAdapter = new ExpanListAdapterCorte(this, listDataHeader, listDataChild);
+        listAdapter = new AdapterExpandableListCorte(this, listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
     }
 
-    ExpanListAdapterCorte listAdapter;
+    AdapterExpandableListCorte listAdapter;
     ExpandableListView listView;
     List<String> listDataHeader;
     HashMap<String, List<Corte>> listDataChild;

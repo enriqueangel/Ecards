@@ -6,34 +6,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by ValentinaR on 27/03/2018.
+ * Created by ValentinaR on 17/02/2018.
  */
 
-public class ExpanListAdapterUsuario extends BaseExpandableListAdapter {
+public class AdapterExpanbleListDesempeno extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<Usuario>> listHashMap;
+    private HashMap<String, List<Desempeno>> listHashMap;
 
-    ExpanListAdapterUsuario(Context context, List<String> listDataHeader, HashMap<String, List<Usuario>> listHashMap) {
+    AdapterExpanbleListDesempeno(Context context, List<String> listDataHeader, HashMap<String, List<Desempeno>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
     }
 
     @Override
-    public int getGroupCount() {
-        return this.listDataHeader.size();
-    }
+    public int getGroupCount() {return this.listDataHeader.size();}
 
     @Override
     public int getChildrenCount(int i) {
@@ -41,29 +36,21 @@ public class ExpanListAdapterUsuario extends BaseExpandableListAdapter {
     }
 
     @Override
-    public Object getGroup(int i) {
-        return this.listDataHeader.get(i);
-    }
+    public Object getGroup(int i) {return this.listDataHeader.get(i);}
 
     @Override
-    public Object getChild(int i, int i1) {
+    public Object getChild(int  i, int i1) {
         return this.listHashMap.get(this.listDataHeader.get(i)).get(i1);
     }
 
     @Override
-    public long getGroupId(int i) {
-        return i;
-    }
+    public long getGroupId(int i) {return i;}
 
     @Override
-    public long getChildId(int i, int i1) {
-        return i1;
-    }
+    public long getChildId(int i, int i1) {return i1;}
 
     @Override
-    public boolean hasStableIds() {
-        return false;
-    }
+    public boolean hasStableIds() {return false;}
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
@@ -80,30 +67,23 @@ public class ExpanListAdapterUsuario extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        Usuario child = (Usuario) getChild(i, i1);
-        String image = child.getFoto();
+        Desempeno child = (Desempeno) getChild(i, i1);
         String nombre = child.getNombre();
-        String horasl = child.getHorasl();
-        String horast = child.getHorast();
-
+        String hora = child.getHora();
+        String descripcion = child.getDescripcion();
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.usuario_card, null);
+            view = inflater.inflate(R.layout.list_item_desempeno, null);
         }
-        TextView txtListChild = (TextView) view.findViewById(R.id.nombre);
-        TextView HorasLaborales = (TextView) view.findViewById(R.id.campo_horas_laborales);
-        TextView HorasTrabajadas = (TextView) view.findViewById(R.id.campo_horas_trabajadas);
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageV);
+        TextView txtListChild = (TextView) view.findViewById(R.id.ListItemdesempeno);
+        TextView HorasDesempeno = (TextView) view.findViewById(R.id.horasdesempeno);
+        TextView Descripcion = (TextView) view.findViewById(R.id.descripcion);
         txtListChild.setText(nombre);
-        HorasLaborales.setText(horasl);
-        HorasTrabajadas.setText(horast);
-        Picasso.with(context).load(image).into(imageView);
-
+        HorasDesempeno.setText(hora);
+        Descripcion.setText(descripcion);
         return view;
     }
 
     @Override
-    public boolean isChildSelectable(int i, int i1) {
-        return true;
-    }
+    public boolean isChildSelectable(int i, int i1) {return true;}
 }

@@ -34,6 +34,52 @@
                     android:paddingRight="20dp">
 
                     <ImageView
+                        android:id="@+id/itemEncargado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@id/itemEncargado"
+                        android:layout_toRightOf="@id/itemEncargado"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/TXVencargado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="#212121" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Encargado"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="#727272" />
+
+                        <include layout="@layout/item_divider" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <ImageView
                         android:id="@+id/itemEntrega"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/fecha_entrega"
+                            android:text="Fecha entregada"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="#727272" />
 
@@ -155,6 +201,52 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/tiempo_realizado"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textColor="#727272" />
+
+                        <include layout="@layout/item_divider" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp">
+
+                    <ImageView
+                        android:id="@+id/itemTiempoEstimado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:srcCompat="@drawable/ic_timer_black_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@id/itemTiempoEstimado"
+                        android:layout_toRightOf="@id/itemTiempoEstimado"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/TXVtiempo_estimado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textColor="#212121" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/tiempo_estimado"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small"
                             android:textColor="#727272" />
 

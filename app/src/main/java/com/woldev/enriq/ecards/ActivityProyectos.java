@@ -100,7 +100,7 @@ public class ActivityProyectos extends AppCompatActivity implements View.OnClick
             proyectos.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
         }
 
-        ElementoListAdapter adapter = new ElementoListAdapter(this, proyectos);
+        AdapterElementoLista adapter = new AdapterElementoLista(this, proyectos);
         list.setAdapter(adapter);
 
         list.setEmptyView(findViewById(R.id.emptyElement));

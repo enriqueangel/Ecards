@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ReunionFragment extends Fragment {
+public class FragmentInformacionReunion extends Fragment {
 
     JSONObject DATOS;
     TextView Fecha, Hora , Lugar , Descripcion;
@@ -30,14 +30,11 @@ public class ReunionFragment extends Fragment {
         Lugar = (TextView) v.findViewById(R.id.TXVLugar);
         Descripcion = (TextView) v.findViewById(R.id.TXVdescripcion);
 
-
         try {
             DATOS = new JSONObject(getArguments().getString("DATOS"));
-
             SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             // el que formatea
             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
-
             String fechaTemp1 = DATOS.getString("fecha") ;
 
             Date date = null;
@@ -47,8 +44,6 @@ public class ReunionFragment extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
 
             Hora.setText(DATOS.getString("hora"));
             Lugar.setText(DATOS.getString("lugar"));

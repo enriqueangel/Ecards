@@ -55,7 +55,7 @@ public class ActivityCrearTester extends AppCompatActivity {
     JSONArray JSONUsuarios;
     JSONArray JSONproyectos;
 
-    ExpandableUserFragment fragmento1 = new ExpandableUserFragment();
+    FragmentExpandableUser fragmento1 = new FragmentExpandableUser();
     FragmentSpinnerUser fragmento2 = new FragmentSpinnerUser();
 
     MaterialSpinner  proyecto;

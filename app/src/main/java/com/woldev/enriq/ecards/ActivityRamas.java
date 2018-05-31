@@ -21,7 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -131,7 +130,7 @@ public class ActivityRamas extends AppCompatActivity  {
             ramas.add(new ElementoLista(NombreTEmp, BDidTEmp, row));
         }
 
-        ElementoListAdapter adapter = new ElementoListAdapter(this, ramas);
+        AdapterElementoLista adapter = new AdapterElementoLista(this, ramas);
         list.setAdapter(adapter);
 
         list.setEmptyView(findViewById(R.id.emptyElement));

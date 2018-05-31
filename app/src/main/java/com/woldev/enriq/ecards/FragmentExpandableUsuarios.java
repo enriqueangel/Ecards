@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ExpandableUsuariosFragment extends Fragment {
+public class FragmentExpandableUsuarios extends Fragment {
 
     private int lastExpandedPosition = -1;
 
     JSONArray USUARIOS;
 
-    ExpandableListRadioAdapter listAdapter, listAdapterTester;
+    AdapterExpandableListRadio listAdapter, listAdapterTester;
     ExpandableListView listView, listViewTester;
     List<String> listDataHeader, listDataHeaderTester;
     HashMap<String, List<ItemListCheckbox>> listDataChild, listDataChildTester;
@@ -50,10 +50,10 @@ public class ExpandableUsuariosFragment extends Fragment {
         listViewTester = (ExpandableListView) view.findViewById(R.id.tester);
 
 
-        listAdapter = new ExpandableListRadioAdapter(getActivity(), listDataHeader, listDataChild);
+        listAdapter = new AdapterExpandableListRadio(getActivity(), listDataHeader, listDataChild);
         listView.setAdapter(listAdapter);
 
-        listAdapterTester = new ExpandableListRadioAdapter(getActivity(), listDataHeaderTester, listDataChildTester);
+        listAdapterTester = new AdapterExpandableListRadio(getActivity(), listDataHeaderTester, listDataChildTester);
         listViewTester.setAdapter(listAdapterTester);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
@@ -122,7 +122,7 @@ public class ExpandableUsuariosFragment extends Fragment {
 
     private void setListViewHeight(ExpandableListView listView,
                                    int group) {
-        ExpandableListRadioAdapter listAdapter = (ExpandableListRadioAdapter) listView.getExpandableListAdapter();
+        AdapterExpandableListRadio listAdapter = (AdapterExpandableListRadio) listView.getExpandableListAdapter();
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
                 View.MeasureSpec.EXACTLY);

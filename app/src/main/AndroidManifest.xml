@@ -51,7 +51,6 @@
         <activity android:name=".ActivityUsuariosNuevos" />
         <activity android:name=".ActivityRama" />
         <activity android:name=".ActivityHistorialCorte" />
-        <activity android:name=".ExpandableUsuarioActivity" />
         <activity android:name=".ActivityCrearRama" />
         <activity android:name=".ActivityCrearTipoTarea" />
 
@@ -79,7 +78,7 @@
         <activity android:name=".ActivityVerProyecto" />
         <activity android:name=".ActivityCrearProyecto" />
         <activity android:name=".ActivityEditarProyecto" />
-        <activity android:name=".ExpandableSuperuActivity"></activity>
+        <activity android:name=".ActivityListaUsuariosRamas"></activity>
     </application>
 
 </manifest>

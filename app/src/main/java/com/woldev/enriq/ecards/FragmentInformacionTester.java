@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentTester extends Fragment {
+public class FragmentInformacionTester extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

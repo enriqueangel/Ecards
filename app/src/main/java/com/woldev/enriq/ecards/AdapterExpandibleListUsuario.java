@@ -6,29 +6,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by ValentinaR on 26/01/2018.
+ * Created by ValentinaR on 27/03/2018.
  */
 
-public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
+public class AdapterExpandibleListUsuario extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader;
-    private HashMap<String, List<Corte>> listHashMap;
+    private HashMap<String, List<Usuario>> listHashMap;
 
-    ExpanListAdapterCorte(Context context, List<String> listDataHeader, HashMap<String, List<Corte>> listHashMap) {
+    AdapterExpandibleListUsuario(Context context, List<String> listDataHeader, HashMap<String, List<Usuario>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
     }
 
     @Override
-    public int getGroupCount() {return this.listDataHeader.size();}
+    public int getGroupCount() {
+        return this.listDataHeader.size();
+    }
 
     @Override
     public int getChildrenCount(int i) {
@@ -46,13 +51,19 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
     }
 
     @Override
-    public long getGroupId(int i) {return i;}
+    public long getGroupId(int i) {
+        return i;
+    }
 
     @Override
-    public long getChildId(int i, int i1) {return i1;}
+    public long getChildId(int i, int i1) {
+        return i1;
+    }
 
     @Override
-    public boolean hasStableIds() {return false;}
+    public boolean hasStableIds() {
+        return false;
+    }
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
@@ -69,17 +80,25 @@ public class ExpanListAdapterCorte extends BaseExpandableListAdapter{
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        Corte child = (Corte) getChild(i, i1);
+        Usuario child = (Usuario) getChild(i, i1);
+        String image = child.getFoto();
         String nombre = child.getNombre();
-        String hora = child.getHora();
+        String horasl = child.getHorasl();
+        String horast = child.getHorast();
+
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.list_item_corte, null);
+            view = inflater.inflate(R.layout.usuario_card, null);
         }
-        TextView txtListChild = (TextView) view.findViewById(R.id.ListItemcorte);
-        TextView HorasCorte = (TextView) view.findViewById(R.id.horascorte);
+        TextView txtListChild = (TextView) view.findViewById(R.id.nombre);
+        TextView HorasLaborales = (TextView) view.findViewById(R.id.campo_horas_laborales);
+        TextView HorasTrabajadas = (TextView) view.findViewById(R.id.campo_horas_trabajadas);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imageV);
         txtListChild.setText(nombre);
-        HorasCorte.setText(hora);
+        HorasLaborales.setText(horasl);
+        HorasTrabajadas.setText(horast);
+        Picasso.with(context).load(image).into(imageView);
+
         return view;
     }
 

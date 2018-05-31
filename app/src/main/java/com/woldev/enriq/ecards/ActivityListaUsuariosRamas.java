@@ -9,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -30,10 +29,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExpandableSuperuActivity extends AppCompatActivity {
+public class ActivityListaUsuariosRamas extends AppCompatActivity {
 
     private ExpandableListView listView;
-    private ExpandableListAdapterSuperu listAdapter;
+    private AdapterExpandableListUsuariosRamas listAdapter;
     private List<String> listDataHeader;
     private HashMap<String,List<String>> listHash;
 
@@ -45,7 +44,7 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expandable_superu);
+        setContentView(R.layout.activity_lista_usuarios_rama);
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
@@ -62,15 +61,11 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-
         TraerUsuarios();
-
-
         super.onStart();
     }
 
     private void TraerUsuarios() {
-
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
 
@@ -78,26 +73,20 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
 
         url = getString(R.string.URLWS);
         url = url+"user/lista_rama";
-
-
         requestQueue = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("rol", "SUPERUSER");
-
 
         final JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-
                             Usuarios = response.getJSONArray("users");
                             CargarUsuarios();
                             // Toast.makeText(getApplicationContext(),Usuarios.toString(), Toast.LENGTH_LONG).show();
                             dialog.dismiss();
-
-
                         } catch (JSONException e) {
                             Log.e("Volley", "Invalid JSON Object.");
                             Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_LONG).show();
@@ -130,20 +119,14 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
         };
 
         requestQueue.add(arrReq);
-
     }
 
     private void CargarUsuarios() throws JSONException {
-
-
         int contTemp = 0;
         String UltimaRama = "";
         List<String> usuariosTemp = new ArrayList<>();
 
         for (int i = 0; i < Usuarios.length(); i++) {
-
-
-
             JSONObject row = Usuarios.getJSONObject(i);
             String NombresTEmp = row.getString("nombres");
             String ApellidosTEmp = row.getString("apellidos");
@@ -154,7 +137,6 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
             if (i == 0){
                 UltimaRama = AreaTemp;
                 listDataHeader.add(UltimaRama);
-
             }else{
                 if (!UltimaRama.equals(AreaTemp)){
                     UltimaRama = AreaTemp;
@@ -166,17 +148,14 @@ public class ExpandableSuperuActivity extends AppCompatActivity {
                     usuariosTemp = new ArrayList<>();
                 }
             }
-
             usuariosTemp.add(NombreMostrar);
         }
 
         listHash.put(listDataHeader.get(contTemp), usuariosTemp);
 
-        listAdapter = new ExpandableListAdapterSuperu(this,listDataHeader,listHash);
+        listAdapter = new AdapterExpandableListUsuariosRamas(this,listDataHeader,listHash);
         listView.setAdapter(listAdapter);
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

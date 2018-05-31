@@ -61,7 +61,7 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
     String url ;
     RequestQueue requestQueue;
 
-    ExpandableUsuariosFragment fragmento1 = new ExpandableUsuariosFragment();
+    FragmentExpandableUsuarios fragmento1 = new FragmentExpandableUsuarios();
     FragmentSpinnerUsuarios fragmento2 = new FragmentSpinnerUsuarios();
 
     List<String> Proyectos = new ArrayList<>();
@@ -405,7 +405,7 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
                             String respuesta = response.get("respuesta").toString();
                             if(respuesta.equals("si")){
                                 dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "ActivityVerTarjeta Creada.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Tarjeta Creada.", Toast.LENGTH_SHORT).show();
                                 finish();
 
                             } else {
