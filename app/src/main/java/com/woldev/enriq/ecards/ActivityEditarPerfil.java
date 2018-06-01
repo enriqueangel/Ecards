@@ -36,7 +36,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import android.text.TextUtils;
 
@@ -48,7 +47,7 @@ import java.util.Map;
 
 //la imagen se guarda en firebase y le pasamos al servidor la url del campo de firebase donde se encuentra la imagen
 
-public class editperfil extends AppCompatActivity {
+public class ActivityEditarPerfil extends AppCompatActivity {
 
     JSONObject DATOS;
     TextInputEditText Nombres, Apellidos, Telefono;
@@ -147,7 +146,7 @@ public class editperfil extends AppCompatActivity {
         EditarFOTO.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(editperfil.this, ActivitySelectImagen.class);
+                Intent intent = new Intent(ActivityEditarPerfil.this, ActivitySelectImagen.class);
                 startActivityForResult(intent, ImagenNueva);
             }
         });

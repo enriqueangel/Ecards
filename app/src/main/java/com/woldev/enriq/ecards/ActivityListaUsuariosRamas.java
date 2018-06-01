@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActivityListaUsuariosRamas extends AppCompatActivity {
+public class ActivityListaUsuariosRamas extends AppCompatActivity implements View.OnClickListener {
 
     private ExpandableListView listView;
     private AdapterExpandableListUsuariosRamas listAdapter;
@@ -155,6 +155,17 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity {
 
         listAdapter = new AdapterExpandableListUsuariosRamas(this,listDataHeader,listHash);
         listView.setAdapter(listAdapter);
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+
+                String item = listHash.get(listDataHeader.get(i)).get(i1);
+                Toast.makeText(getApplication(), item, Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+        });
     }
 
     @Override
@@ -167,5 +178,10 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

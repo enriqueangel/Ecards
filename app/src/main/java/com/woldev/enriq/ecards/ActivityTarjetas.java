@@ -22,28 +22,19 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -174,7 +165,7 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
                                 try {
                                     JSONObject Respuesta = response.getJSONObject("user");
 
-                                    Intent intent = new Intent(ActivityTarjetas.this, perfil.class);
+                                    Intent intent = new Intent(ActivityTarjetas.this, ActivityPerfil.class);
                                     intent.putExtra( "DATOS", Respuesta.toString());
                                     startActivity(intent);
 

@@ -40,7 +40,7 @@ public class ActivityInformacionUsuario extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
-        PerfilFragment Fr1 = new PerfilFragment();
+        FragmentPerfil Fr1 = new FragmentPerfil();
         Bundle args = new Bundle();
         args.putString("DATOS", DATOS.toString());
         Fr1.setArguments(args);
@@ -69,7 +69,7 @@ public class ActivityInformacionUsuario extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_perfil:
                     toolbar.setTitle("Perfil");
-                    PerfilFragment Fr1 = new PerfilFragment();
+                    FragmentPerfil Fr1 = new FragmentPerfil();
 
                     Bundle args = new Bundle();
                     args.putString("DATOS", DATOS.toString());

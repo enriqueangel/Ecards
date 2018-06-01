@@ -1,14 +1,12 @@
 package com.woldev.enriq.ecards;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
@@ -19,7 +17,7 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class perfil extends AppCompatActivity {
+public class ActivityPerfil extends AppCompatActivity {
 
     JSONObject DATOS;
     TextView Correo,Nombres,Apellidos,Telefono,Rama,HrsLaborales,imagen;
@@ -75,7 +73,7 @@ public class perfil extends AppCompatActivity {
         EditarDAtos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(perfil.this, editperfil.class);
+                Intent intent = new Intent(ActivityPerfil.this, ActivityEditarPerfil.class);
                 intent.putExtra( "DATOS", DATOS.toString());
                 startActivity(intent);
             }

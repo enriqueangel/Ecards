@@ -31,8 +31,8 @@
         <activity android:name=".ActivityLoginPin" />
         <activity android:name=".ActivityRecuperarPin" />
         <activity android:name=".ActivityRecuperarContrasena" />
-        <activity android:name=".perfil" />
-        <activity android:name=".editperfil" />
+        <activity android:name=".ActivityPerfil" />
+        <activity android:name=".ActivityEditarPerfil" />
         <activity android:name=".ActivityDashboard" />
         <activity android:name=".ActivityMenuAdmin" />
         <activity android:name=".ActivityMenuLider" />
@@ -40,7 +40,7 @@
         <activity android:name=".ActivityCrearReunion" />
         <activity android:name=".ActivityMenuSuperU" />
         <activity android:name=".ActivityVerTarjeta" />
-        <activity android:name=".ListaUsuarios" />
+        <activity android:name=".ActivityListaUsuarios" />
         <activity android:name=".ActivityCrearTarjeta" />
         <activity android:name=".ActivityCrearTester" />
         <activity android:name=".ActivityInformacionUsuario" />

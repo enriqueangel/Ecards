@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PerfilFragment extends Fragment {
+public class FragmentPerfil extends Fragment {
 
     JSONObject DATOS;
     CircleImageView imagen;

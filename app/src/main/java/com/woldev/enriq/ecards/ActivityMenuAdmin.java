@@ -52,7 +52,7 @@ public class ActivityMenuAdmin extends AppCompatActivity implements View.OnClick
                 startActivity(i);
                 break;
             case R.id.usuarios:
-                i = new Intent(ActivityMenuAdmin.this, ListaUsuarios.class);
+                i = new Intent(ActivityMenuAdmin.this, ActivityListaUsuarios.class);
                 startActivity(i);
                 break;
             case R.id.dashboard:

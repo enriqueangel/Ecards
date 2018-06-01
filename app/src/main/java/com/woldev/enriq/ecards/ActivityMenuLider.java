@@ -75,7 +75,7 @@ public class ActivityMenuLider extends AppCompatActivity implements View.OnClick
                 startActivity(i);
                 break;
             case R.id.usuarios:
-                i = new Intent(ActivityMenuLider.this, ListaUsuarios.class);
+                i = new Intent(ActivityMenuLider.this, ActivityListaUsuarios.class);
                 startActivity(i);
                 break;
             case R.id.dashboard:

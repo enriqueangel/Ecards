@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ListaUsuarios extends AppCompatActivity {
+public class ActivityListaUsuarios extends AppCompatActivity {
 
     String url;
     RequestQueue requestQueue;
