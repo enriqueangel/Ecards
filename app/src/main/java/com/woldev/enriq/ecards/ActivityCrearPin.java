@@ -58,8 +58,8 @@ public class ActivityCrearPin extends AppCompatActivity {
     }
 
     public boolean validarPin(String pin){
-        if (pin.length() < 4) {
-            campoPin.setError("El PIN debe ser mínimo de 4");
+        if (pin.length() != 4 ) {
+            campoPin.setError("El PIN debe ser de 4 digitos");
             return false;
         } else {
             campoPin.setError(null);
@@ -68,8 +68,8 @@ public class ActivityCrearPin extends AppCompatActivity {
     }
 
     public boolean compararPin(String pin, String pin2, boolean valor){
-        if (pin2.length() < 4){
-            campoConfirmar.setError("El PIN debe ser mínimo de 4");
+        if (pin2.length() != 4){
+            campoConfirmar.setError("El PIN debe ser de 4 digitos");
             return false;
         } else {
             campoConfirmar.setError(null);
