@@ -174,7 +174,7 @@ public class FragmentListaTarjetas extends Fragment {
 
         for (int i = 0; i < TARJETAS.length(); i++) {
             JSONObject row = TARJETAS.getJSONObject(i);
-            String DescripcionTEMP = row.getString("titulo");
+            String DescripcionTEMP;
 
             String TipoTEMP;
             String VersionTEMP;
@@ -200,6 +200,7 @@ public class FragmentListaTarjetas extends Fragment {
             if (row.getString("tipo").equals("2")){
                 TipoTEMP = "";
                 VersionTEMP = "1";
+                DescripcionTEMP = row.getString("descripcion");
                 ColorTArgeta  = R.drawable.ic_card_purple;
                 COLORTEMP = "morado";
                 ContCardsMoradoint ++;
@@ -210,6 +211,7 @@ public class FragmentListaTarjetas extends Fragment {
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");
                 VersionTEMP = row.getString("version");
+                DescripcionTEMP = row.getString("titulo");
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -250,8 +252,8 @@ public class FragmentListaTarjetas extends Fragment {
         Boolean isprimero = true;
         for (int i = 0; i < Testers.length(); i++) {
             JSONObject row = Testers.getJSONObject(i);
-
-            String DescripcionTEMP = "Tester";
+            JSONObject TarjetaTEmp = row.getJSONObject("tarjeta");
+            String DescripcionTEMP = TarjetaTEmp.getString("titulo");
 
             String TipoTEMP;
             String VersionTEMP;
@@ -274,7 +276,7 @@ public class FragmentListaTarjetas extends Fragment {
             int ColorTArgeta ;
             String COLORTEMP = "";
 
-            TipoTEMP = "";
+            TipoTEMP = "Tester";
             VersionTEMP = "1";
 
             long DiasRestantes = 100;
