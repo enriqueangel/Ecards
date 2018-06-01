@@ -40,6 +40,8 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
     RequestQueue requestQueue;
     String url;
     JSONArray Usuarios;
+    JSONObject ListaUsuariosIDS = new JSONObject();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,26 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
         dialog = mBuilder.create();
 
         listView = (ExpandableListView) findViewById(R.id.usuarios);
+
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+
+                Intent intent;
+                intent = new Intent(getApplicationContext(), ActivityInformacionUsuario.class);
+                String Idtemp = String.valueOf(i)+String.valueOf(i1);
+                try {
+                    intent.putExtra( "DATOS", ListaUsuariosIDS.getJSONObject(Idtemp).toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(intent);
+
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -149,23 +171,14 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
                 }
             }
             usuariosTemp.add(NombreMostrar);
+            String IDTemp = String.valueOf(contTemp)+String.valueOf(i);
+            ListaUsuariosIDS.put(IDTemp,row);
         }
 
         listHash.put(listDataHeader.get(contTemp), usuariosTemp);
 
         listAdapter = new AdapterExpandableListUsuariosRamas(this,listDataHeader,listHash);
         listView.setAdapter(listAdapter);
-
-        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-
-                String item = listHash.get(listDataHeader.get(i)).get(i1);
-                Toast.makeText(getApplication(), item, Toast.LENGTH_SHORT).show();
-
-                return false;
-            }
-        });
     }
 
     @Override

@@ -65,7 +65,7 @@ public class FragmentPerfil extends Fragment {
             Ramas.setText(GetRamas(DATOS.getJSONArray("areas")));
             HorasContratadas.setText(DATOS.getString("horas_contratadas"));
 
-            Picasso.with(context).load(DATOS.getString("foto")).error(R.drawable.ic_perfilsinfoto).into(imagen);
+            //Picasso.with(context).load(DATOS.getString("foto")).error(R.drawable.ic_perfilsinfoto).into(imagen);
 
 
         } catch (JSONException e) {

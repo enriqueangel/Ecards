@@ -123,7 +123,10 @@ public class FragmentListaTarjetas extends Fragment {
                                 }
                             }
 
-                            ((ActivityTarjetas) getActivity()).PintarCantTarjetas();
+                            if(EstaEnEmpleado){
+                                ((ActivityTarjetas) getActivity()).PintarCantTarjetas();
+                            }
+
 
                             dialog.dismiss();
                         } catch (JSONException e) {
@@ -232,7 +235,12 @@ public class FragmentListaTarjetas extends Fragment {
                 }
             }
             row.put("Color",COLORTEMP);
-            boolean isActiva = isPrimero || EstaEnEmpleado;
+            boolean isActiva;
+            if(EstaEnEmpleado){
+                isActiva = isPrimero;
+            }else{
+                isActiva = true;
+            }
             listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isActiva));
             isPrimero = false;
         }
@@ -288,7 +296,13 @@ public class FragmentListaTarjetas extends Fragment {
 
             row.put("Color",COLORTEMP);
             ContCardsVerdeint ++;
-            boolean isActiva = isprimero || EstaEnEmpleado;
+            boolean isActiva;
+            if(EstaEnEmpleado){
+                isActiva = isprimero;
+            }else{
+                isActiva = true;
+            }
+
             listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isActiva));
             isprimero = false;
         }
