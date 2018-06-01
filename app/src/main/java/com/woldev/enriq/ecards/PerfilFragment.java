@@ -1,5 +1,6 @@
 package com.woldev.enriq.ecards;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,16 +12,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class PerfilFragment extends Fragment {
 
     JSONObject DATOS;
+    CircleImageView imagen;
     TextView Nombre,Correo,Telefono,Ramas,HorasContratadas;
     FloatingActionButton btnEditar;
+    Context context;
 
     String tipoUsuario = "LIDER";
 
@@ -41,6 +47,7 @@ public class PerfilFragment extends Fragment {
         Telefono = (TextView) view.findViewById(R.id.Telefono);
         Ramas = (TextView) view.findViewById(R.id.TXVRAMAS);
         HorasContratadas = (TextView) view.findViewById(R.id.Horas_Contratadas);
+        imagen = (CircleImageView) view.findViewById(R.id.imagen);
 
         if(tipoUsuario.equals("SUPERU")){
             btnEditar.setVisibility(View.VISIBLE);
@@ -57,6 +64,9 @@ public class PerfilFragment extends Fragment {
             Telefono.setText(DATOS.getString("telefono"));
             Ramas.setText(GetRamas(DATOS.getJSONArray("areas")));
             HorasContratadas.setText(DATOS.getString("horas_contratadas"));
+
+            Picasso.with(context).load(DATOS.getString("foto")).error(R.drawable.ic_perfilsinfoto).into(imagen);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -20,7 +20,7 @@ public class Usuario {
     private String ht;
     JSONObject DATOS;
 
-     Usuario(String image, String nombre, String horasl, String horast, String hl, String ht, JSONObject DATOS) {
+     Usuario(String foto, String nombre, String horasl, String horast, String hl, String ht, JSONObject DATOS) {
         this.nombre = nombre;
         this.foto = foto;
         this.horasl = horasl;
