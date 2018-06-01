@@ -64,7 +64,7 @@ public class perfil extends AppCompatActivity {
 
             //Toast.makeText(this, DATOS.toString(), Toast.LENGTH_LONG).show();
 
-            Picasso.with(this).load(DATOS.get("foto").toString()).error(R.mipmap.ic_launcher).fit().centerInside().into(circleImageView);
+            Picasso.with(this).load(DATOS.get("foto").toString()).error(R.drawable.ic_perfilsinfoto).fit().centerInside().into(circleImageView);
 
 
 

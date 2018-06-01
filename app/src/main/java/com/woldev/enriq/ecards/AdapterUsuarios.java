@@ -2,6 +2,11 @@ package com.woldev.enriq.ecards;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +72,9 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.Usuari
     @Override
     public void onBindViewHolder(UsuarioViewHolder holder, int position) {
         holder.nombre.setText(items.get(position).getNombre());
-        Picasso.with(context).load(items.get(position).getFoto()).into(holder.imagen);
+
+        Picasso.with(context).load(items.get(position).getFoto()).error(R.drawable.ic_perfilsinfoto).into(holder.imagen);
+
         holder.horasl.setText(items.get(position).getHorasl());
         holder.horast.setText(items.get(position).getHorast());
         holder.hl.setText(items.get(position).getHl());
