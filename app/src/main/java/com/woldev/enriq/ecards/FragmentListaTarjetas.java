@@ -49,6 +49,13 @@ public class FragmentListaTarjetas extends Fragment {
 
     Date FechaServidor;
 
+    int ContCardsBlancoint = 0;
+    int ContCardsAmarilloint = 0;
+    int ContCardsRojoint = 0;
+    int ContCardsVerdeint = 0;
+    int ContCardsAzulint = 0;
+    int ContCardsMoradoint = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -107,6 +114,8 @@ public class FragmentListaTarjetas extends Fragment {
                                     contenedorVacio.setVisibility(View.VISIBLE);
                                 }
                             }
+
+                            ((ActivityTarjetas) getActivity()).PintarCantTarjetas();
 
                             dialog.dismiss();
                         } catch (JSONException e) {
@@ -178,7 +187,7 @@ public class FragmentListaTarjetas extends Fragment {
                 VersionTEMP = "1";
                 ColorTArgeta  = R.drawable.ic_card_purple;
                 COLORTEMP = "morado";
-                //ContCardsVerdeint ++;
+                ContCardsMoradoint ++;
             }else{
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");
@@ -190,19 +199,19 @@ public class FragmentListaTarjetas extends Fragment {
                 DiasRestantes = calcularColor(FechaEntrega);
 
                 if (DiasRestantes <= 0){
-
+                    ContCardsRojoint ++;
                     ColorTArgeta  = R.drawable.ic_card_red;
                     COLORTEMP = "rojo";
                 }else if(DiasRestantes <= 2){
-
+                    ContCardsRojoint ++;
                     ColorTArgeta  = R.drawable.ic_card_red;
                     COLORTEMP = "rojo";
                 }else if(DiasRestantes <= 4){
-
+                    ContCardsAmarilloint ++;
                     ColorTArgeta  = R.drawable.ic_card_yellow;
                     COLORTEMP = "naranja";
                 }else{
-
+                    ContCardsBlancoint ++;
                     ColorTArgeta  = R.drawable.ic_card_white;
                     COLORTEMP = "blanco";
                 }
@@ -261,7 +270,7 @@ public class FragmentListaTarjetas extends Fragment {
             }
 
             row.put("Color",COLORTEMP);
-
+            ContCardsVerdeint ++;
             listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, true));
         }
     }
@@ -292,7 +301,7 @@ public class FragmentListaTarjetas extends Fragment {
             String COLORTEMP = "azul";
             ColorTArgeta = R.drawable.card_indigo;
             row.put("Color", COLORTEMP);
-
+            ContCardsAzulint ++;
             listaTarjetas.add(new Tarjeta(DescripcionTEMP, TipoTEMP, dtStart, TiempoEsperado, VersionTEMP, ColorTArgeta, true, row, true));
         }
     }

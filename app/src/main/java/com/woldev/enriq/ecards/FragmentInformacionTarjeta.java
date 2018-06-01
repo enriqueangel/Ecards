@@ -88,14 +88,13 @@ public class FragmentInformacionTarjeta extends Fragment {
                 TILLinkAyuda.setVisibility(View.GONE);
             }
 
-            if (DATOS.getString("Color").equals("verde")){
-
+            if (!DATOS.getString("Color").equals("morado")){
                 TILTipoTarea.setVisibility(View.GONE);
                 TILTiempoEstimado.setVisibility(View.GONE);
-
-            }else{
                 JSONObject TipoTareaTemp = DATOS.getJSONObject("tipotarea");
                 TipoTarea.setText(TipoTareaTemp.getString("tipo"));
+            }
+
                 TiempoEstimado.setText(DATOS.getString("tiempo_estimado"));
                 String tiempoRealizadoTemp = DATOS.getString("tiempo_trabajado");
                 if (tiempoRealizadoTemp.equals("")){
@@ -106,7 +105,7 @@ public class FragmentInformacionTarjeta extends Fragment {
                 if (TiempoEstimadoTemp.equals("00:00") || TiempoEstimadoTemp.equals("")){
                     TILTiempoEstimado.setVisibility(View.GONE);
                 }
-            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

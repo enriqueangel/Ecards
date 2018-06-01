@@ -73,6 +73,7 @@ public class ActivityLoginPin extends AppCompatActivity {
         String CorreO = SP.getString("Correo","");
         textViewbienv.setText(CorreO);
 
+
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View mView = this.getLayoutInflater().inflate(R.layout.dialog_progress, null);
         mBuilder.setView(mView);
@@ -96,6 +97,8 @@ public class ActivityLoginPin extends AppCompatActivity {
                 dialog.show();
                 String url = getString(R.string.URLWS);
                 url = url + MetodoWS;
+
+
                 if(pin.equals( PIN.getText().toString())){
                     campoPin.setError(null);
 
@@ -107,24 +110,30 @@ public class ActivityLoginPin extends AppCompatActivity {
                                         JSONArray areas = response.getJSONArray("roles");
                                         PIN.setText("");
                                         globalVariable.setAreas(areas.toString());
+                                        globalVariable.setCantRoles(areas.length());
+                                        globalVariable.setUserID(response.getString("id"));
                                         if (areas.length() < 2){
                                             JSONObject area = areas.getJSONObject(0);
                                             String tipo = area.getString("tipo");
                                             Intent intent;
                                             switch (tipo){
                                                 case "empleado":
+                                                    globalVariable.setTipoUser("Empleado");
                                                     intent = new Intent(ActivityLoginPin.this, ActivityTarjetas.class);
                                                     startActivity(intent);
                                                     break;
                                                 case "administrador":
+                                                    globalVariable.setTipoUser("Administrador");
                                                     intent = new Intent(ActivityLoginPin.this, ActivityMenuAdmin.class);
                                                     startActivity(intent);
                                                     break;
                                                 case "lider":
+                                                    globalVariable.setTipoUser("Lider");
                                                     intent = new Intent(ActivityLoginPin.this, ActivityMenuLider.class);
                                                     startActivity(intent);
                                                     break;
                                                 case "super":
+                                                    globalVariable.setTipoUser("SuperU");
                                                     intent = new Intent(ActivityLoginPin.this, ActivityMenuSuperU.class);
                                                     startActivity(intent);
                                                     break;

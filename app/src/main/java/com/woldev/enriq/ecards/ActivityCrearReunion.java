@@ -436,7 +436,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
             int tam = ListaTemp.size() ;
             for (int i2 = 0; i2 < tam ; i2++) {
                 if (ListaTemp.get(i2).isCheck()){
-                    ListaUsuarios.add(ListaTemp.get(i).getId());
+                    ListaUsuarios.add(ListaTemp.get(i2).getId());
                 }
             }
         }
