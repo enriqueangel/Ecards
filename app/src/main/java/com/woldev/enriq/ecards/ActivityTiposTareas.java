@@ -152,7 +152,7 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
         switch (view.getId()){
             case R.id.agregar:
                 crearDialogAgregar();
-//                i = new Intent(ActivityTiposTareas.this, ActivityCrearTipoTarea.class);
+//                i = new Intent(ActivityTiposTareas.this, ActivityEditarTipoTarea.class);
 //                startActivity(i);
                 break;
             default:
@@ -172,7 +172,7 @@ public class ActivityTiposTareas extends AppCompatActivity implements View.OnCli
         final RadioButton RadioButtontrabajo = (RadioButton) mView.findViewById(R.id.trabajo);
         RadioButtonestudio.setChecked(true);
 
-        agregarTarea.setPositiveButton("Reportar", null);
+        agregarTarea.setPositiveButton("Crear", null);
 
         agregarTarea.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override

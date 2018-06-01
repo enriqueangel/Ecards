@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -36,9 +37,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityRama extends AppCompatActivity implements View.OnClickListener {
-
-    FloatingActionButton btnEditar;
+public class ActivityRama extends AppCompatActivity {
     String url;
     RequestQueue requestQueue;
 
@@ -63,9 +62,6 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Rama");
-
-        btnEditar = (FloatingActionButton) findViewById(R.id.BTNEditarinformacion);
-        btnEditar.setOnClickListener(this);
 
         IDRama = "";
 
@@ -140,10 +136,20 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.opciones_editar_rama, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                return true;
+            case R.id.editar:
+                crearDialogEditRama();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -246,13 +252,5 @@ public class ActivityRama extends AppCompatActivity implements View.OnClickListe
 
         dialog.show();
 
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.BTNEditarinformacion:
-                crearDialogEditRama();
-        }
     }
 }

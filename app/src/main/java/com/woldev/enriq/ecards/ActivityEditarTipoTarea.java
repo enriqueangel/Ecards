@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityCrearTipoTarea extends AppCompatActivity {
+public class ActivityEditarTipoTarea extends AppCompatActivity {
 
     Button btnModificarTarea;
     RadioButton rb1,rb2;
@@ -41,13 +41,13 @@ public class ActivityCrearTipoTarea extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_tipo_tarea);
+        setContentView(R.layout.activity_editar_tipo_tarea);
 
 
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("Crear Tipo Tarea");
+        toolbar.setTitle("Editar Tipo Tarea");
 
         IDTarea = "";
 

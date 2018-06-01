@@ -1,38 +1,18 @@
 package com.woldev.enriq.ecards;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by enriq on 1/02/2018.
@@ -85,7 +65,7 @@ public class AdapterElementoListaButton extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent i2;
-                i2 = new Intent(context, ActivityCrearTipoTarea.class);
+                i2 = new Intent(context, ActivityEditarTipoTarea.class);
                 i2.putExtra("IDTAREA",tarea.getId());
                 context.startActivity(i2);
             }

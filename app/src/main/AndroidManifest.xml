@@ -52,7 +52,7 @@
         <activity android:name=".ActivityRama" />
         <activity android:name=".ActivityHistorialCorte" />
         <activity android:name=".ActivityCrearRama" />
-        <activity android:name=".ActivityCrearTipoTarea" />
+        <activity android:name=".ActivityEditarTipoTarea" />
 
         <service android:name=".FireBaseMessagingService">
             <intent-filter>
