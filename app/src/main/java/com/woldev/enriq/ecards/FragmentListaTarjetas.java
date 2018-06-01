@@ -56,6 +56,8 @@ public class FragmentListaTarjetas extends Fragment {
     int ContCardsAzulint = 0;
     int ContCardsMoradoint = 0;
 
+    boolean EstaEnEmpleado ;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,6 +66,11 @@ public class FragmentListaTarjetas extends Fragment {
 
         url = getString(R.string.URLWS);
         url = url+"tarjetas";
+
+        final VariablesGlobales globalVariable = (VariablesGlobales) this.getActivity().getApplicationContext();
+        String TipoRol = globalVariable.getTipoUser();
+
+        EstaEnEmpleado = TipoRol.equals("Empleado");
 
         contenedor = (RecyclerView) view.findViewById(R.id.contenedor);
         requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -78,6 +85,7 @@ public class FragmentListaTarjetas extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
         String IDusuario = getArguments().getString("ID");
         params.put("id", IDusuario);
+
 
         JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -157,6 +165,10 @@ public class FragmentListaTarjetas extends Fragment {
     }
 
     private void ImprimirTargetas() throws JSONException {
+
+        boolean isPrimero = true;
+        boolean isPrimeraTarjeta = true;
+
         for (int i = 0; i < TARJETAS.length(); i++) {
             JSONObject row = TARJETAS.getJSONObject(i);
             String DescripcionTEMP = row.getString("titulo");
@@ -189,6 +201,9 @@ public class FragmentListaTarjetas extends Fragment {
                 COLORTEMP = "morado";
                 ContCardsMoradoint ++;
             }else{
+
+                isPrimero = isPrimeraTarjeta;
+                isPrimeraTarjeta = false;
                 JSONObject TipoTareaTEMP = row.getJSONObject("tipotarea");
                 TipoTEMP = TipoTareaTEMP.getString("tipo");
                 VersionTEMP = row.getString("version");
@@ -217,12 +232,14 @@ public class FragmentListaTarjetas extends Fragment {
                 }
             }
             row.put("Color",COLORTEMP);
-
-            listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, true));
+            boolean isActiva = isPrimero || EstaEnEmpleado;
+            listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isActiva));
+            isPrimero = false;
         }
     };
 
     private void ImprimirTesters() throws JSONException {
+        Boolean isprimero = true;
         for (int i = 0; i < Testers.length(); i++) {
             JSONObject row = Testers.getJSONObject(i);
 
@@ -271,7 +288,9 @@ public class FragmentListaTarjetas extends Fragment {
 
             row.put("Color",COLORTEMP);
             ContCardsVerdeint ++;
-            listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, true));
+            boolean isActiva = isprimero || EstaEnEmpleado;
+            listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isActiva));
+            isprimero = false;
         }
     }
 
