@@ -80,7 +80,13 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
             case "rojo":
                 setTheme(style.ThemeRojo);
                 break;
-            case "verde":
+            case "verde-rojo":
+                setTheme(style.ThemeVerde);
+                break;
+            case "verde-naranja":
+                setTheme(style.ThemeVerde);
+                break;
+            case "verde-blanco":
                 setTheme(style.ThemeVerde);
                 break;
             case "morado":
@@ -150,13 +156,29 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 Fr3.setArguments(args);
                 loadFragment(Fr3);
                 break;
-            case "verde":
+            case "verde-rojo":
                 btnRechazar.setVisibility(View.VISIBLE);
                 btnDesempeno.setVisibility(View.VISIBLE);
-                collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde));
+                collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde_rojo));
                 FragmentInformacionTester Fr4 = new FragmentInformacionTester();
                 Fr4.setArguments(args);
                 loadFragment(Fr4);
+                break;
+            case "verde-naranja":
+                btnRechazar.setVisibility(View.VISIBLE);
+                btnDesempeno.setVisibility(View.VISIBLE);
+                collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_verde_naranja));
+                FragmentInformacionTester Fr7 = new FragmentInformacionTester();
+                Fr7.setArguments(args);
+                loadFragment(Fr7);
+                break;
+            case "verde-blanco":
+                btnRechazar.setVisibility(View.VISIBLE);
+                btnDesempeno.setVisibility(View.VISIBLE);
+                collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_verde_gris));
+                FragmentInformacionTester Fr8 = new FragmentInformacionTester();
+                Fr8.setArguments(args);
+                loadFragment(Fr8);
                 break;
             case "azul":
                 FragmentInformacionReunion Fr5 = new FragmentInformacionReunion();
@@ -220,6 +242,8 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
         desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
         desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
 
         AdapterListDesempeno adapter = new AdapterListDesempeno(getApplicationContext(), desempenos);
 
@@ -231,6 +255,9 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 dialog.cancel();
             }
         });
+
+        AlertDialog dialog = desempenoTarjeta.create();
+        dialog.show();
     }
 
     private void crearDialogCalificar() {
