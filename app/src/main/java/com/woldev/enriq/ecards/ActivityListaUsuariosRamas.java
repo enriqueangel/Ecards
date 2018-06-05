@@ -147,6 +147,7 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
         int contTemp = 0;
         String UltimaRama = "";
         List<String> usuariosTemp = new ArrayList<>();
+        int ContTEmp2 = 0;
 
         for (int i = 0; i < Usuarios.length(); i++) {
             JSONObject row = Usuarios.getJSONObject(i);
@@ -163,7 +164,7 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
                 if (!UltimaRama.equals(AreaTemp)){
                     UltimaRama = AreaTemp;
                     listHash.put(listDataHeader.get(contTemp), usuariosTemp);
-
+                    ContTEmp2 = 0;
                     contTemp++;
                     listDataHeader.add(UltimaRama);
 
@@ -171,8 +172,9 @@ public class ActivityListaUsuariosRamas extends AppCompatActivity implements Vie
                 }
             }
             usuariosTemp.add(NombreMostrar);
-            String IDTemp = String.valueOf(contTemp)+String.valueOf(i);
+            String IDTemp = String.valueOf(contTemp)+String.valueOf(ContTEmp2);
             ListaUsuariosIDS.put(IDTemp,row);
+            ContTEmp2 ++;
         }
 
         listHash.put(listDataHeader.get(contTemp), usuariosTemp);
