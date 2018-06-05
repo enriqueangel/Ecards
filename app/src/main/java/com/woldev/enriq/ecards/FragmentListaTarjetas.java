@@ -305,6 +305,8 @@ public class FragmentListaTarjetas extends Fragment {
                 isActiva = true;
             }
 
+            row.put("titulo","Tester");
+
             listaTarjetas.add(new Tarjeta(DescripcionTEMP,TipoTEMP,dtStart,TiempoRealizado,VersionTEMP,ColorTArgeta,false,row, isActiva));
             isprimero = false;
         }

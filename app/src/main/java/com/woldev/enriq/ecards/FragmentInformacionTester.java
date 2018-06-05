@@ -28,10 +28,11 @@ public class FragmentInformacionTester extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_tester, container, false);
 
-        Encargado = (TextView) v.findViewById(R.id.TXVencargado);
         Fecha_Entrega = (TextView) v.findViewById(R.id.TXVfecha_entrega);
-        Proyecto = (TextView) v.findViewById(R.id.TXVproyecto);
         Tiempo_Realizado = (TextView) v.findViewById(R.id.TXVtiempo_desarrollo);
+
+        Encargado = (TextView) v.findViewById(R.id.TXVencargado);
+        Proyecto = (TextView) v.findViewById(R.id.TXVproyecto);
         Tiempo_Estimado = (TextView) v.findViewById(R.id.TXVtiempo_estimado);
         Link = (TextView) v.findViewById(R.id.TXVlink);
         Descripcion = (TextView) v.findViewById(R.id.TXVdescripcion);
@@ -60,6 +61,23 @@ public class FragmentInformacionTester extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
+            JSONObject Tarjeta = DATOS.getJSONObject("tarjeta");
+            JSONObject Responsable = Tarjeta.getJSONObject("responsable");
+            String ResponsableMostrarTEmp = Responsable.getString("nombres")+" "+Responsable.getString("apellidos");
+            Encargado.setText(ResponsableMostrarTEmp);
+            String TiempoEstimadoTemp = Tarjeta.getString("tiempo_estimado");
+            Tiempo_Estimado.setText(TiempoEstimadoTemp);
+
+            String descripcionTemp  = Tarjeta.getString("descripcion");
+            Descripcion.setText(descripcionTemp);
+
+            JSONObject ProyectoTEmp = Tarjeta.getJSONObject("proyecto");
+            String ProyectoNombreTEmp = ProyectoTEmp.getString("nombre");
+            Proyecto.setText(ProyectoNombreTEmp);
+
+            String LinkTemp = Tarjeta.getString("link_evidencia");
+            Link.setText(LinkTemp);
 
         } catch (JSONException e) {
             e.printStackTrace();
