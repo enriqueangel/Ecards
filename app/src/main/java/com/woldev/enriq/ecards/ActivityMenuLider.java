@@ -40,6 +40,10 @@ public class ActivityMenuLider extends AppCompatActivity implements View.OnClick
         rama.setOnClickListener(this);
         usuarios.setOnClickListener(this);
         dashboard.setOnClickListener(this);
+
+        if (globalVariable.getCantRoles() == 1){
+            dashboard.setVisibility(View.GONE);
+        }
     }
 
     @Override

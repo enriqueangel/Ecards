@@ -7,6 +7,7 @@
     tools:context="com.woldev.enriq.ecards.ActivityTiposTareas">
 
     <LinearLayout
+        android:id="@+id/contenedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -30,12 +31,12 @@
         android:visibility="gone"
         android:layout_gravity="center" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/agregar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_gravity="right|bottom"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        android:layout_gravity="end|bottom"
+        app:fab_colorNormal="?attr/colorAccent"
+        app:fab_icon="@drawable/ic_add_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

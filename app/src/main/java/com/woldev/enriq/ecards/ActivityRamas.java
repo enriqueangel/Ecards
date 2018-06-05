@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ActivityRamas extends AppCompatActivity  {
+public class ActivityRamas extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<ElementoLista> ramas;
     ListView list;
@@ -64,8 +65,8 @@ public class ActivityRamas extends AppCompatActivity  {
         dialog = mBuilder.create();
         list = (ListView) findViewById(R.id.lista);
 
-        //FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.agregar);
-        //btnCrear.setOnClickListener(this);
+        FloatingActionButton btnCrear = (FloatingActionButton) findViewById(R.id.agregar);
+        btnCrear.setOnClickListener(this);
 
     }
 
@@ -157,22 +158,15 @@ public class ActivityRamas extends AppCompatActivity  {
         }
     }
 
-/*
-   @Override
+    @Override
     public void onClick(View view) {
-        Intent i;
         switch (view.getId()){
             case R.id.agregar:
-                i = new Intent(ActivityRamas.this, ActivityCrearProyecto.class);
+                Intent i =  new Intent(this, ActivityCrearRama.class);
                 startActivity(i);
                 break;
             default:
                 break;
         }
-
-    }*/
-
-
-
-
+    }
 }

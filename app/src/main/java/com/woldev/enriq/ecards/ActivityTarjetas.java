@@ -68,7 +68,6 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
     Toolbar toolbar, cards;
     Date FechaServidor;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
@@ -129,9 +128,9 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
 
         transaction.commit();
 
-
-        //clickperf.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_persona));
-        //clickDashboard.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_access_time_black_24dp));
+        if (globalVariable.getCantRoles() == 1){
+            clickDashboard.setVisibility(View.GONE);
+        }
 
         clickDashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,8 +255,6 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
             String TiempoEsperado = row.getString("tiempo_estimado");
             String dtStart = row.getString("fecha_entrega");
     }*/
-
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
