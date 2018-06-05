@@ -34,6 +34,11 @@ public class ActivityMenuAdmin extends AppCompatActivity implements View.OnClick
         usuarios.setOnClickListener(this);
         dashboard.setOnClickListener(this);
         corte.setOnClickListener(this);
+
+        if (globalVariable.getCantRoles() == 1){
+            dashboard.setVisibility(View.GONE);
+        }
+
     }
 
 

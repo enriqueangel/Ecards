@@ -17,21 +17,19 @@
             layout="@layout/toolbar"/>
 
             <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:layout_gravity="center"
                 android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp">
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/campo_nombrerama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/rama"
+                    android:hint="@string/nombre_rama"
                     app:hintTextAppearance="@style/FloatingLabel"
                     app:errorEnabled="true"
                     app:errorTextAppearance="@style/Error">
@@ -49,10 +47,6 @@
                     android:id="@+id/campo_cod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="10dp"
                     android:hint="@string/codigo"
                     app:hintTextAppearance="@style/FloatingLabel"
                     app:errorEnabled="true"
@@ -71,31 +65,57 @@
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     app:ms_arrowColor="@color/casi_negro"
                     app:ms_floatingLabelColor="@color/casi_negro"
                     app:hintTextAppearance="@style/FloatingLabel"
                     app:ms_hint="Lider"
                     app:ms_floatingLabelText="Lider"
-                    app:ms_enableErrorLabel="true"
-                    />
+                    app:ms_enableErrorLabel="true" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Estado"
+                    android:textSize="20dp"
+                    android:layout_marginTop="15dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#212121" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/activo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Activo"
+                        android:layout_weight="1"/>
+
+                    <RadioButton
+                        android:id="@+id/inactivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inactivo"
+                        android:layout_weight="1"/>
+
+                </RadioGroup>
+
+            <Button
+                android:id="@+id/BTNCrearama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="18dp"
+                android:layout_gravity="end"
+                android:text="Crear Rama"
+                android:theme="@style/PrimaryButton" />
 
             </LinearLayout>
-
-        <Button
-            android:id="@+id/BTNCrearama"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="18dp"
-            android:layout_gravity="end"
-            android:text="Crear Rama"
-            android:theme="@style/PrimaryButton"
-            />
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

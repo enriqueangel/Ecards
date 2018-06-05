@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?attr/actionMenuTextColor"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="20dp"
             android:textSize="17sp"
@@ -25,8 +25,6 @@
             android:id="@+id/CamponombreRama"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
             android:layout_gravity="center_horizontal"
             android:hint="@string/rama"
             app:hintTextAppearance="@style/FloatingLabel"
@@ -45,8 +43,6 @@
             android:id="@+id/Campocodigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
             android:layout_gravity="center_horizontal"
             android:hint="@string/codigo"
             app:hintTextAppearance="@style/FloatingLabel"
@@ -63,6 +59,35 @@
                 android:theme="@style/EditText"
                 />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/actionMenuTextColor"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:text="@string/estado"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/activo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Activo"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/inactivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inactivo"
+                android:layout_weight="1"/>
+
+        </RadioGroup>
 
     </LinearLayout>
 

@@ -33,20 +33,15 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
     List<String> liderItem = new ArrayList<>();
     ArrayAdapter<String> estadoAdapter, liderAdapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_proyecto);
 
-
         Toolbar toolbar = findViewById(R.id.include);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("Crear Proyecto");
-
-
 
         Fecha= (EditText)  findViewById(R.id.EDTfecha);
         Descripcion= (EditText)  findViewById(R.id.descripcion);
@@ -59,7 +54,6 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
         day = Date.get(Calendar.DAY_OF_MONTH);
         month = Date.get(Calendar.MONTH);
         year = Date.get(Calendar.YEAR);
-
 
         //tv.setText(day + "/" + month + "/" + year);
         Fecha.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +86,8 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
 
         List<String> list = new ArrayList<>();
         list.add("Activo");
-        list.add("Inactivo");
+        list.add("Pausado");
+        list.add("Terminado");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -106,8 +101,6 @@ public class ActivityCrearProyecto extends AppCompatActivity  {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list2);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lider.setAdapter(adapter);
-
-
     }
 
     @Override

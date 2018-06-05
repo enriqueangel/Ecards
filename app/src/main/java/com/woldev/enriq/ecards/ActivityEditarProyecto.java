@@ -53,7 +53,6 @@ public class ActivityEditarProyecto extends AppCompatActivity {
         month = Date.get(Calendar.MONTH);
         year = Date.get(Calendar.YEAR);
 
-
         //tv.setText(day + "/" + month + "/" + year);
         Fecha.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +83,6 @@ public class ActivityEditarProyecto extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lider.setAdapter(adapter);
-
     }
 
     @Override

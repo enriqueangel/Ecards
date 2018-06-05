@@ -44,6 +44,10 @@ public class ActivityMenuSuperU extends AppCompatActivity implements View.OnClic
         usuarios.setOnClickListener(this);
         corte.setOnClickListener(this);
         dashboard.setOnClickListener(this);
+
+        if (globalVariable.getCantRoles() == 1){
+            dashboard.setVisibility(View.GONE);
+        }
     }
 
     @Override
