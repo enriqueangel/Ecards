@@ -52,7 +52,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
     JSONObject DATOS;
     TextView FechaEntrega,Proyecto,TipoTarea,TiempoRealizado,Link,Descripcion;
     CollapsingToolbarLayout collapsingToolbarLayout;
-    FloatingActionButton btnReportar, btnEntregar, btnRechazar, btnDesempeno;
+    FloatingActionButton btnReportar, btnEntregar, btnRechazar, btnDesempeno, btnElimnar, btnEditar;
     String color = "";
     int hour, minute;
     Calendar Time;
@@ -107,6 +107,10 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         btnEntregar = (FloatingActionButton) findViewById(id.btnEntregar);
         btnRechazar = (FloatingActionButton) findViewById(id.btnRechazar);
         btnDesempeno = (FloatingActionButton) findViewById(id.btnDesempeno);
+        btnElimnar = (FloatingActionButton) findViewById(id.btnEliminar);
+        btnEditar = (FloatingActionButton) findViewById(id.btnEditar);
+
+        VariablesGlobales globalVariable = (VariablesGlobales) getApplicationContext();
 
         Toolbar toolbar = (Toolbar) findViewById(id.toolbar);
         setSupportActionBar(toolbar);
@@ -126,6 +130,52 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         btnReportar.setOnClickListener(this);
         btnRechazar.setOnClickListener(this);
         btnDesempeno.setOnClickListener(this);
+        btnEditar.setOnClickListener(this);
+        btnElimnar.setOnClickListener(this);
+
+        if(globalVariable.getTipoUser().equals("SuperU") || globalVariable.getTipoUser().equals("Lider") || globalVariable.getTipoUser().equals("Administrador")){
+            btnElimnar.setVisibility(View.VISIBLE);
+            btnEditar.setVisibility(View.VISIBLE);
+            btnReportar.setVisibility(View.GONE);
+            btnEntregar.setVisibility(View.GONE);
+            btnRechazar.setVisibility(View.GONE);
+            btnDesempeno.setVisibility(View.GONE);
+
+            if (color.equals("verde-rojo") || color.equals("verde-naranja") || color.equals("verde-blanco")) {
+                btnElimnar.setVisibility(View.GONE);
+                btnEditar.setVisibility(View.GONE);
+            }
+
+            if (color.equals("azul"))
+                btnEditar.setVisibility(View.GONE);
+
+        } else {
+            btnElimnar.setVisibility(View.GONE);
+            btnEditar.setVisibility(View.GONE);
+
+            switch (color){
+                case "verde-rojo":
+                    btnRechazar.setVisibility(View.VISIBLE);
+                    btnDesempeno.setVisibility(View.VISIBLE);
+                    break;
+                case "verde-naranja":
+                    btnRechazar.setVisibility(View.VISIBLE);
+                    btnDesempeno.setVisibility(View.VISIBLE);
+                    break;
+                case "verde-blanco":
+                    btnRechazar.setVisibility(View.VISIBLE);
+                    btnDesempeno.setVisibility(View.VISIBLE);
+                    break;
+                case "azul":
+                    btnRechazar.setVisibility(View.GONE);
+                    break;
+            }
+
+            btnReportar.setVisibility(View.VISIBLE);
+            btnEntregar.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     private void loadFragment(Fragment fragment) {
@@ -164,24 +214,18 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 loadFragment(Fr3);
                 break;
             case "verde-rojo":
-                btnRechazar.setVisibility(View.VISIBLE);
-                btnDesempeno.setVisibility(View.VISIBLE);
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(R.drawable.fondo_verde_rojo));
                 FragmentInformacionTester Fr4 = new FragmentInformacionTester();
                 Fr4.setArguments(args);
                 loadFragment(Fr4);
                 break;
             case "verde-naranja":
-                btnRechazar.setVisibility(View.VISIBLE);
-                btnDesempeno.setVisibility(View.VISIBLE);
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_verde_naranja));
                 FragmentInformacionTester Fr7 = new FragmentInformacionTester();
                 Fr7.setArguments(args);
                 loadFragment(Fr7);
                 break;
             case "verde-blanco":
-                btnRechazar.setVisibility(View.VISIBLE);
-                btnDesempeno.setVisibility(View.VISIBLE);
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_verde_gris));
                 FragmentInformacionTester Fr8 = new FragmentInformacionTester();
                 Fr8.setArguments(args);
@@ -191,7 +235,6 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 FragmentInformacionReunion Fr5 = new FragmentInformacionReunion();
                 Fr5.setArguments(args);
                 loadFragment(Fr5);
-                btnRechazar.setVisibility(View.GONE);
                 break;
             case "morado":
                 collapsingToolbarLayout.setBackground(getResources().getDrawable(drawable.fondo_morado));
@@ -231,6 +274,13 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 break;
             case id.btnRechazar:
                 crearDialogRechazar();
+                break;
+            case id.btnEditar:
+                if (color.equals("rojo") || color.equals("naranja") || color.equals("blanco")){
+
+                }
+                break;
+            case id.btnEliminar:
                 break;
             default:
                 break;

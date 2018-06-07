@@ -40,6 +40,8 @@ public class FragmentPerfil extends Fragment {
         LinearLayout cabecera = (LinearLayout) view.findViewById(R.id.cabecera);
         cabecera.setBackground(getResources().getDrawable(R.drawable.fondo_perfil));
 
+        VariablesGlobales globalVariable = (VariablesGlobales) this.getActivity().getApplicationContext();
+
         btnEditar = (FloatingActionButton) view.findViewById(R.id.btnEditar);
 
         Nombre = (TextView) view.findViewById(R.id.TXVnombre);
@@ -49,7 +51,7 @@ public class FragmentPerfil extends Fragment {
         HorasContratadas = (TextView) view.findViewById(R.id.Horas_Contratadas);
         imagen = (CircleImageView) view.findViewById(R.id.imagen);
 
-        if(tipoUsuario.equals("SUPERU")){
+        if(globalVariable.getTipoUser().equals("SuperU")){
             btnEditar.setVisibility(View.VISIBLE);
         }
 
