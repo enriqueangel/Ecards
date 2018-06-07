@@ -12,11 +12,14 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,11 +33,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -214,7 +221,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 crearDialogDesempeno();
                 break;
             case id.btnEntregar:
-                if(color.equals("verde"))
+                if(color.equals("verde-naranja")||color.equals("verde-rojo")||color.equals("verde-blanco"))
                     crearDialogCalificar();
                 else
                     crearDialogEntregar();
@@ -234,20 +241,103 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
         final AlertDialog.Builder desempenoTarjeta = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         desempenoTarjeta.setTitle("Desempeño");
 
-        ArrayList<Desempeno> desempenos = new ArrayList<>();
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
-        desempenos.add(new Desempeno("Ejemplo", "00:00", "Esto es un ejemplo"));
+        final AlertDialog dialogCargando;
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        AdapterListDesempeno adapter = new AdapterListDesempeno(getApplicationContext(), desempenos);
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.dialog_progress, null);
+        mBuilder.setView(mView);
+        dialogCargando = mBuilder.create();
 
-        desempenoTarjeta.setAdapter(adapter, null);
+        dialogCargando.show();
+
+        Map<String, String> params = new HashMap<String, String>();
+        String IDtarjeta = null;
+        try {
+            JSONObject Tarjeta = DATOS.getJSONObject("tarjeta");
+            IDtarjeta = Tarjeta.getString("_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        params.put("id", IDtarjeta);
+        String urlTEmp = url+"tarjetas/desempeno";
+
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.POST, urlTEmp, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray DatosDesempeño = response.getJSONArray("trabajos");
+
+                            ArrayList<Desempeno> desempenos = new ArrayList<>();
+
+                            for (int i = 0; i < DatosDesempeño.length(); i++) {
+                                JSONObject row = DatosDesempeño.getJSONObject(i);
+
+                                Date FechaEntregada = null ;
+
+                                String FechaEntregadaStringWs = row.getString("fecha");
+                                String HorasTrabajadasTemp = row.getString("horas_trabajadas");
+                                String DescripcionTemp = row.getString("descripcion");
+                                String FechaEntregadaStringLocal = "";
+
+                                SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+                                SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+
+                                try {
+                                    FechaEntregada = format2.parse(FechaEntregadaStringWs);
+                                    FechaEntregadaStringLocal = parseador.format(FechaEntregada);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                desempenos.add(new Desempeno(FechaEntregadaStringLocal, HorasTrabajadasTemp, DescripcionTemp));
+
+
+                            }
+
+                            AdapterListDesempeno adapter = new AdapterListDesempeno(getApplicationContext(), desempenos);
+
+                            desempenoTarjeta.setAdapter(adapter, null);
+
+                            AlertDialog dialog = desempenoTarjeta.create();
+                            dialog.show();
+
+                            dialogCargando.dismiss();
+                        } catch (JSONException e) {
+                            Log.e("Volley", "Invalid JSON Object.");
+                            dialogCargando.dismiss();
+                            Toast.makeText(getApplicationContext(), "Error cargando el desempeño.", Toast.LENGTH_SHORT).show();
+                            //Snackbar.make(view, "Error desconocido.", Snackbar.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        dialogCargando.dismiss();
+                        Log.e("Volley", error.toString());
+                        Toast.makeText(getApplicationContext(), "Error en la conexion.", Toast.LENGTH_SHORT).show();
+                        // Snackbar.make(view, "Error en la conexion.", Snackbar.LENGTH_SHORT).show();
+                    }
+                }
+        ){
+            /*
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                String tokenTemp = SP.getString("token","");
+                headers.put("token", tokenTemp);
+                return headers;
+            }
+        };
+
+        requestQueue.add(arrReq);
 
         desempenoTarjeta.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
@@ -256,8 +346,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
             }
         });
 
-        AlertDialog dialog = desempenoTarjeta.create();
-        dialog.show();
+
     }
 
     private void crearDialogCalificar() {
