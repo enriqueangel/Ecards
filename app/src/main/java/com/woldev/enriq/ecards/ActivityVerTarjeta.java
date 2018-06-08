@@ -281,6 +281,8 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 if (color.equals("rojo") || color.equals("naranja") || color.equals("blanco")){
                     i = new Intent(ActivityVerTarjeta.this, ActivityEditarTarjeta.class);
                     startActivity(i);
+                } else if (color.equals("morado")){
+
                 }
                 break;
             case id.btnEliminar:
