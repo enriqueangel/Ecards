@@ -89,23 +89,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
                                 app:srcCompat="@drawable/ic_email_black_24dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@id/itemEntrega"
-                                android:layout_toRightOf="@id/itemEntrega"
                                 android:orientation="vertical">
 
                                 <TextView
                                     android:id="@+id/TXVCorreo"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-
                                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                     android:textColor="#212121" />
 
@@ -136,16 +132,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
                                 app:srcCompat="@drawable/ic_phone_black_24dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@id/itemProyecto"
-                                android:layout_toRightOf="@id/itemProyecto"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -183,16 +176,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
                                 app:srcCompat="@drawable/ic_assignment_late_black_24dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@id/itemTipo"
-                                android:layout_toRightOf="@id/itemTipo"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -230,16 +220,13 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
                                 app:srcCompat="@drawable/ic_timer_black_24dp" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_toEndOf="@id/itemTiempo"
-                                android:layout_toRightOf="@id/itemTiempo"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -262,6 +249,51 @@
 
                             </LinearLayout>
                         </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp">
+
+                            <ImageView
+                                android:id="@+id/itemRol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_toEndOf="@id/itemRol"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/Rol"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                    android:textColor="#212121" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/rol"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                    android:textColor="#727272" />
+
+                                <include layout="@layout/item_divider" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
@@ -274,9 +306,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="14dp"
+            android:layout_marginEnd="14dp"
             android:layout_marginTop="190dp"
             app:fab_colorNormal="?attr/colorPrimary"
             app:layout_anchor="@id/cabecera"
