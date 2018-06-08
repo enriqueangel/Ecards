@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -259,6 +260,7 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+        Intent i;
         switch (view.getId()){
             case id.btnDesempeno:
                 crearDialogDesempeno();
@@ -277,7 +279,8 @@ public class ActivityVerTarjeta extends AppCompatActivity implements View.OnClic
                 break;
             case id.btnEditar:
                 if (color.equals("rojo") || color.equals("naranja") || color.equals("blanco")){
-
+                    i = new Intent(ActivityVerTarjeta.this, ActivityEditarTarjeta.class);
+                    startActivity(i);
                 }
                 break;
             case id.btnEliminar:

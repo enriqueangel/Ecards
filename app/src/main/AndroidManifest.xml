@@ -77,8 +77,8 @@
 
         <activity android:name=".ActivityVerProyecto" />
         <activity android:name=".ActivityCrearProyecto" />
-        <activity android:name=".ActivityEditarProyecto" />
-        <activity android:name=".ActivityListaUsuariosRamas"></activity>
+        <activity android:name=".ActivityListaUsuariosRamas" />
+        <activity android:name=".ActivityEditarTarjeta"></activity>
     </application>
 
 </manifest>
