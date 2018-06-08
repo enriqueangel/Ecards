@@ -30,10 +30,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -68,6 +72,57 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
     Toolbar toolbar, cards;
     Date FechaServidor;
 
+    JSONArray notificaciones=null;
+
+    @Override
+    protected void onStart() {
+        String urlTemp=getString(R.string.URLWS)+"notificaciones";
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        JsonObjectRequest arrReq = new JsonObjectRequest(Request.Method.GET, urlTemp,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                                notificaciones = response.getJSONArray("notificaciones");
+                                ImprimirNotificaciones();
+
+                        } catch (JSONException e) {
+                            Log.e("Volley", "Invalid JSON Object.");
+                            Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Log.e("Volley", error.toString());
+                        Toast.makeText(getApplicationContext(), "Error en la conexion", Toast.LENGTH_LONG).show();
+                    }
+                }
+        ){
+            /*
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                SharedPreferences SP = getSharedPreferences("TOKEN",MODE_PRIVATE);
+                String tokenTemp = SP.getString("token","");
+                headers.put("token", tokenTemp);
+                return headers;
+            }
+        };
+
+        requestQueue.add(arrReq);
+        super.onStart();
+
+
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
@@ -85,26 +140,6 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
         ContCardsAzul = (TextView) findViewById(R.id.card_azul);
         ContCardsMorado = (TextView) findViewById(R.id.card_purple);
 
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-
-        //ArrayAdapter <String> adp = new ArrayAdapter<String>(this,R.layout.design_notificacion,opciones);
-        //menulateral.setAdapter(adp);
-
-        AdapterNotificaciones adapter = new AdapterNotificaciones(this, listanotificacion);
-        menulateral.setAdapter(adapter);
-        //listanotificacion.add(new Notificacion("hiada","nfsjdfns","fnjdsfn","fkdf"));
-        //menulateral.setAdapter(new AdapterNotificaciones(listanotificacion));
-        //menulateral.setLayoutManager(new LinearLayoutManager(this));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tarjetas");
 
@@ -244,17 +279,40 @@ public class ActivityTarjetas extends AppCompatActivity implements NavigationVie
         }
     }
 
-    /*private void ImprimirNotificaciones() throws JSONException{
-        for (int i = 0; i < TARJETASNOTI.length(); i++) {
-            JSONObject row = TARJETASNOTI.getJSONObject(i);
-            String TituloN = row.getString("titulo");
+    private void ImprimirNotificaciones() throws JSONException{
+        for (int i = 0; i < notificaciones.length(); i++) {
+            JSONObject row = notificaciones.getJSONObject(i);
 
-            String TipoTEMP;
-            String VersionTEMP;
 
-            String TiempoEsperado = row.getString("tiempo_estimado");
-            String dtStart = row.getString("fecha_entrega");
-    }*/
+            String FechaN = row.getString("fecha");
+            String DescripcionN = row.getString("descripcion");
+            String dtStart = "";
+            String HoraTEmp= "";
+            Date FechaEntrega = null ;
+
+            SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat parseador2 = new SimpleDateFormat("HH:mm");
+
+            try {
+                FechaEntrega = format2.parse(FechaN);
+                dtStart = parseador.format(FechaEntrega);
+                HoraTEmp = parseador2.format(FechaEntrega);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            listanotificacion.add(new Notificacion(DescripcionN,"",dtStart,HoraTEmp));
+
+
+            //ArrayAdapter <String> adp = new ArrayAdapter<String>(this,R.layout.design_notificacion,opciones);
+            //menulateral.setAdapter(adp);
+
+            AdapterNotificaciones adapter = new AdapterNotificaciones(this, listanotificacion);
+            menulateral.setAdapter(adapter);
+
+    }}
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
