@@ -38,8 +38,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +86,8 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
     ArrayAdapter<String>  tareaAdapter, proyectoAdapter;
 
     AlertDialog dialog;
+
+    String FechaServidor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,7 +151,28 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
                         monthOfYear = monthOfYear + 1;
                         String diaFormateada = (dayOfMonth < 10)? String.valueOf("0" + dayOfMonth) : String.valueOf(dayOfMonth);
                         String mesFormateada = (monthOfYear < 10)? String.valueOf("0" + monthOfYear) : String.valueOf(monthOfYear);
-                        Fechaentrega.setText(diaFormateada + "/" + mesFormateada + "/" + year);
+
+                        String FechaStringTEmp = diaFormateada + "/" + mesFormateada + "/" + year;
+
+
+                        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            java.util.Date dateElegida = format1.parse(FechaStringTEmp);
+                            Date dateServidor = format2.parse(FechaServidor);
+                            if (dateElegida.after(dateServidor) || dateElegida.equals(dateServidor)) {
+                                TILFechaentrega.setError(null);
+                                Fechaentrega.setText(FechaStringTEmp);
+                            }else{
+                                Fechaentrega.setText(null);
+                                TILFechaentrega.setError("La fecha no puede ser inferior a la actual.");
+                            }
+                        } catch (ParseException e) {
+                            Toast.makeText(ActivityCrearTarjeta.this, "Error interno. Calculando la fecha actual" , Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -286,7 +312,7 @@ public class ActivityCrearTarjeta extends AppCompatActivity implements AdapterVi
                             JSONUsuarios = response.getJSONArray("usuarios");
                             JSONproyectos = response.getJSONArray("proyectos");
                             JSONtareas = response.getJSONArray("tareas");
-
+                            FechaServidor = response.getString("fecha");
                             CargarUsuarios();
                             CargarProyectos();
                             CargarTareas();

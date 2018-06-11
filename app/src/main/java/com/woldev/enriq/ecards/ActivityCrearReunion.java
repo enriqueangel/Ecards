@@ -23,6 +23,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,8 +35,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +55,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
     String TIPOUSUARIO = "";
 
     TextView tv, tve;
-    Calendar Date, Time;
+    Calendar DateCalendar, Time;
     String format;
     Spinner mySpinner;
     Button CrearReunion;
@@ -64,6 +68,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
     HashMap<String, List<ItemListCheckbox>> listDataChild;
 
     String MetodoWS = "tarjetas/crear_reunion";
+    String FechaServidor;
 
     AlertDialog dialog;
 
@@ -86,6 +91,7 @@ public class ActivityCrearReunion extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             Usuarios = response.getJSONArray("users");
+                            FechaServidor = response.getString("fecha");
 
                             int contTemp = 0;
                             String UltimaRama = "";
@@ -242,10 +248,10 @@ public class ActivityCrearReunion extends AppCompatActivity {
         });
 
         //Fecha
-        Date = Calendar.getInstance();
-        day = Date.get(Calendar.DAY_OF_MONTH);
-        month = Date.get(Calendar.MONTH);
-        year = Date.get(Calendar.YEAR);
+        DateCalendar = Calendar.getInstance();
+        day = DateCalendar.get(Calendar.DAY_OF_MONTH);
+        month = DateCalendar.get(Calendar.MONTH);
+        year = DateCalendar.get(Calendar.YEAR);
 
         //tv.setText(day + "/" + month + "/" + year);
         Fecha.setOnClickListener(new View.OnClickListener() {
@@ -257,7 +263,27 @@ public class ActivityCrearReunion extends AppCompatActivity {
                         monthOfYear = monthOfYear + 1;
                         String diaFormateada = (dayOfMonth < 10)? String.valueOf("0" + dayOfMonth) : String.valueOf(dayOfMonth);
                         String mesFormateada = (monthOfYear < 10)? String.valueOf("0" + monthOfYear) : String.valueOf(monthOfYear);
-                        Fecha.setText(diaFormateada + "/" + mesFormateada + "/" + year);
+                        String FechaStringTEmp = diaFormateada + "/" + mesFormateada + "/" + year;
+
+
+                        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date dateElegida = format1.parse(FechaStringTEmp);
+                            Date dateServidor = format2.parse(FechaServidor);
+                            if (dateElegida.after(dateServidor) || dateElegida.equals(dateServidor)) {
+                                TILFecha.setError(null);
+                                Fecha.setText(FechaStringTEmp);
+                            }else{
+                                Fecha.setText(null);
+                                TILFecha.setError("La fecha no puede ser inferior a la actual.");
+                            }
+                        } catch (ParseException e) {
+                            Toast.makeText(ActivityCrearReunion.this, "Error interno. Calculando la fecha actual" , Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+
+
                     }
                 }, year, month, day);
                 datePickerDialog.show();
